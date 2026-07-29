@@ -48,6 +48,21 @@ export const narrators: Narrator[] = [
   n("abu_dawud", "سليمان بن الأشعث أبو داود", "أبو داود", "Abū Dāwūd", "compiler", "الطبقة الحادية عشرة", 275, "سجستان"),
 ];
 
+const estimatedBirthRanges: Record<string, [number, number]> = {
+  yahya: [68, 72], malik: [90, 93], sufyan: [95, 98], hammad: [96, 99], layth: [92, 95],
+  awzai: [86, 89], ibn_mubarak: [116, 119], shafii: [148, 150], qaanabi: [128, 132],
+  yahya_yahya: [150, 154], abdullah_yusuf: [135, 140], humaydi: [160, 165], musaddad: [150, 155],
+  qutayba: [148, 152], abu_bakr_shayba: [157, 160], ibn_numayr: [158, 162], ishaq: [159, 163],
+  bukhari: [193, 194], muslim: [203, 206], nasai: [214, 216], abdullah_wahb: [123, 126],
+  yunus: [88, 92], maan: [128, 132], bishr: [112, 116], wakii: [126, 130],
+  muhammad_kathir: [130, 140], harun: [165, 170], ibn_uyayna: [106, 108], abu_dawud: [201, 203],
+};
+
+narrators.forEach((narrator) => {
+  const range = estimatedBirthRanges[narrator.id];
+  if (range) [narrator.birthAhMin, narrator.birthAhMax] = range;
+});
+
 export const narratorMap = new Map(narrators.map((item) => [item.id, item]));
 
 const routes = [
@@ -90,6 +105,7 @@ export const hadithNodes: GraphNode[] = hadithIds.map((id) => {
 const edgeIndex = new Map<string, GraphEdge>();
 routes.forEach((route, routeIndex) => {
   const collection = ["البخاري", "البخاري", "البخاري", "مسلم", "مسلم", "النسائي", "أبو داود"][routeIndex];
+  const variant = ["أ", "أ", "أ", "ب", "ب", "ب", "ج"][routeIndex];
   route.slice(0, -1).forEach((source, i) => {
     const target = route[i + 1];
     const key = `${source}-${target}`;
@@ -97,12 +113,13 @@ routes.forEach((route, routeIndex) => {
     if (existing) {
       existing.data.count += 1;
       if (!existing.data.collection.includes(collection)) existing.data.collection += ` · ${collection}`;
+      if (!existing.data.variants?.includes(variant)) existing.data.variants += ` · ${variant}`;
     } else {
       edgeIndex.set(key, {
         data: {
           id: key, source, target, verb: i < 4 ? "عن" : "حدثنا",
           evidence: source === "awzai" && target === "muhammad_kathir" ? "candidate" : "isnad",
-          collection, count: 1,
+          collection, count: 1, variants: variant,
         },
         classes: source === "awzai" && target === "muhammad_kathir" ? "uncertain" : "isnad",
       });
@@ -110,6 +127,11 @@ routes.forEach((route, routeIndex) => {
   });
 });
 export const hadithEdges = [...edgeIndex.values()];
+
+hadithEdges.forEach((edge) => {
+  const variantCount = edge.data.variants?.split(" · ").length ?? 1;
+  edge.classes = `${edge.classes ?? ""} ${variantCount > 1 ? "variant-shared" : `variant-${edge.data.variants === "أ" ? "a" : edge.data.variants === "ب" ? "b" : "c"}`}`.trim();
+});
 
 const egoLinks = [
   ["alqama", "yahya", "biographical"], ["muhammad_ibrahim", "yahya", "isnad"], ["yahya", "malik", "isnad"],
@@ -131,7 +153,20 @@ export const egoNodes: GraphNode[] = [...new Set(egoLinks.flatMap(([a, b]) => [a
 });
 
 export const egoEdges: GraphEdge[] = egoLinks.map(([source, target, evidence], i) => ({
-  data: { id: `ego-${i}`, source, target, verb: evidence === "isnad" ? "عن" : "ذُكر", evidence, collection: evidence === "isnad" ? "كتب الحديث" : "كتب الرجال", count: evidence === "isnad" ? 7 + i : 1 },
+  data: {
+    id: `ego-${i}`, source, target, verb: evidence === "isnad" ? "عن" : "ذُكر", evidence,
+    collection: evidence === "isnad" ? "كتب الحديث" : "كتب الرجال", count: evidence === "isnad" ? 7 + i : 1,
+    chronologyStatus: (() => {
+      const teacher = narratorMap.get(source); const student = narratorMap.get(target);
+      if (!teacher?.deathAh || !student?.birthAhMin) return "unknown";
+      return teacher.deathAh >= student.birthAhMin + 10 ? "possible" : "impossible";
+    })(),
+    chronologyLabel: (() => {
+      const teacher = narratorMap.get(source); const student = narratorMap.get(target);
+      if (!teacher?.deathAh || !student?.birthAhMin) return "المعطيات الزمنية غير كافية";
+      return teacher.deathAh >= student.birthAhMin + 10 ? "اللقاء ممكن زمنيا، وليس مثبتا بذلك وحده" : "تعارض زمني ظاهر يحتاج إلى مراجعة الهوية";
+    })(),
+  },
   classes: evidence,
 }));
 
@@ -145,26 +180,24 @@ export const assertions: SourceAssertion[] = [
 
 export const matnVariants = [
   {
-    id: "v1", label: "Variante A · Bukhārī", collections: ["البخاري"], branchIds: ["malik", "sufyan", "hammad"],
+    id: "v1", label: "الرواية أ · البخاري", collections: ["البخاري"], branchIds: ["malik", "sufyan", "hammad"],
     text: "إِنَّمَا الأَعْمَالُ بِالنِّيَّاتِ، وَإِنَّمَا لِكُلِّ امْرِئٍ مَا نَوَى",
-    translation: "Die Taten richten sich nach den Absichten; jedem Menschen kommt zu, was er beabsichtigt hat.",
+    translation: "صيغة متنية أولى مرتبطة بهذه الفروع في بيانات العرض.",
   },
   {
-    id: "v2", label: "Variante B · Muslim / Nasāʾī", collections: ["مسلم", "النسائي"], branchIds: ["layth", "ibn_mubarak", "qaanabi"],
+    id: "v2", label: "الرواية ب · مسلم والنسائي", collections: ["مسلم", "النسائي"], branchIds: ["layth", "ibn_mubarak", "qaanabi"],
     text: "إِنَّمَا الأَعْمَالُ بِالنِّيَّةِ، وَإِنَّمَا لاِمْرِئٍ مَا نَوَى",
-    translation: "Die Handlungen gelten nach der Absicht; für einen Menschen gilt, was er beabsichtigte.",
+    translation: "صيغة متنية ثانية مرتبطة بهذه الفروع في بيانات العرض.",
   },
 ];
 
-export const collectionOptions = ["Alle Sammlungen", "البخاري", "مسلم", "النسائي", "أبو داود"];
+export const collectionOptions = ["جميع المصنفات", "البخاري", "مسلم", "النسائي", "أبو داود"];
 
 export const sourceRegister = [
-  { title: "تقريب التهذيب", author: "ابن حجر", tier: "Personenidentität", rights: "zu klären", origin: "Beigefügte Bücherliste, S. 1" },
-  { title: "تهذيب التهذيب", author: "ابن حجر", tier: "Personenidentität", rights: "zu klären", origin: "Beigefügte Bücherliste, S. 1" },
-  { title: "ميزان الاعتدال", author: "الذهبي", tier: "Kritik", rights: "zu klären", origin: "Beigefügte Bücherliste, S. 1" },
-  { title: "الجرح والتعديل", author: "ابن أبي حاتم", tier: "Personenidentität", rights: "zu klären", origin: "Beigefügte Bücherliste, S. 1" },
-  { title: "المؤتلف والمختلف", author: "الدارقطني", tier: "Namensauflösung", rights: "zu klären", origin: "Beigefügte Bücherliste, S. 7" },
-  { title: "المراسيل", author: "ابن أبي حاتم", tier: "Spezialproblem", rights: "zu klären", origin: "Beigefügte Bücherliste, S. 8" },
+  { title: "صحيح البخاري", author: "البخاري", tier: "الأحاديث والأسانيد", rights: "قيد المراجعة", origin: "تراث، الكتاب ٧٣٥" },
+  { title: "صحيح مسلم", author: "مسلم", tier: "الأحاديث والأسانيد", rights: "قيد المراجعة", origin: "تراث، الكتاب ١٧٢٧" },
+  { title: "تقريب التهذيب", author: "ابن حجر", tier: "هوية الرواة", rights: "قيد المراجعة", origin: "تراث، الكتاب ٨٦٠٩" },
+  { title: "الكاشف", author: "الذهبي", tier: "الشيوخ والتلاميذ", rights: "قيد المراجعة", origin: "تراث، الكتاب ٢١٧١" },
 ];
 
-export const prototypeNotice = "Forschungsprototyp · Mock-Daten · Fachliche Angaben noch nicht redaktionell verifiziert";
+export const prototypeNotice = "نسخة بحثية أولية · البيانات المستخرجة آليا لم تُراجع علميا بعد";

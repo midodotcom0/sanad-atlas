@@ -1,0 +1,63 @@
+{
+  "generatedAt": "2026-07-29T23:35:27.901Z",
+  "parserVersion": "0.3.0",
+  "provider": {
+    "name": "تراث",
+    "publisher": "نُقاية",
+    "applicationUrl": "https://app.turath.io",
+    "apiUrl": "https://api.turath.io",
+    "filesUrl": "https://files.turath.io/books-v3",
+    "retrievedAt": "2026-07-30",
+    "apiAccess": "public-no-key",
+    "redistributionStatus": "requires-edition-level-review",
+    "notes": "المحتوى مأخوذ من المكتبة الشاملة بحسب صفحة «عن التطبيق». لا توجد في الواجهة رخصة تجارية شاملة لكل طبعة؛ لذلك تحفظ البيانات الخام محليًا وتُنشر المشتقات مع حالة الحقوق."
+  },
+  "collections": {
+    "bukhari": {
+      "title": "صحيح البخاري - تحقيق مصطفى ديب البغا",
+      "records": 7291,
+      "uniqueNumbers": 7124,
+      "narratorOccurrences": 41744,
+      "multiRouteRecords": 202,
+      "parsedRecords": 6874,
+      "unparsedRecords": 417,
+      "localFile": "bukhari.json",
+      "turathBookId": 735,
+      "directFile": "https://files.turath.io/books-v3/735.json"
+    },
+    "muslim": {
+      "title": "صحيح مسلم - تحقيق محمد فؤاد عبد الباقي",
+      "records": 5775,
+      "uniqueNumbers": 2974,
+      "narratorOccurrences": 35289,
+      "multiRouteRecords": 2627,
+      "parsedRecords": 5038,
+      "unparsedRecords": 737,
+      "localFile": "muslim.json",
+      "turathBookId": 1727,
+      "directFile": "https://files.turath.io/books-v3/1727.json"
+    }
+  },
+  "rijal": {
+    "taqrib": {
+      "title": "تقريب التهذيب",
+      "entries": 8649,
+      "deathYearsDetected": 15,
+      "teacherPhrasesDetected": 114,
+      "studentPhrasesDetected": 0,
+      "localFile": "taqrib.json",
+      "turathBookId": 8609,
+      "directFile": "https://files.turath.io/books-v3/8609.json"
+    },
+    "kashif": {
+      "title": "الكاشف في معرفة من له رواية في الكتب الستة",
+      "entries": 6864,
+      "deathYearsDetected": 1684,
+      "teacherPhrasesDetected": 5929,
+      "studentPhrasesDetected": 2879,
+      "localFile": "kashif.json",
+      "turathBookId": 2171,
+      "directFile": "https://files.turath.io/books-v3/2171.json"
+    }
+  }
+}

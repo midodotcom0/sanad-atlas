@@ -4,13 +4,13 @@ import "@fontsource-variable/newsreader";
 import "./globals.css";
 
 export const metadata = {
-  title: "Sanad Atlas — أطلس الإسناد",
-  description: "Ein quellengebundener Wissensgraph für Isnād und Matn.",
+  title: "أطلس الإسناد — شبكة السنة الموثقة",
+  description: "رسم معرفي موثق للأسانيد، والرواة، واختلاف المتون.",
 };
 
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
   return (
-    <html lang="de" dir="ltr">
+    <html lang="ar" dir="rtl">
       <body>{children}</body>
     </html>
   );

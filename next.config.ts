@@ -9,6 +9,9 @@ const nextConfig: NextConfig = {
   output: "export",
   trailingSlash: true,
   basePath: isGitHubPages ? `/${repositoryName}` : "",
+  env: {
+    NEXT_PUBLIC_BASE_PATH: isGitHubPages ? `/${repositoryName}` : "",
+  },
 };
 
 export default nextConfig;

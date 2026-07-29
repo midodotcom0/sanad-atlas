@@ -1,4 +1,4 @@
-export type ViewKey = "hadith" | "narrator" | "network" | "compare" | "variants" | "sources";
+export type ViewKey = "hadith" | "narrator" | "network" | "compare" | "variants" | "library" | "sources";
 
 export type Confidence = "verified" | "high" | "medium" | "low" | "conflict";
 
@@ -9,6 +9,8 @@ export interface Narrator {
   transliteration: string;
   role: "prophet" | "companion" | "tabii" | "later" | "compiler";
   tabaqa: string;
+  birthAhMin?: number;
+  birthAhMax?: number;
   deathAh?: number;
   region: string;
   confidence: Confidence;
@@ -52,6 +54,9 @@ export interface GraphEdge {
     evidence: string;
     collection: string;
     count: number;
+    chronologyStatus?: "possible" | "impossible" | "unknown";
+    chronologyLabel?: string;
+    variants?: string;
   };
   classes?: string;
 }

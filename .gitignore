@@ -5,3 +5,6 @@ coverage
 dist
 out
 .DS_Store
+.cache
+public/data/corpus/*.json
+!public/data/corpus/manifest.json

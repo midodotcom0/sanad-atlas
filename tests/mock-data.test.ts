@@ -1,5 +1,7 @@
 import { describe, expect, it } from "vitest";
-import { assertions, hadithEdges, hadithNodes, matnVariants, narrators } from "../lib/mock-data";
+import { readFileSync } from "node:fs";
+import { resolve } from "node:path";
+import { assertions, egoEdges, hadithEdges, hadithNodes, matnVariants, narrators } from "../lib/mock-data";
 import { normalizeSearchText } from "../lib/search";
 
 describe("Sanad Atlas mock research fixture", () => {
@@ -30,5 +32,19 @@ describe("Sanad Atlas mock research fixture", () => {
   it("normalizes Arabic variants and transliteration diacritics", () => {
     expect(normalizeSearchText("يَحْيَى")).toBe(normalizeSearchText("يحيي"));
     expect(normalizeSearchText("Yaḥyā ibn Saʿīd")).toContain("yahya");
+  });
+
+  it("keeps chronology as a qualified possibility instead of proof of meeting", () => {
+    expect(egoEdges.every((edge) => edge.data.chronologyStatus !== undefined)).toBe(true);
+    expect(egoEdges.every((edge) => edge.data.chronologyLabel?.includes("ليس مثبتا") || edge.data.chronologyLabel?.includes("غير كافية") || edge.data.chronologyLabel?.includes("تعارض"))).toBe(true);
+  });
+
+  it("publishes corpus counts and rights status without redistributing edition files", () => {
+    const manifest = JSON.parse(readFileSync(resolve(process.cwd(), "public/data/corpus/manifest.json"), "utf8"));
+    expect(manifest.collections.bukhari.uniqueNumbers).toBe(7124);
+    expect(manifest.collections.muslim.records).toBeGreaterThan(5000);
+    expect(manifest.rijal.taqrib.entries).toBeGreaterThan(8000);
+    expect(manifest.rijal.kashif.entries).toBeGreaterThan(6000);
+    expect(manifest.provider.redistributionStatus).toBe("requires-edition-level-review");
   });
 });

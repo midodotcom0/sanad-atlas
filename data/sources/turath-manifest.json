@@ -1,0 +1,55 @@
+{
+  "provider": {
+    "name": "تراث",
+    "publisher": "نُقاية",
+    "applicationUrl": "https://app.turath.io",
+    "apiUrl": "https://api.turath.io",
+    "filesUrl": "https://files.turath.io/books-v3",
+    "retrievedAt": "2026-07-30",
+    "apiAccess": "public-no-key",
+    "redistributionStatus": "requires-edition-level-review",
+    "notes": "المحتوى مأخوذ من المكتبة الشاملة بحسب صفحة «عن التطبيق». لا توجد في الواجهة رخصة تجارية شاملة لكل طبعة؛ لذلك تحفظ البيانات الخام محليًا وتُنشر المشتقات مع حالة الحقوق."
+  },
+  "sources": [
+    {
+      "key": "bukhari",
+      "turathBookId": 735,
+      "title": "صحيح البخاري - تحقيق مصطفى ديب البغا",
+      "author": "محمد بن إسماعيل البخاري",
+      "authorDeathAh": 256,
+      "kind": "hadith_collection",
+      "rightsStatus": "review-required",
+      "publicDerivedFields": ["reference", "isnad", "matn", "narrator_surface_forms", "source_pointer"]
+    },
+    {
+      "key": "muslim",
+      "turathBookId": 1727,
+      "title": "صحيح مسلم - تحقيق محمد فؤاد عبد الباقي",
+      "author": "مسلم بن الحجاج",
+      "authorDeathAh": 261,
+      "kind": "hadith_collection",
+      "rightsStatus": "review-required",
+      "publicDerivedFields": ["reference", "isnad", "matn", "narrator_surface_forms", "source_pointer"]
+    },
+    {
+      "key": "taqrib",
+      "turathBookId": 8609,
+      "title": "تقريب التهذيب",
+      "author": "ابن حجر العسقلاني",
+      "authorDeathAh": 852,
+      "kind": "rijal",
+      "rightsStatus": "review-required",
+      "publicDerivedFields": ["entry_number", "name_surface", "death_year_candidate", "teacher_student_phrases", "source_pointer"]
+    },
+    {
+      "key": "kashif",
+      "turathBookId": 2171,
+      "title": "الكاشف في معرفة من له رواية في الكتب الستة",
+      "author": "شمس الدين الذهبي",
+      "authorDeathAh": 748,
+      "kind": "rijal",
+      "rightsStatus": "review-required",
+      "publicDerivedFields": ["entry_number", "name_surface", "death_year_candidate", "teacher_student_phrases", "source_pointer"]
+    }
+  ]
+}

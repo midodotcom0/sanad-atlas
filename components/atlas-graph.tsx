@@ -19,10 +19,10 @@ const controlIcon = (path: React.ReactNode) => (
 export function AtlasGraph({ nodes, edges, collection, highlightedIds = [], onSelect }: AtlasGraphProps) {
   const hostRef = useRef<HTMLDivElement>(null);
   const cyRef = useRef<cytoscape.Core | null>(null);
-  const [hoverInfo, setHoverInfo] = useState("Knoten wählen, um Quellen und Beziehungen zu öffnen");
+  const [hoverInfo, setHoverInfo] = useState("اختر عقدة لفتح المصادر والعلاقات");
 
   const filtered = useMemo(() => {
-    if (collection === "Alle Sammlungen") return { nodes, edges };
+    if (collection === "جميع المصنفات") return { nodes, edges };
     const selectedEdges = edges.filter((edge) => edge.data.collection.includes(collection));
     const ids = new Set(selectedEdges.flatMap((edge) => [edge.data.source, edge.data.target]));
     return { nodes: nodes.filter((node) => ids.has(node.data.id)), edges: selectedEdges };
@@ -89,6 +89,10 @@ export function AtlasGraph({ nodes, edges, collection, highlightedIds = [], onSe
           },
           { selector: "edge.biographical", style: { "line-color": "#b08a43", "target-arrow-color": "#b08a43", "line-style": "dashed", width: 1.5 } },
           { selector: "edge.candidate, edge.uncertain", style: { "line-color": "#8f8b83", "target-arrow-color": "#8f8b83", "line-style": "dashed", opacity: 0.8 } },
+          { selector: "edge.variant-a", style: { "line-color": "#2d756e", "target-arrow-color": "#2d756e" } },
+          { selector: "edge.variant-b", style: { "line-color": "#b86542", "target-arrow-color": "#b86542" } },
+          { selector: "edge.variant-c", style: { "line-color": "#356a8a", "target-arrow-color": "#356a8a" } },
+          { selector: "edge.variant-shared", style: { "line-color": "#8a7446", "target-arrow-color": "#8a7446", width: 4.5 } },
           { selector: ".route-muted", style: { opacity: 0.16 } },
           { selector: ".route-highlight", style: { "border-color": "#b86542", "border-width": 4, "line-color": "#b86542", "target-arrow-color": "#b86542", width: 5, "z-index": 10 } },
           { selector: ":selected", style: { "border-color": "#d08351", "border-width": 4 } },
@@ -98,9 +102,9 @@ export function AtlasGraph({ nodes, edges, collection, highlightedIds = [], onSe
       cy.on("tap", "node", (event) => onSelect(event.target.id()));
       cy.on("mouseover", "edge", (event) => {
         const data = event.target.data();
-        setHoverInfo(`${data.verb} · ${data.count} Beleg${data.count === 1 ? "" : "e"} · ${data.collection}`);
+        setHoverInfo(`${data.verb} · ${data.count} من الشواهد · ${data.collection}${data.variants ? ` · صيغة المتن ${data.variants}` : ""}${data.chronologyLabel ? ` · ${data.chronologyLabel}` : ""}`);
       });
-      cy.on("mouseout", "edge", () => setHoverInfo("Knoten wählen, um Quellen und Beziehungen zu öffnen"));
+      cy.on("mouseout", "edge", () => setHoverInfo("اختر عقدة لفتح المصادر والعلاقات"));
       cyRef.current = cy;
     };
     mount();
@@ -131,12 +135,12 @@ export function AtlasGraph({ nodes, edges, collection, highlightedIds = [], onSe
   };
 
   return (
-    <div className="graph-frame" aria-label="Interaktiver Isnād-Graph">
+    <div className="graph-frame" aria-label="رسم تفاعلي لأسانيد الحديث">
       <div ref={hostRef} className="graph-canvas" data-testid="atlas-graph" />
-      <div className="graph-controls" aria-label="Graphsteuerung">
-        <button type="button" onClick={() => zoom(1.22)} aria-label="Hineinzoomen">{controlIcon(<><path d="M12 5v14M5 12h14" /><circle cx="12" cy="12" r="9" /></>)}</button>
-        <button type="button" onClick={() => zoom(0.82)} aria-label="Herauszoomen">{controlIcon(<><path d="M5 12h14" /><circle cx="12" cy="12" r="9" /></>)}</button>
-        <button type="button" onClick={() => cyRef.current?.animate({ fit: { eles: cyRef.current.elements(), padding: 64 }, duration: 360 })} aria-label="Graph zentrieren">{controlIcon(<><path d="M8 3H3v5M16 3h5v5M8 21H3v-5M16 21h5v-5" /><circle cx="12" cy="12" r="3" /></>)}</button>
+      <div className="graph-controls" aria-label="أدوات التحكم في الرسم">
+        <button type="button" onClick={() => zoom(1.22)} aria-label="تكبير">{controlIcon(<><path d="M12 5v14M5 12h14" /><circle cx="12" cy="12" r="9" /></>)}</button>
+        <button type="button" onClick={() => zoom(0.82)} aria-label="تصغير">{controlIcon(<><path d="M5 12h14" /><circle cx="12" cy="12" r="9" /></>)}</button>
+        <button type="button" onClick={() => cyRef.current?.animate({ fit: { eles: cyRef.current.elements(), padding: 64 }, duration: 360 })} aria-label="توسيط الرسم">{controlIcon(<><path d="M8 3H3v5M16 3h5v5M8 21H3v-5M16 21h5v-5" /><circle cx="12" cy="12" r="3" /></>)}</button>
       </div>
       <div className="graph-hint" aria-live="polite"><span className="pulse-dot" />{hoverInfo}</div>
     </div>

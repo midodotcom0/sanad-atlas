@@ -63,8 +63,8 @@ button:focus-visible, a:focus-visible, input:focus-visible, select:focus-visible
 .search-results .status { grid-row: 1 / 3; grid-column: 3; }
 
 .top-actions { justify-self: end; display: flex; align-items: center; gap: 6px; }
-.top-actions > button { min-height: 38px; display: flex; align-items: center; gap: 6px; border: 0; background: transparent; padding: 0 10px; color: var(--muted); font-size: 11px; cursor: pointer; border-radius: 9px; transition: background .35s var(--spring), color .35s var(--spring); }
-.top-actions > button:hover { background: #eee7dc; color: var(--ink); }
+.top-actions > button, .top-actions > a { min-height: 38px; display: flex; align-items: center; gap: 6px; border: 0; background: transparent; padding: 0 10px; color: var(--muted); font-size: 11px; cursor: pointer; border-radius: 9px; transition: background .35s var(--spring), color .35s var(--spring); }
+.top-actions > button:hover, .top-actions > a:hover { background: #eee7dc; color: var(--ink); }
 .top-actions svg { width: 13px; }
 .top-actions .compare-action { margin-inline-start: 8px; padding-inline: 14px 7px; background: var(--ink); color: #fff; border-radius: 999px; }
 .compare-action b { width: 25px; height: 25px; display: grid; place-items: center; border-radius: 50%; background: rgba(255,255,255,.14); font-size: 10px; }
@@ -87,9 +87,9 @@ button:focus-visible, a:focus-visible, input:focus-visible, select:focus-visible
 .quiet-button { padding: 7px 10px; border: 0; border-radius: 8px; background: transparent; color: var(--muted); font-size: 10px; cursor: pointer; }
 .quiet-button:hover { background: rgba(255,255,255,.5); color: var(--ink); }
 
-.workspace { display: grid; grid-template-columns: minmax(0, 1fr); min-height: calc(100dvh - 214px); }
+.workspace { display: grid; grid-template-columns: minmax(0, 1fr); min-height: calc(100dvh - 214px); direction: ltr; }
 .workspace.with-panel { grid-template-columns: minmax(0, 1fr) 340px; }
-.main-stage { min-width: 0; }
+.main-stage { min-width: 0; direction: rtl; }
 .graph-toolbar { min-height: 94px; display: flex; align-items: center; justify-content: space-between; gap: 24px; padding: 18px clamp(20px, 3vw, 42px); }
 .eyebrow { display: block; color: var(--clay); font-size: 9px; font-weight: 720; letter-spacing: .14em; text-transform: uppercase; }
 .graph-toolbar h1 { margin: 4px 0 0; font-size: clamp(18px, 2vw, 25px); font-weight: 580; letter-spacing: -.02em; }
@@ -112,6 +112,7 @@ button:focus-visible, a:focus-visible, input:focus-visible, select:focus-visible
 .legend span { display: flex; align-items: center; gap: 7px; }
 .line { width: 24px; height: 0; border-top: 2px solid var(--teal); }
 .line.bio { border-color: var(--gold); border-top-style: dashed; }
+.line.variant-b { border-color: var(--clay); }
 .line.uncertain { border-color: #8f8b83; border-top-style: dashed; }
 .node-key { width: 12px; height: 12px; border-radius: 3px; background: #e8ddbd; box-shadow: inset 0 0 0 1px var(--gold); }
 .node-key.compiler { transform: rotate(45deg); background: var(--blue); box-shadow: none; border-radius: 2px; }
@@ -123,7 +124,7 @@ button:focus-visible, a:focus-visible, input:focus-visible, select:focus-visible
 .route-summary a, .route-summary button { margin-inline-start: auto; display: flex; align-items: center; gap: 8px; border: 0; background: none; color: var(--teal-dark); font-size: 10px; font-weight: 670; cursor: pointer; }
 .route-summary svg { width: 13px; }
 
-.info-panel { width: 340px; min-width: 0; padding: 18px 20px 28px; background: var(--surface); border-inline-start: 1px solid rgba(46, 48, 42, .1); box-shadow: -20px 0 60px rgba(60,50,32,.035); animation: panel-in .6s var(--spring) both; }
+.info-panel { width: 340px; min-width: 0; padding: 18px 20px 28px; direction: rtl; background: var(--surface); border-left: 1px solid rgba(46, 48, 42, .1); box-shadow: -20px 0 60px rgba(60,50,32,.035); animation: panel-in .6s var(--spring) both; }
 @keyframes panel-in { from { opacity: 0; transform: translateX(24px); } to { opacity: 1; transform: none; } }
 .panel-topline { display: flex; align-items: center; justify-content: space-between; color: var(--muted); font-size: 9px; font-weight: 700; letter-spacing: .11em; text-transform: uppercase; }
 .panel-topline button { width: 28px; height: 28px; border: 0; border-radius: 50%; background: #f1eadf; color: var(--muted); cursor: pointer; font-size: 17px; }
@@ -209,9 +210,11 @@ button:focus-visible, a:focus-visible, input:focus-visible, select:focus-visible
 .comparison-card dl div { display: flex; justify-content: space-between; padding: 8px 0; border-bottom: 1px solid var(--rule); font-size: 10px; }
 .comparison-card dt { color: var(--muted); }
 .comparison-card dd { margin: 0; font-weight: 620; }
+.chronology-result { margin: 14px 0 0; padding: 10px 12px; border-radius: 10px; background: #e3eee9; color: #315e55; font-size: 9px; line-height: 1.6; }
+.chronology-result.conflict { background: #f3e1d9; color: #874a3a; }
 .timeline { height: 100px; position: relative; margin: 35px 0 20px; border-bottom: 1px solid rgba(35,56,55,.2); }
-.timeline::before { content: "100 AH"; position: absolute; inset: auto auto -18px 0; color: var(--muted); font-size: 8px; }
-.timeline::after { content: "220 AH"; position: absolute; inset: auto 0 -18px auto; color: var(--muted); font-size: 8px; }
+.timeline::before { content: "١٠٠ هـ"; position: absolute; inset: auto auto -18px 0; color: var(--muted); font-size: 8px; }
+.timeline::after { content: "٢٢٠ هـ"; position: absolute; inset: auto 0 -18px auto; color: var(--muted); font-size: 8px; }
 .timeline span { height: 10px; position: absolute; top: 26px; border-radius: 99px; background: var(--teal); }
 .timeline span:nth-child(2) { top: 58px; background: var(--gold); }
 .timeline b { position: absolute; top: -20px; font-size: 8px; white-space: nowrap; }
@@ -265,6 +268,34 @@ button:focus-visible, a:focus-visible, input:focus-visible, select:focus-visible
 .source-footnotes h2 { margin: 8px 0; font-size: 16px; }
 .source-footnotes p { margin: 0; color: var(--muted); font-size: 10px; line-height: 1.7; }
 
+.corpus-metrics { margin-top: 38px; display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 12px; }
+.corpus-metrics article { min-height: 150px; padding: 19px; border-radius: 18px; background: var(--surface); box-shadow: 0 0 0 1px rgba(55,48,38,.07), 0 14px 40px rgba(66,51,31,.035); }
+.corpus-metrics article.rijal-metric { background: #eef1e9; }
+.corpus-metrics span { color: var(--clay); font-size: 9px; font-weight: 700; }
+.corpus-metrics strong { display: block; margin-top: 14px; font-size: 19px; }
+.corpus-metrics p, .corpus-metrics small { display: block; margin: 6px 0 0; color: var(--muted); font-size: 9px; line-height: 1.6; }
+.corpus-search { margin-top: 18px; padding: 20px; border-radius: 22px; background: rgba(255,255,255,.45); box-shadow: inset 0 0 0 1px rgba(55,48,38,.07); }
+.corpus-controls { display: grid; grid-template-columns: 190px 190px 1fr; align-items: end; gap: 12px; }
+.corpus-controls label { display: grid; gap: 7px; color: var(--muted); font-size: 9px; }
+.corpus-controls select, .corpus-controls input, .corpus-controls button { height: 44px; border: 0; border-radius: 11px; background: var(--surface); box-shadow: inset 0 0 0 1px var(--rule); padding: 0 12px; }
+.corpus-controls button { background: var(--teal-dark); color: white; cursor: pointer; }
+.corpus-controls button:disabled { opacity: .55; cursor: wait; }
+.result-count, .loading-copy { color: var(--muted); font-size: 9px; }
+.hadith-results { display: grid; gap: 10px; margin-top: 14px; }
+.hadith-results article { padding: 18px; border-radius: 15px; background: var(--surface); box-shadow: 0 0 0 1px var(--rule); }
+.hadith-result-head, .hadith-results footer { display: flex; align-items: center; justify-content: space-between; gap: 14px; }
+.hadith-result-head strong { font-size: 11px; }
+.hadith-result-head span { padding: 5px 8px; border-radius: 99px; font-size: 8px; }
+.machine-high { background: #deebe5; color: #376459; }
+.machine-low { background: #f3e1d7; color: #8a4a39; }
+.record-isnad { color: var(--teal-dark); font-size: 11px; line-height: 2; }
+.record-matn { padding: 12px; background: #f5f0e8; font-size: 13px; line-height: 2; }
+.hadith-results footer { color: var(--muted); font-size: 8px; }
+.hadith-results footer a { color: var(--teal); font-weight: 700; }
+.empty-corpus { margin-top: 18px; padding: 38px; border: 1px dashed rgba(45,117,110,.3); border-radius: 16px; text-align: center; }
+.empty-corpus strong { font-size: 14px; }
+.empty-corpus p { color: var(--muted); font-size: 9px; }
+
 @media (max-width: 1100px) {
   .topbar { grid-template-columns: 190px 1fr auto; gap: 18px; padding-inline: 24px; }
   .workspace.with-panel { grid-template-columns: minmax(0, 1fr) 310px; }
@@ -273,6 +304,7 @@ button:focus-visible, a:focus-visible, input:focus-visible, select:focus-visible
   .variant-layout { grid-template-columns: 1fr; height: auto; }
   .variant-texts { min-height: 520px; }
   .variant-graph { height: 580px; }
+  .corpus-metrics { grid-template-columns: 1fr 1fr; }
 }
 
 @media (max-width: 820px) {
@@ -298,6 +330,7 @@ button:focus-visible, a:focus-visible, input:focus-visible, select:focus-visible
   .view-intro h1 { font-size: 43px; }
   .comparison-card { min-height: unset; padding: 22px; }
   .source-footnotes { grid-template-columns: 1fr; }
+  .corpus-controls { grid-template-columns: 1fr; }
 }
 
 @media (max-width: 520px) {
@@ -320,6 +353,7 @@ button:focus-visible, a:focus-visible, input:focus-visible, select:focus-visible
   .variant-graph { height: 500px; }
   .rights-banner { grid-template-columns: auto 1fr; }
   .rights-banner button { grid-column: 1 / -1; }
+  .corpus-metrics { grid-template-columns: 1fr; }
 }
 
 @media (prefers-reduced-motion: reduce) {
