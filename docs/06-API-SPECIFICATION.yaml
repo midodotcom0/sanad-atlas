@@ -1,0 +1,59 @@
+openapi: 3.1.0
+info:
+  title: Sanad Atlas API
+  version: 0.1.0
+  description: Research-MVP. Fachliche Datenantworten enthalten Provenance- und Review-Metadaten.
+servers:
+  - url: /api
+paths:
+  /narrators/search:
+    get:
+      summary: Überlieferer suchen
+      parameters:
+        - { name: q, in: query, schema: { type: string } }
+        - { name: limit, in: query, schema: { type: integer, maximum: 50, default: 20 } }
+      responses:
+        "200": { description: Gruppierbare Treffer, content: { application/json: { schema: { $ref: "#/components/schemas/Envelope" } } } }
+  /narrators/{id}:
+    get:
+      summary: Kanonisches Personenprofil mit Assertions
+      parameters:
+        - { name: id, in: path, required: true, schema: { type: string } }
+      responses:
+        "200": { description: Personenprofil, content: { application/json: { schema: { $ref: "#/components/schemas/Envelope" } } } }
+        "404": { description: Nicht gefunden }
+  /hadith-clusters/{id}/routes:
+    get:
+      summary: Begrenzter Gesamtgraph eines Hadith-Clusters
+      parameters:
+        - { name: id, in: path, required: true, schema: { type: string } }
+        - { name: collection, in: query, schema: { type: string } }
+      responses:
+        "200": { description: Teilgraph, content: { application/json: { schema: { $ref: "#/components/schemas/Envelope" } } } }
+  /graph/subgraph:
+    get:
+      summary: Ego-Graph einer Person
+      parameters:
+        - { name: narratorId, in: query, required: true, schema: { type: string } }
+        - { name: depth, in: query, schema: { type: integer, minimum: 1, maximum: 2, default: 1 } }
+      responses:
+        "200": { description: Begrenzter Teilgraph, content: { application/json: { schema: { $ref: "#/components/schemas/Envelope" } } } }
+components:
+  schemas:
+    Envelope:
+      type: object
+      required: [data, meta, sources]
+      properties:
+        data: {}
+        meta:
+          type: object
+          required: [dataVersion, editorialStatus, confidence]
+          properties:
+            dataVersion: { type: string }
+            editorialStatus: { type: string }
+            confidence: { type: string }
+            lastReviewedAt: { type: [string, "null"], format: date-time }
+            truncated: { type: boolean }
+        sources:
+          type: array
+          items: { type: object, additionalProperties: true }

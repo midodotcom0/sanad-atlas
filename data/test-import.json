@@ -1,0 +1,29 @@
+{
+  "source": {
+    "name": "Sanad Atlas hand-curated mock fixture",
+    "version": "0.1.0",
+    "licenseStatus": "demonstration-only",
+    "retrievedAt": "2026-07-30",
+    "commercialUse": false
+  },
+  "records": [
+    {
+      "externalId": "mock-bukhari-1",
+      "collection": "Ṣaḥīḥ al-Bukhārī",
+      "chapter": "Badʾ al-waḥy",
+      "number": "1",
+      "rawIsnad": "الحميدي ← سفيان ← يحيى بن سعيد ← محمد بن إبراهيم ← علقمة ← عمر",
+      "matn": "إنما الأعمال بالنيات",
+      "editorialStatus": "unreviewed"
+    },
+    {
+      "externalId": "mock-muslim-1907",
+      "collection": "Ṣaḥīḥ Muslim",
+      "chapter": "al-Imāra",
+      "number": "1907",
+      "rawIsnad": "قتيبة ← الليث ← يحيى بن سعيد ← محمد بن إبراهيم ← علقمة ← عمر",
+      "matn": "إنما الأعمال بالنية",
+      "editorialStatus": "unreviewed"
+    }
+  ]
+}
