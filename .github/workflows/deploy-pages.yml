@@ -33,6 +33,8 @@ jobs:
         run: npm run import:test
       - name: Run tests
         run: npm run test
+      - name: Run corpus API repository tests
+        run: npm run test:backend
       - name: Build static site
         run: npm run build
       - name: Upload artifact
