@@ -1,6 +1,6 @@
 # 12 — Laufzeit: Worker, D1, Deploy und Rollback
 
-Stand: 30. Juli 2026 · Pakete P3.2 und P3.4 des Umsetzungsplans (`docs/10-UMSETZUNGSPLAN.md`)
+Stand: 30. Juli 2026 · Pakete P3.2, P3.4 und P5.8 des Umsetzungsplans (`docs/10-UMSETZUNGSPLAN.md`)
 Harte Randbedingung: **der Betrieb muss dauerhaft kostenlos bleiben.** Alles unten ist an dieser Bedingung ausgerichtet, nicht an Bequemlichkeit.
 
 ---
@@ -10,8 +10,8 @@ Harte Randbedingung: **der Betrieb muss dauerhaft kostenlos bleiben.** Alles unt
 | Baustein | Ort | Kosten |
 |---|---|---|
 | Statische Oberfläche (Next-Export) | GitHub Pages | frei |
-| API, 14 Endpunkte plus `/health` und `/api/v1/narrators/{id}/paths` | **ein** Cloudflare Worker | frei bis 100.000 Anfragen/Tag, 10 ms CPU je Aufruf |
-| Fachliche Quelle der Wahrheit | Cloudflare D1 (`atlas.db`, 433,86 MB = 8,47 % des 5-GB-Kontingents) | frei bis 5 Mio. Zeilen-Lesevorgänge/Tag |
+| Öffentliche Lese-API plus authentifizierte Redaktions-API und `/health` | **ein** Cloudflare Worker | frei bis 100.000 Anfragen/Tag, 10 ms CPU je Aufruf |
+| Fachliche Quelle der Wahrheit | Cloudflare D1 (`atlas.db`, 552,94 MB = 10,8 % des 5-GB-Kontingents) | frei bis 5 Mio. Zeilen-Lesevorgänge/Tag |
 | Import, Parser, Bau von `atlas.db` | GitHub Actions | für öffentliche Repositorys frei |
 | FastAPI (`backend/`) | **nicht** ausgeliefert | — |
 
@@ -32,7 +32,7 @@ worker/
   tools/query-plan-audit.mjs        Nachweis, dass keine Abfrage scannt
 ```
 
-Der Schnitt ist bewusst: `src/core/**` ist ohne wrangler ausführbar und wird deshalb feldweise gegen FastAPI geprüft. `src/index.mjs` enthält nichts, was ein Test prüfen könnte, außer der Verdrahtung.
+Der Schnitt ist bewusst: Die öffentliche Lese-API in `src/core/**` ist ohne wrangler ausführbar und wird deshalb feldweise gegen FastAPI geprüft. Die Redaktions-API hat zusätzlich einen eigenen Sicherheits- und Persistenztest. `src/index.mjs` enthält nichts, was ein Test prüfen könnte, außer der Verdrahtung.
 
 ---
 
@@ -75,7 +75,34 @@ Eigene Domain (optional): den `[[routes]]`-Abschnitt in `wrangler.toml` einkomme
 
 ---
 
-## 4. Release: Datenversion und Indexversion sind ein Paar (P3.4)
+## 4. Redaktionszugang sicher einrichten (P5.8)
+
+Die Redaktionsoberfläche nimmt einen Bearer-Token entgegen und hält ihn nur für die laufende Browser-Sitzung in `sessionStorage`. Im Repository und in D1 steht der Klartext-Token nie. D1 speichert ausschließlich seinen SHA-256-Hash in `editor_api_credential`; die zugehörige `editor_id` wird serverseitig aufgelöst und darf nicht aus einem Request-Body kommen.
+
+Ein Betreiber richtet einen Zugang so ein:
+
+1. Einen aktiven menschlichen `editor` mit passender aktiver Rolle anlegen. Für jede Redaktionshandlung ist `may_review` nötig; `merge` und `verify` verlangen beim Finalisieren zusätzlich `may_approve_merge` beziehungsweise `may_verify`.
+2. Lokal mindestens 32 kryptographisch zufällige Bytes als Token erzeugen. Den Token sofort in einen Passwortmanager übernehmen und nicht in Shell-Historie, Chat, Repository oder Protokoll kopieren.
+3. Lokal den SHA-256-Hash bilden und nur `id`, `editor_id`, den 64-stelligen Hash, ein sprechendes `label` sowie optional `expires_at` in `editor_api_credential` einfügen.
+4. Den Klartext-Token der betreffenden Person über einen getrennten sicheren Kanal geben. Sperren erfolgt jederzeit durch `revoked_at`.
+
+Alle Redaktionsantworten tragen `Cache-Control: no-store`. Nutzlasten sind auf 32 KiB begrenzt. Verfügbare Routen:
+
+| Methode | Route | Wirkung |
+|---|---|---|
+| `GET` | `/api/v1/editorial/session` | angemeldete Person, Rollen und Rechte |
+| `GET` | `/api/v1/editorial/review-queue` | offene Identitäts- und Extraktionsfälle |
+| `GET` | `/api/v1/editorial/proposals` | noch nicht finalisierte Vorschläge |
+| `GET` | `/api/v1/editorial/revisions` | unveränderliche Revisionshistorie |
+| `POST` | `/api/v1/editorial/proposals` | quellengebundenen Vorschlag anlegen |
+| `POST` | `/api/v1/editorial/proposals/{id}/finalize` | Vorschlag wirksam machen; `merge`/`verify` durch zweite berechtigte Person |
+| `POST` | `/api/v1/editorial/revisions/{id}/revert` | inverse Revision anlegen, niemals Historie überschreiben |
+
+Wichtig für D1: PostgreSQL erzwingt Append-only zusätzlich durch Trigger. Der vorhandene D1-Schemaübersetzer lässt diese PostgreSQL-Trigger bewusst weg. Über die ausgelieferte Worker-API gibt es deshalb ausschließlich `INSERT`-Pfade und keine `UPDATE`-/`DELETE`-Route für Vorschläge oder Revisionen; jemand mit direktem D1-Administrationszugriff könnte die Historie technisch dennoch verändern. D1-Zugriff ist daher Betreiberzugriff, kein Redakteurszugriff.
+
+---
+
+## 5. Release: Datenversion und Indexversion sind ein Paar (P3.4)
 
 Zwei Versionen, die getrennt gehören und trotzdem nie getrennt ausgeliefert werden dürfen:
 
@@ -87,7 +114,7 @@ Zwei Versionen, die getrennt gehören und trotzdem nie getrennt ausgeliefert wer
 `releaseId = dataVersion + "+" + indexVersion`. Beispiel aus dem aktuellen Baustand:
 
 ```
-turath-5aa44bb55b758d6d9f0d+idx-e2c37f7e7ebe57dc2944
+turath-5aa44bb55b758d6d9f0d+idx-5cfc998099e21aee061e
 ```
 
 Warum nicht die sha256 der fertigen Datei als Indexversion? Eine Datei kann ihren eigenen Hash nicht enthalten. Die Version muss **vor** dem Schreiben feststehen, damit der Worker sie aus der Datenbank lesen kann. Der Dateihash bleibt zusätzlich im Baubericht (`worker/atlas.db.manifest.json`) als Integritätsnachweis.
@@ -141,7 +168,7 @@ Beide `UPDATE`s stehen in **einer** Datei und laufen als ein `wrangler d1 execut
 
 ---
 
-## 5. Zeilen-Lesebudget von D1
+## 6. Zeilen-Lesebudget von D1
 
 D1 deckelt **Zeilen-Lesevorgänge**, nicht Anfragen: 5 Mio./Tag. Eine einzige scannende Abfrage kostet mehr als tausend indexgebundene. `worker/tools/query-plan-audit.mjs` lässt `EXPLAIN QUERY PLAN` über genau die Abfragen laufen, die `worker/src/core/**` stellt, und schlägt fehl bei einem Volltabellenscan **oder** einem „AUTOMATIC INDEX" (Wegwerfindex je Anfrage — der teuerste Befund, weil er die ganze Tabelle liest).
 
@@ -151,7 +178,7 @@ npm run atlas:audit
 
 Zwei dabei gefundene und behobene Befunde, mit gemessenen Zahlen:
 
-**(a) Namensabfrage ohne Statistik.** `name_head_normalized = ?` über die Sicht `rijal_entry_ref` wählte ohne `sqlite_stat1` den Weg `source_work → rijal_entry_number_idx` und las damit **alle 34.045** Rijāl-Einträge für eine einzige Namenssuche — rund 145 Anfragen bis zum Tagesbudget. Behoben durch `ANALYZE` am Ende des Baus (`scripts/atlas-build-lib.mjs`, Kosten 76 ms): der Planer wählt jetzt `rijal_entry_name_head_idx` und liest eine Handvoll Zeilen. `ANALYZE` ist deterministisch — `sqlite_stat1` hängt nur an den deterministisch eingefügten Daten.
+**(a) Namensabfrage ohne Statistik.** `name_head_normalized = ?` über die Sicht `rijal_entry_ref` wählte ohne `sqlite_stat1` den Weg `source_work → rijal_entry_number_idx` und las damit **alle 34.451** Rijāl-Einträge für eine einzige Namenssuche — rund 145 Anfragen bis zum Tagesbudget. Behoben durch `ANALYZE` am Ende des Baus (`scripts/atlas-build-lib.mjs`): der Planer wählt jetzt `rijal_entry_name_head_idx` und liest eine Handvoll Zeilen. `ANALYZE` ist deterministisch — `sqlite_stat1` hängt nur an den deterministisch eingefügten Daten.
 
 **(b) Wegwerfindex in der Traversierung.** Der rekursive Zweig verbindet über `(e.source_node_id = w.target_node_id AND e.relationship_type = ?)`. Keiner der bestehenden Indizes deckte beide Gleichheiten ab, also baute SQLite bei **jeder** Anfrage eine `AUTOMATIC PARTIAL COVERING INDEX` über alle 147.458 Kanten:
 
@@ -166,7 +193,7 @@ Eine verbleibende, bewusst in Kauf genommene Ausnahme: **Kandidatenstufe 3** (`n
 
 ---
 
-## 6. Harte Traversierungsgrenzen
+## 7. Harte Traversierungsgrenzen
 
 `docs/04-GRAPH-SCHEMA.md:121-122` schreibt vor: `neighbors` höchstens 500 Kanten pro Seite, `paths` `maxDepth <= 8`, höchstens 100 Pfade, Zeitschranke 2 s interaktiv. Umsetzung in `worker/src/core/graph-traversal.mjs`:
 
@@ -179,16 +206,19 @@ Eine verbleibende, bewusst in Kauf genommene Ausnahme: **Kandidatenstufe 3** (`n
 
 ---
 
-## 7. Der Workflow
+## 8. Der Workflow
 
 `.github/workflows/deploy-pages.yml`, ein Job `build` plus `deploy` (Pages) plus ein eigener Job `rollback`.
 
 ```
 Korpus aus Cache oder neu ableiten
   -> npm run test / test:backend / import:test
-  -> npm run atlas:build            (atlas.db, ~434 MB, entsteht IM Job)
+  -> npm run atlas:build            (atlas.db, ~553 MB, entsteht IM Job)
   -> npm run test:atlas             (Schema, IDs, Normalisierungsparität, Determinismus)
-  -> npm run test:worker            (Contract-Test gegen FastAPI, 24 Fälle)
+  -> npm run test:worker            (Contract-Test gegen FastAPI, 27 Fälle)
+  -> npm run test:editorial         (Authentifizierung, Rollen, Vier-Augen-Prinzip, Revert)
+  -> npm run test:rijal-statements  (JS/Python-Parität der Rijāl-Extraktion)
+  -> npm run test:gold:audit        (Goldrahmen und Belegungsgrad; unvollständig ist sichtbar)
   -> npm run atlas:audit            (Zeilenbudget, Traversierungsgrenzen)
   -> npm run atlas:rollback:dryrun  (Versionsumschaltung, ohne Cloudflare)
   -> Release vorbereiten            (Datenversion + Indexversion als ein Paar)
@@ -198,19 +228,21 @@ Korpus aus Cache oder neu ableiten
 
 Beachtete Grenzen:
 
-- **`atlas.db` geht nie in ein Artefakt.** 434 MB zählen gegen das Speicherkontingent des Kontos, und die Datei ist aus denselben Eingaben deterministisch reproduzierbar (Abnahme P3.1: zwei Läufe, bitgleiche Prüfsumme). Deshalb läuft der einzige Schritt, der sie braucht — der D1-Ladevorgang — im **selben** Job. Als Artefakt gehen nur die Release-Metadaten (ein JSON, zwei SQL-Dateien, 14 Tage).
+- **`atlas.db` geht nie in ein Artefakt.** 552,94 MB zählen gegen das Speicherkontingent des Kontos, und die Datei ist aus denselben Eingaben deterministisch reproduzierbar (Abnahme P3.1: zwei Läufe, bitgleiche Prüfsumme). Deshalb läuft der einzige Schritt, der sie braucht — der D1-Ladevorgang — im **selben** Job. Als Artefakt gehen nur die Release-Metadaten (ein JSON, zwei SQL-Dateien, 14 Tage).
 - **Der Korpusabruf wird zwischengespeichert** (`actions/cache`, Schlüssel über Importer und Quellenregistrierung). Er ist der langsamste Schritt; alles andere liegt im Sekundenbereich (Bau von `atlas.db` lokal gemessen: 6,0 s).
 - **`cancel-in-progress: false`** (vorher `true`). Ein laufendes Release oder ein laufender Rollback darf nicht von einem nachfolgenden Push abgebrochen werden, sonst kann D1 mit einem halb umgeschalteten Zeiger stehenbleiben.
 - **Der D1-Massenimport** geht über `wrangler d1 import` (zerlegt die Datei selbst und lädt sie über die D1-Import-API), nicht über `d1 execute --file` — das ist für einzelne Anweisungen gedacht, nicht für diese Größe.
 
 ---
 
-## 8. Was real erprobt ist und was nur trocken
+## 9. Was real erprobt ist und was nur trocken
 
-**Real ausgeführt und mit Zahlen belegt** (lokal, gegen die echte `atlas.db` mit 13.066 Hadith-Datensätzen, 34.045 Rijāl-Einträgen, 147.458 Kanten):
+**Real ausgeführt und mit Zahlen belegt** (lokal, gegen die echte `atlas.db` mit 13.066 Hadith-Datensätzen, 34.451 Rijāl-Einträgen, 87.867 Erzähler-Vorkommen und 147.458 Kanten):
 
 - der Bau von `atlas.db` inklusive Determinismusnachweis;
-- alle 24 Fälle des Contract-Tests gegen `backend/app/repository.py`;
+- alle 27 Fälle des Contract-Tests gegen `backend/app/repository.py`;
+- der Redaktionsvertrag einschließlich Token-Hash, Rollen, Quellbindung, Vier-Augen-Prinzip, Revert und veralteter Vorschläge;
+- die Rijāl-Extraktion über alle 34.451 Einträge mit bytegleichem JS-/Python-Ergebnis;
 - die Abfragepläne aller Worker-Abfragen und die vier Traversierungsgrenzen;
 - die Versionsumschaltung und der Rollback als Datenbankoperation — inklusive des Nachweises, dass zwei gleichzeitig aktive Releases von der Datenbank abgelehnt werden;
 - `worker/tools/atlas-release.mjs` in allen Unterbefehlen (`prepare`, `list`, `activate`, `rollback`, `--sql-only`), gegen echte SQLite-Dateien.
@@ -219,14 +251,15 @@ Beachtete Grenzen:
 
 - `wrangler deploy`, `wrangler d1 import`, `wrangler d1 execute --remote` — kein einziger dieser Aufrufe ist ausgeführt worden;
 - das Verhalten des D1-Adapters gegen echtes D1 (`bind()/all()/first()`); geprüft ist nur, dass `worker/src/core/**` unverändert gegen die zweite Adapterimplementierung läuft;
-- die Zeit- und Größengrenzen des D1-Massenimports für einen 434-MB-Bestand;
+- die Zeit- und Größengrenzen des D1-Massenimports für einen 552,94-MB-Bestand;
+- die zusätzliche Trigger-Garantie für Append-only auf D1; gesichert ist dort der ausschließlich anhängende Worker-Pfad, nicht ein direkter administrativer Datenbankzugriff;
 - die tatsächlichen Zeilen-Lesevorgänge in D1. Belegt ist der Abfrageplan, nicht die Abrechnung.
 
 Der Trockenlauf (`npm run atlas:rollback:dryrun`) ersetzt genau **einen** Baustein — das D1-Binding — durch eine lokale SQLite-Datei und lässt alles andere echt: dieselbe DDL, dasselbe Umschalt-SQL, dieselbe Leselogik des Workers, denselben Router. Sieben Schritte, Exit-Code 0 nur wenn alle greifen.
 
 ---
 
-## 9. Zwei behobene Vertragsabweichungen — und was sie über den Contract-Test verraten
+## 10. Zwei behobene Vertragsabweichungen — und was sie über den Contract-Test verraten
 
 Beide Punkte standen hier als offen. Sie sind entschieden und auf beiden Seiten gemeinsam umgesetzt.
 
@@ -246,11 +279,15 @@ Der erste Fall schlägt zusätzlich fehl, wenn er *kein* `evidenceKind` findet �
 
 ---
 
-## 10. Kurzreferenz
+## 11. Kurzreferenz
 
 ```bash
 npm run atlas:build                                  # atlas.db bauen (~6 s)
-npm run test:worker                                  # Contract-Test gegen FastAPI (24 Fälle)
+npm run test:worker                                  # Contract-Test gegen FastAPI (27 Fälle)
+npm run test:editorial                               # Redaktions-API und Vier-Augen-Prinzip
+npm run test:rijal-statements                        # Extraktion und JS/Python-Parität
+npm run test:gold:audit                              # Goldrahmen prüfen, Lücken ausweisen
+npm run test:gold:strict                             # scheitert bis zur unabhängigen Annotation
 npm run test:atlas                                   # Schema, IDs, Parität, Determinismus
 npm run atlas:audit                                  # Zeilenbudget und Traversierungsgrenzen
 npm run atlas:rollback:dryrun                        # Versionsumschaltung nachweisen

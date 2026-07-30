@@ -125,6 +125,8 @@ jobs:
         run: npm run test:backend
       - name: Rijāl-Aussagekandidaten und JS/Python-Parität prüfen
         run: npm run test:rijal-statements
+      - name: Persistenz, Rollen und Vier-Augen-Redaktion prüfen
+        run: npm run test:editorial
       - name: Goldrahmen und Annotationsstatus prüfen
         run: npm run test:gold:audit
 

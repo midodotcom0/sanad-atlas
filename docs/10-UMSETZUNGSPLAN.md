@@ -11,7 +11,7 @@ Harte Randbedingung des Auftraggebers: **der Betrieb muss dauerhaft kostenlos m�
 Der Audit-Bestand unten bleibt als Ausgangsmessung erhalten. Der aktuelle
 Arbeitsstand ist deutlich weiter:
 
-- P0, P1.2–P1.4, P2.1–P2.4, P3.1–P3.4, P4.1–P4.4 und P5.1–P5.3/P5.6/P5.7
+- P0, P1.2–P1.4, P2.1–P2.4, P3.1–P3.4, P4.1–P4.4 und P5.1–P5.8
   sind implementiert und geprüft.
 - P4.5 hat jetzt einen reversiblen Merge-/Split-Lifecycle für echte
   `SA-P-*`-Identitätsentitäten. Ein `UNC-*`-Namenscluster wird ausdrücklich
@@ -25,16 +25,31 @@ Arbeitsstand ist deutlich weiter:
   Adjudikation und Präzision/Recall je Stratum. Der Goldbestand ist noch nicht
   abgeschlossen: zwei unabhängige Fachannotationen, Adjudikation und
   Resolver-Vorhersagen fehlen.
+- P3.3/P5.5 haben alle fünf statischen Mock-API-Routen und sämtliche
+  `mock-data`-Imports unter `app/` und `components/` entfernt. Netzwerk,
+  Vergleich, Quellen, Erzählerpanel und globale Rijāl-Suche lesen die
+  Worker-Endpunkte; fehlende Daten bleiben als Leer- oder Fehlerzustand
+  sichtbar.
+- P5.4 koppelt Matn-Familien über ihre Hadith-IDs bidirektional an die
+  Isnād-Kanten. Familien-ID und Textlabel bleiben zusätzlich zur stabilen Farbe
+  sichtbar.
+- P5.8 persistiert Redaktionsvorschläge und Revisionen, authentifiziert über
+  gehashte Bearer-Tokens und erzwingt Begründung, Quellenbindung, Rollen und
+  Vier-Augen-Freigabe für Merge/Verify. Rücknahmen sind inverse Revisionen.
+  PostgreSQL schützt die Historie zusätzlich per Trigger; in D1 ist die
+  öffentliche Worker-API insert-only, direkte administrative DB-Zugriffe sind
+  jedoch nicht triggergeschützt.
 - Der aktuelle deterministische D1-Build umfasst 13.066 Hadithdatensätze,
   87.867 Erzählerpositionen, 34.451 Rijāl-Einträge und 147.458
   Projektionskanten. Größe: 552,9 MB.
-- Verifikation: 84 Vitest-Tests, 27 Backendtests, 19/20 Atlas-Checks
+- Verifikation: 93 Vitest-Tests, 27 Backendtests, 19/20 Atlas-Checks
   (ein erwarteter Plattform-Fallback-Skip), 6 Rijāl-Vollkorpuschecks und 27
-  Worker-Vertragstests grün; TypeScript, ESLint und Produktionsbuild grün.
+  Worker-Vertragstests sowie der Editorial-Contract grün; TypeScript, ESLint
+  und Produktionsbuild grün.
 
-Nächste fachliche Blocker: echte Goldannotation (P4.7), Frontend vollständig
-von Demonstrationsdaten lösen (P3.3/P5.4/P5.5), anschließend persistente
-Redaktionsoberfläche (P5.8) und das strikte Gold-CI-Gate (P6.1).
+Nächste fachliche Blocker: echte Goldannotation (P4.7), Narrator-Suchendpoint
+und paginierbares vollständiges Profil, D1-seitiger Schutz gegen direkte
+administrative Historienänderungen sowie das strikte Gold-CI-Gate (P6.1).
 
 ---
 
