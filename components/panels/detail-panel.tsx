@@ -14,10 +14,10 @@ import { OccurrencePanel } from "./occurrence-panel";
  * niemals eine Person. Nur echte Worker-IDs werden als Personen-/Clusterprofil
  * geladen; fuer fehlende IDs gibt es keinen lokalen Ersatzbestand.
  */
-export function DetailPanel({ selectedId, liveGraph, close }: { selectedId: string; liveGraph: LiveHadithGraph | null; close: () => void }) {
+export function DetailPanel({ selectedId, liveGraph, close, selectNode }: { selectedId: string; liveGraph: LiveHadithGraph | null; close: () => void; selectNode?: (id: string) => void }) {
   const occurrence = liveGraph?.occurrences[selectedId];
   if (occurrence && liveGraph) return <OccurrencePanel occurrence={occurrence} hadithId={liveGraph.record.id} close={close} />;
   if (selectedId && selectedId !== "cluster") return <NarratorPanel narratorId={selectedId} close={close} />;
-  if (liveGraph) return <HadithPanel liveGraph={liveGraph} />;
+  if (liveGraph) return <HadithPanel liveGraph={liveGraph} selectNode={selectNode} />;
   return <aside className="info-panel" aria-label="لوحة المعلومات" dir="rtl"><div className="panel-topline"><span>لوحة المعلومات</span><button type="button" onClick={close} aria-label="إغلاق اللوحة">×</button></div><p className="empty-copy">لم تُحمّل استجابة بعد. لا توجد بيانات عرض بديلة.</p></aside>;
 }

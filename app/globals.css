@@ -751,3 +751,19 @@ button:focus-visible, a:focus-visible, input:focus-visible, select:focus-visible
 .date-assertion-list li em { font-style: normal; opacity: 0.75; }
 .date-assertion-list li small { font-size: 0.72em; opacity: 0.7; }
 .date-assertion-list li.source-phrase { flex-basis: 100%; background: transparent; padding: 0.15rem 0; font-size: 0.78em; opacity: 0.65; }
+
+/* رواة — die Erzähler des Sanads in Textreihenfolge. Jede Zeile bleibt eine
+   Stelle im Text, keine festgestellte Person; die Auszeichnung sagt das. */
+.chain-narrator-list { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 0.6rem; }
+.chain-narrator-list > li { padding: 0.6rem 0.7rem; border-radius: 0.6rem; background: var(--surface-muted, rgba(0, 0, 0, 0.04)); }
+.chain-narrator-head { display: flex; align-items: baseline; gap: 0.5rem; flex-wrap: wrap; }
+.chain-position { min-width: 1.6em; height: 1.6em; display: inline-grid; place-items: center; border-radius: 50%; background: var(--border-muted, rgba(0, 0, 0, 0.12)); font-size: 0.75em; }
+.chain-narrator-name { font-weight: 600; font-size: 1.02em; background: none; border: 0; padding: 0; color: inherit; cursor: pointer; text-align: inherit; }
+.chain-narrator-name:hover, .chain-narrator-name:focus-visible { text-decoration: underline; }
+.transmission-term { font-style: normal; opacity: 0.6; font-size: 0.85em; }
+.chain-narrator-note { margin: 0.35rem 0 0; font-size: 0.85em; opacity: 0.72; }
+.chain-narrator-facts { margin: 0.45rem 0 0; display: grid; gap: 0.2rem 0.6rem; font-size: 0.88em; }
+.chain-narrator-facts > div { display: grid; grid-template-columns: 6.5em 1fr; gap: 0.5rem; }
+.chain-narrator-facts dt { opacity: 0.65; }
+.chain-narrator-facts dd { margin: 0; }
+.chain-narrator-ambiguous dd { color: var(--warning-fg, #8a5a00); }

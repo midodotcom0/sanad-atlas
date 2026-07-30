@@ -1,7 +1,16 @@
 "use client";
 
+import { useState } from "react";
 import type { LiveHadithGraph } from "@/lib/hadith-graph";
 import { SourceTag, TextWithheldNotice } from "../atlas-primitives";
+import { ChainNarrators } from "./chain-narrators";
+
+type HadithTab = "record" | "narrators";
+
+const hadithTabs: Array<{ id: HadithTab; label: string }> = [
+  { id: "record", label: "الموضع" },
+  { id: "narrators", label: "رواة" },
+];
 
 /**
  * Detailpanel eines Hadithvorkommens. Zeigt den importierten Datensatz, wenn
@@ -11,7 +20,8 @@ import { SourceTag, TextWithheldNotice } from "../atlas-primitives";
  * hat (`ApiHadith.textWithheld`). Ein zurueckgehaltener Text wird als
  * Rechteentscheidung benannt, nicht als Ladefehler.
  */
-export function HadithPanel({ liveGraph }: { liveGraph?: LiveHadithGraph | null }) {
+export function HadithPanel({ liveGraph, selectNode }: { liveGraph?: LiveHadithGraph | null; selectNode?: (id: string) => void }) {
+  const [tab, setTab] = useState<HadithTab>("record");
   if (liveGraph) {
     const source = liveGraph.sources[0] as { volume?: string | number; page?: string | number; url?: string; rightsStatus?: string } | undefined;
     const withheld = liveGraph.record.textWithheld === true;
@@ -20,11 +30,18 @@ export function HadithPanel({ liveGraph }: { liveGraph?: LiveHadithGraph | null 
         <div className="panel-topline"><span>موضع الحديث</span><span className="record-id">{liveGraph.record.id}</span></div>
         <div className="hadith-title" dir="rtl"><span className="surah-marker">{liveGraph.record.hadithNumber.toLocaleString("ar")}</span><div><p>{liveGraph.record.collection === "bukhari" ? "صحيح البخاري" : "صحيح مسلم"}</p><h2>{liveGraph.record.book || `الحديث رقم ${liveGraph.record.hadithNumber}`}</h2></div></div>
         <div className="cluster-stats"><div><strong>{liveGraph.chainCount.toLocaleString("ar")}</strong><span>سلاسل</span></div><div><strong>{liveGraph.occurrenceCount.toLocaleString("ar")}</strong><span>مواضع رواة</span></div><div><strong>{Math.round(liveGraph.record.parser.confidence * 100).toLocaleString("ar")}٪</strong><span>ثقة التحليل</span></div></div>
-        {withheld ? <TextWithheldNotice what="المتن والسند" /> : <>
-          <section className="panel-section"><div className="section-title"><h3>المتن المستخرج</h3><span>غير مراجع</span></div><p className="matn-snippet" dir="rtl">{liveGraph.record.matn || "لم يحدد المحلل حد المتن بثقة."}</p></section>
-          <section className="panel-section"><div className="section-title"><h3>السند الخام</h3><SourceTag /></div><p className="record-isnad" dir="rtl">{liveGraph.record.isnad}</p></section>
+        <div className="narrator-card-tabs" role="tablist" aria-label="أقسام موضع الحديث">
+          {hadithTabs.map((item) => <button key={item.id} type="button" role="tab" aria-selected={tab === item.id} onClick={() => setTab(item.id)}>{item.label}{item.id === "narrators" ? <b>{liveGraph.occurrenceCount.toLocaleString("ar")}</b> : null}</button>)}
+        </div>
+        {tab === "narrators" ? (
+          <div className="narrator-tab-panel" role="tabpanel"><ChainNarrators liveGraph={liveGraph} selectNode={selectNode} /></div>
+        ) : <>
+          {withheld ? <TextWithheldNotice what="المتن والسند" /> : <>
+            <section className="panel-section"><div className="section-title"><h3>المتن المستخرج</h3><span>غير مراجع</span></div><p className="matn-snippet" dir="rtl">{liveGraph.record.matn || "لم يحدد المحلل حد المتن بثقة."}</p></section>
+            <section className="panel-section"><div className="section-title"><h3>السند الخام</h3><SourceTag /></div><p className="record-isnad" dir="rtl">{liveGraph.record.isnad}</p></section>
+          </>}
+          <section className="panel-section"><div className="source-card"><div><span>الجزء والصفحة</span><strong>{source?.volume ?? "—"} / {source?.page ?? "—"}</strong></div><div><span>إصدار البيانات</span><strong>{liveGraph.dataVersion}</strong></div><div><span>الحقوق</span><strong>{source?.rightsStatus ?? "قيد المراجعة"}</strong></div></div>{source?.url ? <a className="panel-cta" href={source.url} target="_blank" rel="noreferrer"><span>فتح صفحة المصدر</span><b>↗</b></a> : null}</section>
         </>}
-        <section className="panel-section"><div className="source-card"><div><span>الجزء والصفحة</span><strong>{source?.volume ?? "—"} / {source?.page ?? "—"}</strong></div><div><span>إصدار البيانات</span><strong>{liveGraph.dataVersion}</strong></div><div><span>الحقوق</span><strong>{source?.rightsStatus ?? "قيد المراجعة"}</strong></div></div>{source?.url ? <a className="panel-cta" href={source.url} target="_blank" rel="noreferrer"><span>فتح صفحة المصدر</span><b>↗</b></a> : null}</section>
       </aside>
     );
   }

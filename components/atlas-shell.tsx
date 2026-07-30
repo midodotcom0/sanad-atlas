@@ -201,7 +201,7 @@ function AtlasShellBody({ initialView }: { initialView: ViewKey }) {
           {initialView === "sources" ? <SourcesView /> : null}
           {initialView === "editor" ? <EditorView /> : null}
         </section>
-        {panelOpen && graphView ? <DetailPanel selectedId={selectedId} liveGraph={liveGraph} close={() => setPanelOpen(false)} /> : null}
+        {panelOpen && graphView ? <DetailPanel selectedId={selectedId} liveGraph={liveGraph} close={() => setPanelOpen(false)} selectNode={selectNode} /> : null}
       </div>
       {graphView && !panelOpen ? <button type="button" className="reopen-panel" onClick={() => setPanelOpen(true)}>فتح لوحة المعلومات <Chevron direction="left" /></button> : null}
       <div className="sr-only" aria-live="polite">{selectedOccurrence ? `تم اختيار موضع الراوي ${selectedOccurrence.rawSurfaceForm}` : selectedId ? `تم اختيار ${selectedId}` : "لم يحدد راو بعد"}</div>
