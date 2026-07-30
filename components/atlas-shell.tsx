@@ -2,11 +2,9 @@
 
 import Link from "next/link";
 import dynamic from "next/dynamic";
-import { useCallback, useEffect, useMemo, useState } from "react";
-import { narratorMap, narrators, prototypeNotice } from "@/lib/mock-data";
+import { useCallback, useEffect, useState } from "react";
 import type { ViewKey } from "@/lib/types";
-import { normalizeSearchText } from "@/lib/search";
-import { loadHadithGraph, researchApiAvailable } from "@/lib/api-client";
+import { loadHadithGraph, researchApiAvailable, searchRijalCandidates, type ApiRijalCandidate } from "@/lib/api-client";
 import { toHadithGraph, type LiveHadithGraph } from "@/lib/hadith-graph";
 import { Chevron, Mark, Status } from "./atlas-primitives";
 import { DirectionProvider, DirectionToggle, useDirection } from "./direction-context";
@@ -67,7 +65,8 @@ function WorkspaceHeader({ view, onBack, canGoBack }: { view: ViewKey; onBack: (
 
 function AtlasShellBody({ initialView }: { initialView: ViewKey }) {
   const { direction } = useDirection();
-  const [selectedId, setSelectedId] = useState(initialView === "hadith" ? "cluster" : "yahya");
+  const [selectedId, setSelectedId] = useState(initialView === "hadith" ? "cluster" : "");
+  const [narratorId, setNarratorId] = useState("");
   const [history, setHistory] = useState<string[]>([]);
   const [collection, setCollection] = useState("جميع المصنفات");
   const [query, setQuery] = useState("");
@@ -77,11 +76,28 @@ function AtlasShellBody({ initialView }: { initialView: ViewKey }) {
   const [liveGraph, setLiveGraph] = useState<LiveHadithGraph | null>(null);
   const [liveGraphLoading, setLiveGraphLoading] = useState(false);
   const [liveGraphError, setLiveGraphError] = useState("");
+  const [searchMatches, setSearchMatches] = useState<ApiRijalCandidate[]>([]);
+  const [searchError, setSearchError] = useState("");
 
   useEffect(() => {
-    if (initialView !== "hadith" || !researchApiAvailable()) return;
+    if (initialView !== "narrator" && initialView !== "network") return;
+    const parameters = new URLSearchParams(window.location.search);
+    const id = parameters.get("narrator") ?? parameters.get("id") ?? "";
+    const timer = window.setTimeout(() => {
+      setNarratorId(id);
+      setSelectedId(id);
+    }, 0);
+    return () => window.clearTimeout(timer);
+  }, [initialView]);
+
+  useEffect(() => {
+    if (initialView !== "hadith") return;
     const recordId = new URLSearchParams(window.location.search).get("record");
     if (!recordId) return;
+    if (!researchApiAvailable()) {
+      const timer = window.setTimeout(() => setLiveGraphError("NEXT_PUBLIC_API_URL غير مضبوط؛ لا يمكن تحميل الحديث من واجهة العامل."), 0);
+      return () => window.clearTimeout(timer);
+    }
     const controller = new AbortController();
     const loadingTimer = window.setTimeout(() => {
       setLiveGraphLoading(true);
@@ -103,6 +119,41 @@ function AtlasShellBody({ initialView }: { initialView: ViewKey }) {
     };
   }, [initialView]);
 
+  useEffect(() => {
+    const wanted = query.trim();
+    if (!searchOpen || wanted.length < 2) {
+      const timer = window.setTimeout(() => {
+        setSearchMatches([]);
+        setSearchError("");
+      }, 0);
+      return () => window.clearTimeout(timer);
+    }
+    if (!researchApiAvailable()) {
+      const timer = window.setTimeout(() => {
+        setSearchMatches([]);
+        setSearchError("واجهة العامل غير مضبوطة");
+      }, 0);
+      return () => window.clearTimeout(timer);
+    }
+    const controller = new AbortController();
+    const timer = window.setTimeout(() => {
+      searchRijalCandidates(wanted, controller.signal)
+        .then((response) => {
+          setSearchMatches(response.data.items);
+          setSearchError("");
+        })
+        .catch((error) => {
+          if (error instanceof DOMException && error.name === "AbortError") return;
+          setSearchMatches([]);
+          setSearchError(error instanceof Error ? error.message : "تعذر البحث");
+        });
+    }, 180);
+    return () => {
+      window.clearTimeout(timer);
+      controller.abort();
+    };
+  }, [query, searchOpen]);
+
   const selectNode = useCallback((id: string) => {
     setHistory((current) => [...current, selectedId]);
     setSelectedId(id);
@@ -116,13 +167,6 @@ function AtlasShellBody({ initialView }: { initialView: ViewKey }) {
     setHistory((current) => current.slice(0, -1));
   };
 
-  const matches = useMemo(() => {
-    const normalized = normalizeSearchText(query);
-    if (!normalized) return narrators.slice(0, 5);
-    return narrators.filter((item) => normalizeSearchText(`${item.nameAr} ${item.transliteration}`).includes(normalized)).slice(0, 6);
-  }, [query]);
-
-  const selectedNarrator = narratorMap.get(selectedId);
   const selectedOccurrence = liveGraph?.occurrences[selectedId];
   const graphView = initialView === "hadith" || initialView === "narrator" || initialView === "network";
 
@@ -130,14 +174,14 @@ function AtlasShellBody({ initialView }: { initialView: ViewKey }) {
     <main className="app-shell" dir={direction}>
       {/* Chrome: folgt dem Umschalter. Arabische Inhaltsbloecke unten behalten
           ihr eigenes dir="rtl". */}
-      <div className="prototype-strip"><span>{prototypeNotice}</span><button type="button">ما معنى «أولي»؟</button></div>
+      <div className="prototype-strip"><span>بيانات بحثية مرتبطة بالمصدر؛ النتائج الآلية غير محققة حتى تقبلها المراجعة.</span><button type="button">ما معنى «آلي»؟</button></div>
       <header className="topbar">
         <Link className="brand" href="/hadith"><Mark /><span><b>أطلس الإسناد</b><small>شبكة السنة الموثقة</small></span></Link>
         <div className="global-search">
           <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="6.5" /><path d="m16 16 4 4" /></svg>
           <input value={query} onChange={(event) => setQuery(event.target.value)} onFocus={() => setSearchOpen(true)} onBlur={() => window.setTimeout(() => setSearchOpen(false), 160)} placeholder="ابحث باسم راوٍ، أو حديث، أو كتاب، أو بلد…" aria-label="البحث الشامل" dir="rtl" />
           <kbd>⌘ K</kbd>
-          {searchOpen ? <div className="search-results" dir="rtl"><span>الرواة</span>{matches.map((person) => <button type="button" key={person.id} onMouseDown={() => selectNode(person.id)}><i>{person.shortAr.slice(0, 1)}</i><b>{person.nameAr}</b><small>{person.transliteration}</small><Status confidence={person.confidence} /></button>)}</div> : null}
+          {searchOpen ? <div className="search-results" dir="rtl"><span>تراجم كتب الرجال</span>{searchError ? <small role="alert">{searchError}</small> : null}{searchMatches.map((entry) => <Link key={entry.id} href={`/rijal/entry?entry=${encodeURIComponent(entry.id)}`}><i>{entry.nameSurface?.slice(0, 1) || "؟"}</i><b>{entry.nameSurface || entry.id}</b><small>{entry.source} · {entry.matchKind}</small><Status confidence={entry.identityStatus} /></Link>)}{query.trim().length >= 2 && !searchError && !searchMatches.length ? <small>لا توجد نتائج في استجابة العامل.</small> : null}</div> : null}
         </div>
         <div className="top-actions">
           <DirectionToggle />
@@ -150,7 +194,7 @@ function AtlasShellBody({ initialView }: { initialView: ViewKey }) {
       <WorkspaceHeader view={initialView} onBack={goBack} canGoBack={Boolean(history.length)} />
       <div className={`workspace ${panelOpen && graphView ? "with-panel" : ""}`}>
         <section className="main-stage">
-          {graphView ? <GraphWorkspace view={initialView as "hadith" | "narrator" | "network"} selectNode={selectNode} collection={collection} setCollection={setCollection} highlightedIds={highlightedIds} liveGraph={liveGraph} loading={liveGraphLoading} error={liveGraphError} /> : null}
+          {graphView ? <GraphWorkspace view={initialView as "hadith" | "narrator" | "network"} narratorId={narratorId} selectNode={selectNode} collection={collection} setCollection={setCollection} highlightedIds={highlightedIds} liveGraph={liveGraph} loading={liveGraphLoading} error={liveGraphError} /> : null}
           {initialView === "compare" ? <CompareView /> : null}
           {initialView === "variants" ? <VariantsView selectNode={selectNode} /> : null}
           {initialView === "library" ? <LibraryView /> : null}
@@ -160,7 +204,7 @@ function AtlasShellBody({ initialView }: { initialView: ViewKey }) {
         {panelOpen && graphView ? <DetailPanel selectedId={selectedId} liveGraph={liveGraph} close={() => setPanelOpen(false)} /> : null}
       </div>
       {graphView && !panelOpen ? <button type="button" className="reopen-panel" onClick={() => setPanelOpen(true)}>فتح لوحة المعلومات <Chevron direction="left" /></button> : null}
-      <div className="sr-only" aria-live="polite">{selectedOccurrence ? `تم اختيار موضع الراوي ${selectedOccurrence.rawSurfaceForm}` : selectedNarrator ? `تم اختيار ${selectedNarrator.nameAr}` : "تم اختيار عنقود الحديث"}</div>
+      <div className="sr-only" aria-live="polite">{selectedOccurrence ? `تم اختيار موضع الراوي ${selectedOccurrence.rawSurfaceForm}` : selectedId ? `تم اختيار ${selectedId}` : "لم يحدد راو بعد"}</div>
     </main>
   );
 }

@@ -1,6 +1,5 @@
 "use client";
 
-import { narratorMap } from "@/lib/mock-data";
 import type { LiveHadithGraph } from "@/lib/hadith-graph";
 import { HadithPanel } from "./hadith-panel";
 import { NarratorPanel } from "./narrator-panel";
@@ -12,13 +11,13 @@ import { OccurrencePanel } from "./occurrence-panel";
  * wird nur mit den drei Graphrouten geladen.
  *
  * Reihenfolge ist fachlich bedeutsam: eine Erzaehlerstelle aus der API ist
- * niemals eine Person. Sie darf deshalb nicht durch einen Namenstreffer im
- * Demonstrationsbestand verdeckt werden.
+ * niemals eine Person. Nur echte Worker-IDs werden als Personen-/Clusterprofil
+ * geladen; fuer fehlende IDs gibt es keinen lokalen Ersatzbestand.
  */
 export function DetailPanel({ selectedId, liveGraph, close }: { selectedId: string; liveGraph: LiveHadithGraph | null; close: () => void }) {
   const occurrence = liveGraph?.occurrences[selectedId];
   if (occurrence && liveGraph) return <OccurrencePanel occurrence={occurrence} hadithId={liveGraph.record.id} close={close} />;
-  const narrator = narratorMap.get(selectedId);
-  if (narrator) return <NarratorPanel narrator={narrator} close={close} />;
-  return <HadithPanel liveGraph={liveGraph} />;
+  if (selectedId && selectedId !== "cluster") return <NarratorPanel narratorId={selectedId} close={close} />;
+  if (liveGraph) return <HadithPanel liveGraph={liveGraph} />;
+  return <aside className="info-panel" aria-label="لوحة المعلومات" dir="rtl"><div className="panel-topline"><span>لوحة المعلومات</span><button type="button" onClick={close} aria-label="إغلاق اللوحة">×</button></div><p className="empty-copy">لم تُحمّل استجابة بعد. لا توجد بيانات عرض بديلة.</p></aside>;
 }

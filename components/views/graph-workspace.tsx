@@ -1,18 +1,22 @@
 "use client";
 
-import { useMemo, useState } from "react";
 import Link from "next/link";
-import { collectionOptions, egoEdgeChronology, egoEdges, egoNodes, narratorMap } from "@/lib/mock-data";
+import { useEffect, useMemo, useState } from "react";
+import {
+  loadNarratorPaths,
+  loadNarratorProfile,
+  loadNarratorRelations,
+  researchApiAvailable,
+  type ApiNarratorProfile,
+  type ApiNarratorRelation,
+  type PageInfo,
+} from "@/lib/api-client";
 import { buildKeyboardEdgeItems, type LiveHadithGraph } from "@/lib/hadith-graph";
 import type { GraphEdge, GraphNode } from "@/lib/types";
 import { AtlasGraph } from "../atlas-graph-dynamic";
 import { Chevron } from "../atlas-primitives";
 
-/**
- * Die drei Graphansichten (`/hadith`, `/narrators/*`, `/network`). Cytoscape
- * kommt ueber `atlas-graph-dynamic.tsx` und damit nur in diesen Routen ins
- * Bundle.
- */
+const collectionOptions = ["جميع المصنفات", "صحيح البخاري", "صحيح مسلم"];
 
 function Legend() {
   return (
@@ -21,74 +25,53 @@ function Legend() {
       <span><i className="line isnad identity-uncertain" />إسناد، هوية الراوي غير محسومة</span>
       <span><i className="line bio" />مذكور في كتب الرجال</span>
       <span><i className="line chronology-only" />إمكان زمني فقط، لا دليل سماع</span>
-      <span><i className="line variant-b" />اختلاف المتن ب</span>
-      <span><i className="node-key companion" />صحابي</span>
-      <span><i className="node-key compiler" />مصنّف</span>
     </div>
   );
 }
 
-function KeyboardNodeList({ nodes, onSelect }: { nodes: { data: { id: string; label: string } }[]; onSelect: (id: string) => void }) {
-  return (
-    <div className="keyboard-nodes" aria-label="عقد الرسم الظاهرة">
-      {nodes.map((node) => <button key={node.data.id} type="button" onClick={() => onSelect(node.data.id)}>{narratorMap.get(node.data.id)?.transliteration ?? node.data.label}</button>)}
-    </div>
-  );
+function KeyboardNodeList({ nodes, onSelect }: { nodes: GraphNode[]; onSelect: (id: string) => void }) {
+  return <div className="keyboard-nodes" aria-label="عقد الرسم الظاهرة">{nodes.map((node) => <button key={node.data.id} type="button" onClick={() => onSelect(node.data.id)}>{node.data.label}</button>)}</div>;
 }
 
-/**
- * P5.7 -- die Kanten-Entsprechung zu `KeyboardNodeList`. Cytoscape rendert auf
- * einem Canvas; ohne diese Liste waeren Kanten mit Tastatur oder Screenreader
- * ueberhaupt nicht erreichbar. Die Reihenfolge ist die der uebergebenen
- * `edges` (Kettenreihenfolge bzw. Lehrer-vor-Schueler) -- dieselbe Reihenfolge,
- * in der `buildKeyboardEdgeItems` sie liefert, siehe dort fuer die Begruendung
- * zu RTL/LTR.
- */
 function KeyboardEdgeList({ nodes, edges, selectedEdgeId, onSelect }: { nodes: GraphNode[]; edges: GraphEdge[]; selectedEdgeId: string | null; onSelect: (id: string) => void }) {
   const items = useMemo(() => buildKeyboardEdgeItems(nodes, edges), [nodes, edges]);
-  return (
-    <div className="keyboard-edges" aria-label="صلات الرسم الظاهرة">
-      {items.map((item) => (
-        <button key={item.id} type="button" aria-pressed={item.id === selectedEdgeId} onClick={() => onSelect(item.id)}>
-          {item.label}
-        </button>
-      ))}
-    </div>
-  );
+  return <div className="keyboard-edges" aria-label="صلات الرسم الظاهرة">{items.map((item) => <button key={item.id} type="button" aria-pressed={item.id === selectedEdgeId} onClick={() => onSelect(item.id)}>{item.label}</button>)}</div>;
 }
 
-/**
- * Chronologie der Netzwerkkanten, jede mit ihren Belegen.
- *
- * `compareChronology()` ist die einzige Quelle dieser Angaben. Wo kein belegtes
- * Geburts- und Todesjahr vorliegt, steht ausdruecklich "المعطيات غير كافية" --
- * nicht eine geschaetzte Moeglichkeit.
- */
-function ChronologyEvidenceList() {
-  const decided = egoEdgeChronology.filter((item) => item.result !== "insufficient");
-  const undecided = egoEdgeChronology.length - decided.length;
-  return (
-    <section className="chronology-evidence" aria-label="الإمكان الزمني للصلات" dir="rtl">
-      <div className="section-title"><h3>الإمكان الزمني، بحسب التواريخ المسندة فقط</h3><span>{undecided.toLocaleString("ar")} صلة بلا معطيات كافية</span></div>
-      {decided.length ? <ul>{decided.map((item) => {
-        const edge = egoEdges.find((candidate) => candidate.data.id === item.edgeId);
-        return (
-          <li key={item.edgeId} className={`chronology-result ${item.result}`}>
-            <b>{narratorMap.get(edge?.data.source ?? "")?.shortAr} ← {narratorMap.get(edge?.data.target ?? "")?.shortAr}</b>
-            <span>{item.label}</span>
-            <small>{item.sourceReferences.map((reference) => `${reference.sourceLabel}: ${reference.reference}`).join(" · ")}</small>
-          </li>
-        );
-      })}</ul> : <p className="empty-copy">لا صلة واحدة تملك تاريخا مسندا للطرفين في بيانات العرض.</p>}
-      <p className="empty-copy">الإمكان الزمني ليس دليلا على لقاء ولا على سماع ولا على رواية. الدليل يأتي من موضع إسناد أو من نص رجالي صريح.</p>
-    </section>
-  );
+function relationGraph(profile: ApiNarratorProfile, relations: ApiNarratorRelation[]): { nodes: GraphNode[]; edges: GraphEdge[] } {
+  const nodeIds = new Set([profile.id, ...relations.map((item) => item.relatedNarratorId)]);
+  const nodes = [...nodeIds].map((id, index) => ({
+    data: {
+      id,
+      label: id === profile.id ? profile.rawSurfaceForms[0] || profile.normalizedSurfaceForm || id : id,
+      subtitle: id === profile.id ? `${profile.occurrenceCount.toLocaleString("ar")} موضع إسناد` : "هوية مرتبطة من استجابة العلاقات",
+      kind: "later",
+      status: "unresolved" as const,
+      collections: "جميع المصنفات",
+    },
+    position: { x: id === profile.id ? 520 : index % 2 ? 760 : 280, y: 80 + index * 58 },
+    classes: id === profile.id ? "later focus" : "later",
+  }));
+  const edges = relations.map((item, index) => ({
+    data: {
+      id: `relation-${index}-${item.chainId}-${item.position}`,
+      source: item.relationshipType === "transmitted_from" ? profile.id : item.relatedNarratorId,
+      target: item.relationshipType === "transmitted_from" ? item.relatedNarratorId : profile.id,
+      verb: item.relationshipType === "transmitted_from" ? "روى عن" : "روى عنه",
+      evidence: item.evidenceKind,
+      collection: "جميع المصنفات",
+      count: 1,
+    },
+    classes: item.evidenceKind === "rijal_statement" ? "bio" : item.evidenceKind === "chronology_only" ? "chronology-only" : "isnad identity-uncertain",
+  }));
+  return { nodes, edges };
 }
 
 export function GraphWorkspace({
-  view, selectNode, collection, setCollection, highlightedIds, liveGraph, loading, error,
+  view, narratorId, selectNode, collection, setCollection, highlightedIds, liveGraph, loading, error,
 }: {
   view: "hadith" | "narrator" | "network";
+  narratorId: string;
   selectNode: (id: string) => void;
   collection: string;
   setCollection: (value: string) => void;
@@ -98,86 +81,113 @@ export function GraphWorkspace({
   error?: string;
 }) {
   const isHadith = view === "hadith";
-  // P3.3 -- kein stiller Rueckfall. Frueher stand hier
-  // `liveGraph?.nodes ?? hadithNodes`: fehlte die Antwort des Workers, zeigte
-  // die Ansicht kommentarlos ein Demonstrationscluster, das wie ein echtes
-  // Rechercheergebnis aussah. Fehlende Daten sind jetzt sichtbar leer; die
-  // Ansicht sagt, dass nichts geladen wurde, statt etwas anderes zu zeigen.
-  const noLiveHadithData = isHadith && !liveGraph;
-  const nodes = isHadith ? liveGraph?.nodes ?? [] : egoNodes;
-  const edges = isHadith ? liveGraph?.edges ?? [] : egoEdges;
-
-  // P5.3/P5.7 -- eine einzige Auswahl, egal ob sie per Kantenklick im Canvas
-  // oder per `KeyboardEdgeList` gesetzt wird. `AtlasGraph` liest sie als
-  // steuernde Prop und baut daraus die vollstaendige Belegliste.
-  //
-  // Beim Wechsel der Ansicht oder des geladenen Hadith muss die Auswahl
-  // verfallen, weil die alte Kanten-ID sonst auf ein nicht mehr vorhandenes
-  // Element zeigen wuerde. Das gehoert waehrend des Renderns erledigt, nicht
-  // in einem Effekt (React-Muster "Zustand zuruecksetzen, wenn sich eine Prop
-  // aendert" -- ein `setState` im Effektkoerper wuerde eine zusaetzliche,
-  // sichtbare Renderkaskade ausloesen).
   const [selectedEdgeId, setSelectedEdgeId] = useState<string | null>(null);
-  const [resetTrackedFor, setResetTrackedFor] = useState<{ view: typeof view; liveGraph: LiveHadithGraph | null | undefined }>({ view, liveGraph });
-  if (resetTrackedFor.view !== view || resetTrackedFor.liveGraph !== liveGraph) {
-    setResetTrackedFor({ view, liveGraph });
-    setSelectedEdgeId(null);
-  }
+  const [idDraft, setIdDraft] = useState("");
+  const [profile, setProfile] = useState<ApiNarratorProfile | null>(null);
+  const [relations, setRelations] = useState<ApiNarratorRelation[]>([]);
+  const [pageInfo, setPageInfo] = useState<PageInfo>({ nextCursor: null, hasNextPage: false });
+  const [networkNodes, setNetworkNodes] = useState<GraphNode[]>([]);
+  const [networkEdges, setNetworkEdges] = useState<GraphEdge[]>([]);
+  const [networkVersion, setNetworkVersion] = useState("");
+  const [networkTruncated, setNetworkTruncated] = useState(false);
+  const [networkLoading, setNetworkLoading] = useState(false);
+  const [networkError, setNetworkError] = useState("");
+
+  useEffect(() => {
+    if (isHadith || !narratorId) return;
+    if (!researchApiAvailable()) {
+      const timer = window.setTimeout(() => setNetworkError("NEXT_PUBLIC_API_URL غير مضبوط؛ لا توجد بيانات بديلة."), 0);
+      return () => window.clearTimeout(timer);
+    }
+    const controller = new AbortController();
+    const timer = window.setTimeout(() => {
+      setNetworkLoading(true);
+      setNetworkError("");
+      setSelectedEdgeId(null);
+    }, 0);
+    const request = view === "network"
+      ? Promise.all([loadNarratorProfile(narratorId, controller.signal), loadNarratorPaths(narratorId, { maxDepth: 3 }, controller.signal)])
+          .then(([profileResponse, pathResponse]) => {
+            const root = profileResponse.data;
+            setProfile(root);
+            setNetworkVersion(pathResponse.dataVersion);
+            setNetworkTruncated(pathResponse.data.truncated);
+            setNetworkNodes(pathResponse.data.nodes.map((node, index) => ({
+              data: { id: node.id, label: node.id === root.id ? root.rawSurfaceForms[0] || root.normalizedSurfaceForm : node.id, subtitle: node.id === root.id ? `${root.occurrenceCount.toLocaleString("ar")} موضع إسناد` : "عقدة من مسار العامل", kind: "later", status: "unresolved", collections: "جميع المصنفات" },
+              position: { x: 120 + (index % 4) * 200, y: 80 + Math.floor(index / 4) * 90 },
+              classes: node.id === root.id ? "later focus" : "later",
+            })));
+            setNetworkEdges(pathResponse.data.edges.map((edge, index) => ({
+              data: { id: `path-${index}-${edge.source}-${edge.target}`, source: edge.source, target: edge.target, verb: edge.relationshipType === "transmitted_from" ? "روى عن" : "روى عنه", evidence: edge.evidenceKind, collection: "جميع المصنفات", count: 1 },
+              classes: "isnad identity-uncertain",
+            })));
+          })
+      : Promise.all([loadNarratorProfile(narratorId, controller.signal), loadNarratorRelations(narratorId, null, 100, controller.signal)])
+          .then(([profileResponse, relationResponse]) => {
+            setProfile(profileResponse.data);
+            setRelations(relationResponse.data.items);
+            setPageInfo(relationResponse.data.pageInfo);
+            setNetworkVersion(profileResponse.dataVersion);
+            const graph = relationGraph(profileResponse.data, relationResponse.data.items);
+            setNetworkNodes(graph.nodes);
+            setNetworkEdges(graph.edges);
+          });
+    request.catch((caught) => {
+      if (caught instanceof DOMException && caught.name === "AbortError") return;
+      setNetworkError(caught instanceof Error ? caught.message : "تعذر تحميل شبكة الراوي");
+      setProfile(null);
+      setNetworkNodes([]);
+      setNetworkEdges([]);
+    }).finally(() => setNetworkLoading(false));
+    return () => {
+      window.clearTimeout(timer);
+      controller.abort();
+    };
+  }, [isHadith, narratorId, view]);
+
+  const loadMoreRelations = async () => {
+    if (!profile || !pageInfo.nextCursor) return;
+    setNetworkLoading(true);
+    try {
+      const response = await loadNarratorRelations(profile.id, pageInfo.nextCursor, 100);
+      const combined = [...relations, ...response.data.items];
+      const graph = relationGraph(profile, combined);
+      setRelations(combined);
+      setPageInfo(response.data.pageInfo);
+      setNetworkNodes(graph.nodes);
+      setNetworkEdges(graph.edges);
+      setNetworkVersion(response.dataVersion);
+    } catch (caught) {
+      setNetworkError(caught instanceof Error ? caught.message : "تعذر تحميل الصفحة التالية");
+    } finally {
+      setNetworkLoading(false);
+    }
+  };
+
+  const nodes = isHadith ? liveGraph?.nodes ?? [] : networkNodes;
+  const edges = isHadith ? liveGraph?.edges ?? [] : networkEdges;
+  const visibleError = isHadith ? error : networkError;
+  const visibleLoading = isHadith ? loading : networkLoading;
+  const missingSelection = !isHadith && !narratorId;
 
   return (
     <>
       <section className="graph-toolbar" aria-label="مرشحات الرسم">
-        <div dir="rtl">
-          <span className="eyebrow">{isHadith ? liveGraph?.eyebrow ?? "لا عنقود محمّل" : "شبكة عرض توضيحية"}</span>
-          <h1 dir="rtl">{isHadith ? liveGraph?.title ?? "لم يُحمَّل أي حديث" : "بيانات عرض، لا نتيجة بحث"}</h1>
-        </div>
-        <div className="filter-set">
-          <label htmlFor="collection-filter">المصنف</label>
-          <select id="collection-filter" value={collection} onChange={(event) => setCollection(event.target.value)} disabled={!isHadith || Boolean(liveGraph)}>
-            {collectionOptions.map((option) => <option key={option}>{option}</option>)}
-          </select>
-        </div>
+        <div dir="rtl"><span className="eyebrow">{isHadith ? liveGraph?.eyebrow ?? "لا عنقود محمّل" : networkVersion ? `إصدار البيانات ${networkVersion}` : "شبكة العامل"}</span><h1>{isHadith ? liveGraph?.title ?? "لم يُحمَّل أي حديث" : profile?.rawSurfaceForms[0] ?? "أدخل معرّف عنقود راوٍ"}</h1></div>
+        {isHadith ? <div className="filter-set"><label htmlFor="collection-filter">المصنف</label><select id="collection-filter" value={collection} onChange={(event) => setCollection(event.target.value)} disabled={Boolean(liveGraph)}>{collectionOptions.map((option) => <option key={option}>{option}</option>)}</select></div> : <form className="filter-set" action={view === "network" ? "/network" : "/narrators/yahya"}><label htmlFor="narrator-id">معرّف عنقود الراوي</label><input id="narrator-id" name="narrator" dir="ltr" value={idDraft} onChange={(event) => setIdDraft(event.target.value)} placeholder="UNC-… أو SA-P-…" /><button type="submit" disabled={!idDraft.trim()}>تحميل</button></form>}
       </section>
       <div className="graph-shell">
-        <AtlasGraph
-          nodes={nodes}
-          edges={edges}
-          collection={isHadith ? collection : "جميع المصنفات"}
-          highlightedIds={highlightedIds}
-          onSelect={selectNode}
-          selectedEdgeId={selectedEdgeId}
-          onEdgeSelect={setSelectedEdgeId}
-        />
-        {loading ? <div className="graph-load-state"><i /><strong>جار بناء السلسلة من مواضع المصدر…</strong></div> : null}
-        {error ? <div className="graph-load-state error"><strong>تعذر تحميل السلسلة</strong><span>{error}</span></div> : null}
-        {noLiveHadithData && !loading && !error ? (
-          <div className="graph-load-state empty" dir="rtl">
-            <strong>لا توجد بيانات إسناد محمّلة</strong>
-            <span>اختر حديثا من المكتبة. لا يعرض هذا الرسم بيانات بديلة عند غياب النتيجة.</span>
-          </div>
-        ) : null}
+        <AtlasGraph nodes={nodes} edges={edges} collection={isHadith ? collection : "جميع المصنفات"} highlightedIds={highlightedIds} onSelect={selectNode} selectedEdgeId={selectedEdgeId} onEdgeSelect={setSelectedEdgeId} />
+        {visibleLoading ? <div className="graph-load-state"><i /><strong>جار تحميل البيانات من العامل…</strong></div> : null}
+        {visibleError ? <div className="graph-load-state error" role="alert"><strong>تعذر تحميل البيانات</strong><span>{visibleError}</span></div> : null}
+        {((isHadith && !liveGraph) || missingSelection) && !visibleLoading && !visibleError ? <div className="graph-load-state empty"><strong>{isHadith ? "لا توجد بيانات إسناد محمّلة" : "لم يحدد عنقود راوٍ"}</strong><span>{isHadith ? "اختر حديثا من المكتبة؛ لا يعرض الرسم بديلا عند غياب النتيجة." : "ألصق معرّف عنقود حقيقيا من استجابة العامل. لا يوجد راوٍ افتراضي."}</span></div> : null}
+        {!isHadith && narratorId && !nodes.length && !visibleLoading && !visibleError ? <div className="graph-load-state empty"><strong>الاستجابة فارغة</strong><span>لم يرجع العامل عقدا لهذا المعرّف.</span></div> : null}
         <Legend />
         <KeyboardNodeList nodes={nodes} onSelect={selectNode} />
         <KeyboardEdgeList nodes={nodes} edges={edges} selectedEdgeId={selectedEdgeId} onSelect={setSelectedEdgeId} />
       </div>
-      {isHadith ? (
-        <div className="route-summary" dir="rtl">
-          {/* P3.3 -- die Zahlen kommen aus der geladenen Antwort oder es steht
-              ein Strich. Frueher standen hier `?? 7` und `?? 30`: erfundene
-              Kennzahlen, die von echten nicht zu unterscheiden waren. */}
-          <span><b>{liveGraph ? liveGraph.chainCount.toLocaleString("ar") : "—"}</b> طرق ظاهرة</span>
-          <span><b>{liveGraph ? liveGraph.occurrenceCount.toLocaleString("ar") : "—"}</b> مواضع رواة</span>
-          <span><b>{liveGraph ? "آلي" : "—"}</b> حالة المراجعة</span>
-          <Link href="/library">العودة إلى المكتبة <Chevron direction="left" /></Link>
-        </div>
-      ) : (
-        <div className="route-summary" dir="rtl">
-          <span><b>{egoEdges.filter((edge) => edge.data.target === "yahya").length.toLocaleString("ar")}</b> من الشيوخ</span>
-          <span><b>{egoEdges.filter((edge) => edge.data.source === "yahya").length.toLocaleString("ar")}</b> من التلاميذ</span>
-          <span><b>٣</b> طبقات من الدليل</span>
-        </div>
-      )}
-      {view === "network" ? <ChronologyEvidenceList /> : null}
+      {isHadith ? <div className="route-summary" dir="rtl"><span><b>{liveGraph ? liveGraph.chainCount.toLocaleString("ar") : "—"}</b> طرق ظاهرة</span><span><b>{liveGraph ? liveGraph.occurrenceCount.toLocaleString("ar") : "—"}</b> مواضع رواة</span><span><b>{liveGraph ? liveGraph.dataVersion : "—"}</b> إصدار البيانات</span><Link href="/library">العودة إلى المكتبة <Chevron direction="left" /></Link></div> : <div className="route-summary" dir="rtl"><span><b>{edges.filter((edge) => edge.data.source === narratorId).length.toLocaleString("ar")}</b> صلات خارجة</span><span><b>{edges.filter((edge) => edge.data.target === narratorId).length.toLocaleString("ar")}</b> صلات داخلة</span><span><b>{networkTruncated ? "٥٠٠+" : edges.length.toLocaleString("ar")}</b> صلات ظاهرة</span>{view === "narrator" && pageInfo.hasNextPage ? <button type="button" onClick={loadMoreRelations} disabled={networkLoading}>تحميل العلاقات التالية</button> : null}</div>}
+      {!isHadith ? <section className="chronology-evidence" dir="rtl"><p className="empty-copy">كل صلة ظاهرة هنا جاءت من نقطة العلاقات أو المسارات في العامل. الإمكان الزمني لا يُعرض كصلة نقل، ولا يُحسب اللقاء من تاريخ غير مسند.</p>{networkTruncated ? <p className="empty-copy">بلغ المسار الحد الصلب: ٥٠٠ صلة. ضيّق العمق لمتابعة البحث.</p> : null}</section> : null}
     </>
   );
 }

@@ -158,6 +158,123 @@ export type HadithGraphPayload = {
 
 type RijalEnvelope = ResponseEnvelope<{ items: ApiRijalEntry[]; pageInfo: PageInfo }>;
 
+export type ApiNarratorOccurrenceSummary = {
+  hadithId: string;
+  collection: "bukhari" | "muslim";
+  chainId: string;
+  chainOrder: number;
+  position: number;
+  rawSurfaceForm: string;
+  spanStart: number | null;
+  spanEnd: number | null;
+};
+
+export type ApiNarratorProfile = {
+  id: string;
+  identityStatus: ConfidenceLevel;
+  isRelativeReference: boolean;
+  normalizedSurfaceForm: string;
+  rawSurfaceForms: string[];
+  occurrenceCount: number;
+  occurrences: ApiNarratorOccurrenceSummary[];
+  truncatedOccurrences: boolean;
+  rijalCandidates: ApiRijalCandidate[];
+  note: string | null;
+};
+
+export type ApiNarratorRelation = {
+  relatedNarratorId: string;
+  relationshipType: "transmitted_from" | "transmitted_to";
+  evidenceKind: "isnad_link" | "rijal_statement" | "chronology_only";
+  chainId: string;
+  position: number;
+  spanStart: number | null;
+  spanEnd: number | null;
+  hadithId: string;
+};
+
+export type ApiNarratorRelations = {
+  narratorId: string;
+  items: ApiNarratorRelation[];
+  pageInfo: PageInfo;
+  note?: string | null;
+};
+
+export type ApiTimelineAssertion = {
+  event: "birth" | "death";
+  precision: string;
+  yearMin: number;
+  yearMax: number;
+  sourceWork: string;
+  entryId: string;
+  reviewStatus: string;
+};
+
+export type ApiNarratorTimeline = {
+  narratorId: string;
+  dateAssertions: ApiTimelineAssertion[];
+  note: string | null;
+};
+
+export type ApiMeetingEvidence = {
+  relatedNarratorId: string;
+  relationshipType: "transmitted_from" | "transmitted_to";
+  hadithId: string;
+  collection: "bukhari" | "muslim";
+  chainId: string;
+  position: number;
+};
+
+export type ApiNarratorComparison = {
+  narratorA: string;
+  narratorB: string;
+  chronology: "possible" | "impossible" | "insufficient";
+  chronologyReason: string;
+  meeting: "asserted_isnad" | "not_asserted";
+  meetingEvidence: ApiMeetingEvidence[];
+};
+
+export type ApiChronologyComparison = {
+  narratorA: string;
+  narratorB: string;
+  result: "possible" | "impossible" | "insufficient";
+  reason: string;
+  meetingIsProven: boolean;
+};
+
+export type ApiGraphPath = {
+  startNodeId: string;
+  maxDepth: number;
+  direction: "transmitted_from" | "transmitted_to";
+  nodes: { id: string }[];
+  edges: Array<{
+    source: string;
+    target: string;
+    relationshipType: "transmitted_from" | "transmitted_to";
+    evidenceKind: "isnad_link";
+    hadithId: string;
+    chainOrder: number;
+    depth: number;
+  }>;
+  truncated: boolean;
+};
+
+export type ApiSource = {
+  key: string;
+  title: string;
+  author?: string;
+  kind?: string;
+  priority?: string;
+  rightsStatus: string;
+  publicDerivedFields?: string[];
+  turathBookId?: number;
+  url?: string;
+  doi?: string;
+  license?: string;
+  importStatus?: string;
+  scope?: string;
+};
+
 const configuredBase = process.env.NEXT_PUBLIC_API_URL?.replace(/\/$/, "") ?? "";
 
 export function researchApiAvailable() {
@@ -194,7 +311,16 @@ export async function loadRijalEntry(entryId: string, signal?: AbortSignal) {
 async function researchGet<T>(path: string, signal?: AbortSignal) {
   if (!configuredBase) throw new Error("NEXT_PUBLIC_API_URL is not configured");
   const response = await fetch(`${configuredBase}${path}`, { signal, headers: { Accept: "application/json" } });
-  if (!response.ok) throw new Error(`API HTTP ${response.status}`);
+  if (!response.ok) {
+    let detail = "";
+    try {
+      const payload = await response.json() as { detail?: unknown };
+      if (typeof payload.detail === "string") detail = `: ${payload.detail}`;
+    } catch {
+      // Nicht-JSON-Fehler behalten den HTTP-Status als verlaessliche Aussage.
+    }
+    throw new Error(`API HTTP ${response.status}${detail}`);
+  }
   return response.json() as Promise<T>;
 }
 
@@ -212,4 +338,57 @@ export async function loadHadithGraph(recordId: string, signal?: AbortSignal): P
     confidenceLevel: record.confidenceLevel,
     reviewStatus: record.reviewStatus,
   };
+}
+
+export function loadClusterRoutes(clusterId: string, collection?: "bukhari" | "muslim", signal?: AbortSignal) {
+  const query = collection ? `?collection=${collection}` : "";
+  return researchGet<ResponseEnvelope<Record<string, unknown>>>(`/api/v1/clusters/${encodeURIComponent(clusterId)}/routes${query}`, signal);
+}
+
+export function loadClusterMatnVariants(clusterId: string, signal?: AbortSignal) {
+  return researchGet<ResponseEnvelope<Record<string, unknown>>>(`/api/v1/clusters/${encodeURIComponent(clusterId)}/matn-variants`, signal);
+}
+
+export function loadNarratorProfile(narratorId: string, signal?: AbortSignal) {
+  return researchGet<ResponseEnvelope<ApiNarratorProfile>>(`/api/v1/narrators/${encodeURIComponent(narratorId)}`, signal);
+}
+
+export function loadNarratorRelations(narratorId: string, cursor?: string | null, limit = 100, signal?: AbortSignal) {
+  const parameters = new URLSearchParams({ limit: String(Math.min(500, Math.max(1, limit))) });
+  if (cursor) parameters.set("cursor", cursor);
+  return researchGet<ResponseEnvelope<ApiNarratorRelations>>(`/api/v1/narrators/${encodeURIComponent(narratorId)}/relations?${parameters}`, signal);
+}
+
+export function loadNarratorTimeline(narratorId: string, signal?: AbortSignal) {
+  return researchGet<ResponseEnvelope<ApiNarratorTimeline>>(`/api/v1/narrators/${encodeURIComponent(narratorId)}/timeline`, signal);
+}
+
+export function loadNarratorPaths(
+  narratorId: string,
+  options: { direction?: "transmitted_from" | "transmitted_to"; maxDepth?: number } = {},
+  signal?: AbortSignal,
+) {
+  const parameters = new URLSearchParams({
+    direction: options.direction ?? "transmitted_from",
+    maxDepth: String(Math.min(8, Math.max(1, options.maxDepth ?? 3))),
+  });
+  return researchGet<ResponseEnvelope<ApiGraphPath>>(`/api/v1/narrators/${encodeURIComponent(narratorId)}/paths?${parameters}`, signal);
+}
+
+export function compareNarrators(a: string, b: string, signal?: AbortSignal) {
+  const parameters = new URLSearchParams({ a, b });
+  return researchGet<ResponseEnvelope<ApiNarratorComparison>>(`/api/v1/narrators/compare?${parameters}`, signal);
+}
+
+export function compareNarratorChronology(a: string, b: string, signal?: AbortSignal) {
+  const parameters = new URLSearchParams({ a, b });
+  return researchGet<ResponseEnvelope<ApiChronologyComparison>>(`/api/v1/chronology/compare?${parameters}`, signal);
+}
+
+export function loadSources(signal?: AbortSignal) {
+  return researchGet<ResponseEnvelope<{ items: ApiSource[] }>>("/api/v1/sources", signal);
+}
+
+export function loadSource(sourceId: string, signal?: AbortSignal) {
+  return researchGet<ResponseEnvelope<ApiSource>>(`/api/v1/sources/${encodeURIComponent(sourceId)}`, signal);
 }
