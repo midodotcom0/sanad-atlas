@@ -24,6 +24,16 @@
       "rawIsnad": "قتيبة ← الليث ← يحيى بن سعيد ← محمد بن إبراهيم ← علقمة ← عمر",
       "matn": "إنما الأعمال بالنية",
       "editorialStatus": "unreviewed"
+    },
+    {
+      "externalId": "mock-bukhari-relative-form",
+      "collection": "Ṣaḥīḥ al-Bukhārī",
+      "chapter": "Fixture für relative Namensformen",
+      "number": "2",
+      "rawIsnad": "مسدد ← يحيى ← عبد الله بن عمرو ← أبيه ← جده",
+      "matn": "نموذج لصيغ نسبية تبقى مرتبطة بموضعها",
+      "editorialStatus": "unreviewed",
+      "note": "Prüft, dass أبيه und جده an (chainId, position) gebunden bleiben und nie zu einer globalen Person werden."
     }
   ]
 }

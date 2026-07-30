@@ -32,14 +32,41 @@
       "publicDerivedFields": ["reference", "isnad", "matn", "narrator_surface_forms", "source_pointer"]
     },
     {
+      "key": "tahdhib",
+      "turathBookId": 1278,
+      "title": "تهذيب التهذيب",
+      "author": "ابن حجر العسقلاني",
+      "authorDeathAh": 852,
+      "kind": "rijal",
+      "rightsStatus": "review-required",
+      "priority": "primary",
+      "rijalContentStartPage": 210,
+      "rijalContentStartNote": "Seitenindex 0-basiert. Die Seiten davor sind Herausgebervorwort und Handschriftenbeschreibung; das Werk selbst beginnt mit Band 1.",
+      "publicDerivedFields": ["entry_number", "name_surface", "date_assertions", "teacher_student_phrases", "source_pointer"]
+    },
+    {
+      "key": "mizan",
+      "turathBookId": 1692,
+      "title": "ميزان الاعتدال في نقد الرجال",
+      "author": "شمس الدين الذهبي",
+      "authorDeathAh": 748,
+      "kind": "rijal",
+      "rightsStatus": "review-required",
+      "priority": "primary",
+      "rijalContentStartPage": 5,
+      "publicDerivedFields": ["entry_number", "name_surface", "grade_assertions", "date_assertions", "source_pointer"]
+    },
+    {
       "key": "taqrib",
       "turathBookId": 8609,
       "title": "تقريب التهذيب",
       "author": "ابن حجر العسقلاني",
       "authorDeathAh": 852,
-      "kind": "rijal",
+      "kind": "rijal_supplement",
       "rightsStatus": "review-required",
-      "publicDerivedFields": ["entry_number", "name_surface", "death_year_candidate", "teacher_student_phrases", "source_pointer"]
+      "priority": "supplementary",
+      "rijalContentStartPage": 2,
+      "publicDerivedFields": ["entry_number", "name_surface", "tabaqa_assertions", "date_assertions", "source_pointer"]
     },
     {
       "key": "kashif",
@@ -47,9 +74,36 @@
       "title": "الكاشف في معرفة من له رواية في الكتب الستة",
       "author": "شمس الدين الذهبي",
       "authorDeathAh": 748,
-      "kind": "rijal",
+      "kind": "rijal_supplement",
       "rightsStatus": "review-required",
-      "publicDerivedFields": ["entry_number", "name_surface", "death_year_candidate", "teacher_student_phrases", "source_pointer"]
+      "priority": "supplementary",
+      "rijalContentStartPage": 181,
+      "rijalContentStartNote": "Seitenindex 0-basiert. Seiten 0-180 sind Studie und Vorwort des Herausgebers; das Werk beginnt mit «حرف الألف» auf Druckseite 189.",
+      "registeredAt": "2026-07-30",
+      "registrationReason": "Die Datei .cache/turath/2171.json lag ohne Registry-Eintrag im Cache, zusammen mit einer verwaisten Ableitung .cache/turath-derived/kashif.json. Da Anbieter, Zugriffsweg und Rechtelage identisch zu den vier bereits registrierten Turath-Werken sind und al-Kāshif ein vierter Rijāl-Zeuge mit ausdrücklichen Lehrer-, Schüler- und Todesjahresangaben ist, wird die Quelle registriert statt entfernt. Damit existiert kein Datenbestand ohne Registry-Eintrag.",
+      "editionNote": "Digitalisat ohne ausgewiesenen Editionsherausgeber in der Turath-Datei. Vor jeder öffentlichen Weitergabe von Volltext ist die Editionsebene wie bei den übrigen vier Werken einzeln zu prüfen.",
+      "publicDerivedFields": ["entry_number", "name_surface", "date_assertions", "teacher_student_phrases", "source_pointer"]
+    }
+  ],
+  "externalDatasets": [
+    {
+      "key": "sanadset_650k",
+      "title": "650K Sanadset",
+      "url": "https://huggingface.co/datasets/freococo/650k_sanadset",
+      "license": "CC0-1.0",
+      "rightsStatus": "open-with-attribution-record",
+      "importStatus": "connector-ready",
+      "scope": "filter-bukhari-muslim"
+    },
+    {
+      "key": "multi_isnadset",
+      "title": "Multi-IsnadSet (MIDS) for Sahih Muslim",
+      "url": "https://data.mendeley.com/datasets/gzprcr93zn/2",
+      "doi": "10.17632/gzprcr93zn.2",
+      "license": "CC-BY-4.0",
+      "rightsStatus": "open-attribution-required",
+      "importStatus": "connector-ready",
+      "scope": "muslim-control-corpus"
     }
   ]
 }

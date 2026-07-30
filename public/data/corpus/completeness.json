@@ -1,0 +1,97 @@
+{
+  "generatedAt": "2026-07-30T02:30:56.066Z",
+  "parserVersion": "1.0.0",
+  "normalizerVersion": "sanad-normalize-1.0.0",
+  "acceptanceRule": "Jedes nummerierte Vorkommen ist importiert oder trägt einen konkreten Fehlercode. coveragePercent = Vorkommen mit rekonstruierter Kette und Matn ÷ nummerierte Hadithvorkommen (ohne Struktur­überschriften). accountedPercent muss 100 sein.",
+  "collections": {
+    "bukhari": {
+      "numberedSegments": 7291,
+      "structuralHeadings": 163,
+      "numberedOccurrences": 7128,
+      "importedOccurrences": 7128,
+      "occurrencesWithChainAndMatn": 7125,
+      "matnByReference": 96,
+      "attributedReportsWithoutOwnChain": 3,
+      "unparsedOccurrences": 0,
+      "reconstructedChains": 7357,
+      "narratorOccurrences": 46777,
+      "unresolvedNarratorOccurrences": 46777,
+      "narratorOccurrencesWithSpan": 46777,
+      "parserErrors": [],
+      "coveragePercent": 100,
+      "accountedPercent": 100
+    },
+    "muslim": {
+      "numberedSegments": 5775,
+      "structuralHeadings": 0,
+      "numberedOccurrences": 5775,
+      "importedOccurrences": 5775,
+      "occurrencesWithChainAndMatn": 5771,
+      "matnByReference": 139,
+      "attributedReportsWithoutOwnChain": 4,
+      "unparsedOccurrences": 0,
+      "reconstructedChains": 6782,
+      "narratorOccurrences": 41090,
+      "unresolvedNarratorOccurrences": 41090,
+      "narratorOccurrencesWithSpan": 41090,
+      "parserErrors": [],
+      "coveragePercent": 99.9,
+      "accountedPercent": 100
+    }
+  },
+  "rijal": {
+    "tahdhib": {
+      "numberedSegments": 9311,
+      "importedEntries": 9174,
+      "reviewQueueEntries": 137,
+      "entriesWithNameHead": 9174,
+      "nameHeadWithin60Percent": 67.1,
+      "deathAssertionPercent": 29.4,
+      "fullySpecifiedDeathYearPercent": 23.6,
+      "tabaqaPercent": 0,
+      "teacherPhrasePercent": 97.6,
+      "studentPhrasePercent": 94,
+      "accountedPercent": 100
+    },
+    "mizan": {
+      "numberedSegments": 9597,
+      "importedEntries": 9328,
+      "reviewQueueEntries": 269,
+      "entriesWithNameHead": 9328,
+      "nameHeadWithin60Percent": 96.1,
+      "deathAssertionPercent": 9.7,
+      "fullySpecifiedDeathYearPercent": 8.8,
+      "tabaqaPercent": 0,
+      "teacherPhrasePercent": 80.4,
+      "studentPhrasePercent": 47.1,
+      "accountedPercent": 100
+    },
+    "taqrib": {
+      "numberedSegments": 8827,
+      "importedEntries": 8601,
+      "reviewQueueEntries": 226,
+      "entriesWithNameHead": 8601,
+      "nameHeadWithin60Percent": 83.1,
+      "deathAssertionPercent": 29.6,
+      "fullySpecifiedDeathYearPercent": 5.4,
+      "tabaqaPercent": 88.6,
+      "teacherPhrasePercent": 6.9,
+      "studentPhrasePercent": 1.9,
+      "accountedPercent": 100
+    },
+    "kashif": {
+      "numberedSegments": 7133,
+      "importedEntries": 6942,
+      "reviewQueueEntries": 191,
+      "entriesWithNameHead": 6942,
+      "nameHeadWithin60Percent": 96.8,
+      "deathAssertionPercent": 27.3,
+      "fullySpecifiedDeathYearPercent": 21.6,
+      "tabaqaPercent": 0,
+      "teacherPhrasePercent": 87.9,
+      "studentPhrasePercent": 96,
+      "accountedPercent": 100
+    }
+  },
+  "dataVersion": "turath-5aa44bb55b758d6d9f0d"
+}
