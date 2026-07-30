@@ -739,3 +739,15 @@ button:focus-visible, a:focus-visible, input:focus-visible, select:focus-visible
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { scroll-behavior: auto !important; animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; }
 }
+
+/* Mehrere belegte Jahresangaben nebeneinander (Projektbeschreibung Abschnitt 7).
+   Die abweichenden Angaben stehen sichtbar zurück, verschwinden aber nicht:
+   eine Quellenaussage darf nicht deshalb wegfallen, weil eine andere zuerst
+   genannt ist. */
+.date-assertion-list { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; gap: 0.35rem 0.5rem; }
+.date-assertion-list li { display: inline-flex; align-items: baseline; gap: 0.25rem; padding: 0.1rem 0.45rem; border-radius: 999px; background: var(--surface-muted, rgba(0, 0, 0, 0.05)); }
+.date-assertion-list li.secondary { background: transparent; border: 1px dashed var(--border-muted, rgba(0, 0, 0, 0.2)); }
+.date-assertion-list li strong { font-weight: 600; }
+.date-assertion-list li em { font-style: normal; opacity: 0.75; }
+.date-assertion-list li small { font-size: 0.72em; opacity: 0.7; }
+.date-assertion-list li.source-phrase { flex-basis: 100%; background: transparent; padding: 0.15rem 0; font-size: 0.78em; opacity: 0.65; }

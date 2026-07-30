@@ -89,7 +89,11 @@ export async function route(request, deps) {
     return new Response(null, { status: 204, headers: cors });
   }
 
-  const { db, gate, registry, dataVersion, release = null } = deps;
+  // `identitySources` ueberschreibt die Quellenwahl der Erzaehlersuche. Im
+  // Betrieb bleibt sie leer und der Worker nimmt das Shamela-Register; der
+  // Vertragstest pinnt sie auf die Quellen, die die FastAPI-Referenz ebenfalls
+  // kennt, damit ein echter Feldvergleich moeglich bleibt.
+  const { db, gate, registry, dataVersion, release = null, identitySources = null } = deps;
   let url;
   try {
     url = new URL(request.url);
@@ -199,7 +203,7 @@ export async function route(request, deps) {
       const query = q.get("q") ?? "";
       if (query.length < 1 || query.length > 240) return badRequest("q: 1..240 Zeichen erforderlich", cors);
       const limit = clampInt(q.get("limit"), { def: 24, min: 1, max: 100 });
-      return json(await rijalQ.getIdentityCandidates(db, gate, dataVersion, query, limit), 200, cors);
+      return json(await rijalQ.getIdentityCandidates(db, gate, dataVersion, query, limit, identitySources), 200, cors);
     }
 
     if (rest.length === 2 && rest[0] === "rijal") {
@@ -232,7 +236,7 @@ export async function route(request, deps) {
     }
 
     if (rest.length === 2 && rest[0] === "narrators") {
-      const result = await narratorsQ.getNarratorProfile(db, gate, dataVersion, id(1));
+      const result = await narratorsQ.getNarratorProfile(db, gate, dataVersion, id(1), identitySources);
       return result ? json(result, 200, cors) : notFound("No occurrence cluster found for this identifier", cors);
     }
 

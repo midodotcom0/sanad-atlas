@@ -20,6 +20,19 @@
  */
 
 import { numOrNull } from "./util.mjs";
+import { rijalDateAssertions } from "./hijri-date-phrase.mjs";
+
+/**
+ * Ortsangaben aus den Rohfeldern der Quelle. Mehrere Orte stehen dort in einer
+ * Zeile («بغداد، وقيل: الكوفة») und bleiben als getrennte Angaben erhalten,
+ * damit auch hier keine widersprüchliche Aussage zu einer verschmilzt.
+ */
+function placesFromMetadata(metadata, field) {
+  const raw = metadata && typeof metadata === "object" ? metadata[field] : null;
+  const value = Array.isArray(raw) ? raw.join("، ") : raw;
+  if (typeof value !== "string" || !value.trim()) return [];
+  return value.split(/،|,|\bأو\b|\bو?قيل\s*:?/).map((part) => part.trim()).filter(Boolean);
+}
 
 const TEXT_RIGHTS_CLEARED_STATUSES = new Set(["cleared", "public-domain", "editorially-cleared"]);
 
@@ -130,6 +143,16 @@ export function createLicenseGate(registry, options = {}) {
       ibnHajarGrade: includeCriticRanks ? row.ibn_hajar_grade ?? null : null,
       alDhahabiGrade: includeCriticRanks ? row.al_dhahabi_grade ?? null : null,
       deathYearCandidate: allowed.has("date_assertions") ? row.death_year_ah : null,
+      // Die Quelle nennt regelmäßig MEHRERE Jahre nebeneinander
+      // («145، أو: 146هـ، أو: 147هـ، وقيل: 144هـ»). deathYearCandidate zeigt
+      // davon nur das erste; die übrigen belegten Angaben blieben bisher
+      // unsichtbar, obwohl Abschnitt 7 verlangt, widersprüchliche Datierungen
+      // gleichzeitig zu zeigen. Hier stehen sie einzeln, mit Wortlaut.
+      dateAssertions: allowed.has("date_assertions") ? rijalDateAssertions(row) : [],
+      birthYearCandidate: allowed.has("date_assertions") ? row.birth_year_ah ?? null : null,
+      laqab: includeBiography ? row.laqab ?? null : null,
+      deathPlaces: includeBiography ? placesFromMetadata(row.metadata, "بلد الوفاة") : [],
+      birthPlaces: includeBiography ? placesFromMetadata(row.metadata, "بلد الميلاد") : [],
       teacherPhrase: includeTeacherStudent ? row.teacher_phrase : null,
       studentPhrase: includeTeacherStudent ? row.student_phrase : null,
       textWithheld: !includeTeacherStudent,

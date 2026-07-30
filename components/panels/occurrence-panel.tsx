@@ -8,6 +8,7 @@ import {
   searchRijalCandidates,
   type ApiRijalCandidate,
   type ApiRijalCriticism,
+  type ApiRijalDateAssertion,
   type ApiRijalEntry,
 } from "@/lib/api-client";
 import type { ResponseEnvelope } from "@/lib/types";
@@ -21,6 +22,52 @@ const tabs: Array<{ id: PanelTab; label: string }> = [
   { id: "relations", label: "الشيوخ والتلاميذ" },
   { id: "sources", label: "المصادر" },
 ];
+
+/**
+ * Zeigt ALLE belegten Jahresangaben nebeneinander.
+ *
+ * Die Quellen nennen für eine Person regelmäßig mehrere Jahre — für Hischām b.
+ * ʿUrwa etwa 144, 145, 146 und 147 hidschri. Die Karte hat davon bisher genau
+ * eines gezeigt. Abschnitt 7 der Projektbeschreibung verlangt das Gegenteil:
+ * widersprüchliche Datierungen bleiben gleichzeitig sichtbar, es wird nicht
+ * gemittelt und keine Spanne daraus gebildet.
+ *
+ * Die erste Angabe ist die des Haupttexts; «أو» kennzeichnet eine Lesart
+ * derselben Aussage, «وقيل» eine eigenständige Aussage einer anderen Autorität.
+ * Beides wird auseinandergehalten, damit die Liste nicht wie eine gleichrangige
+ * Zahlenreihe wirkt.
+ */
+const RELATION_LABEL: Record<string, string> = {
+  alternative: "لفظ آخر في القول نفسه",
+  reported: "قول مستقل",
+  additional: "زيادة في المصدر",
+};
+
+const QUALIFIER_LABEL: Record<string, string> = {
+  after: "بعد",
+  before: "قبل",
+  shortly_after: "بعيد",
+  shortly_before: "قبيل",
+  circa: "نحو",
+};
+
+function DateAssertions({ items, fallbackYear }: { items: ApiRijalDateAssertion[]; fallbackYear: number | null }) {
+  if (!items.length) {
+    return <>{fallbackYear ? `${fallbackYear.toLocaleString("ar")} هـ` : "—"}</>;
+  }
+  return (
+    <ul className="date-assertion-list">
+      {items.map((item, index) => (
+        <li key={`${item.valueAh}-${item.relation ?? "primary"}-${index}`} className={item.relation && item.relation !== "primary" ? "secondary" : undefined}>
+          <strong>{item.valueAh?.toLocaleString("ar")} هـ</strong>
+          {item.qualifier ? <em>{QUALIFIER_LABEL[item.qualifier] ?? item.qualifier}</em> : null}
+          {item.relation && item.relation !== "primary" ? <small>{RELATION_LABEL[item.relation] ?? item.relation}</small> : null}
+        </li>
+      ))}
+      {items[0]?.sourcePhrase ? <li className="source-phrase" title="نص المصدر كما ورد">«{items[0].sourcePhrase}»</li> : null}
+    </ul>
+  );
+}
 
 function isTeacherEvidence(item: ApiRijalCriticism) {
   return Boolean(item.phrase && /(?:روى\s+عن|سمع\s+من|لقي|أدرك)/.test(item.phrase));
@@ -128,6 +175,13 @@ export function OccurrencePanel({ occurrence, close }: { occurrence: ApiNarrator
 
   const entry = entryPayload?.data;
   const criticisms = useMemo(() => entry?.criticisms ?? [], [entry?.criticisms]);
+  // Reihenfolge bleibt die der Quelle: die Haupttextangabe zuerst, danach die
+  // abweichenden. Nicht nach Jahr sortiert — das würde die Gewichtung der
+  // Quelle stillschweigend umschreiben.
+  const dated = useMemo(() => {
+    const items = entry?.dateAssertions ?? [];
+    return { birth: items.filter((item) => item.kind === "birth"), death: items.filter((item) => item.kind === "death") };
+  }, [entry?.dateAssertions]);
   const teacherEvidence = useMemo(() => criticisms.filter(isTeacherEvidence), [criticisms]);
   const studentEvidence = useMemo(() => criticisms.filter(isStudentEvidence), [criticisms]);
   const sources = useMemo(() => {
@@ -170,9 +224,12 @@ export function OccurrencePanel({ occurrence, close }: { occurrence: ApiNarrator
           <dl className="fact-grid">
             <div><dt>الكنية</dt><dd>{entry.kunya || "—"}</dd></div>
             <div><dt>النسب</dt><dd>{entry.nisbas?.join(" · ") || "—"}</dd></div>
+            <div><dt>الشهرة</dt><dd>{entry.laqab || "—"}</dd></div>
             <div><dt>الطبقة</dt><dd>{entry.tabaqa || "—"}</dd></div>
-            <div><dt>الوفاة</dt><dd>{entry.deathYearCandidate ? `${entry.deathYearCandidate.toLocaleString("ar")} هـ` : "—"}</dd></div>
+            <div><dt>الميلاد</dt><dd><DateAssertions items={dated.birth} fallbackYear={entry.birthYearCandidate ?? null} /></dd></div>
+            <div><dt>الوفاة</dt><dd><DateAssertions items={dated.death} fallbackYear={entry.deathYearCandidate} /></dd></div>
             <div><dt>الإقامة</dt><dd>{entry.residencePlaces?.join(" · ") || entry.region || "—"}</dd></div>
+            <div><dt>مكان الوفاة</dt><dd>{entry.deathPlaces?.join(" · ") || "—"}</dd></div>
             <div><dt>الرحلة</dt><dd>{entry.travelPlaces?.join(" · ") || "—"}</dd></div>
           </dl>
           {entry.creedNote ? <section className="compact-source-note"><span>وصف في المصدر</span><p>{entry.creedNote}</p></section> : null}

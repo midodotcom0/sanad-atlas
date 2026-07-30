@@ -15,6 +15,7 @@ from typing import Any, Iterable
 # seit Agent 1 normalize.py angelegt hat, importiert dieses Modul von dort
 # statt eine zweite Definition zu pflegen.
 from .normalize import normalize_arabic
+from .hijri_date_phrase import parse_hijri_year_phrase
 
 
 ROOT = Path(__file__).resolve().parents[2]
@@ -432,20 +433,60 @@ class CorpusRepository:
     def public_rijal_entry(self, entry: dict[str, Any], source: str) -> dict[str, Any]:
         allowed = self.allowed_derived_fields(source)
         include_teacher_student = self.full_text_cleared(source) and "teacher_student_phrases" in allowed
+        include_biography = "biography_fields" in allowed
+        include_critic_ranks = "critic_ranks" in allowed
+        include_criticism_references = "criticism_references" in allowed
         return {
             "id": entry["id"],
             "source": source,
             "entryNumber": entry.get("entryNumber") if "entry_number" in allowed else None,
             "nameSurface": entry.get("nameSurface") if "name_surface" in allowed else None,
+            "longName": entry.get("longName") if include_biography else None,
+            "kunya": entry.get("kunya") if include_biography else None,
+            "nisbas": entry.get("nisbas") or [] if include_biography else [],
+            "laqab": entry.get("laqab") if include_biography else None,
+            "region": entry.get("region") if include_biography else None,
+            "tabaqa": entry.get("tabaqa") if include_biography else None,
+            "metadata": entry.get("metadata") or {} if include_biography else {},
+            "residencePlaces": entry.get("residencePlaces") or [] if include_biography else [],
+            "travelPlaces": entry.get("travelPlaces") or [] if include_biography else [],
+            "deathPlaces": entry.get("deathPlaces") or [] if include_biography else [],
+            "birthPlaces": entry.get("birthPlaces") or [] if include_biography else [],
+            "relationNotes": entry.get("relationNotes") if include_biography else None,
+            "creedNote": entry.get("creedNote") if include_biography else None,
+            "ibnHajarGrade": entry.get("ibnHajarGrade") if include_critic_ranks else None,
+            "alDhahabiGrade": entry.get("alDhahabiGrade") if include_critic_ranks else None,
             "deathYearCandidate": entry.get("deathYearCandidate") if "date_assertions" in allowed else None,
+            "birthYearCandidate": entry.get("birthYearCandidate") if "date_assertions" in allowed else None,
+            # Jede einzelne im Wortlaut genannte Jahresangabe, nicht nur die
+            # erste. Die Turath-Werke schreiben ihre Jahre aus («ست وثلاثين
+            # ومئتين») und liefern hier daher nichts -- dieselbe Regel wie in
+            # worker/src/core/hijri-date-phrase.mjs: keine Aussage ohne Beleg
+            # im Wortlaut.
+            "dateAssertions": self.rijal_date_assertions(entry) if "date_assertions" in allowed else [],
             "teacherPhrase": entry.get("teacherPhrase") if include_teacher_student else None,
             "studentPhrase": entry.get("studentPhrase") if include_teacher_student else None,
             "textWithheld": not include_teacher_student,
+            "criticisms": entry.get("criticisms") or [] if include_criticism_references else [],
+            "criticismsWithheld": include_criticism_references and not self.full_text_cleared(source),
             "volume": entry.get("volume") if "source_pointer" in allowed else None,
             "page": entry.get("printedPage") if "source_pointer" in allowed else None,
             "parser": entry.get("parser"),
             "identityStatus": "unresolved",
         }
+
+    @staticmethod
+    def rijal_date_assertions(entry: dict[str, Any]) -> list[dict[str, Any]]:
+        """Zwilling von rijalDateAssertions() in worker/src/core/hijri-date-phrase.mjs.
+
+        Liest ausschliesslich die in Ziffern genannten Jahre aus dem Wortlaut
+        der Quelle. Mehrere Jahre nebeneinander bleiben mehrere Aussagen; es
+        wird nichts gemittelt und nichts zu einer Spanne verschmolzen.
+        """
+        out: list[dict[str, Any]] = []
+        for kind, phrase_key in (("birth", "birthOriginalPhrase"), ("death", "deathOriginalPhrase")):
+            out.extend(parse_hijri_year_phrase(entry.get(phrase_key), kind))
+        return out
 
     @staticmethod
     def rijal_source_reference(entry: dict[str, Any], source: str) -> dict[str, Any]:

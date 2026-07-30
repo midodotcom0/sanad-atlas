@@ -63,6 +63,8 @@ export type ApiRijalEntry = {
   nameChain?: string | null;
   kunya?: string | null;
   nisbas?: string[];
+  /** Beiname/Bekanntheit («الشهرة» in der Quellenkarte). */
+  laqab?: string | null;
   region?: string | null;
   /** Generation, sofern die Quelle sie ausdruecklich nennt. */
   tabaqa?: string | null;
@@ -70,6 +72,12 @@ export type ApiRijalEntry = {
   metadata?: Record<string, string[]>;
   residencePlaces?: string[];
   travelPlaces?: string[];
+  /**
+   * Sterbe- bzw. Geburtsort. Mehrere Angaben («بغداد، وقيل: الكوفة») bleiben
+   * getrennte Eintraege — auch hier wird nichts zu einer Aussage verschmolzen.
+   */
+  deathPlaces?: string[];
+  birthPlaces?: string[];
   relationNotes?: string | null;
   creedNote?: string | null;
   /** Separate source summaries; never collapsed into a single Atlas grade. */
@@ -78,6 +86,8 @@ export type ApiRijalEntry = {
   criticisms?: ApiRijalCriticism[];
   criticismsWithheld?: boolean;
   deathYearCandidate: number | null;
+  /** Nur das erste ausgewertete Jahr. Die vollstaendige Liste steht in `dateAssertions`. */
+  birthYearCandidate?: number | null;
   /**
    * Alle Datierungsangaben der Uebersetzung, jede mit Verb, Rohphrase und
    * Textoffset. Widerspruechliche Angaben bleiben nebeneinander stehen; es wird
@@ -128,6 +138,16 @@ export type ApiRijalDateAssertion = {
   evidenceClass: string;
   confidence: number | null;
   reviewStatus: string;
+  /**
+   * Verhaeltnis dieser Angabe zu den uebrigen desselben Eintrags:
+   * `alternative` = Lesart DERSELBEN Aussage («أو»), `reported` = eigenstaendige
+   * Aussage einer anderen Autoritaet («وقيل»). Die Unterscheidung darf in der
+   * Anzeige nicht verlorengehen, sonst wird aus vier Quellenaussagen eine
+   * gleichrangige Zahlenreihe.
+   */
+  relation?: "primary" | "alternative" | "reported" | "additional";
+  /** Vollstaendiger Wortlaut der Quelle, aus dem diese Angabe stammt. */
+  sourcePhrase?: string | null;
 };
 
 export type ApiRijalCandidate = ApiRijalEntry & {

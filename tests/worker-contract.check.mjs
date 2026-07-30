@@ -27,6 +27,7 @@ const bridgePath = path.join(here, "worker-contract-python-bridge.py");
 const { createNodeSqliteAdapter } = await import(path.join(root, "worker/src/adapters/node-sqlite-adapter.mjs"));
 const { createLicenseGate } = await import(path.join(root, "worker/src/core/license-gate.mjs"));
 const { route } = await import(path.join(root, "worker/src/core/router.mjs"));
+const { CONTRACT_IDENTITY_SOURCES } = await import(path.join(root, "worker/src/core/queries/rijal.mjs"));
 
 test("worker-contract: voraussetzungen", { skip: !existsSync(dbPath) ? "worker/atlas.db fehlt -- node --experimental-sqlite scripts/build-atlas-db.mjs zuerst ausfuehren" : false }, () => {
   assert.ok(existsSync(dbPath));
@@ -41,7 +42,11 @@ if (!existsSync(dbPath)) {
   const gate = createLicenseGate(registry);
   const buildInfo = rawDb.prepare("SELECT data_version FROM atlas_build_info WHERE id = 1").get();
   const dataVersion = buildInfo.data_version;
-  const deps = { db, gate, registry, dataVersion };
+  // Die Erzaehlersuche wird auf die Quellen gepinnt, die die FastAPI-Referenz
+  // ebenfalls kennt. Im Betrieb bleibt das Feld leer und der Worker nimmt das
+  // Shamela-Register; ohne diese Vorgabe verglichen /identity-candidates und
+  // /narrators/{id} zwei verschiedene Register miteinander.
+  const deps = { db, gate, registry, dataVersion, identitySources: CONTRACT_IDENTITY_SOURCES };
 
   function pyCall(method, kwargs = {}, args = []) {
     const result = spawnSync("python3", [bridgePath, method, JSON.stringify({ args, kwargs })], {
@@ -71,7 +76,12 @@ if (!existsSync(dbPath)) {
     .get();
   const clusterFingerprint = rawDb.prepare("SELECT matn_fingerprint FROM hadith_record WHERE matn_fingerprint IS NOT NULL ORDER BY rowid LIMIT 1").get();
   const someRijal = rawDb.prepare("SELECT id FROM rijal_entry WHERE source_work_id = 'source:tahdhib' ORDER BY rowid LIMIT 1 OFFSET 7").get();
-  const rijalNameQuery = rawDb.prepare("SELECT name_head_normalized FROM rijal_entry WHERE name_head_normalized <> '' ORDER BY rowid LIMIT 1 OFFSET 20").get();
+  // Auf Turath eingegrenzt: das Shamela-Register liegt nur in atlas.db und hat
+  // in der FastAPI-Referenz kein Gegenstueck (siehe WORKER_ONLY_SOURCES unten).
+  // Ohne diese Eingrenzung vergliche der Test eine Shamela-Antwort des Workers
+  // mit einer Turath-Antwort von FastAPI und meldete einen Vertragsbruch, wo
+  // nur zwei verschiedene Quellen befragt wurden.
+  const rijalNameQuery = rawDb.prepare("SELECT name_head_normalized FROM rijal_entry WHERE name_head_normalized <> '' AND source_work_id = 'source:tahdhib' ORDER BY rowid LIMIT 1 OFFSET 20").get();
   // Ein Knoten, dessen normalisierte Form EXAKT einen Rijal-Eintrag trifft
   // (uebt narrator_timeline()'s nicht-leeren Pfad UND die name_head_normalized-
   // Korrektheit aus, siehe atlas-build-lib.mjs stripNameEdges()).
@@ -156,10 +166,49 @@ if (!existsSync(dbPath)) {
     assert.deepStrictEqual(w.body, py);
   });
 
-  test("GET /api/v1/rijal", async () => {
+  test("GET /api/v1/rijal (gemeinsame Turath-Quelle)", async () => {
     const py = pyCall("rijal_entries", { source: "tahdhib", query: "", cursor: null, limit: 5 });
-    const w = await workerCall("/api/v1/rijal?limit=5");
+    // Quelle ausdruecklich benannt: der Worker beantwortet eine Anfrage OHNE
+    // source-Parameter seit dem Shamela-Import mit „shamela", FastAPI mit
+    // „tahdhib". Der Vergleich gilt der gemeinsamen Quelle, nicht dem
+    // Standardwert -- letzterer wird eine Ebene tiefer eigens geprueft.
+    const w = await workerCall("/api/v1/rijal?source=tahdhib&limit=5");
     assert.deepStrictEqual(w.body, py);
+  });
+
+  /**
+   * Grenze des Vertrags, ausdruecklich statt stillschweigend.
+   *
+   * Das amtliche Shamela-Erzaehlerregister (S1.db) wird beim Bau nach atlas.db
+   * uebernommen und steht damit nur dem Worker zur Verfuegung; die
+   * FastAPI-Referenz liest die Turath-Ableitungen aus .cache/turath-derived und
+   * hat kein Gegenstueck dazu. Diese Endpunkte lassen sich deshalb nicht
+   * feldweise gegeneinander pruefen. Statt den Unterschied unbemerkt rot laufen
+   * zu lassen, wird er hier benannt und die Worker-Seite fuer sich geprueft.
+   */
+  test("Grenze: das Shamela-Register ist Worker-eigen und traegt die Datumsangaben einzeln", async () => {
+    const available = rawDb.prepare("SELECT 1 AS ok FROM rijal_entry WHERE source_work_id = 'source:shamela' LIMIT 1").get();
+    if (!available) return; // Test-Datenbank ohne S1.db-Import: nichts zu pruefen.
+
+    const w = await workerCall("/api/v1/rijal?limit=5");
+    assert.equal(w.body.data.items[0].source, "shamela", "ohne source-Parameter antwortet der Worker aus dem Shamela-Register");
+
+    // Der fachliche Kern: eine Quelle, die mehrere Todesjahre nennt, muss sie
+    // auch mehrfach ausliefern. Vorher stand hier genau ein Jahr, drei belegte
+    // Angaben blieben unsichtbar (Projektbeschreibung Abschnitt 7).
+    const multi = rawDb
+      .prepare("SELECT id FROM rijal_entry WHERE source_work_id = 'source:shamela' AND death_original_phrase LIKE '%قيل%' LIMIT 1")
+      .get();
+    if (!multi) return;
+    const detail = await workerCall(`/api/v1/rijal/${multi.id}`);
+    const deaths = detail.body.data.dateAssertions.filter((item) => item.kind === "death");
+    assert.ok(deaths.length > 1, `erwartet mehrere Todesangaben, geliefert ${deaths.length}`);
+    for (const item of deaths) {
+      assert.ok(item.sourcePhrase, "jede Angabe traegt den vollstaendigen Wortlaut der Quelle");
+      assert.ok(["primary", "alternative", "reported", "additional"].includes(item.relation));
+    }
+    // «أو» und «وقيل» duerfen nicht zu einer gleichrangigen Zahlenreihe verschmelzen.
+    assert.ok(deaths.some((item) => item.relation !== "primary"));
   });
 
   test("GET /api/v1/rijal/{id}", async () => {

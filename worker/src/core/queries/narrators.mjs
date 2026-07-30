@@ -68,7 +68,7 @@ async function fetchOccurrencesForNode(db, narratorId) {
   );
 }
 
-export async function getNarratorProfile(db, gate, dataVersion, narratorId) {
+export async function getNarratorProfile(db, gate, dataVersion, narratorId, identitySources = null) {
   const occurrences = await fetchOccurrencesForNode(db, narratorId);
   if (occurrences.length === 0) return null;
 
@@ -93,7 +93,7 @@ export async function getNarratorProfile(db, gate, dataVersion, narratorId) {
     spanEnd: o.span_end,
   }));
 
-  const rijalMatches = isRelative ? [] : await rankRijalCandidates(db, normalizedSurfaceForm, 10);
+  const rijalMatches = isRelative ? [] : await rankRijalCandidates(db, normalizedSurfaceForm, 10, identitySources);
   const note = isRelative
     ? "Positionsgebundene Rückverweisform (z. B. أبيه); wird nie mit anderen Vorkommen global zusammengeführt."
     : "Unaufgelöstes, quellengebundenes Namenscluster -- kein bestätigtes kanonisches Personenprofil (siehe docs/05-ENTITY-RESOLUTION.md, Umsetzungsplan P4.5).";

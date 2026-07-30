@@ -18,10 +18,18 @@ export const RIJAL_API_SOURCES = ["shamela", ...LEGACY_RIJAL_API_SOURCES];
  * search as soon as it is installed. Test/legacy databases without S1.db keep
  * the previous sources so that rebuilding the hadith corpus remains possible.
  */
-async function identitySearchSources(db) {
+async function identitySearchSources(db, override) {
+  // Ausdrueckliche Vorgabe schlaegt die Erkennung. Ohne sie wechselt der Worker
+  // die Erzaehlerquelle still, sobald S1.db eingespielt ist -- genau das hat
+  // dazu gefuehrt, dass die Abweichung zur FastAPI-Referenz erst im
+  // Vertragstest auffiel und dort als Fehler statt als Grenze erschien.
+  if (Array.isArray(override) && override.length) return override;
   const shamela = await db.get("SELECT 1 AS available FROM rijal_entry_ref WHERE source_key = 'shamela' LIMIT 1");
   return shamela ? ["shamela"] : LEGACY_RIJAL_API_SOURCES;
 }
+
+/** Die Quellen, die die FastAPI-Referenz ebenfalls kennt (Vertragsvergleich). */
+export const CONTRACT_IDENTITY_SOURCES = LEGACY_RIJAL_API_SOURCES;
 
 /** @param {Record<string, any>} row Zeile aus rijal_entry_ref */
 export function sourceReferenceForRijalRow(row) {
@@ -129,11 +137,11 @@ export async function getRijalEntry(db, gate, dataVersion, entryId) {
  * nie vor einer frueheren stehen. Das ist aequivalent zu Pythons "alles
  * sammeln, dann sortieren", nur ohne unnoetigen Volltabellen-Scan.
  */
-export async function rankRijalCandidates(db, wantedNormalized, limit) {
+export async function rankRijalCandidates(db, wantedNormalized, limit, identitySources = null) {
   if (!wantedNormalized) return [];
   const results = [];
   const seen = new Set();
-  const sources = await identitySearchSources(db);
+  const sources = await identitySearchSources(db, identitySources);
   const placeholders = sources.map(() => "?").join(",");
 
   async function addTier(rows, matchKind, rank) {
@@ -187,12 +195,12 @@ function escapeLike(value) {
   return value.replace(/[\\%_]/g, (ch) => `\\${ch}`);
 }
 
-export async function getIdentityCandidates(db, gate, dataVersion, query, limit) {
+export async function getIdentityCandidates(db, gate, dataVersion, query, limit, identitySources = null) {
   const wanted = normalizeSearchText(query ?? "");
   if (!wanted) {
     return envelope({ query, items: [] }, [{ notice: "Leere Suchanfrage." }], { confidenceLevel: "unresolved", origin: "machine", dataVersion, resultCount: 0 });
   }
-  const ranked = await rankRijalCandidates(db, wanted, limit);
+  const ranked = await rankRijalCandidates(db, wanted, limit, identitySources);
   const items = ranked.map(({ row, matchKind }) => ({ ...gate.publicRijalFields(row, row.source_key), matchKind }));
   const references = cited(ranked.map(({ row }) => sourceReferenceForRijalRow(row)), "Keine Kandidaten für die angegebene Suche gefunden.");
   const [level, score] = aggregateMachineConfidence(ranked.map(({ row }) => row.parser?.confidence ?? null));
