@@ -163,6 +163,20 @@ export interface SourceAssertion {
   status: "reviewed" | "pending";
 }
 
+/**
+ * Beleg eines einzelnen Kettenbeitrags zu einem Knoten oder einer Kante, die
+ * mehrere gleiche Kettenabschnitte gestapelt darstellen (P5.6). Das Zusammenfassen
+ * ist rein darstellend -- jede Kette bleibt hier mit ihrer eigenen Position und
+ * ihren eigenen Offsets auffindbar, es geht kein Einzelbeleg verloren.
+ */
+export interface ChainContributor {
+  chainOrder: number;
+  chainId?: string;
+  position: number;
+  spanStart?: number | null;
+  spanEnd?: number | null;
+}
+
 export interface GraphNode {
   data: {
     id: string;
@@ -171,6 +185,8 @@ export interface GraphNode {
     kind: string;
     status: Confidence;
     collections?: string;
+    /** Nur gesetzt, wenn dieser Knoten mehrere gemeinsame Kettenabschnitte buendelt. */
+    contributors?: ChainContributor[];
   };
   position?: { x: number; y: number };
   classes?: string;
@@ -188,6 +204,8 @@ export interface GraphEdge {
     chronologyStatus?: "possible" | "impossible" | "unknown";
     chronologyLabel?: string;
     variants?: string;
+    /** Nur gesetzt, wenn diese Kante mehrere gemeinsame Kettenabschnitte buendelt (P5.6). */
+    contributors?: ChainContributor[];
   };
   classes?: string;
 }

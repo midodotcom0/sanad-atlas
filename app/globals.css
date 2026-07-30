@@ -184,6 +184,20 @@ button:focus-visible, a:focus-visible, input:focus-visible, select:focus-visible
 .graph-controls button:hover { background: #ede6da; transform: scale(.96); }
 .graph-controls svg { width: 17px; }
 .graph-hint { position: absolute; inset: auto 18px 18px auto; display: flex; align-items: center; gap: 8px; padding: 9px 12px; border-radius: 999px; background: rgba(255,253,248,.9); color: var(--muted); box-shadow: 0 8px 26px rgba(41,34,23,.08); font-size: 9px; }
+
+/* P5.3 -- vollstaendige Belegliste einer angeklickten oder per Tastatur
+   ausgewaehlten Kante. Ersetzt keinen Hover-Hinweis, sondern ergaenzt ihn: der
+   Hover bleibt eine fluechtige Vorschau, dieses Feld bleibt angeheftet, bis
+   die Auswahl aufgehoben wird. */
+.edge-evidence-panel { position: absolute; inset: 18px 18px auto auto; z-index: 11; width: min(300px, calc(100% - 36px)); max-height: calc(100% - 36px); overflow-y: auto; padding: 12px 14px; border-radius: 16px; background: rgba(255,253,248,.96); box-shadow: 0 12px 34px rgba(41,34,23,.14), 0 0 0 1px rgba(48,45,39,.08); font-size: 10px; }
+.edge-evidence-head { display: flex; align-items: center; justify-content: space-between; gap: 10px; margin-bottom: 8px; }
+.edge-evidence-head button { border: 0; background: #efe8db; width: 22px; height: 22px; border-radius: 50%; font-size: 13px; line-height: 1; cursor: pointer; }
+.edge-evidence-panel ul { margin: 0; padding: 0; list-style: none; display: grid; gap: 6px; }
+.edge-evidence-panel li { line-height: 1.7; color: var(--ink); }
+.evidence-tag { display: inline-flex; padding: 3px 9px; border-radius: 999px; font-size: 9px; font-weight: 700; }
+.evidence-tag.evidence-isnad_link { background: #e2eeec; color: var(--teal-dark); }
+.evidence-tag.evidence-rijal_statement { background: #f2e8d4; color: #7a5c22; }
+.evidence-tag.evidence-chronology_only { background: #ece7dd; color: var(--muted); }
 .graph-load-state { position: absolute; inset: 6px; z-index: 4; display: grid; place-content: center; justify-items: center; gap: 10px; border-radius: 20px; background: rgba(250,247,239,.9); color: var(--teal-dark); font-size: 11px; }
 .graph-load-state i { width: 34px; height: 3px; border-radius: 3px; background: var(--teal); animation: graph-loading 1s ease-in-out infinite alternate; }
 .graph-load-state.error { color: var(--clay); }
@@ -195,12 +209,26 @@ button:focus-visible, a:focus-visible, input:focus-visible, select:focus-visible
 .line { width: 24px; height: 0; border-top: 2px solid var(--teal); }
 .line.bio { border-color: var(--gold); border-top-style: dashed; }
 .line.variant-b { border-color: var(--clay); }
-.line.uncertain { border-color: #8f8b83; border-top-style: dashed; }
+/* P5.3 -- die drei vertraglichen Evidenzklassen, je mit eigener Linienart:
+   durchgezogen = Isnad-Beleg, gestrichelt-gold = Rijal-Aussage, gepunktet-grau
+   = reine zeitliche Moeglichkeit. `identity-uncertain` ist eine vierte, davon
+   unabhaengige Markierung: der Isnad-Beleg bleibt bestehen, nur die Identitaet
+   an dieser Stelle ist offen. */
+.line.chronology-only { border-color: #8f8b83; border-top-style: dotted; }
+.line.identity-uncertain { border-top-style: dashed; }
 .node-key { width: 12px; height: 12px; border-radius: 3px; background: #e8ddbd; box-shadow: inset 0 0 0 1px var(--gold); }
 .node-key.compiler { transform: rotate(45deg); background: var(--blue); box-shadow: none; border-radius: 2px; }
 .keyboard-nodes { position: absolute; width: 1px; height: 1px; overflow: hidden; }
 .keyboard-nodes:focus-within { width: auto; height: auto; overflow: visible; position: fixed; inset: auto auto 18px 18px; z-index: 12; padding: 10px; display: grid; gap: 5px; background: var(--surface); box-shadow: var(--soft-shadow); }
 .keyboard-nodes button { border: 0; background: #eee7dc; padding: 8px 10px; text-align: left; }
+/* P5.7 -- derselbe Offscreen-bis-Fokus-Kniff wie `.keyboard-nodes`, jetzt auch
+   fuer Kanten: Cytoscape rendert auf einem Canvas ohne fokussierbare
+   Einzelelemente, diese Liste macht jede Kante trotzdem per Tab erreichbar
+   und sichtbar fokussiert (`button:focus-visible` oben greift hier mit). */
+.keyboard-edges { position: absolute; width: 1px; height: 1px; overflow: hidden; }
+.keyboard-edges:focus-within { width: auto; height: auto; overflow: visible; position: fixed; inset: auto 18px 18px auto; z-index: 12; padding: 10px; display: grid; gap: 5px; max-width: min(320px, calc(100vw - 36px)); max-height: 60vh; overflow-y: auto; background: var(--surface); box-shadow: var(--soft-shadow); }
+.keyboard-edges button { border: 0; background: #eee7dc; padding: 8px 10px; text-align: right; }
+.keyboard-edges button[aria-pressed="true"] { background: #dcece7; color: var(--teal-dark); font-weight: 700; }
 .route-summary { display: flex; align-items: center; gap: clamp(12px, 2vw, 30px); padding: 15px clamp(20px, 3vw, 42px) 24px; color: var(--muted); font-size: 10px; }
 .route-summary b { color: var(--ink); font-family: var(--editorial); font-size: 16px; font-weight: 600; }
 .route-summary a, .route-summary button { margin-inline-start: auto; display: flex; align-items: center; gap: 8px; border: 0; background: none; color: var(--teal-dark); font-size: 10px; font-weight: 670; cursor: pointer; }
@@ -511,7 +539,8 @@ button:focus-visible, a:focus-visible, input:focus-visible, select:focus-visible
 .direction-toggle b { color: var(--teal); font-size: 12px; }
 .direction-toggle[aria-pressed="true"] { background: #eaf1ed; color: var(--ink); }
 .app-shell[dir="ltr"] [dir="rtl"] { text-align: right; }
-.app-shell[dir="ltr"] .keyboard-nodes { direction: ltr; }
+.app-shell[dir="ltr"] .keyboard-nodes,
+.app-shell[dir="ltr"] .keyboard-edges { direction: ltr; }
 .app-shell[dir="ltr"] .record-isnad,
 .app-shell[dir="ltr"] .record-matn,
 .app-shell[dir="ltr"] .matn-snippet,
