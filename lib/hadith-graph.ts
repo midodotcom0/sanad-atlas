@@ -1,5 +1,15 @@
 import type { ApiNarratorOccurrence, HadithGraphPayload } from "./api-client";
-import type { ChainContributor, ConfidenceLevel, EvidenceKind, GraphEdge, GraphNode } from "./types";
+import type {
+  ChainContributor,
+  ConfidenceLevel,
+  EvidenceKind,
+  GraphEdge,
+  GraphNode,
+  MatnFamily,
+  MatnFamilyColorToken,
+  MatnRouteEdgeOccurrence,
+  MatnRoutesPayload,
+} from "./types";
 
 export type LiveHadithGraph = {
   nodes: GraphNode[];
@@ -13,6 +23,137 @@ export type LiveHadithGraph = {
   dataVersion: string;
   occurrences: Record<string, ApiNarratorOccurrenceContext>;
 };
+
+/**
+ * P5.4 -- eine kleine, vertragliche Palette statt frei injizierbarer CSS-Werte.
+ * Der Endpunkt liefert eines dieser Tokens. Bei einer aelteren/fehlerhaften
+ * Antwort wird deterministisch aus der Familien-ID gewaehlt, sodass dieselbe
+ * Familie trotzdem in jeder Ansicht gleich erscheint.
+ */
+export const MATN_FAMILY_COLOR_TOKENS: readonly MatnFamilyColorToken[] = ["teal", "clay", "gold", "ink", "sage"] as const;
+
+export function normalizeMatnColorToken(familyId: string, token: string): MatnFamilyColorToken {
+  if ((MATN_FAMILY_COLOR_TOKENS as readonly string[]).includes(token)) return token as MatnFamilyColorToken;
+  let hash = 0;
+  for (const char of familyId) hash = (hash * 31 + char.charCodeAt(0)) >>> 0;
+  return MATN_FAMILY_COLOR_TOKENS[hash % MATN_FAMILY_COLOR_TOKENS.length];
+}
+
+export function matnFamilyShortLabel(familyId: string): string {
+  return familyId.length <= 8 ? familyId : familyId.slice(0, 8);
+}
+
+function matnLayout(nodes: MatnRoutesPayload["nodes"], edges: MatnRoutesPayload["edges"]): Map<string, { x: number; y: number }> {
+  const incoming = new Map(nodes.map((node) => [node.id, 0]));
+  const outgoing = new Map<string, string[]>();
+  for (const edge of edges) {
+    incoming.set(edge.target, (incoming.get(edge.target) ?? 0) + 1);
+    outgoing.set(edge.source, [...(outgoing.get(edge.source) ?? []), edge.target]);
+  }
+  const depth = new Map<string, number>();
+  const queue = nodes.filter((node) => (incoming.get(node.id) ?? 0) === 0).map((node) => node.id);
+  for (const node of nodes) if (!queue.includes(node.id) && !incoming.has(node.id)) queue.push(node.id);
+  for (const id of queue) depth.set(id, 0);
+  while (queue.length) {
+    const source = queue.shift()!;
+    for (const target of outgoing.get(source) ?? []) {
+      depth.set(target, Math.max(depth.get(target) ?? 0, (depth.get(source) ?? 0) + 1));
+      incoming.set(target, (incoming.get(target) ?? 1) - 1);
+      if (incoming.get(target) === 0) queue.push(target);
+    }
+  }
+  nodes.forEach((node, index) => {
+    if (!depth.has(node.id)) depth.set(node.id, index % 6);
+  });
+  const rowsByDepth = new Map<number, string[]>();
+  for (const node of nodes) {
+    const level = depth.get(node.id) ?? 0;
+    rowsByDepth.set(level, [...(rowsByDepth.get(level) ?? []), node.id]);
+  }
+  const positions = new Map<string, { x: number; y: number }>();
+  for (const [level, ids] of rowsByDepth) {
+    ids.forEach((id, row) => positions.set(id, { x: 100 + level * 180, y: 90 + row * 92 }));
+  }
+  return positions;
+}
+
+/**
+ * Verknuepft die beiden echten P3.2-Payloads ohne eine zweite Taxonomie:
+ * Familien fuehren `hadithIds`, Routenkanten ihre `occurrences[].hadithId`.
+ * Gemeinsame Kanten werden je Familie aufgeteilt. Dadurch behaelt jede
+ * Familie auch auf einem gemeinsamen Isnad-Abschnitt ihre eigene Farbe und
+ * ihre lesbare ID; kein Einzelbeleg geht verloren.
+ */
+export function toMatnFamilyGraph(routes: MatnRoutesPayload, families: MatnFamily[]): { nodes: GraphNode[]; edges: GraphEdge[] } {
+  const familyByHadithId = new Map<string, MatnFamily>();
+  families.forEach((family) => family.hadithIds.forEach((hadithId) => familyByHadithId.set(hadithId, family)));
+  const positions = matnLayout(routes.nodes, routes.edges);
+  const familyIdsByNode = new Map<string, Set<string>>();
+  const graphEdges: GraphEdge[] = [];
+
+  for (const routeEdge of routes.edges) {
+    const groups = new Map<string, { family: MatnFamily | null; occurrences: MatnRouteEdgeOccurrence[] }>();
+    for (const occurrence of routeEdge.occurrences) {
+      const family = familyByHadithId.get(occurrence.hadithId) ?? null;
+      const key = family?.id ?? "__unassigned__";
+      const group = groups.get(key) ?? { family, occurrences: [] };
+      group.occurrences.push(occurrence);
+      groups.set(key, group);
+    }
+    if (groups.size === 0) groups.set("__unassigned__", { family: null, occurrences: [] });
+
+    for (const { family, occurrences } of groups.values()) {
+      const token = family ? normalizeMatnColorToken(family.id, family.colorToken) : undefined;
+      const suffix = family ? `matn-${family.id}` : "matn-unassigned";
+      const familyIds = family ? [family.id] : [];
+      if (family) {
+        for (const nodeId of [routeEdge.source, routeEdge.target]) {
+          const ids = familyIdsByNode.get(nodeId) ?? new Set<string>();
+          ids.add(family.id);
+          familyIdsByNode.set(nodeId, ids);
+        }
+      }
+      graphEdges.push({
+        data: {
+          id: `${routeEdge.id}::${suffix}`,
+          source: routeEdge.source,
+          target: routeEdge.target,
+          verb: "—",
+          evidence: routeEdge.evidenceKind,
+          collection: routes.clusterId,
+          count: occurrences.length,
+          variants: family?.id,
+          matnFamilyIds: familyIds,
+          matnFamilyLabel: family ? matnFamilyShortLabel(family.id) : undefined,
+          matnColorToken: token,
+          contributors: occurrences.map((occurrence) => ({
+            chainOrder: occurrence.chainOrder,
+            position: occurrence.position,
+          })),
+        },
+        classes: ["isnad", family ? "matn-family" : "", token ? `matn-${token}` : ""].filter(Boolean).join(" "),
+      });
+    }
+  }
+
+  const graphNodes: GraphNode[] = routes.nodes.map((node) => {
+    const familyIds = [...(familyIdsByNode.get(node.id) ?? [])];
+    return {
+      data: {
+        id: node.id,
+        label: node.label,
+        subtitle: node.reviewStatus,
+        kind: "narrator_occurrence",
+        status: node.identityStatus,
+        collections: routes.clusterId,
+        matnFamilyIds: familyIds,
+      },
+      position: positions.get(node.id),
+      classes: node.isRelativeReference ? "relative-reference" : "",
+    };
+  });
+  return { nodes: graphNodes, edges: graphEdges };
+}
 
 /**
  * Eine Erzaehlerstelle mit ihrem Kettenkontext. `chainOrder` plus `position`
@@ -358,7 +499,8 @@ export function describeEdgeEvidence(edge: GraphEdge): EdgeEvidenceDescription {
     facts.push(`عدد الشواهد: ${edge.data.count}`);
   }
 
-  if (edge.data.variants) facts.push(`صيغة المتن: ${edge.data.variants}`);
+  if (edge.data.matnFamilyIds?.length) facts.push(`عائلة المتن: ${edge.data.matnFamilyIds.join("، ")}`);
+  else if (edge.data.variants) facts.push(`صيغة المتن: ${edge.data.variants}`);
   if (identityUncertain) facts.push("هوية الراوي في هذا الموضع غير محسومة -- الكتابة تثبت الموضع، وليس مَن بعينه.");
   if (edge.data.chronologyLabel) facts.push(edge.data.chronologyLabel);
   if (kind === "chronology_only") facts.push("إمكان زمني وحده لا يثبت لقاءً ولا سماعاً ولا رواية.");

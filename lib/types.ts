@@ -187,6 +187,8 @@ export interface GraphNode {
     collections?: string;
     /** Nur gesetzt, wenn dieser Knoten mehrere gemeinsame Kettenabschnitte buendelt. */
     contributors?: ChainContributor[];
+    /** Matn-Familien, deren belegte Wege durch diesen Knoten laufen (P5.4). */
+    matnFamilyIds?: string[];
   };
   position?: { x: number; y: number };
   classes?: string;
@@ -204,10 +206,66 @@ export interface GraphEdge {
     chronologyStatus?: "possible" | "impossible" | "unknown";
     chronologyLabel?: string;
     variants?: string;
+    /** Stabile, fachliche Familien-ID aus `/clusters/{id}/matn-variants`. */
+    matnFamilyIds?: string[];
+    /** Kurzes, zusaetzliches Textlabel im Graphen; Farbe ist nie die einzige Kodierung. */
+    matnFamilyLabel?: string;
+    /** Farbtoken derselben Familie in Text, Graph, Vergleich, Tabelle und Filter. */
+    matnColorToken?: MatnFamilyColorToken;
     /** Nur gesetzt, wenn diese Kante mehrere gemeinsame Kettenabschnitte buendelt (P5.6). */
     contributors?: ChainContributor[];
   };
   classes?: string;
+}
+
+/** Vom Matn-Varianten-Endpunkt vertraglich gelieferte, begrenzte Farbpalette. */
+export type MatnFamilyColorToken = "teal" | "clay" | "gold" | "ink" | "sage";
+
+export interface MatnFamily {
+  id: string;
+  colorToken: MatnFamilyColorToken | string;
+  representativeText: string | null;
+  textWithheld: boolean;
+  hadithIds: string[];
+  reviewStatus: ReviewStatus;
+}
+
+export interface MatnFamiliesPayload {
+  clusterId: string;
+  status: string;
+  items: MatnFamily[];
+}
+
+export interface MatnRouteNode {
+  id: string;
+  label: string;
+  identityStatus: ConfidenceLevel;
+  reviewStatus: ReviewStatus;
+  isRelativeReference: boolean;
+}
+
+export interface MatnRouteEdgeOccurrence {
+  hadithId: string;
+  chainOrder: number;
+  position: number;
+}
+
+export interface MatnRouteEdge {
+  id: string;
+  source: string;
+  target: string;
+  evidenceKind: EvidenceKind;
+  occurrences: MatnRouteEdgeOccurrence[];
+  /** Cluster-Fingerprints aus dem API-Vertrag; die Familienzuordnung erfolgt ueber hadithId. */
+  matnFamilies: string[];
+}
+
+export interface MatnRoutesPayload {
+  clusterId: string;
+  nodes: MatnRouteNode[];
+  edges: MatnRouteEdge[];
+  recordCount: number;
+  truncated: boolean;
 }
 
 export type DatePrecision = "exact" | "range" | "before" | "after" | "approximate";

@@ -2,7 +2,7 @@
 
 import { useEffect, useMemo, useRef, useState } from "react";
 import type cytoscape from "cytoscape";
-import type { GraphEdge, GraphNode } from "@/lib/types";
+import type { GraphEdge, GraphNode, MatnFamilyColorToken } from "@/lib/types";
 import { describeEdgeEvidence } from "@/lib/hadith-graph";
 
 type AtlasGraphProps = {
@@ -19,16 +19,54 @@ type AtlasGraphProps = {
    */
   selectedEdgeId?: string | null;
   onEdgeSelect?: (id: string | null) => void;
+  /** P5.4: dieselbe Familienauswahl wie in Text, Vergleich und Filter. */
+  selectedMatnFamilyId?: string | null;
+  selectedMatnColorToken?: MatnFamilyColorToken | null;
+  onMatnFamilySelect?: (id: string) => void;
 };
 
 const controlIcon = (path: React.ReactNode) => (
   <svg viewBox="0 0 24 24" aria-hidden="true">{path}</svg>
 );
 
-export function AtlasGraph({ nodes, edges, collection, highlightedIds = [], onSelect, selectedEdgeId = null, onEdgeSelect }: AtlasGraphProps) {
+function applyMatnFamilySelection(
+  cy: cytoscape.Core,
+  familyId: string | null,
+  colorToken: MatnFamilyColorToken | null,
+) {
+  cy.elements().removeClass("family-muted family-selected color-teal color-clay color-gold color-ink color-sage");
+  if (!familyId) return;
+  cy.elements().addClass("family-muted");
+  const matches = cy.elements().filter((element) => {
+    const ids = (element.data("matnFamilyIds") as string[] | undefined) ?? [];
+    return ids.includes(familyId);
+  });
+  matches.removeClass("family-muted").addClass("family-selected");
+  if (colorToken) matches.addClass(`color-${colorToken}`);
+}
+
+export function AtlasGraph({
+  nodes,
+  edges,
+  collection,
+  highlightedIds = [],
+  onSelect,
+  selectedEdgeId = null,
+  onEdgeSelect,
+  selectedMatnFamilyId = null,
+  selectedMatnColorToken = null,
+  onMatnFamilySelect,
+}: AtlasGraphProps) {
   const hostRef = useRef<HTMLDivElement>(null);
   const cyRef = useRef<cytoscape.Core | null>(null);
+  const selectedMatnFamilyRef = useRef(selectedMatnFamilyId);
+  const selectedMatnColorRef = useRef(selectedMatnColorToken);
   const [hoverInfo, setHoverInfo] = useState("اختر عقدة أو صلة لفتح المصادر والعلاقات");
+
+  useEffect(() => {
+    selectedMatnFamilyRef.current = selectedMatnFamilyId;
+    selectedMatnColorRef.current = selectedMatnColorToken;
+  }, [selectedMatnFamilyId, selectedMatnColorToken]);
 
   const filtered = useMemo(() => {
     if (collection === "جميع المصنفات") return { nodes, edges };
@@ -123,19 +161,51 @@ export function AtlasGraph({ nodes, edges, collection, highlightedIds = [], onSe
           { selector: "edge.variant-b", style: { "line-color": "#b86542", "target-arrow-color": "#b86542" } },
           { selector: "edge.variant-c", style: { "line-color": "#356a8a", "target-arrow-color": "#356a8a" } },
           { selector: "edge.variant-shared", style: { "line-color": "#8a7446", "target-arrow-color": "#8a7446", width: 4.5 } },
+          // P5.4 -- Farbtoken kommen aus dem Matn-Familien-Payload. Das kurze
+          // Familienlabel auf jeder Kante ist die zweite, nicht-farbige
+          // Kodierung. Gemeinsame Isnad-Abschnitte werden vorher je Familie
+          // aufgeteilt und bleiben darum auch dort farbstabil.
+          { selector: "edge.matn-family", style: { label: "data(matnFamilyLabel)", "font-family": "IBM Plex Sans Arabic, sans-serif", "font-size": 8, "font-weight": 700, color: "#13272b", "text-background-color": "#fffdf8", "text-background-opacity": 0.9, "text-background-padding": "3px", "text-rotation": "autorotate" } },
+          { selector: "edge.matn-teal", style: { "line-color": "#2d756e", "target-arrow-color": "#2d756e" } },
+          { selector: "edge.matn-clay", style: { "line-color": "#b86542", "target-arrow-color": "#b86542" } },
+          { selector: "edge.matn-gold", style: { "line-color": "#b08a43", "target-arrow-color": "#b08a43" } },
+          { selector: "edge.matn-ink", style: { "line-color": "#213b50", "target-arrow-color": "#213b50" } },
+          { selector: "edge.matn-sage", style: { "line-color": "#6b7e69", "target-arrow-color": "#6b7e69" } },
           { selector: ".route-muted", style: { opacity: 0.16 } },
           { selector: ".route-highlight", style: { "border-color": "#b86542", "border-width": 4, "line-color": "#b86542", "target-arrow-color": "#b86542", width: 5, "z-index": 10 } },
+          { selector: ".family-muted", style: { opacity: 0.1 } },
+          { selector: ".family-selected", style: { opacity: 1, "z-index": 12 } },
+          { selector: "edge.family-selected", style: { width: 5 } },
+          { selector: "node.family-selected", style: { "border-width": 4 } },
+          { selector: ".family-selected.color-teal", style: { "border-color": "#2d756e", "line-color": "#2d756e", "target-arrow-color": "#2d756e" } },
+          { selector: ".family-selected.color-clay", style: { "border-color": "#b86542", "line-color": "#b86542", "target-arrow-color": "#b86542" } },
+          { selector: ".family-selected.color-gold", style: { "border-color": "#b08a43", "line-color": "#b08a43", "target-arrow-color": "#b08a43" } },
+          { selector: ".family-selected.color-ink", style: { "border-color": "#213b50", "line-color": "#213b50", "target-arrow-color": "#213b50" } },
+          { selector: ".family-selected.color-sage", style: { "border-color": "#6b7e69", "line-color": "#6b7e69", "target-arrow-color": "#6b7e69" } },
           { selector: "node:selected", style: { "border-color": "#d08351", "border-width": 4 } },
           { selector: "edge:selected", style: { "line-color": "#d08351", "target-arrow-color": "#d08351", width: 5, "z-index": 20 } },
+          { selector: "edge:selected.matn-teal", style: { "line-color": "#2d756e", "target-arrow-color": "#2d756e" } },
+          { selector: "edge:selected.matn-clay", style: { "line-color": "#b86542", "target-arrow-color": "#b86542" } },
+          { selector: "edge:selected.matn-gold", style: { "line-color": "#b08a43", "target-arrow-color": "#b08a43" } },
+          { selector: "edge:selected.matn-ink", style: { "line-color": "#213b50", "target-arrow-color": "#213b50" } },
+          { selector: "edge:selected.matn-sage", style: { "line-color": "#6b7e69", "target-arrow-color": "#6b7e69" } },
         ],
       });
 
-      cy.on("tap", "node", (event) => onSelect(event.target.id()));
+      cy.on("tap", "node", (event) => {
+        const familyIds = (event.target.data("matnFamilyIds") as string[] | undefined) ?? [];
+        if (familyIds.length === 1 && onMatnFamilySelect) onMatnFamilySelect(familyIds[0]);
+        else onSelect(event.target.id());
+      });
       // P5.3 -- der Kantenklick, der vorher komplett fehlte. Er ersetzt nicht
       // den Hover-Hinweis, sondern setzt zusaetzlich die "angeheftete"
       // Auswahl, aus der `describeEdgeEvidence()` unten die vollstaendige
       // Belegliste baut.
-      cy.on("tap", "edge", (event) => onEdgeSelect?.(event.target.id()));
+      cy.on("tap", "edge", (event) => {
+        onEdgeSelect?.(event.target.id());
+        const familyIds = (event.target.data("matnFamilyIds") as string[] | undefined) ?? [];
+        if (familyIds.length === 1) onMatnFamilySelect?.(familyIds[0]);
+      });
       cy.on("tap", (event) => {
         if (event.target === cy) onEdgeSelect?.(null);
       });
@@ -145,6 +215,10 @@ export function AtlasGraph({ nodes, edges, collection, highlightedIds = [], onSe
       });
       cy.on("mouseout", "edge", () => setHoverInfo("اختر عقدة أو صلة لفتح المصادر والعلاقات"));
       cyRef.current = cy;
+      // Der Import ist asynchron; die Auswahl-Effekte koennen bereits vor
+      // dem Aufbau des Canvas gelaufen sein. Darum wird der aktuelle Zustand
+      // beim Mount ein zweites Mal direkt angewandt.
+      applyMatnFamilySelection(cy, selectedMatnFamilyRef.current, selectedMatnColorRef.current);
     };
     mount();
     return () => {
@@ -152,7 +226,7 @@ export function AtlasGraph({ nodes, edges, collection, highlightedIds = [], onSe
       cyRef.current?.destroy();
       cyRef.current = null;
     };
-  }, [classifiedElements, filtered.edges, onSelect, onEdgeSelect]);
+  }, [classifiedElements, filtered.edges, onSelect, onEdgeSelect, onMatnFamilySelect]);
 
   useEffect(() => {
     const cy = cyRef.current;
@@ -166,6 +240,15 @@ export function AtlasGraph({ nodes, edges, collection, highlightedIds = [], onSe
       node.connectedEdges().removeClass("route-muted").addClass("route-highlight");
     });
   }, [highlightedIds]);
+
+  // P5.4 -- Auswahl aus Text/Filter/Tabelle beleuchtet exakt dieselben
+  // Payload-IDs im Graphen. Umgekehrt setzen eindeutige Knoten/Kanten ueber
+  // die Tap-Handler oben wieder dieselbe Familien-ID.
+  useEffect(() => {
+    const cy = cyRef.current;
+    if (!cy) return;
+    applyMatnFamilySelection(cy, selectedMatnFamilyId, selectedMatnColorToken);
+  }, [selectedMatnFamilyId, selectedMatnColorToken, classifiedElements]);
 
   // Haelt die Cytoscape-Auswahl mit der von aussen gesteuerten `selectedEdgeId`
   // synchron -- unabhaengig davon, ob die Auswahl per Maus-Tap oder per
