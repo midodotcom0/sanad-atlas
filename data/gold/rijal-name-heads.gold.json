@@ -1,0 +1,2056 @@
+{
+  "provenance": {
+    "frame": "data/gold/rijal-name-heads.frame.json",
+    "frameDigest": "538eced19b6de366dabf622d91e63f0f",
+    "seed": "sanad-atlas/gold/2026-07-30",
+    "annotationVersion": "gold-name-heads-1.0.0",
+    "independentAnnotations": 1,
+    "agreementMeasure": null,
+    "agreementNote": "Nur eine unabhaengige Annotation (A1). Ein Uebereinstimmungsmaß ist bis zu einer zweiten, unabhaengig erhobenen Annotation NICHT bestimmt und wird hier auch nicht geschaetzt.",
+    "boundary": "Der Soll-Kopf wurde aus dem Rohtextausschnitt des Editionsdrucks gebildet. Der Importerkopf lag dabei sichtbar daneben — die Annotation ist damit nicht blind, und ein systematischer Ankereffekt zugunsten des Importers ist moeglich. Die zweite Annotation soll den Soll-Kopf VOR Sicht auf den Importerkopf bilden.",
+    "limits": "Bei elf Eintraegen ist die Abgrenzung Titel/Amt gegen Laqab fachlich strittig (z. B. الحافظ, القاضي, المحدث, عديد بني تيم). Sie sind unter der oben festgelegten Regel entschieden; eine andere Regel ergaebe eine andere Quote."
+  },
+  "headRule": [
+    "Soll-Kopf ist die kuerzeste Zeichenkette, mit der die Edition die Person benennt:",
+    "Namenskette (Ism und Nasab), Kunya, Nisba, Laqab.",
+    "Bei einnamigen Eintraegen zusaetzlich die minimale unterscheidende Zuschreibung, die die Edition anstelle eines Nasab benutzt (Klientel, Verwandtschaft).",
+    "NICHT zum Kopf gehoeren: Ueberlieferungsformeln (عن/وعنه/سمع), Bewertungen, Ṭabaqa, Sammlungssigel, Aemter und Wohnorte bei Eintraegen mit Nasab, biographische Saetze, Orthographie-Einschuebe (بضم أوله …) und Herausgeberapparat.",
+    "Weitere Namenslesungen (ويقال …) gehoeren nicht in den Kopf, sondern in alternateNameForms — ihre Nisben und Kunyas gelten aber der Hauptlesung und muessen im Kopf stehen bleiben."
+  ],
+  "verdicts": {
+    "korrekt": "Kopf gleich Soll-Kopf",
+    "zu-lang": "Kopf enthaelt zusaetzlich Material, das nicht zum Namen gehoert",
+    "zu-kurz": "Kopf laesst Namensmaterial aus",
+    "falsch": "beides zugleich oder falscher Textbereich"
+  },
+  "counts": {
+    "korrekt": 70,
+    "zu-kurz": 4,
+    "zu-lang": 20,
+    "falsch": 6
+  },
+  "bySource": {
+    "kashif": {
+      "n": 23,
+      "korrekt": 10
+    },
+    "mizan": {
+      "n": 26,
+      "korrekt": 21
+    },
+    "tahdhib": {
+      "n": 27,
+      "korrekt": 23
+    },
+    "taqrib": {
+      "n": 24,
+      "korrekt": 16
+    }
+  },
+  "hitRate": {
+    "unweighted": 0.7,
+    "weightedByInclusion": 0.8168171239336035
+  },
+  "items": [
+    {
+      "id": "kashif-3492-661-3503",
+      "frameIndex": 0,
+      "sourceId": "kashif",
+      "entryNumber": 3492,
+      "stratum": "kashif|L0|K0|N0",
+      "inclusionWeight": 348,
+      "extractedHead": "عبد الملك بن يعلى",
+      "annotations": [
+        {
+          "annotator": "A1",
+          "annotatorKind": "single-agent-first-pass",
+          "method": "Vergleich des Importerkopfes mit dem Rohtextausschnitt aus dem Editionsdruck nach der Regel in `headRule`",
+          "verdict": "korrekt",
+          "expectedHead": "عبد الملك بن يعلى",
+          "reason": "Kopf deckt sich mit dem Soll-Kopf nach der oben festgelegten Regel."
+        }
+      ],
+      "adjudication": null
+    },
+    {
+      "id": "kashif-4426-803-4425",
+      "frameIndex": 1,
+      "sourceId": "kashif",
+      "entryNumber": 4426,
+      "stratum": "kashif|L0|K0|N0",
+      "inclusionWeight": 348,
+      "extractedHead": "غسان بن مضر",
+      "annotations": [
+        {
+          "annotator": "A1",
+          "annotatorKind": "single-agent-first-pass",
+          "method": "Vergleich des Importerkopfes mit dem Rohtextausschnitt aus dem Editionsdruck nach der Regel in `headRule`",
+          "verdict": "korrekt",
+          "expectedHead": "غسان بن مضر",
+          "reason": "Kopf deckt sich mit dem Soll-Kopf nach der oben festgelegten Regel."
+        }
+      ],
+      "adjudication": null
+    },
+    {
+      "id": "kashif-261-224-271",
+      "frameIndex": 2,
+      "sourceId": "kashif",
+      "entryNumber": 261,
+      "stratum": "kashif|L0|K0|N1",
+      "inclusionWeight": 489.5,
+      "extractedHead": "أسامة بن حفص المدني",
+      "annotations": [
+        {
+          "annotator": "A1",
+          "annotatorKind": "single-agent-first-pass",
+          "method": "Vergleich des Importerkopfes mit dem Rohtextausschnitt aus dem Editionsdruck nach der Regel in `headRule`",
+          "verdict": "korrekt",
+          "expectedHead": "أسامة بن حفص المدني",
+          "reason": "Kopf deckt sich mit dem Soll-Kopf nach der oben festgelegten Regel."
+        }
+      ],
+      "adjudication": null
+    },
+    {
+      "id": "kashif-4595-825-4589",
+      "frameIndex": 3,
+      "sourceId": "kashif",
+      "entryNumber": 4595,
+      "stratum": "kashif|L0|K0|N1",
+      "inclusionWeight": 489.5,
+      "extractedHead": "قيس بن الحارث",
+      "annotations": [
+        {
+          "annotator": "A1",
+          "annotatorKind": "single-agent-first-pass",
+          "method": "Vergleich des Importerkopfes mit dem Rohtextausschnitt aus dem Editionsdruck nach der Regel in `headRule`",
+          "verdict": "zu-kurz",
+          "expectedHead": "قيس بن الحارث الحمصي",
+          "reason": "Die Nisba الحمصي gilt beiden Lesungen und gehoert zum Kopf; sie steht nur in alternateNameForms."
+        }
+      ],
+      "adjudication": null
+    },
+    {
+      "id": "kashif-6155-1050-6122",
+      "frameIndex": 4,
+      "sourceId": "kashif",
+      "entryNumber": 6155,
+      "stratum": "kashif|L0|K1|N0",
+      "inclusionWeight": 228,
+      "extractedHead": "يحيى بن الحصين",
+      "annotations": [
+        {
+          "annotator": "A1",
+          "annotatorKind": "single-agent-first-pass",
+          "method": "Vergleich des Importerkopfes mit dem Rohtextausschnitt aus dem Editionsdruck nach der Regel in `headRule`",
+          "verdict": "korrekt",
+          "expectedHead": "يحيى بن الحصين",
+          "reason": "Kopf deckt sich mit dem Soll-Kopf nach der oben festgelegten Regel."
+        }
+      ],
+      "adjudication": null
+    },
+    {
+      "id": "kashif-6750-1131-6708",
+      "frameIndex": 5,
+      "sourceId": "kashif",
+      "entryNumber": 6750,
+      "stratum": "kashif|L0|K1|N1",
+      "inclusionWeight": 223.5,
+      "extractedHead": "أبو عمر الدمشقي",
+      "annotations": [
+        {
+          "annotator": "A1",
+          "annotatorKind": "single-agent-first-pass",
+          "method": "Vergleich des Importerkopfes mit dem Rohtextausschnitt aus dem Editionsdruck nach der Regel in `headRule`",
+          "verdict": "korrekt",
+          "expectedHead": "أبو عمر الدمشقي",
+          "reason": "Kopf deckt sich mit dem Soll-Kopf nach der oben festgelegten Regel."
+        }
+      ],
+      "adjudication": null
+    },
+    {
+      "id": "kashif-6768-1134-6726",
+      "frameIndex": 6,
+      "sourceId": "kashif",
+      "entryNumber": 6768,
+      "stratum": "kashif|L0|K1|N1",
+      "inclusionWeight": 223.5,
+      "extractedHead": "أبو العلاء الشامي",
+      "annotations": [
+        {
+          "annotator": "A1",
+          "annotatorKind": "single-agent-first-pass",
+          "method": "Vergleich des Importerkopfes mit dem Rohtextausschnitt aus dem Editionsdruck nach der Regel in `headRule`",
+          "verdict": "korrekt",
+          "expectedHead": "أبو العلاء الشامي",
+          "reason": "Kopf deckt sich mit dem Soll-Kopf nach der oben festgelegten Regel."
+        }
+      ],
+      "adjudication": null
+    },
+    {
+      "id": "kashif-779-285-798",
+      "frameIndex": 7,
+      "sourceId": "kashif",
+      "entryNumber": 779,
+      "stratum": "kashif|L1|K0|N0",
+      "inclusionWeight": 314,
+      "extractedHead": "الجعد بن عبد الرحمن يدعي الجعيد",
+      "annotations": [
+        {
+          "annotator": "A1",
+          "annotatorKind": "single-agent-first-pass",
+          "method": "Vergleich des Importerkopfes mit dem Rohtextausschnitt aus dem Editionsdruck nach der Regel in `headRule`",
+          "verdict": "zu-lang",
+          "expectedHead": "الجعد بن عبد الرحمن",
+          "reason": "«يدعى الجعيد» ist eine Aussage ueber den Namen, kein Namensbestandteil. Der Beiname الجعيد gehoert in alternateNameForms."
+        }
+      ],
+      "adjudication": null
+    },
+    {
+      "id": "kashif-602-262-622",
+      "frameIndex": 8,
+      "sourceId": "kashif",
+      "entryNumber": 602,
+      "stratum": "kashif|L1|K0|N1",
+      "inclusionWeight": 693.3333,
+      "extractedHead": "بشير بنسعد الخزرجي بدري",
+      "annotations": [
+        {
+          "annotator": "A1",
+          "annotatorKind": "single-agent-first-pass",
+          "method": "Vergleich des Importerkopfes mit dem Rohtextausschnitt aus dem Editionsdruck nach der Regel in `headRule`",
+          "verdict": "zu-lang",
+          "expectedHead": "بشير بن سعد الخزرجي",
+          "reason": "«بدري» ist eine biographische Zuschreibung. Nebenbefund: der Editionstext schreibt «بنسعد» ohne Leerzeichen; der Kopf uebernimmt den Fehler."
+        }
+      ],
+      "adjudication": null
+    },
+    {
+      "id": "kashif-2673-534-2685",
+      "frameIndex": 9,
+      "sourceId": "kashif",
+      "entryNumber": 2673,
+      "stratum": "kashif|L1|K0|N1",
+      "inclusionWeight": 693.3333,
+      "extractedHead": "عبد الله بن الحارث بن جزء الزبيدي",
+      "annotations": [
+        {
+          "annotator": "A1",
+          "annotatorKind": "single-agent-first-pass",
+          "method": "Vergleich des Importerkopfes mit dem Rohtextausschnitt aus dem Editionsdruck nach der Regel in `headRule`",
+          "verdict": "korrekt",
+          "expectedHead": "عبد الله بن الحارث بن جزء الزبيدي",
+          "reason": "Kopf deckt sich mit dem Soll-Kopf nach der oben festgelegten Regel."
+        }
+      ],
+      "adjudication": null
+    },
+    {
+      "id": "kashif-1198-338-1217",
+      "frameIndex": 10,
+      "sourceId": "kashif",
+      "entryNumber": 1198,
+      "stratum": "kashif|L1|K0|N1",
+      "inclusionWeight": 693.3333,
+      "extractedHead": "حكيم بن أبي حرة الاسلمي",
+      "annotations": [
+        {
+          "annotator": "A1",
+          "annotatorKind": "single-agent-first-pass",
+          "method": "Vergleich des Importerkopfes mit dem Rohtextausschnitt aus dem Editionsdruck nach der Regel in `headRule`",
+          "verdict": "korrekt",
+          "expectedHead": "حكيم بن أبي حرة الاسلمي",
+          "reason": "Kopf deckt sich mit dem Soll-Kopf nach der oben festgelegten Regel."
+        }
+      ],
+      "adjudication": null
+    },
+    {
+      "id": "kashif-2205-465-2219",
+      "frameIndex": 11,
+      "sourceId": "kashif",
+      "entryNumber": 2205,
+      "stratum": "kashif|L1|K1|N0",
+      "inclusionWeight": 181,
+      "extractedHead": "سلام بن سليم الحافظ أبو الأحوص",
+      "annotations": [
+        {
+          "annotator": "A1",
+          "annotatorKind": "single-agent-first-pass",
+          "method": "Vergleich des Importerkopfes mit dem Rohtextausschnitt aus dem Editionsdruck nach der Regel in `headRule`",
+          "verdict": "zu-lang",
+          "expectedHead": "سلام بن سليم أبو الأحوص",
+          "reason": "«الحافظ» ist ein Rangtitel, kein Namensbestandteil."
+        }
+      ],
+      "adjudication": null
+    },
+    {
+      "id": "kashif-4872-862-4864",
+      "frameIndex": 12,
+      "sourceId": "kashif",
+      "entryNumber": 4872,
+      "stratum": "kashif|L1|K1|N1",
+      "inclusionWeight": 658,
+      "extractedHead": "محمد بن سعيد بن سابق الرازي",
+      "annotations": [
+        {
+          "annotator": "A1",
+          "annotatorKind": "single-agent-first-pass",
+          "method": "Vergleich des Importerkopfes mit dem Rohtextausschnitt aus dem Editionsdruck nach der Regel in `headRule`",
+          "verdict": "zu-kurz",
+          "expectedHead": "محمد بن سعيد بن سابق الرازي ثم القزويني",
+          "reason": "Die zweite Nisba «ثم القزويني» gehoert zum Kopf und ist in die Beschreibung gerutscht."
+        }
+      ],
+      "adjudication": null
+    },
+    {
+      "id": "kashif-6561-1102-6518",
+      "frameIndex": 13,
+      "sourceId": "kashif",
+      "entryNumber": 6561,
+      "stratum": "kashif|L1|K1|N1",
+      "inclusionWeight": 658,
+      "extractedHead": "أبو جعفر بن محمد بن ركانة",
+      "annotations": [
+        {
+          "annotator": "A1",
+          "annotatorKind": "single-agent-first-pass",
+          "method": "Vergleich des Importerkopfes mit dem Rohtextausschnitt aus dem Editionsdruck nach der Regel in `headRule`",
+          "verdict": "korrekt",
+          "expectedHead": "أبو جعفر بن محمد بن ركانة",
+          "reason": "Kopf deckt sich mit dem Soll-Kopf nach der oben festgelegten Regel."
+        }
+      ],
+      "adjudication": null
+    },
+    {
+      "id": "kashif-4923-869-4912",
+      "frameIndex": 14,
+      "sourceId": "kashif",
+      "entryNumber": 4923,
+      "stratum": "kashif|L2|K0|N0",
+      "inclusionWeight": 31,
+      "extractedHead": "محمد بن طلحة بن عبد الله بن عبد الرحمن بن أبي بكر الصديق",
+      "annotations": [
+        {
+          "annotator": "A1",
+          "annotatorKind": "single-agent-first-pass",
+          "method": "Vergleich des Importerkopfes mit dem Rohtextausschnitt aus dem Editionsdruck nach der Regel in `headRule`",
+          "verdict": "korrekt",
+          "expectedHead": "محمد بن طلحة بن عبد الله بن عبد الرحمن بن أبي بكر الصديق",
+          "reason": "Kopf deckt sich mit dem Soll-Kopf nach der oben festgelegten Regel."
+        }
+      ],
+      "adjudication": null
+    },
+    {
+      "id": "kashif-1909-430-1925",
+      "frameIndex": 15,
+      "sourceId": "kashif",
+      "entryNumber": 1909,
+      "stratum": "kashif|L2|K0|N1",
+      "inclusionWeight": 221,
+      "extractedHead": "سعيد بن العاص بن أبي أحيحة الاموي ولد قبل بدر وروى",
+      "annotations": [
+        {
+          "annotator": "A1",
+          "annotatorKind": "single-agent-first-pass",
+          "method": "Vergleich des Importerkopfes mit dem Rohtextausschnitt aus dem Editionsdruck nach der Regel in `headRule`",
+          "verdict": "zu-lang",
+          "expectedHead": "سعيد بن العاص بن أبي أحيحة الأموي",
+          "reason": "«ولد قبل بدر وروى» ist Biographie; der Schnitt endet mitten im Satz vor «عن»."
+        }
+      ],
+      "adjudication": null
+    },
+    {
+      "id": "kashif-7079-1203-7034",
+      "frameIndex": 16,
+      "sourceId": "kashif",
+      "entryNumber": 7079,
+      "stratum": "kashif|L2|K1|N0",
+      "inclusionWeight": 20,
+      "extractedHead": "معاذة العدوية أم الصهباء من العوابد بالبصرة",
+      "annotations": [
+        {
+          "annotator": "A1",
+          "annotatorKind": "single-agent-first-pass",
+          "method": "Vergleich des Importerkopfes mit dem Rohtextausschnitt aus dem Editionsdruck nach der Regel in `headRule`",
+          "verdict": "zu-lang",
+          "expectedHead": "معاذة العدوية أم الصهباء",
+          "reason": "«من العوابد بالبصرة» ist eine Bewertung mit Ortsangabe; der Eintrag hat mit Kunya und Nisba genug Kennzeichnung."
+        }
+      ],
+      "adjudication": null
+    },
+    {
+      "id": "kashif-1882-426-1898",
+      "frameIndex": 17,
+      "sourceId": "kashif",
+      "entryNumber": 1882,
+      "stratum": "kashif|L2|K1|N1",
+      "inclusionWeight": 229,
+      "extractedHead": "سعيد بن الربيع أبو زيد الهروي مصري يتجر في الثياب الهروية",
+      "annotations": [
+        {
+          "annotator": "A1",
+          "annotatorKind": "single-agent-first-pass",
+          "method": "Vergleich des Importerkopfes mit dem Rohtextausschnitt aus dem Editionsdruck nach der Regel in `headRule`",
+          "verdict": "zu-lang",
+          "expectedHead": "سعيد بن الربيع أبو زيد الهروي",
+          "reason": "«مصري يتجر في الثياب الهروية» ist Biographie."
+        }
+      ],
+      "adjudication": null
+    },
+    {
+      "id": "kashif-5460-953-5439",
+      "frameIndex": 18,
+      "sourceId": "kashif",
+      "entryNumber": 5460,
+      "stratum": "kashif|L2|K1|N1",
+      "inclusionWeight": 229,
+      "extractedHead": "مصرف بن عمرو اليامي أبو القاسم الكوفي قرابة طلحة بن مصرف",
+      "annotations": [
+        {
+          "annotator": "A1",
+          "annotatorKind": "single-agent-first-pass",
+          "method": "Vergleich des Importerkopfes mit dem Rohtextausschnitt aus dem Editionsdruck nach der Regel in `headRule`",
+          "verdict": "zu-lang",
+          "expectedHead": "مصرف بن عمرو اليامي أبو القاسم الكوفي",
+          "reason": "«قرابة طلحة بن مصرف» ist eine Verwandtschaftsangabe; der Eintrag hat bereits Nasab, Kunya und Nisba."
+        }
+      ],
+      "adjudication": null
+    },
+    {
+      "id": "kashif-7172-1216-7122",
+      "frameIndex": 19,
+      "sourceId": "kashif",
+      "entryNumber": 7172,
+      "stratum": "kashif|L3|K0|N0",
+      "inclusionWeight": 12,
+      "extractedHead": "ابنة حمزة بن عبد المطلب لها صحبة عنها أخوها لامها عبد الله بن شداد س ق",
+      "annotations": [
+        {
+          "annotator": "A1",
+          "annotatorKind": "single-agent-first-pass",
+          "method": "Vergleich des Importerkopfes mit dem Rohtextausschnitt aus dem Editionsdruck nach der Regel in `headRule`",
+          "verdict": "zu-lang",
+          "expectedHead": "ابنة حمزة بن عبد المطلب",
+          "reason": "Alles ab «لها صحبة» ist Biographie samt Sammlungssigel; der Schnitt hat gar nicht gegriffen."
+        }
+      ],
+      "adjudication": null
+    },
+    {
+      "id": "kashif-5617-976-5593",
+      "frameIndex": 20,
+      "sourceId": "kashif",
+      "entryNumber": 5617,
+      "stratum": "kashif|L3|K0|N1",
+      "inclusionWeight": 34,
+      "extractedHead": "مقدم بن محمد المقدمي الواسطي عن عمه القاسم بن يحيى وعنه البخاري والمقانعي وأحمد بن حمدون الاعمشي خ",
+      "annotations": [
+        {
+          "annotator": "A1",
+          "annotatorKind": "single-agent-first-pass",
+          "method": "Vergleich des Importerkopfes mit dem Rohtextausschnitt aus dem Editionsdruck nach der Regel in `headRule`",
+          "verdict": "zu-lang",
+          "expectedHead": "مقدم بن محمد المقدمي الواسطي",
+          "reason": "Der Kopf enthaelt die vollstaendige Lehrer- und Schuelerliste; der Schnitt an «عن» hat nicht gegriffen."
+        }
+      ],
+      "adjudication": null
+    },
+    {
+      "id": "kashif-6967-1191-6924",
+      "frameIndex": 21,
+      "sourceId": "kashif",
+      "entryNumber": 6967,
+      "stratum": "kashif|L3|K1|N0",
+      "inclusionWeight": 13,
+      "extractedHead": "جويرية أم المؤمنين الخزاعية عنها بن عباس وعبد الله بن شداد وكريب",
+      "annotations": [
+        {
+          "annotator": "A1",
+          "annotatorKind": "single-agent-first-pass",
+          "method": "Vergleich des Importerkopfes mit dem Rohtextausschnitt aus dem Editionsdruck nach der Regel in `headRule`",
+          "verdict": "zu-lang",
+          "expectedHead": "جويرية أم المؤمنين الخزاعية",
+          "reason": "Alles ab «عنها» ist Schuelerliste."
+        }
+      ],
+      "adjudication": null
+    },
+    {
+      "id": "kashif-3113-607-3124",
+      "frameIndex": 22,
+      "sourceId": "kashif",
+      "entryNumber": 3113,
+      "stratum": "kashif|L3|K1|N1",
+      "inclusionWeight": 88,
+      "extractedHead": "عبد الحميد بن عبد الرحمن بن زيد بن الخطاب العدوي عامل الكوفة لعمر بن عبد العزيز",
+      "annotations": [
+        {
+          "annotator": "A1",
+          "annotatorKind": "single-agent-first-pass",
+          "method": "Vergleich des Importerkopfes mit dem Rohtextausschnitt aus dem Editionsdruck nach der Regel in `headRule`",
+          "verdict": "zu-lang",
+          "expectedHead": "عبد الحميد بن عبد الرحمن بن زيد بن الخطاب العدوي",
+          "reason": "«عامل الكوفة لعمر بن عبد العزيز» ist ein Amt."
+        }
+      ],
+      "adjudication": null
+    },
+    {
+      "id": "mizan-2240-588-2182",
+      "frameIndex": 23,
+      "sourceId": "mizan",
+      "entryNumber": 2240,
+      "stratum": "mizan|L0|K0|N0",
+      "inclusionWeight": 751.25,
+      "extractedHead": "حماد بن تحى",
+      "annotations": [
+        {
+          "annotator": "A1",
+          "annotatorKind": "single-agent-first-pass",
+          "method": "Vergleich des Importerkopfes mit dem Rohtextausschnitt aus dem Editionsdruck nach der Regel in `headRule`",
+          "verdict": "korrekt",
+          "expectedHead": "حماد بن تحى",
+          "reason": "Kopf deckt sich mit dem Soll-Kopf nach der oben festgelegten Regel."
+        }
+      ],
+      "adjudication": null
+    },
+    {
+      "id": "mizan-3652-926-3554",
+      "frameIndex": 24,
+      "sourceId": "mizan",
+      "entryNumber": 3652,
+      "stratum": "mizan|L0|K0|N0",
+      "inclusionWeight": 751.25,
+      "extractedHead": "شباب بن العلاء",
+      "annotations": [
+        {
+          "annotator": "A1",
+          "annotatorKind": "single-agent-first-pass",
+          "method": "Vergleich des Importerkopfes mit dem Rohtextausschnitt aus dem Editionsdruck nach der Regel in `headRule`",
+          "verdict": "korrekt",
+          "expectedHead": "شباب بن العلاء",
+          "reason": "Kopf deckt sich mit dem Soll-Kopf nach der oben festgelegten Regel."
+        }
+      ],
+      "adjudication": null
+    },
+    {
+      "id": "mizan-973-254-948",
+      "frameIndex": 25,
+      "sourceId": "mizan",
+      "entryNumber": 973,
+      "stratum": "mizan|L0|K0|N0",
+      "inclusionWeight": 751.25,
+      "extractedHead": "إسماعيل بن أم درهم",
+      "annotations": [
+        {
+          "annotator": "A1",
+          "annotatorKind": "single-agent-first-pass",
+          "method": "Vergleich des Importerkopfes mit dem Rohtextausschnitt aus dem Editionsdruck nach der Regel in `headRule`",
+          "verdict": "korrekt",
+          "expectedHead": "إسماعيل بن أم درهم",
+          "reason": "Kopf deckt sich mit dem Soll-Kopf nach der oben festgelegten Regel."
+        }
+      ],
+      "adjudication": null
+    },
+    {
+      "id": "mizan-8560-2148-8273",
+      "frameIndex": 26,
+      "sourceId": "mizan",
+      "entryNumber": 8560,
+      "stratum": "mizan|L0|K0|N0",
+      "inclusionWeight": 751.25,
+      "extractedHead": "مصعب بن خارجة",
+      "annotations": [
+        {
+          "annotator": "A1",
+          "annotatorKind": "single-agent-first-pass",
+          "method": "Vergleich des Importerkopfes mit dem Rohtextausschnitt aus dem Editionsdruck nach der Regel in `headRule`",
+          "verdict": "korrekt",
+          "expectedHead": "مصعب بن خارجة",
+          "reason": "Kopf deckt sich mit dem Soll-Kopf nach der oben festgelegten Regel."
+        }
+      ],
+      "adjudication": null
+    },
+    {
+      "id": "mizan-5959-1510-5787",
+      "frameIndex": 27,
+      "sourceId": "mizan",
+      "entryNumber": 5959,
+      "stratum": "mizan|L0|K0|N1",
+      "inclusionWeight": 594.5,
+      "extractedHead": "علي بن نفيل",
+      "annotations": [
+        {
+          "annotator": "A1",
+          "annotatorKind": "single-agent-first-pass",
+          "method": "Vergleich des Importerkopfes mit dem Rohtextausschnitt aus dem Editionsdruck nach der Regel in `headRule`",
+          "verdict": "korrekt",
+          "expectedHead": "علي بن نفيل",
+          "reason": "Kopf deckt sich mit dem Soll-Kopf nach der oben festgelegten Regel."
+        }
+      ],
+      "adjudication": null
+    },
+    {
+      "id": "mizan-6995-1770-6774",
+      "frameIndex": 28,
+      "sourceId": "mizan",
+      "entryNumber": 6995,
+      "stratum": "mizan|L0|K0|N1",
+      "inclusionWeight": 594.5,
+      "extractedHead": "ليث بن داود القيسي",
+      "annotations": [
+        {
+          "annotator": "A1",
+          "annotatorKind": "single-agent-first-pass",
+          "method": "Vergleich des Importerkopfes mit dem Rohtextausschnitt aus dem Editionsdruck nach der Regel in `headRule`",
+          "verdict": "korrekt",
+          "expectedHead": "ليث بن داود القيسي",
+          "reason": "Kopf deckt sich mit dem Soll-Kopf nach der oben festgelegten Regel."
+        }
+      ],
+      "adjudication": null
+    },
+    {
+      "id": "mizan-8976-2265-8676",
+      "frameIndex": 29,
+      "sourceId": "mizan",
+      "entryNumber": 8976,
+      "stratum": "mizan|L0|K1|N0",
+      "inclusionWeight": 109,
+      "extractedHead": "ميمون، أبو محمد",
+      "annotations": [
+        {
+          "annotator": "A1",
+          "annotatorKind": "single-agent-first-pass",
+          "method": "Vergleich des Importerkopfes mit dem Rohtextausschnitt aus dem Editionsdruck nach der Regel in `headRule`",
+          "verdict": "korrekt",
+          "expectedHead": "ميمون، أبو محمد",
+          "reason": "Kopf deckt sich mit dem Soll-Kopf nach der oben festgelegten Regel."
+        }
+      ],
+      "adjudication": null
+    },
+    {
+      "id": "mizan-2660-688-2590",
+      "frameIndex": 30,
+      "sourceId": "mizan",
+      "entryNumber": 2660,
+      "stratum": "mizan|L0|K1|N1",
+      "inclusionWeight": 21,
+      "extractedHead": "داود الطفاوى أبو بحر",
+      "annotations": [
+        {
+          "annotator": "A1",
+          "annotatorKind": "single-agent-first-pass",
+          "method": "Vergleich des Importerkopfes mit dem Rohtextausschnitt aus dem Editionsdruck nach der Regel in `headRule`",
+          "verdict": "korrekt",
+          "expectedHead": "داود الطفاوى أبو بحر",
+          "reason": "Kopf deckt sich mit dem Soll-Kopf nach der oben festgelegten Regel."
+        }
+      ],
+      "adjudication": null
+    },
+    {
+      "id": "mizan-9892-2504-9544",
+      "frameIndex": 31,
+      "sourceId": "mizan",
+      "entryNumber": 9892,
+      "stratum": "mizan|L1|K0|N0",
+      "inclusionWeight": 428.5,
+      "extractedHead": "يوسف بن يعقوب، أبوعمران",
+      "annotations": [
+        {
+          "annotator": "A1",
+          "annotatorKind": "single-agent-first-pass",
+          "method": "Vergleich des Importerkopfes mit dem Rohtextausschnitt aus dem Editionsdruck nach der Regel in `headRule`",
+          "verdict": "korrekt",
+          "expectedHead": "يوسف بن يعقوب، أبوعمران",
+          "reason": "Kopf deckt sich mit dem Soll-Kopf nach der oben festgelegten Regel."
+        }
+      ],
+      "adjudication": null
+    },
+    {
+      "id": "mizan-4268-1074-4146",
+      "frameIndex": 32,
+      "sourceId": "mizan",
+      "entryNumber": 4268,
+      "stratum": "mizan|L1|K0|N0",
+      "inclusionWeight": 428.5,
+      "extractedHead": "عبد الله بن الحسين بن عطاء بن يسار",
+      "annotations": [
+        {
+          "annotator": "A1",
+          "annotatorKind": "single-agent-first-pass",
+          "method": "Vergleich des Importerkopfes mit dem Rohtextausschnitt aus dem Editionsdruck nach der Regel in `headRule`",
+          "verdict": "korrekt",
+          "expectedHead": "عبد الله بن الحسين بن عطاء بن يسار",
+          "reason": "Kopf deckt sich mit dem Soll-Kopf nach der oben festgelegten Regel."
+        }
+      ],
+      "adjudication": null
+    },
+    {
+      "id": "mizan-7546-1902-7313",
+      "frameIndex": 33,
+      "sourceId": "mizan",
+      "entryNumber": 7546,
+      "stratum": "mizan|L1|K0|N1",
+      "inclusionWeight": 634.75,
+      "extractedHead": "محمد بن زياد بن زبار الكلبي",
+      "annotations": [
+        {
+          "annotator": "A1",
+          "annotatorKind": "single-agent-first-pass",
+          "method": "Vergleich des Importerkopfes mit dem Rohtextausschnitt aus dem Editionsdruck nach der Regel in `headRule`",
+          "verdict": "korrekt",
+          "expectedHead": "محمد بن زياد بن زبار الكلبي",
+          "reason": "Kopf deckt sich mit dem Soll-Kopf nach der oben festgelegten Regel."
+        }
+      ],
+      "adjudication": null
+    },
+    {
+      "id": "mizan-7338-1854-7110",
+      "frameIndex": 34,
+      "sourceId": "mizan",
+      "entryNumber": 7338,
+      "stratum": "mizan|L1|K0|N1",
+      "inclusionWeight": 634.75,
+      "extractedHead": "محمد بن الحارث اليحصبى",
+      "annotations": [
+        {
+          "annotator": "A1",
+          "annotatorKind": "single-agent-first-pass",
+          "method": "Vergleich des Importerkopfes mit dem Rohtextausschnitt aus dem Editionsdruck nach der Regel in `headRule`",
+          "verdict": "korrekt",
+          "expectedHead": "محمد بن الحارث اليحصبى",
+          "reason": "Kopf deckt sich mit dem Soll-Kopf nach der oben festgelegten Regel."
+        }
+      ],
+      "adjudication": null
+    },
+    {
+      "id": "mizan-6744-1707-6529",
+      "frameIndex": 35,
+      "sourceId": "mizan",
+      "entryNumber": 6744,
+      "stratum": "mizan|L1|K0|N1",
+      "inclusionWeight": 634.75,
+      "extractedHead": "الفضل بن الفضل السقطى",
+      "annotations": [
+        {
+          "annotator": "A1",
+          "annotatorKind": "single-agent-first-pass",
+          "method": "Vergleich des Importerkopfes mit dem Rohtextausschnitt aus dem Editionsdruck nach der Regel in `headRule`",
+          "verdict": "korrekt",
+          "expectedHead": "الفضل بن الفضل السقطى",
+          "reason": "Kopf deckt sich mit dem Soll-Kopf nach der oben festgelegten Regel."
+        }
+      ],
+      "adjudication": null
+    },
+    {
+      "id": "mizan-4288-1080-4165",
+      "frameIndex": 36,
+      "sourceId": "mizan",
+      "entryNumber": 4288,
+      "stratum": "mizan|L1|K0|N1",
+      "inclusionWeight": 634.75,
+      "extractedHead": "عبد الله بن خلج الصنعاني",
+      "annotations": [
+        {
+          "annotator": "A1",
+          "annotatorKind": "single-agent-first-pass",
+          "method": "Vergleich des Importerkopfes mit dem Rohtextausschnitt aus dem Editionsdruck nach der Regel in `headRule`",
+          "verdict": "korrekt",
+          "expectedHead": "عبد الله بن خلج الصنعاني",
+          "reason": "Kopf deckt sich mit dem Soll-Kopf nach der oben festgelegten Regel."
+        }
+      ],
+      "adjudication": null
+    },
+    {
+      "id": "mizan-9000-2272-8699",
+      "frameIndex": 37,
+      "sourceId": "mizan",
+      "entryNumber": 9000,
+      "stratum": "mizan|L1|K1|N0",
+      "inclusionWeight": 253,
+      "extractedHead": "نافع بن هرمز، أبو هرمز",
+      "annotations": [
+        {
+          "annotator": "A1",
+          "annotatorKind": "single-agent-first-pass",
+          "method": "Vergleich des Importerkopfes mit dem Rohtextausschnitt aus dem Editionsdruck nach der Regel in `headRule`",
+          "verdict": "korrekt",
+          "expectedHead": "نافع بن هرمز، أبو هرمز",
+          "reason": "Kopf deckt sich mit dem Soll-Kopf nach der oben festgelegten Regel."
+        }
+      ],
+      "adjudication": null
+    },
+    {
+      "id": "mizan-8033-2027-7782",
+      "frameIndex": 38,
+      "sourceId": "mizan",
+      "entryNumber": 8033,
+      "stratum": "mizan|L1|K1|N1",
+      "inclusionWeight": 251,
+      "extractedHead": "محمد بن عيسى بن سميع، أبو سفيان القرشي",
+      "annotations": [
+        {
+          "annotator": "A1",
+          "annotatorKind": "single-agent-first-pass",
+          "method": "Vergleich des Importerkopfes mit dem Rohtextausschnitt aus dem Editionsdruck nach der Regel in `headRule`",
+          "verdict": "korrekt",
+          "expectedHead": "محمد بن عيسى بن سميع، أبو سفيان القرشي",
+          "reason": "Kopf deckt sich mit dem Soll-Kopf nach der oben festgelegten Regel."
+        }
+      ],
+      "adjudication": null
+    },
+    {
+      "id": "mizan-3142-793-3063",
+      "frameIndex": 39,
+      "sourceId": "mizan",
+      "entryNumber": 3142,
+      "stratum": "mizan|L1|K1|N1",
+      "inclusionWeight": 251,
+      "extractedHead": "سعيد بن إياس ، أبو مسعود الجريري البصري",
+      "annotations": [
+        {
+          "annotator": "A1",
+          "annotatorKind": "single-agent-first-pass",
+          "method": "Vergleich des Importerkopfes mit dem Rohtextausschnitt aus dem Editionsdruck nach der Regel in `headRule`",
+          "verdict": "korrekt",
+          "expectedHead": "سعيد بن إياس ، أبو مسعود الجريري البصري",
+          "reason": "Kopf deckt sich mit dem Soll-Kopf nach der oben festgelegten Regel."
+        }
+      ],
+      "adjudication": null
+    },
+    {
+      "id": "mizan-552-138-532",
+      "frameIndex": 40,
+      "sourceId": "mizan",
+      "entryNumber": 552,
+      "stratum": "mizan|L2|K0|N0",
+      "inclusionWeight": 51,
+      "extractedHead": "أحمد بن محمد بن السري بن يحيى بن أبي دارم المحدث",
+      "annotations": [
+        {
+          "annotator": "A1",
+          "annotatorKind": "single-agent-first-pass",
+          "method": "Vergleich des Importerkopfes mit dem Rohtextausschnitt aus dem Editionsdruck nach der Regel in `headRule`",
+          "verdict": "falsch",
+          "expectedHead": "أحمد بن محمد بن السري بن يحيى بن أبي دارم أبو بكر الكوفي",
+          "reason": "Gleichzeitig zu lang und zu kurz: «المحدث» ist ein Rangtitel und steht drin, Kunya «أبو بكر» und Nisba «الكوفي» stehen hinter einem Zeilenumbruch und fehlen."
+        }
+      ],
+      "adjudication": null
+    },
+    {
+      "id": "mizan-6314-1593-6125",
+      "frameIndex": 41,
+      "sourceId": "mizan",
+      "entryNumber": 6314,
+      "stratum": "mizan|L2|K0|N1",
+      "inclusionWeight": 295,
+      "extractedHead": "عمران بن موسى بن الاشدق عمرو بن سعيد الأموي",
+      "annotations": [
+        {
+          "annotator": "A1",
+          "annotatorKind": "single-agent-first-pass",
+          "method": "Vergleich des Importerkopfes mit dem Rohtextausschnitt aus dem Editionsdruck nach der Regel in `headRule`",
+          "verdict": "korrekt",
+          "expectedHead": "عمران بن موسى بن الاشدق عمرو بن سعيد الأموي",
+          "reason": "Kopf deckt sich mit dem Soll-Kopf nach der oben festgelegten Regel."
+        }
+      ],
+      "adjudication": null
+    },
+    {
+      "id": "mizan-5303-1343-5147",
+      "frameIndex": 42,
+      "sourceId": "mizan",
+      "entryNumber": 5303,
+      "stratum": "mizan|L2|K1|N0",
+      "inclusionWeight": 22,
+      "extractedHead": "عبد الواحد بن واصل ، أبو عبيدة الحداد بحديث",
+      "annotations": [
+        {
+          "annotator": "A1",
+          "annotatorKind": "single-agent-first-pass",
+          "method": "Vergleich des Importerkopfes mit dem Rohtextausschnitt aus dem Editionsdruck nach der Regel in `headRule`",
+          "verdict": "zu-lang",
+          "expectedHead": "عبد الواحد بن واصل أبو عبيدة الحداد",
+          "reason": "Der Kopf endet mit dem Fragment «بحديث» aus «بحديث مشهور»."
+        }
+      ],
+      "adjudication": null
+    },
+    {
+      "id": "mizan-7210-1828-6984",
+      "frameIndex": 43,
+      "sourceId": "mizan",
+      "entryNumber": 7210,
+      "stratum": "mizan|L2|K1|N1",
+      "inclusionWeight": 182,
+      "extractedHead": "محمد بن إسحاق الصبغى ، أبو العباس النيسابوري",
+      "annotations": [
+        {
+          "annotator": "A1",
+          "annotatorKind": "single-agent-first-pass",
+          "method": "Vergleich des Importerkopfes mit dem Rohtextausschnitt aus dem Editionsdruck nach der Regel in `headRule`",
+          "verdict": "korrekt",
+          "expectedHead": "محمد بن إسحاق الصبغى ، أبو العباس النيسابوري",
+          "reason": "Kopf deckt sich mit dem Soll-Kopf nach der oben festgelegten Regel."
+        }
+      ],
+      "adjudication": null
+    },
+    {
+      "id": "mizan-8241-2081-7970",
+      "frameIndex": 44,
+      "sourceId": "mizan",
+      "entryNumber": 8241,
+      "stratum": "mizan|L2|K1|N1",
+      "inclusionWeight": 182,
+      "extractedHead": "محمد بن ميسر ، أبو سعد الصغانى البلخي الضرير",
+      "annotations": [
+        {
+          "annotator": "A1",
+          "annotatorKind": "single-agent-first-pass",
+          "method": "Vergleich des Importerkopfes mit dem Rohtextausschnitt aus dem Editionsdruck nach der Regel in `headRule`",
+          "verdict": "korrekt",
+          "expectedHead": "محمد بن ميسر ، أبو سعد الصغانى البلخي الضرير",
+          "reason": "Kopf deckt sich mit dem Soll-Kopf nach der oben festgelegten Regel."
+        }
+      ],
+      "adjudication": null
+    },
+    {
+      "id": "mizan-1943-520-1894",
+      "frameIndex": 45,
+      "sourceId": "mizan",
+      "entryNumber": 1943,
+      "stratum": "mizan|L3|K0|N0",
+      "inclusionWeight": 7,
+      "extractedHead": "الحسن بن محمد بن يحيى بن الحسن بن جعفر بن عبيد الله بن الحسين ابن زين العابدين على بن الشهيد الحسين العلوي",
+      "annotations": [
+        {
+          "annotator": "A1",
+          "annotatorKind": "single-agent-first-pass",
+          "method": "Vergleich des Importerkopfes mit dem Rohtextausschnitt aus dem Editionsdruck nach der Regel in `headRule`",
+          "verdict": "korrekt",
+          "expectedHead": "الحسن بن محمد بن يحيى بن الحسن بن جعفر بن عبيد الله بن الحسين ابن زين العابدين على بن الشهيد الحسين العلوي",
+          "reason": "Kopf deckt sich mit dem Soll-Kopf nach der oben festgelegten Regel."
+        }
+      ],
+      "adjudication": null
+    },
+    {
+      "id": "mizan-4046-1016-3932",
+      "frameIndex": 46,
+      "sourceId": "mizan",
+      "entryNumber": 4046,
+      "stratum": "mizan|L3|K0|N1",
+      "inclusionWeight": 44,
+      "extractedHead": "عاصم بن سليمان الأحول البصري الحافظ الثقة، أكبر شيوخه عبد الله بن سرجس",
+      "annotations": [
+        {
+          "annotator": "A1",
+          "annotatorKind": "single-agent-first-pass",
+          "method": "Vergleich des Importerkopfes mit dem Rohtextausschnitt aus dem Editionsdruck nach der Regel in `headRule`",
+          "verdict": "zu-lang",
+          "expectedHead": "عاصم بن سليمان الأحول البصري",
+          "reason": "«الحافظ الثقة، أكبر شيوخه عبد الله بن سرجس» ist Bewertung und Biographie."
+        }
+      ],
+      "adjudication": null
+    },
+    {
+      "id": "mizan-548-135-528",
+      "frameIndex": 47,
+      "sourceId": "mizan",
+      "entryNumber": 548,
+      "stratum": "mizan|L3|K1|N0",
+      "inclusionWeight": 5,
+      "extractedHead": "أحمد بن محمد بن سعيد بن عقدة الحافظ أبو العباس، محدث الكوفة، شيعي متوسط",
+      "annotations": [
+        {
+          "annotator": "A1",
+          "annotatorKind": "single-agent-first-pass",
+          "method": "Vergleich des Importerkopfes mit dem Rohtextausschnitt aus dem Editionsdruck nach der Regel in `headRule`",
+          "verdict": "zu-lang",
+          "expectedHead": "أحمد بن محمد بن سعيد بن عقدة أبو العباس",
+          "reason": "«الحافظ»، «محدث الكوفة»، «شيعي متوسط» sind Titel und Bewertungen."
+        }
+      ],
+      "adjudication": null
+    },
+    {
+      "id": "mizan-3450-869-3356",
+      "frameIndex": 48,
+      "sourceId": "mizan",
+      "entryNumber": 3450,
+      "stratum": "mizan|L3|K1|N1",
+      "inclusionWeight": 88,
+      "extractedHead": "سليمان بن داود ، أبو داود الطيالسي البصري الحافظ (٣ [أحد الاعلام",
+      "annotations": [
+        {
+          "annotator": "A1",
+          "annotatorKind": "single-agent-first-pass",
+          "method": "Vergleich des Importerkopfes mit dem Rohtextausschnitt aus dem Editionsdruck nach der Regel in `headRule`",
+          "verdict": "zu-lang",
+          "expectedHead": "سليمان بن داود أبو داود الطيالسي البصري",
+          "reason": "Der Kopf zieht den Herausgeberapparat «(٣ [أحد الاعلام» mit hinein."
+        }
+      ],
+      "adjudication": null
+    },
+    {
+      "id": "tahdhib-2277-3338-2278",
+      "frameIndex": 49,
+      "sourceId": "tahdhib",
+      "entryNumber": 2277,
+      "stratum": "tahdhib|L0|K0|N0",
+      "inclusionWeight": 265.5,
+      "extractedHead": "زيد مولى قيس الحذاء",
+      "annotations": [
+        {
+          "annotator": "A1",
+          "annotatorKind": "single-agent-first-pass",
+          "method": "Vergleich des Importerkopfes mit dem Rohtextausschnitt aus dem Editionsdruck nach der Regel in `headRule`",
+          "verdict": "korrekt",
+          "expectedHead": "زيد مولى قيس الحذاء",
+          "reason": "Kopf deckt sich mit dem Soll-Kopf nach der oben festgelegten Regel."
+        }
+      ],
+      "adjudication": null
+    },
+    {
+      "id": "tahdhib-4202-5947-4203",
+      "frameIndex": 50,
+      "sourceId": "tahdhib",
+      "entryNumber": 4202,
+      "stratum": "tahdhib|L0|K0|N0",
+      "inclusionWeight": 265.5,
+      "extractedHead": "عبد الرحمن بن محمد",
+      "annotations": [
+        {
+          "annotator": "A1",
+          "annotatorKind": "single-agent-first-pass",
+          "method": "Vergleich des Importerkopfes mit dem Rohtextausschnitt aus dem Editionsdruck nach der Regel in `headRule`",
+          "verdict": "korrekt",
+          "expectedHead": "عبد الرحمن بن محمد",
+          "reason": "Kopf deckt sich mit dem Soll-Kopf nach der oben festgelegten Regel."
+        }
+      ],
+      "adjudication": null
+    },
+    {
+      "id": "tahdhib-5956-8716-5957",
+      "frameIndex": 51,
+      "sourceId": "tahdhib",
+      "entryNumber": 5956,
+      "stratum": "tahdhib|L0|K0|N1",
+      "inclusionWeight": 181,
+      "extractedHead": "كَعْب المَدِيني",
+      "annotations": [
+        {
+          "annotator": "A1",
+          "annotatorKind": "single-agent-first-pass",
+          "method": "Vergleich des Importerkopfes mit dem Rohtextausschnitt aus dem Editionsdruck nach der Regel in `headRule`",
+          "verdict": "korrekt",
+          "expectedHead": "كَعْب المَدِيني",
+          "reason": "Kopf deckt sich mit dem Soll-Kopf nach der oben festgelegten Regel."
+        }
+      ],
+      "adjudication": null
+    },
+    {
+      "id": "tahdhib-7775-11066-7776",
+      "frameIndex": 52,
+      "sourceId": "tahdhib",
+      "entryNumber": 7775,
+      "stratum": "tahdhib|L0|K0|N1",
+      "inclusionWeight": 181,
+      "extractedHead": "هند بن أبي هَالَة",
+      "annotations": [
+        {
+          "annotator": "A1",
+          "annotatorKind": "single-agent-first-pass",
+          "method": "Vergleich des Importerkopfes mit dem Rohtextausschnitt aus dem Editionsdruck nach der Regel in `headRule`",
+          "verdict": "korrekt",
+          "expectedHead": "هند بن أبي هَالَة",
+          "reason": "Kopf deckt sich mit dem Soll-Kopf nach der oben festgelegten Regel."
+        }
+      ],
+      "adjudication": null
+    },
+    {
+      "id": "tahdhib-8643-12242-8644",
+      "frameIndex": 53,
+      "sourceId": "tahdhib",
+      "entryNumber": 8643,
+      "stratum": "tahdhib|L0|K1|N0",
+      "inclusionWeight": 171,
+      "extractedHead": "أبو زيد",
+      "annotations": [
+        {
+          "annotator": "A1",
+          "annotatorKind": "single-agent-first-pass",
+          "method": "Vergleich des Importerkopfes mit dem Rohtextausschnitt aus dem Editionsdruck nach der Regel in `headRule`",
+          "verdict": "korrekt",
+          "expectedHead": "أبو زيد",
+          "reason": "Kopf deckt sich mit dem Soll-Kopf nach der oben festgelegten Regel."
+        }
+      ],
+      "adjudication": null
+    },
+    {
+      "id": "tahdhib-3491-4982-3492",
+      "frameIndex": 54,
+      "sourceId": "tahdhib",
+      "entryNumber": 3491,
+      "stratum": "tahdhib|L0|K1|N1",
+      "inclusionWeight": 302,
+      "extractedHead": "عبد الله بن سالم",
+      "annotations": [
+        {
+          "annotator": "A1",
+          "annotatorKind": "single-agent-first-pass",
+          "method": "Vergleich des Importerkopfes mit dem Rohtextausschnitt aus dem Editionsdruck nach der Regel in `headRule`",
+          "verdict": "zu-kurz",
+          "expectedHead": "عبد الله بن سالم الزبيدي أبو محمد الكوفي القزاز المعروف بالمفلوج",
+          "reason": "Der eingeschobene «ويقال»-Einschub schneidet den Kopf ab; Nisba, Kunya, Beruf und Beiname gelten der Hauptlesung und landen in alternateNameForms."
+        }
+      ],
+      "adjudication": null
+    },
+    {
+      "id": "tahdhib-5185-7658-5186",
+      "frameIndex": 55,
+      "sourceId": "tahdhib",
+      "entryNumber": 5185,
+      "stratum": "tahdhib|L1|K0|N0",
+      "inclusionWeight": 206,
+      "extractedHead": "عمر بن طلحة عُبيد الله",
+      "annotations": [
+        {
+          "annotator": "A1",
+          "annotatorKind": "single-agent-first-pass",
+          "method": "Vergleich des Importerkopfes mit dem Rohtextausschnitt aus dem Editionsdruck nach der Regel in `headRule`",
+          "verdict": "korrekt",
+          "expectedHead": "عمر بن طلحة عُبيد الله",
+          "reason": "Kopf deckt sich mit dem Soll-Kopf nach der oben festgelegten Regel."
+        }
+      ],
+      "adjudication": null
+    },
+    {
+      "id": "tahdhib-9126-12973-9128",
+      "frameIndex": 56,
+      "sourceId": "tahdhib",
+      "entryNumber": 9126,
+      "stratum": "tahdhib|L1|K0|N0",
+      "inclusionWeight": 206,
+      "extractedHead": "سلْمى عمة عبد الرحمن بن أبي رافع",
+      "annotations": [
+        {
+          "annotator": "A1",
+          "annotatorKind": "single-agent-first-pass",
+          "method": "Vergleich des Importerkopfes mit dem Rohtextausschnitt aus dem Editionsdruck nach der Regel in `headRule`",
+          "verdict": "korrekt",
+          "expectedHead": "سلْمى عمة عبد الرحمن بن أبي رافع",
+          "reason": "Kopf deckt sich mit dem Soll-Kopf nach der oben festgelegten Regel."
+        }
+      ],
+      "adjudication": null
+    },
+    {
+      "id": "tahdhib-2749-3944-2750",
+      "frameIndex": 57,
+      "sourceId": "tahdhib",
+      "entryNumber": 2749,
+      "stratum": "tahdhib|L1|K0|N1",
+      "inclusionWeight": 606,
+      "extractedHead": "سَمُرة بن جُنادة السُّوائيُّ",
+      "annotations": [
+        {
+          "annotator": "A1",
+          "annotatorKind": "single-agent-first-pass",
+          "method": "Vergleich des Importerkopfes mit dem Rohtextausschnitt aus dem Editionsdruck nach der Regel in `headRule`",
+          "verdict": "korrekt",
+          "expectedHead": "سَمُرة بن جُنادة السُّوائيُّ",
+          "reason": "Kopf deckt sich mit dem Soll-Kopf nach der oben festgelegten Regel."
+        }
+      ],
+      "adjudication": null
+    },
+    {
+      "id": "tahdhib-4748-6887-4749",
+      "frameIndex": 58,
+      "sourceId": "tahdhib",
+      "entryNumber": 4748,
+      "stratum": "tahdhib|L1|K0|N1",
+      "inclusionWeight": 606,
+      "extractedHead": "عثمان بن كعب، القُرَظِي",
+      "annotations": [
+        {
+          "annotator": "A1",
+          "annotatorKind": "single-agent-first-pass",
+          "method": "Vergleich des Importerkopfes mit dem Rohtextausschnitt aus dem Editionsdruck nach der Regel in `headRule`",
+          "verdict": "korrekt",
+          "expectedHead": "عثمان بن كعب، القُرَظِي",
+          "reason": "Kopf deckt sich mit dem Soll-Kopf nach der oben festgelegten Regel."
+        }
+      ],
+      "adjudication": null
+    },
+    {
+      "id": "tahdhib-6830-9810-6831",
+      "frameIndex": 59,
+      "sourceId": "tahdhib",
+      "entryNumber": 6830,
+      "stratum": "tahdhib|L1|K0|N1",
+      "inclusionWeight": 606,
+      "extractedHead": "مالك بن زُبَيد الهمداني",
+      "annotations": [
+        {
+          "annotator": "A1",
+          "annotatorKind": "single-agent-first-pass",
+          "method": "Vergleich des Importerkopfes mit dem Rohtextausschnitt aus dem Editionsdruck nach der Regel in `headRule`",
+          "verdict": "korrekt",
+          "expectedHead": "مالك بن زُبَيد الهمداني",
+          "reason": "Kopf deckt sich mit dem Soll-Kopf nach der oben festgelegten Regel."
+        }
+      ],
+      "adjudication": null
+    },
+    {
+      "id": "tahdhib-9286-13102-9288",
+      "frameIndex": 60,
+      "sourceId": "tahdhib",
+      "entryNumber": 9286,
+      "stratum": "tahdhib|L1|K1|N0",
+      "inclusionWeight": 133,
+      "extractedHead": "أم هانئ بنت أبي طالب الهاشمية",
+      "annotations": [
+        {
+          "annotator": "A1",
+          "annotatorKind": "single-agent-first-pass",
+          "method": "Vergleich des Importerkopfes mit dem Rohtextausschnitt aus dem Editionsdruck nach der Regel in `headRule`",
+          "verdict": "korrekt",
+          "expectedHead": "أم هانئ بنت أبي طالب الهاشمية",
+          "reason": "Kopf deckt sich mit dem Soll-Kopf nach der oben festgelegten Regel."
+        }
+      ],
+      "adjudication": null
+    },
+    {
+      "id": "tahdhib-2718-3890-2719",
+      "frameIndex": 61,
+      "sourceId": "tahdhib",
+      "entryNumber": 2718,
+      "stratum": "tahdhib|L1|K1|N1",
+      "inclusionWeight": 557.5,
+      "extractedHead": "سُلَيمان بن عَمْرو بن عبد",
+      "annotations": [
+        {
+          "annotator": "A1",
+          "annotatorKind": "single-agent-first-pass",
+          "method": "Vergleich des Importerkopfes mit dem Rohtextausschnitt aus dem Editionsdruck nach der Regel in `headRule`",
+          "verdict": "zu-kurz",
+          "expectedHead": "سليمان بن عمرو بن عبد الليثي العتواري أبو الهيثم المصري",
+          "reason": "Gleiches Muster: «ويقال: عبيد» schneidet Nisba und Kunya ab."
+        }
+      ],
+      "adjudication": null
+    },
+    {
+      "id": "tahdhib-5577-8193-5578",
+      "frameIndex": 62,
+      "sourceId": "tahdhib",
+      "entryNumber": 5577,
+      "stratum": "tahdhib|L1|K1|N1",
+      "inclusionWeight": 557.5,
+      "extractedHead": "عِياضُ، أبو خالد البَجَلي",
+      "annotations": [
+        {
+          "annotator": "A1",
+          "annotatorKind": "single-agent-first-pass",
+          "method": "Vergleich des Importerkopfes mit dem Rohtextausschnitt aus dem Editionsdruck nach der Regel in `headRule`",
+          "verdict": "korrekt",
+          "expectedHead": "عِياضُ، أبو خالد البَجَلي",
+          "reason": "Kopf deckt sich mit dem Soll-Kopf nach der oben festgelegten Regel."
+        }
+      ],
+      "adjudication": null
+    },
+    {
+      "id": "tahdhib-627-1218-628",
+      "frameIndex": 63,
+      "sourceId": "tahdhib",
+      "entryNumber": 627,
+      "stratum": "tahdhib|L2|K0|N0",
+      "inclusionWeight": 83,
+      "extractedHead": "أُوَيْسُ بن أبي أُوَيْس، عَدِيدُ بني تَيْمٍ",
+      "annotations": [
+        {
+          "annotator": "A1",
+          "annotatorKind": "single-agent-first-pass",
+          "method": "Vergleich des Importerkopfes mit dem Rohtextausschnitt aus dem Editionsdruck nach der Regel in `headRule`",
+          "verdict": "korrekt",
+          "expectedHead": "أُوَيْسُ بن أبي أُوَيْس، عَدِيدُ بني تَيْمٍ",
+          "reason": "Kopf deckt sich mit dem Soll-Kopf nach der oben festgelegten Regel."
+        }
+      ],
+      "adjudication": null
+    },
+    {
+      "id": "tahdhib-2371-3443-2372",
+      "frameIndex": 64,
+      "sourceId": "tahdhib",
+      "entryNumber": 2371,
+      "stratum": "tahdhib|L2|K0|N1",
+      "inclusionWeight": 458.5,
+      "extractedHead": "سعد بن المنذر بن أبي حميد الساعدي، الأنصاري، المدني",
+      "annotations": [
+        {
+          "annotator": "A1",
+          "annotatorKind": "single-agent-first-pass",
+          "method": "Vergleich des Importerkopfes mit dem Rohtextausschnitt aus dem Editionsdruck nach der Regel in `headRule`",
+          "verdict": "korrekt",
+          "expectedHead": "سعد بن المنذر بن أبي حميد الساعدي، الأنصاري، المدني",
+          "reason": "Kopf deckt sich mit dem Soll-Kopf nach der oben festgelegten Regel."
+        }
+      ],
+      "adjudication": null
+    },
+    {
+      "id": "tahdhib-8269-11769-8270",
+      "frameIndex": 65,
+      "sourceId": "tahdhib",
+      "entryNumber": 8269,
+      "stratum": "tahdhib|L2|K0|N1",
+      "inclusionWeight": 458.5,
+      "extractedHead": "يزيد بن عطاء بن يزيد بن عبد الرحمن اليَشْكُرِي",
+      "annotations": [
+        {
+          "annotator": "A1",
+          "annotatorKind": "single-agent-first-pass",
+          "method": "Vergleich des Importerkopfes mit dem Rohtextausschnitt aus dem Editionsdruck nach der Regel in `headRule`",
+          "verdict": "korrekt",
+          "expectedHead": "يزيد بن عطاء بن يزيد بن عبد الرحمن اليَشْكُرِي",
+          "reason": "Kopf deckt sich mit dem Soll-Kopf nach der oben festgelegten Regel."
+        }
+      ],
+      "adjudication": null
+    },
+    {
+      "id": "tahdhib-4501-6518-4502",
+      "frameIndex": 66,
+      "sourceId": "tahdhib",
+      "entryNumber": 4501,
+      "stratum": "tahdhib|L2|K1|N0",
+      "inclusionWeight": 37,
+      "extractedHead": "عبيد الله بن أبي بكر بن أنس بن مالك، أبو معاذ",
+      "annotations": [
+        {
+          "annotator": "A1",
+          "annotatorKind": "single-agent-first-pass",
+          "method": "Vergleich des Importerkopfes mit dem Rohtextausschnitt aus dem Editionsdruck nach der Regel in `headRule`",
+          "verdict": "korrekt",
+          "expectedHead": "عبيد الله بن أبي بكر بن أنس بن مالك، أبو معاذ",
+          "reason": "Kopf deckt sich mit dem Soll-Kopf nach der oben festgelegten Regel."
+        }
+      ],
+      "adjudication": null
+    },
+    {
+      "id": "tahdhib-1699-2603-1700",
+      "frameIndex": 67,
+      "sourceId": "tahdhib",
+      "entryNumber": 1699,
+      "stratum": "tahdhib|L2|K1|N1",
+      "inclusionWeight": 535.6667,
+      "extractedHead": "خارجة بن عبد الله بن سليمان بن زيد بن ثابت الأنصاري، أبو زيد",
+      "annotations": [
+        {
+          "annotator": "A1",
+          "annotatorKind": "single-agent-first-pass",
+          "method": "Vergleich des Importerkopfes mit dem Rohtextausschnitt aus dem Editionsdruck nach der Regel in `headRule`",
+          "verdict": "korrekt",
+          "expectedHead": "خارجة بن عبد الله بن سليمان بن زيد بن ثابت الأنصاري، أبو زيد",
+          "reason": "Kopf deckt sich mit dem Soll-Kopf nach der oben festgelegten Regel."
+        }
+      ],
+      "adjudication": null
+    },
+    {
+      "id": "tahdhib-7108-10116-7109",
+      "frameIndex": 68,
+      "sourceId": "tahdhib",
+      "entryNumber": 7108,
+      "stratum": "tahdhib|L2|K1|N1",
+      "inclusionWeight": 535.6667,
+      "extractedHead": "مَطَر بن ميمون المحاربي الإسكاف، أبو خالد الكوفي",
+      "annotations": [
+        {
+          "annotator": "A1",
+          "annotatorKind": "single-agent-first-pass",
+          "method": "Vergleich des Importerkopfes mit dem Rohtextausschnitt aus dem Editionsdruck nach der Regel in `headRule`",
+          "verdict": "korrekt",
+          "expectedHead": "مَطَر بن ميمون المحاربي الإسكاف، أبو خالد الكوفي",
+          "reason": "Kopf deckt sich mit dem Soll-Kopf nach der oben festgelegten Regel."
+        }
+      ],
+      "adjudication": null
+    },
+    {
+      "id": "tahdhib-6755-9708-6756",
+      "frameIndex": 69,
+      "sourceId": "tahdhib",
+      "entryNumber": 6755,
+      "stratum": "tahdhib|L2|K1|N1",
+      "inclusionWeight": 535.6667,
+      "extractedHead": "محمد بن الوزير بن الحكم السُّلمي، أبو عبد الله الدمشقي",
+      "annotations": [
+        {
+          "annotator": "A1",
+          "annotatorKind": "single-agent-first-pass",
+          "method": "Vergleich des Importerkopfes mit dem Rohtextausschnitt aus dem Editionsdruck nach der Regel in `headRule`",
+          "verdict": "korrekt",
+          "expectedHead": "محمد بن الوزير بن الحكم السُّلمي، أبو عبد الله الدمشقي",
+          "reason": "Kopf deckt sich mit dem Soll-Kopf nach der oben festgelegten Regel."
+        }
+      ],
+      "adjudication": null
+    },
+    {
+      "id": "tahdhib-7227-10298-7228",
+      "frameIndex": 70,
+      "sourceId": "tahdhib",
+      "entryNumber": 7227,
+      "stratum": "tahdhib|L3|K0|N0",
+      "inclusionWeight": 32,
+      "extractedHead": "مَعْمر بن عبد الله بن نَضْلة بن نافع بن عوف بن عَبِيد بن عَوِيج بن عدي بن كعب بن لُؤَي بن غالب",
+      "annotations": [
+        {
+          "annotator": "A1",
+          "annotatorKind": "single-agent-first-pass",
+          "method": "Vergleich des Importerkopfes mit dem Rohtextausschnitt aus dem Editionsdruck nach der Regel in `headRule`",
+          "verdict": "korrekt",
+          "expectedHead": "مَعْمر بن عبد الله بن نَضْلة بن نافع بن عوف بن عَبِيد بن عَوِيج بن عدي بن كعب بن لُؤَي بن غالب",
+          "reason": "Kopf deckt sich mit dem Soll-Kopf nach der oben festgelegten Regel."
+        }
+      ],
+      "adjudication": null
+    },
+    {
+      "id": "tahdhib-2807-4014-2808",
+      "frameIndex": 71,
+      "sourceId": "tahdhib",
+      "entryNumber": 2807,
+      "stratum": "tahdhib|L3|K0|N1",
+      "inclusionWeight": 198,
+      "extractedHead": "سَوَّار بن عبد الله بن قُدامة بن عَنَزة بن نِقْب بن عَمْرو بن الحارث بن مِجْفَر بن كَعْب بن العَنْبَر بن عَمْرو بن تميم العَنَبريُّ، البصريُّ القاضي",
+      "annotations": [
+        {
+          "annotator": "A1",
+          "annotatorKind": "single-agent-first-pass",
+          "method": "Vergleich des Importerkopfes mit dem Rohtextausschnitt aus dem Editionsdruck nach der Regel in `headRule`",
+          "verdict": "zu-lang",
+          "expectedHead": "سوار بن عبد الله بن قدامة بن عنزة بن نقب بن عمرو بن الحارث بن مجفر بن كعب بن العنبر بن عمرو بن تميم العنبري البصري",
+          "reason": "«القاضي» ist ein Amt; der Eintrag hat einen vollstaendigen Nasab."
+        }
+      ],
+      "adjudication": null
+    },
+    {
+      "id": "tahdhib-435-898-434",
+      "frameIndex": 72,
+      "sourceId": "tahdhib",
+      "entryNumber": 435,
+      "stratum": "tahdhib|L3|K0|N1",
+      "inclusionWeight": 198,
+      "extractedHead": "أسد بن موسى بن إبراهيم بن الوليد بن عبد الملك بن مروان الأمويّ",
+      "annotations": [
+        {
+          "annotator": "A1",
+          "annotatorKind": "single-agent-first-pass",
+          "method": "Vergleich des Importerkopfes mit dem Rohtextausschnitt aus dem Editionsdruck nach der Regel in `headRule`",
+          "verdict": "korrekt",
+          "expectedHead": "أسد بن موسى بن إبراهيم بن الوليد بن عبد الملك بن مروان الأمويّ",
+          "reason": "Kopf deckt sich mit dem Soll-Kopf nach der oben festgelegten Regel."
+        }
+      ],
+      "adjudication": null
+    },
+    {
+      "id": "tahdhib-9153-12996-9155",
+      "frameIndex": 73,
+      "sourceId": "tahdhib",
+      "entryNumber": 9153,
+      "stratum": "tahdhib|L3|K1|N0",
+      "inclusionWeight": 24,
+      "extractedHead": "عائشة بنت طلحة بن عبيد الله التيمية أم عمران، أمها أم كلثوم بنت أبي بكر",
+      "annotations": [
+        {
+          "annotator": "A1",
+          "annotatorKind": "single-agent-first-pass",
+          "method": "Vergleich des Importerkopfes mit dem Rohtextausschnitt aus dem Editionsdruck nach der Regel in `headRule`",
+          "verdict": "zu-lang",
+          "expectedHead": "عائشة بنت طلحة بن عبيد الله التيمية أم عمران",
+          "reason": "«أمها أم كلثوم بنت أبي بكر» ist eine Abstammungsangabe ueber eine dritte Person."
+        }
+      ],
+      "adjudication": null
+    },
+    {
+      "id": "tahdhib-7115-10126-7116",
+      "frameIndex": 74,
+      "sourceId": "tahdhib",
+      "entryNumber": 7115,
+      "stratum": "tahdhib|L3|K1|N1",
+      "inclusionWeight": 629.5,
+      "extractedHead": "مُطَرِّف بن عبد الله بن مُطَرِّف بن سليمان بن يسار اليساري الهلالي، أبو مصعب المدني",
+      "annotations": [
+        {
+          "annotator": "A1",
+          "annotatorKind": "single-agent-first-pass",
+          "method": "Vergleich des Importerkopfes mit dem Rohtextausschnitt aus dem Editionsdruck nach der Regel in `headRule`",
+          "verdict": "korrekt",
+          "expectedHead": "مُطَرِّف بن عبد الله بن مُطَرِّف بن سليمان بن يسار اليساري الهلالي، أبو مصعب المدني",
+          "reason": "Kopf deckt sich mit dem Soll-Kopf nach der oben festgelegten Regel."
+        }
+      ],
+      "adjudication": null
+    },
+    {
+      "id": "tahdhib-2663-3819-2664",
+      "frameIndex": 75,
+      "sourceId": "tahdhib",
+      "entryNumber": 2663,
+      "stratum": "tahdhib|L3|K1|N1",
+      "inclusionWeight": 629.5,
+      "extractedHead": "سُلَيمان بن الجَهْم بن أبي الجَهْم الأنصاريُّ، الحارثيُّ، أبو الجَهم الجَوزَجانيُّ",
+      "annotations": [
+        {
+          "annotator": "A1",
+          "annotatorKind": "single-agent-first-pass",
+          "method": "Vergleich des Importerkopfes mit dem Rohtextausschnitt aus dem Editionsdruck nach der Regel in `headRule`",
+          "verdict": "korrekt",
+          "expectedHead": "سُلَيمان بن الجَهْم بن أبي الجَهْم الأنصاريُّ، الحارثيُّ، أبو الجَهم الجَوزَجانيُّ",
+          "reason": "Kopf deckt sich mit dem Soll-Kopf nach der oben festgelegten Regel."
+        }
+      ],
+      "adjudication": null
+    },
+    {
+      "id": "taqrib-5231-359-5231",
+      "frameIndex": 76,
+      "sourceId": "taqrib",
+      "entryNumber": 5231,
+      "stratum": "taqrib|L0|K0|N0",
+      "inclusionWeight": 301,
+      "extractedHead": "العلاء ابن الحضرمي",
+      "annotations": [
+        {
+          "annotator": "A1",
+          "annotatorKind": "single-agent-first-pass",
+          "method": "Vergleich des Importerkopfes mit dem Rohtextausschnitt aus dem Editionsdruck nach der Regel in `headRule`",
+          "verdict": "korrekt",
+          "expectedHead": "العلاء ابن الحضرمي",
+          "reason": "Kopf deckt sich mit dem Soll-Kopf nach der oben festgelegten Regel."
+        }
+      ],
+      "adjudication": null
+    },
+    {
+      "id": "taqrib-1114-77-1112",
+      "frameIndex": 77,
+      "sourceId": "taqrib",
+      "entryNumber": 1114,
+      "stratum": "taqrib|L0|K0|N1",
+      "inclusionWeight": 274.5,
+      "extractedHead": "حبيب العنزي",
+      "annotations": [
+        {
+          "annotator": "A1",
+          "annotatorKind": "single-agent-first-pass",
+          "method": "Vergleich des Importerkopfes mit dem Rohtextausschnitt aus dem Editionsdruck nach der Regel in `headRule`",
+          "verdict": "korrekt",
+          "expectedHead": "حبيب العنزي",
+          "reason": "Kopf deckt sich mit dem Soll-Kopf nach der oben festgelegten Regel."
+        }
+      ],
+      "adjudication": null
+    },
+    {
+      "id": "taqrib-7090-484-7091",
+      "frameIndex": 78,
+      "sourceId": "taqrib",
+      "entryNumber": 7090,
+      "stratum": "taqrib|L0|K0|N1",
+      "inclusionWeight": 274.5,
+      "extractedHead": "نباتة أوله",
+      "annotations": [
+        {
+          "annotator": "A1",
+          "annotatorKind": "single-agent-first-pass",
+          "method": "Vergleich des Importerkopfes mit dem Rohtextausschnitt aus dem Editionsdruck nach der Regel in `headRule`",
+          "verdict": "falsch",
+          "expectedHead": "نباتة الوالبي",
+          "reason": "Der Orthographie-Einschub «بضم أوله وقيل بفتحة ثم موحدة ثم مثناة» wurde nur teilweise entfernt; das Restwort «أوله» bleibt im Kopf, die Nisba الوالبي faellt heraus."
+        }
+      ],
+      "adjudication": null
+    },
+    {
+      "id": "taqrib-8739-679-8739",
+      "frameIndex": 79,
+      "sourceId": "taqrib",
+      "entryNumber": 8739,
+      "stratum": "taqrib|L0|K1|N0",
+      "inclusionWeight": 147,
+      "extractedHead": "أم شريك العامرية",
+      "annotations": [
+        {
+          "annotator": "A1",
+          "annotatorKind": "single-agent-first-pass",
+          "method": "Vergleich des Importerkopfes mit dem Rohtextausschnitt aus dem Editionsdruck nach der Regel in `headRule`",
+          "verdict": "korrekt",
+          "expectedHead": "أم شريك العامرية",
+          "reason": "Kopf deckt sich mit dem Soll-Kopf nach der oben festgelegten Regel."
+        }
+      ],
+      "adjudication": null
+    },
+    {
+      "id": "taqrib-8326-593-8326",
+      "frameIndex": 80,
+      "sourceId": "taqrib",
+      "entryNumber": 8326,
+      "stratum": "taqrib|L0|K1|N1",
+      "inclusionWeight": 359,
+      "extractedHead": "أبو كرب الأزدي",
+      "annotations": [
+        {
+          "annotator": "A1",
+          "annotatorKind": "single-agent-first-pass",
+          "method": "Vergleich des Importerkopfes mit dem Rohtextausschnitt aus dem Editionsdruck nach der Regel in `headRule`",
+          "verdict": "korrekt",
+          "expectedHead": "أبو كرب الأزدي",
+          "reason": "Kopf deckt sich mit dem Soll-Kopf nach der oben festgelegten Regel."
+        }
+      ],
+      "adjudication": null
+    },
+    {
+      "id": "taqrib-3070-211-3069",
+      "frameIndex": 81,
+      "sourceId": "taqrib",
+      "entryNumber": 3070,
+      "stratum": "taqrib|L1|K0|N0",
+      "inclusionWeight": 299,
+      "extractedHead": "عاصم ابن عمر ابن عثمان",
+      "annotations": [
+        {
+          "annotator": "A1",
+          "annotatorKind": "single-agent-first-pass",
+          "method": "Vergleich des Importerkopfes mit dem Rohtextausschnitt aus dem Editionsdruck nach der Regel in `headRule`",
+          "verdict": "korrekt",
+          "expectedHead": "عاصم ابن عمر ابن عثمان",
+          "reason": "Kopf deckt sich mit dem Soll-Kopf nach der oben festgelegten Regel."
+        }
+      ],
+      "adjudication": null
+    },
+    {
+      "id": "taqrib-6248-428-6248",
+      "frameIndex": 82,
+      "sourceId": "taqrib",
+      "entryNumber": 6248,
+      "stratum": "taqrib|L1|K0|N1",
+      "inclusionWeight": 712.6667,
+      "extractedHead": "محمد ابن قيس اليشكري البصري",
+      "annotations": [
+        {
+          "annotator": "A1",
+          "annotatorKind": "single-agent-first-pass",
+          "method": "Vergleich des Importerkopfes mit dem Rohtextausschnitt aus dem Editionsdruck nach der Regel in `headRule`",
+          "verdict": "korrekt",
+          "expectedHead": "محمد ابن قيس اليشكري البصري",
+          "reason": "Kopf deckt sich mit dem Soll-Kopf nach der oben festgelegten Regel."
+        }
+      ],
+      "adjudication": null
+    },
+    {
+      "id": "taqrib-1452-100-1450",
+      "frameIndex": 83,
+      "sourceId": "taqrib",
+      "entryNumber": 1452,
+      "stratum": "taqrib|L1|K0|N1",
+      "inclusionWeight": 712.6667,
+      "extractedHead": "الحكم ابن عبدة الرعيني",
+      "annotations": [
+        {
+          "annotator": "A1",
+          "annotatorKind": "single-agent-first-pass",
+          "method": "Vergleich des Importerkopfes mit dem Rohtextausschnitt aus dem Editionsdruck nach der Regel in `headRule`",
+          "verdict": "korrekt",
+          "expectedHead": "الحكم ابن عبدة الرعيني",
+          "reason": "Kopf deckt sich mit dem Soll-Kopf nach der oben festgelegten Regel."
+        }
+      ],
+      "adjudication": null
+    },
+    {
+      "id": "taqrib-8810-685-8810",
+      "frameIndex": 84,
+      "sourceId": "taqrib",
+      "entryNumber": 8810,
+      "stratum": "taqrib|L1|K0|N1",
+      "inclusionWeight": 712.6667,
+      "extractedHead": "مسعود ابن الحكم الزرقي",
+      "annotations": [
+        {
+          "annotator": "A1",
+          "annotatorKind": "single-agent-first-pass",
+          "method": "Vergleich des Importerkopfes mit dem Rohtextausschnitt aus dem Editionsdruck nach der Regel in `headRule`",
+          "verdict": "korrekt",
+          "expectedHead": "مسعود ابن الحكم الزرقي",
+          "reason": "Kopf deckt sich mit dem Soll-Kopf nach der oben festgelegten Regel."
+        }
+      ],
+      "adjudication": null
+    },
+    {
+      "id": "taqrib-8250-582-8250",
+      "frameIndex": 85,
+      "sourceId": "taqrib",
+      "entryNumber": 8250,
+      "stratum": "taqrib|L1|K1|N0",
+      "inclusionWeight": 133,
+      "extractedHead": "أبو عذرة أوله وسكون المعجمة",
+      "annotations": [
+        {
+          "annotator": "A1",
+          "annotatorKind": "single-agent-first-pass",
+          "method": "Vergleich des Importerkopfes mit dem Rohtextausschnitt aus dem Editionsdruck nach der Regel in `headRule`",
+          "verdict": "falsch",
+          "expectedHead": "أبو عذرة",
+          "reason": "Rest des Orthographie-Einschubs «أوله وسكون المعجمة» steht im Kopf."
+        }
+      ],
+      "adjudication": null
+    },
+    {
+      "id": "taqrib-2686-184-2685",
+      "frameIndex": 86,
+      "sourceId": "taqrib",
+      "entryNumber": 2686,
+      "stratum": "taqrib|L1|K1|N1",
+      "inclusionWeight": 622.5,
+      "extractedHead": "سوار ابن عمارة الربعي الرملي أبو عمارة",
+      "annotations": [
+        {
+          "annotator": "A1",
+          "annotatorKind": "single-agent-first-pass",
+          "method": "Vergleich des Importerkopfes mit dem Rohtextausschnitt aus dem Editionsdruck nach der Regel in `headRule`",
+          "verdict": "korrekt",
+          "expectedHead": "سوار ابن عمارة الربعي الرملي أبو عمارة",
+          "reason": "Kopf deckt sich mit dem Soll-Kopf nach der oben festgelegten Regel."
+        }
+      ],
+      "adjudication": null
+    },
+    {
+      "id": "taqrib-7650-522-7650",
+      "frameIndex": 87,
+      "sourceId": "taqrib",
+      "entryNumber": 7650,
+      "stratum": "taqrib|L1|K1|N1",
+      "inclusionWeight": 622.5,
+      "extractedHead": "يحيى ابن معلى ابن منصور أبو عوانة الرازي",
+      "annotations": [
+        {
+          "annotator": "A1",
+          "annotatorKind": "single-agent-first-pass",
+          "method": "Vergleich des Importerkopfes mit dem Rohtextausschnitt aus dem Editionsdruck nach der Regel in `headRule`",
+          "verdict": "korrekt",
+          "expectedHead": "يحيى ابن معلى ابن منصور أبو عوانة الرازي",
+          "reason": "Kopf deckt sich mit dem Soll-Kopf nach der oben festgelegten Regel."
+        }
+      ],
+      "adjudication": null
+    },
+    {
+      "id": "taqrib-5748-394-5748",
+      "frameIndex": 88,
+      "sourceId": "taqrib",
+      "entryNumber": 5748,
+      "stratum": "taqrib|L2|K0|N0",
+      "inclusionWeight": 91,
+      "extractedHead": "محمد ابن أبي أمامة [أسعد] ابن سهل ابن حنيف",
+      "annotations": [
+        {
+          "annotator": "A1",
+          "annotatorKind": "single-agent-first-pass",
+          "method": "Vergleich des Importerkopfes mit dem Rohtextausschnitt aus dem Editionsdruck nach der Regel in `headRule`",
+          "verdict": "korrekt",
+          "expectedHead": "محمد ابن أبي أمامة [أسعد] ابن سهل ابن حنيف",
+          "reason": "Kopf deckt sich mit dem Soll-Kopf nach der oben festgelegten Regel."
+        }
+      ],
+      "adjudication": null
+    },
+    {
+      "id": "taqrib-6854-469-6855",
+      "frameIndex": 89,
+      "sourceId": "taqrib",
+      "entryNumber": 6854,
+      "stratum": "taqrib|L2|K0|N1",
+      "inclusionWeight": 500,
+      "extractedHead": "المفضل ابن صالح الأسدي النخاس بالخاء المعجمة الكوفي",
+      "annotations": [
+        {
+          "annotator": "A1",
+          "annotatorKind": "single-agent-first-pass",
+          "method": "Vergleich des Importerkopfes mit dem Rohtextausschnitt aus dem Editionsdruck nach der Regel in `headRule`",
+          "verdict": "zu-lang",
+          "expectedHead": "المفضل بن صالح الأسدي النخاس الكوفي",
+          "reason": "Der Orthographie-Einschub «بالخاء المعجمة» steht mitten im Kopf."
+        }
+      ],
+      "adjudication": null
+    },
+    {
+      "id": "taqrib-3731-256-3730",
+      "frameIndex": 90,
+      "sourceId": "taqrib",
+      "entryNumber": 3731,
+      "stratum": "taqrib|L2|K0|N1",
+      "inclusionWeight": 500,
+      "extractedHead": "عبد الأعلى ابن عامر الثعلبي بالمثلة والمهملة الكوفي",
+      "annotations": [
+        {
+          "annotator": "A1",
+          "annotatorKind": "single-agent-first-pass",
+          "method": "Vergleich des Importerkopfes mit dem Rohtextausschnitt aus dem Editionsdruck nach der Regel in `headRule`",
+          "verdict": "zu-lang",
+          "expectedHead": "عبد الأعلى بن عامر الثعلبي الكوفي",
+          "reason": "Der Orthographie-Einschub «بالمثلة والمهملة» steht mitten im Kopf."
+        }
+      ],
+      "adjudication": null
+    },
+    {
+      "id": "taqrib-8682-675-8682",
+      "frameIndex": 91,
+      "sourceId": "taqrib",
+      "entryNumber": 8682,
+      "stratum": "taqrib|L2|K1|N0",
+      "inclusionWeight": 48,
+      "extractedHead": "مسة أولها والتشديد الأزدية أم بسة والتشديد أيضا مقبولة",
+      "annotations": [
+        {
+          "annotator": "A1",
+          "annotatorKind": "single-agent-first-pass",
+          "method": "Vergleich des Importerkopfes mit dem Rohtextausschnitt aus dem Editionsdruck nach der Regel in `headRule`",
+          "verdict": "falsch",
+          "expectedHead": "مسة الأزدية أم بسة",
+          "reason": "Zwei Orthographie-Einschuebe nur teilweise entfernt («أولها والتشديد», «والتشديد أيضا»); zusaetzlich ist die Bewertung «مقبولة» im Kopf."
+        }
+      ],
+      "adjudication": null
+    },
+    {
+      "id": "taqrib-6376-437-6376",
+      "frameIndex": 92,
+      "sourceId": "taqrib",
+      "entryNumber": 6376,
+      "stratum": "taqrib|L2|K1|N1",
+      "inclusionWeight": 461.6667,
+      "extractedHead": "محمد ابن الوليد ابن هبيرة الهاشمي أبو هبيرة الدمشقي القلانسي",
+      "annotations": [
+        {
+          "annotator": "A1",
+          "annotatorKind": "single-agent-first-pass",
+          "method": "Vergleich des Importerkopfes mit dem Rohtextausschnitt aus dem Editionsdruck nach der Regel in `headRule`",
+          "verdict": "korrekt",
+          "expectedHead": "محمد ابن الوليد ابن هبيرة الهاشمي أبو هبيرة الدمشقي القلانسي",
+          "reason": "Kopf deckt sich mit dem Soll-Kopf nach der oben festgelegten Regel."
+        }
+      ],
+      "adjudication": null
+    },
+    {
+      "id": "taqrib-1239-85-1237",
+      "frameIndex": 93,
+      "sourceId": "taqrib",
+      "entryNumber": 1239,
+      "stratum": "taqrib|L2|K1|N1",
+      "inclusionWeight": 461.6667,
+      "extractedHead": "الحسن ابن داود ابن محمد ابن المنكدر أبو محمد المدني المنكدري",
+      "annotations": [
+        {
+          "annotator": "A1",
+          "annotatorKind": "single-agent-first-pass",
+          "method": "Vergleich des Importerkopfes mit dem Rohtextausschnitt aus dem Editionsdruck nach der Regel in `headRule`",
+          "verdict": "korrekt",
+          "expectedHead": "الحسن ابن داود ابن محمد ابن المنكدر أبو محمد المدني المنكدري",
+          "reason": "Kopf deckt sich mit dem Soll-Kopf nach der oben festgelegten Regel."
+        }
+      ],
+      "adjudication": null
+    },
+    {
+      "id": "taqrib-1544-106-1542",
+      "frameIndex": 94,
+      "sourceId": "taqrib",
+      "entryNumber": 1544,
+      "stratum": "taqrib|L2|K1|N1",
+      "inclusionWeight": 461.6667,
+      "extractedHead": "حميد ابن أبي حميد الطويل أبو عبيدة البصري",
+      "annotations": [
+        {
+          "annotator": "A1",
+          "annotatorKind": "single-agent-first-pass",
+          "method": "Vergleich des Importerkopfes mit dem Rohtextausschnitt aus dem Editionsdruck nach der Regel in `headRule`",
+          "verdict": "korrekt",
+          "expectedHead": "حميد ابن أبي حميد الطويل أبو عبيدة البصري",
+          "reason": "Kopf deckt sich mit dem Soll-Kopf nach der oben festgelegten Regel."
+        }
+      ],
+      "adjudication": null
+    },
+    {
+      "id": "taqrib-2079-144-2077",
+      "frameIndex": 95,
+      "sourceId": "taqrib",
+      "entryNumber": 2079,
+      "stratum": "taqrib|L3|K0|N0",
+      "inclusionWeight": 18,
+      "extractedHead": "زياد ويقال زيد ابن سعد ابن ضميرة ويقال زياد ابن ضميرة ابن سعد [ويقال: زيد بن ضميرة]",
+      "annotations": [
+        {
+          "annotator": "A1",
+          "annotatorKind": "single-agent-first-pass",
+          "method": "Vergleich des Importerkopfes mit dem Rohtextausschnitt aus dem Editionsdruck nach der Regel in `headRule`",
+          "verdict": "zu-lang",
+          "expectedHead": "زياد بن سعد بن ضميرة",
+          "reason": "Der Kopf fuehrt alle drei Namenslesungen samt Herausgeberklammer; die Varianten gehoeren in alternateNameForms."
+        }
+      ],
+      "adjudication": null
+    },
+    {
+      "id": "taqrib-4585-316-4585",
+      "frameIndex": 96,
+      "sourceId": "taqrib",
+      "entryNumber": 4585,
+      "stratum": "taqrib|L3|K0|N1",
+      "inclusionWeight": 345,
+      "extractedHead": "عصمة أوله وسكون المهملة ابن راشد الأملوكي الهمزة واللام وسكون الميم بينهما شامي",
+      "annotations": [
+        {
+          "annotator": "A1",
+          "annotatorKind": "single-agent-first-pass",
+          "method": "Vergleich des Importerkopfes mit dem Rohtextausschnitt aus dem Editionsdruck nach der Regel in `headRule`",
+          "verdict": "falsch",
+          "expectedHead": "عصمة بن راشد الأملوكي",
+          "reason": "Zwei Orthographie-Einschuebe nur teilweise entfernt; «شامي» ist zudem eine Herkunftsangabe."
+        }
+      ],
+      "adjudication": null
+    },
+    {
+      "id": "taqrib-6683-458-6684",
+      "frameIndex": 97,
+      "sourceId": "taqrib",
+      "entryNumber": 6683,
+      "stratum": "taqrib|L3|K1|N0",
+      "inclusionWeight": 19,
+      "extractedHead": "مصدع أوله وسكون ثانيه وفتح ثالثه أبو يحيى الأعرج المعرقب [الأجرد]",
+      "annotations": [
+        {
+          "annotator": "A1",
+          "annotatorKind": "single-agent-first-pass",
+          "method": "Vergleich des Importerkopfes mit dem Rohtextausschnitt aus dem Editionsdruck nach der Regel in `headRule`",
+          "verdict": "falsch",
+          "expectedHead": "مصدع أبو يحيى الأعرج المعرقب",
+          "reason": "Rest des Orthographie-Einschubs «أوله وسكون ثانيه وفتح ثالثه» steht im Kopf."
+        }
+      ],
+      "adjudication": null
+    },
+    {
+      "id": "taqrib-4525-312-4525",
+      "frameIndex": 98,
+      "sourceId": "taqrib",
+      "entryNumber": 4525,
+      "stratum": "taqrib|L3|K1|N1",
+      "inclusionWeight": 353,
+      "extractedHead": "عثمان ابن الهيثم ابن جهم ابن عيسى العبدي أبو عمرو البصري المؤذن",
+      "annotations": [
+        {
+          "annotator": "A1",
+          "annotatorKind": "single-agent-first-pass",
+          "method": "Vergleich des Importerkopfes mit dem Rohtextausschnitt aus dem Editionsdruck nach der Regel in `headRule`",
+          "verdict": "korrekt",
+          "expectedHead": "عثمان ابن الهيثم ابن جهم ابن عيسى العبدي أبو عمرو البصري المؤذن",
+          "reason": "Kopf deckt sich mit dem Soll-Kopf nach der oben festgelegten Regel."
+        }
+      ],
+      "adjudication": null
+    },
+    {
+      "id": "taqrib-6586-452-6587",
+      "frameIndex": 99,
+      "sourceId": "taqrib",
+      "entryNumber": 6586,
+      "stratum": "taqrib|L3|K1|N1",
+      "inclusionWeight": 353,
+      "extractedHead": "مسافع ابن عبد الله ابن شيبة ابن عثمان العبدري [العبدي] أبو سليمان المكي الحجبي",
+      "annotations": [
+        {
+          "annotator": "A1",
+          "annotatorKind": "single-agent-first-pass",
+          "method": "Vergleich des Importerkopfes mit dem Rohtextausschnitt aus dem Editionsdruck nach der Regel in `headRule`",
+          "verdict": "korrekt",
+          "expectedHead": "مسافع ابن عبد الله ابن شيبة ابن عثمان العبدري [العبدي] أبو سليمان المكي الحجبي",
+          "reason": "Kopf deckt sich mit dem Soll-Kopf nach der oben festgelegten Regel."
+        }
+      ],
+      "adjudication": null
+    }
+  ]
+}

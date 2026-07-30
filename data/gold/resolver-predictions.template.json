@@ -1,0 +1,19 @@
+{
+  "artifactType": "resolver-predictions",
+  "schemaVersion": "p47-gold-1.0.0",
+  "resolverVersion": "REPLACE_WITH_RESOLVER_VERSION",
+  "weightProfileVersion": "REPLACE_WITH_WEIGHT_PROFILE_VERSION",
+  "frameDigests": {
+    "hadith-occurrences": "REPLACE_WITH_FRAME_DIGEST",
+    "narrator-forms": "REPLACE_WITH_FRAME_DIGEST"
+  },
+  "items": [
+    {
+      "task": "hadith-occurrences",
+      "id": "REPLACE_WITH_FRAME_ITEM_ID",
+      "decision": "linked",
+      "narratorId": "REPLACE_WITH_STABLE_CANONICAL_PERSON_ID",
+      "narratorRevision": 1
+    }
+  ]
+}

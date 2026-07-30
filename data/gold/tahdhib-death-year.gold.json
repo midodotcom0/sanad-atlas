@@ -1,0 +1,1852 @@
+{
+  "provenance": {
+    "frame": "data/gold/tahdhib-death-year.frame.json",
+    "frameDigest": "0ec8e01df07264c8e6d3099cbf1d4622",
+    "seed": "sanad-atlas/gold/2026-07-30",
+    "annotationVersion": "gold-death-year-1.0.0",
+    "independentAnnotations": 1,
+    "agreementMeasure": null,
+    "agreementNote": "Nur eine unabhaengige Annotation (A1). Ein Uebereinstimmungsmaß ist bis zu einer zweiten, unabhaengig erhobenen Annotation NICHT bestimmt und wird hier auch nicht geschaetzt.",
+    "boundary": "Die Urteile stammen aus der Lektuere des Eintragstextes, nicht aus der Parserausgabe. Die Parserausgabe steht im Rahmen als Vergleichsgroesse und wurde nach dem Urteil gegengelesen.",
+    "limits": "Der Eintragstext ist die normalisierte Fassung (Diakritika entfernt). Die Normalisierung entfernt keine Sterbeangaben; sie ist aber dieselbe, die auch der Parser sieht — ein Normalisierungsfehler, der eine Sterbeangabe zerstoert, bliebe unentdeckt."
+  },
+  "classes": {
+    "year-missed": {
+      "usable": true,
+      "note": "vollstaendig geschriebenes Jahr, das der Parser uebersieht — echter Parserfehler"
+    },
+    "year-without-century-early": {
+      "usable": true,
+      "note": "Jahr ohne Hunderterwort; woertliche Lesung < 100 ist richtig und im Eintrag belegt"
+    },
+    "year-without-century-elided": {
+      "usable": false,
+      "note": "Jahr ohne Hunderterwort; woertliche Lesung falsch, Jahrhundert aus dem Eintrag NICHT belegbar"
+    },
+    "death-year-via-event-in-entry": {
+      "usable": null,
+      "note": "Todesereignis und Ereignisjahr stehen im Eintrag, aber getrennt; nur ueber eine Verknuepfung erreichbar"
+    },
+    "death-statement-no-year": {
+      "usable": false,
+      "note": "Sterbeangabe ohne bestimmbares Jahr"
+    },
+    "no-death-statement": {
+      "usable": false,
+      "note": "keine Sterbeangabe ueber den Eintragsgegenstand"
+    },
+    "unclear": {
+      "usable": null,
+      "note": "nicht entscheidbar"
+    }
+  },
+  "counts": {
+    "no-death-statement": 86,
+    "death-statement-no-year": 8,
+    "year-without-century-elided": 1,
+    "death-year-via-event-in-entry": 1,
+    "year-without-century-early": 4
+  },
+  "items": [
+    {
+      "id": "tahdhib-5230-7730-5231",
+      "frameIndex": 0,
+      "entryNumber": 5230,
+      "nameSurface": "عمر بن محمد بن عبد الله بن المهاجر الشُّعَيْثِيّ، النَّصريّ الدِّمشقيّ",
+      "annotations": [
+        {
+          "annotator": "A1",
+          "annotatorKind": "single-agent-first-pass",
+          "method": "vollstaendige Lektuere des Eintragstextes; anschliessend maschineller Gegenscan auf 19 Sterbe- und Lebensverben, um uebersehene Stellen aufzudecken",
+          "class": "no-death-statement",
+          "usableForDeathYear": false,
+          "evidence": null,
+          "reason": "Vollstaendig gelesen; kein Sterbeverb und keine Sterbeangabe ueber den Eintragsgegenstand im Text."
+        }
+      ],
+      "adjudication": null
+    },
+    {
+      "id": "tahdhib-2781-3986-2782",
+      "frameIndex": 1,
+      "entryNumber": 2781,
+      "nameSurface": "سَهْل بن صالح أبو صالح البغداديُّ",
+      "annotations": [
+        {
+          "annotator": "A1",
+          "annotatorKind": "single-agent-first-pass",
+          "method": "vollstaendige Lektuere des Eintragstextes; anschliessend maschineller Gegenscan auf 19 Sterbe- und Lebensverben, um uebersehene Stellen aufzudecken",
+          "class": "no-death-statement",
+          "usableForDeathYear": false,
+          "evidence": null,
+          "reason": "Vollstaendig gelesen; kein Sterbeverb und keine Sterbeangabe ueber den Eintragsgegenstand im Text."
+        }
+      ],
+      "adjudication": null
+    },
+    {
+      "id": "tahdhib-1980-2940-1981",
+      "frameIndex": 2,
+      "entryNumber": 1980,
+      "nameSurface": "الربيع بن خالد الضبي، كوفي",
+      "annotations": [
+        {
+          "annotator": "A1",
+          "annotatorKind": "single-agent-first-pass",
+          "method": "vollstaendige Lektuere des Eintragstextes; anschliessend maschineller Gegenscan auf 19 Sterbe- und Lebensverben, um uebersehene Stellen aufzudecken",
+          "class": "death-statement-no-year",
+          "usableForDeathYear": false,
+          "evidence": "يقال: (قتل في الجماجم)",
+          "reason": "Todesart und Schlacht genannt, kein Jahr im Eintrag. Das Jahr von al-Ǧamāǧim steht nicht im Text; es zu ergaenzen waere externes Wissen."
+        }
+      ],
+      "adjudication": null
+    },
+    {
+      "id": "tahdhib-1107-1864-1108",
+      "frameIndex": 3,
+      "entryNumber": 1107,
+      "nameSurface": "الحَارِث بن مسلم",
+      "annotations": [
+        {
+          "annotator": "A1",
+          "annotatorKind": "single-agent-first-pass",
+          "method": "vollstaendige Lektuere des Eintragstextes; anschliessend maschineller Gegenscan auf 19 Sterbe- und Lebensverben, um uebersehene Stellen aufzudecken",
+          "class": "no-death-statement",
+          "usableForDeathYear": false,
+          "evidence": null,
+          "reason": "Vollstaendig gelesen; kein Sterbeverb und keine Sterbeangabe ueber den Eintragsgegenstand im Text."
+        }
+      ],
+      "adjudication": null
+    },
+    {
+      "id": "tahdhib-1075-1819-1076",
+      "frameIndex": 4,
+      "entryNumber": 1075,
+      "nameSurface": "الحَارِث بن حاطب بن عَمْرِو بن عبيد الأنصَاريّ، رده النَّبيّ",
+      "annotations": [
+        {
+          "annotator": "A1",
+          "annotatorKind": "single-agent-first-pass",
+          "method": "vollstaendige Lektuere des Eintragstextes; anschliessend maschineller Gegenscan auf 19 Sterbe- und Lebensverben, um uebersehene Stellen aufzudecken",
+          "class": "no-death-statement",
+          "usableForDeathYear": false,
+          "evidence": null,
+          "reason": "Vollstaendig gelesen; kein Sterbeverb und keine Sterbeangabe ueber den Eintragsgegenstand im Text."
+        }
+      ],
+      "adjudication": null
+    },
+    {
+      "id": "tahdhib-4595-6661-4596",
+      "frameIndex": 5,
+      "entryNumber": 4595,
+      "nameSurface": "عُبَيْد بن الحسن، المزنيّ",
+      "annotations": [
+        {
+          "annotator": "A1",
+          "annotatorKind": "single-agent-first-pass",
+          "method": "vollstaendige Lektuere des Eintragstextes; anschliessend maschineller Gegenscan auf 19 Sterbe- und Lebensverben, um uebersehene Stellen aufzudecken",
+          "class": "no-death-statement",
+          "usableForDeathYear": false,
+          "evidence": null,
+          "reason": "Vollstaendig gelesen; kein Sterbeverb und keine Sterbeangabe ueber den Eintragsgegenstand im Text."
+        }
+      ],
+      "adjudication": null
+    },
+    {
+      "id": "tahdhib-4682-6775-4683",
+      "frameIndex": 6,
+      "entryNumber": 4682,
+      "nameSurface": "عثمان بن إسحاق بن خَرَشَة، القرشي، العَامِرِي، المدني",
+      "annotations": [
+        {
+          "annotator": "A1",
+          "annotatorKind": "single-agent-first-pass",
+          "method": "vollstaendige Lektuere des Eintragstextes; anschliessend maschineller Gegenscan auf 19 Sterbe- und Lebensverben, um uebersehene Stellen aufzudecken",
+          "class": "no-death-statement",
+          "usableForDeathYear": false,
+          "evidence": null,
+          "reason": "Vollstaendig gelesen; kein Sterbeverb und keine Sterbeangabe ueber den Eintragsgegenstand im Text."
+        }
+      ],
+      "adjudication": null
+    },
+    {
+      "id": "tahdhib-4318-6166-4319",
+      "frameIndex": 7,
+      "entryNumber": 4318,
+      "nameSurface": "عبد العزيز بن عبد الله بن خالد بن أَسِيْد بن أبي العيص بن أمية بن عبد شمس",
+      "annotations": [
+        {
+          "annotator": "A1",
+          "annotatorKind": "single-agent-first-pass",
+          "method": "vollstaendige Lektuere des Eintragstextes; anschliessend maschineller Gegenscan auf 19 Sterbe- und Lebensverben, um uebersehene Stellen aufzudecken",
+          "class": "death-statement-no-year",
+          "usableForDeathYear": false,
+          "evidence": "ومات برصافه هشام",
+          "reason": "Sterbeort und Regierungszeit als Rahmen, kein Jahr. Das im Eintrag genannte Jahr 98 gehoert zur Pilgerfuehrung, nicht zum Tod."
+        }
+      ],
+      "adjudication": null
+    },
+    {
+      "id": "tahdhib-8945-12605-8946",
+      "frameIndex": 8,
+      "entryNumber": 8945,
+      "nameSurface": "أبو موسى",
+      "annotations": [
+        {
+          "annotator": "A1",
+          "annotatorKind": "single-agent-first-pass",
+          "method": "vollstaendige Lektuere des Eintragstextes; anschliessend maschineller Gegenscan auf 19 Sterbe- und Lebensverben, um uebersehene Stellen aufzudecken",
+          "class": "no-death-statement",
+          "usableForDeathYear": false,
+          "evidence": null,
+          "reason": "Vollstaendig gelesen; kein Sterbeverb und keine Sterbeangabe ueber den Eintragsgegenstand im Text."
+        }
+      ],
+      "adjudication": null
+    },
+    {
+      "id": "tahdhib-2810-4019-2811",
+      "frameIndex": 9,
+      "entryNumber": 2810,
+      "nameSurface": "سُوَيد بن حُجَير بن بيان الباهليُّ، أبو قَزَعة البصريُّ",
+      "annotations": [
+        {
+          "annotator": "A1",
+          "annotatorKind": "single-agent-first-pass",
+          "method": "vollstaendige Lektuere des Eintragstextes; anschliessend maschineller Gegenscan auf 19 Sterbe- und Lebensverben, um uebersehene Stellen aufzudecken",
+          "class": "no-death-statement",
+          "usableForDeathYear": false,
+          "evidence": null,
+          "reason": "Vollstaendig gelesen; kein Sterbeverb und keine Sterbeangabe ueber den Eintragsgegenstand im Text."
+        }
+      ],
+      "adjudication": null
+    },
+    {
+      "id": "tahdhib-6557-9460-6558",
+      "frameIndex": 10,
+      "entryNumber": 6557,
+      "nameSurface": "محمد بن عمر بن الوليد الكِنْدي، أبو جعفر الكوفي",
+      "annotations": [
+        {
+          "annotator": "A1",
+          "annotatorKind": "single-agent-first-pass",
+          "method": "vollstaendige Lektuere des Eintragstextes; anschliessend maschineller Gegenscan auf 19 Sterbe- und Lebensverben, um uebersehene Stellen aufzudecken",
+          "class": "year-without-century-elided",
+          "usableForDeathYear": false,
+          "evidence": "وقال محمد بن عبد الله الحضرمي: مات سنه ست وخمسين",
+          "reason": "Jahresangabe ohne Hunderterwort. Die woertliche Lesung 56 ist falsch: der Mann ist Lehrer von Tirmiḏī und Ibn Māǧa, im Eintrag steht «قدمنا الكوفه سنه خمس وخمسين وهو حي». Gemeint ist 256. Aus dem Eintrag allein ist das Jahrhundert NICHT belegt — jede Ergaenzung waere eine Erfindung."
+        }
+      ],
+      "adjudication": null
+    },
+    {
+      "id": "tahdhib-5156-7616-5157",
+      "frameIndex": 11,
+      "entryNumber": 5156,
+      "nameSurface": "عمر بن رياح العَبْدِيّ، أبو حفص البصري الضَّرير",
+      "annotations": [
+        {
+          "annotator": "A1",
+          "annotatorKind": "single-agent-first-pass",
+          "method": "vollstaendige Lektuere des Eintragstextes; anschliessend maschineller Gegenscan auf 19 Sterbe- und Lebensverben, um uebersehene Stellen aufzudecken",
+          "class": "no-death-statement",
+          "usableForDeathYear": false,
+          "evidence": null,
+          "reason": "Vollstaendig gelesen; kein Sterbeverb und keine Sterbeangabe ueber den Eintragsgegenstand im Text."
+        }
+      ],
+      "adjudication": null
+    },
+    {
+      "id": "tahdhib-2943-4224-2944",
+      "frameIndex": 12,
+      "entryNumber": 2943,
+      "nameSurface": "شَقِيقٌ العُقَيلِيُّ",
+      "annotations": [
+        {
+          "annotator": "A1",
+          "annotatorKind": "single-agent-first-pass",
+          "method": "vollstaendige Lektuere des Eintragstextes; anschliessend maschineller Gegenscan auf 19 Sterbe- und Lebensverben, um uebersehene Stellen aufzudecken",
+          "class": "no-death-statement",
+          "usableForDeathYear": false,
+          "evidence": null,
+          "reason": "Vollstaendig gelesen; kein Sterbeverb und keine Sterbeangabe ueber den Eintragsgegenstand im Text."
+        }
+      ],
+      "adjudication": null
+    },
+    {
+      "id": "tahdhib-5998-8778-5999",
+      "frameIndex": 13,
+      "entryNumber": 5998,
+      "nameSurface": "محمد بن أَبَان الغَنَوي",
+      "annotations": [
+        {
+          "annotator": "A1",
+          "annotatorKind": "single-agent-first-pass",
+          "method": "vollstaendige Lektuere des Eintragstextes; anschliessend maschineller Gegenscan auf 19 Sterbe- und Lebensverben, um uebersehene Stellen aufzudecken",
+          "class": "no-death-statement",
+          "usableForDeathYear": false,
+          "evidence": null,
+          "reason": "Vollstaendig gelesen; kein Sterbeverb und keine Sterbeangabe ueber den Eintragsgegenstand im Text."
+        }
+      ],
+      "adjudication": null
+    },
+    {
+      "id": "tahdhib-5541-8156-5542",
+      "frameIndex": 14,
+      "entryNumber": 5541,
+      "nameSurface": "العلاءُ بنُ عبدِ الكريم اليامي، أبو عَوْن الكوفي",
+      "annotations": [
+        {
+          "annotator": "A1",
+          "annotatorKind": "single-agent-first-pass",
+          "method": "vollstaendige Lektuere des Eintragstextes; anschliessend maschineller Gegenscan auf 19 Sterbe- und Lebensverben, um uebersehene Stellen aufzudecken",
+          "class": "death-statement-no-year",
+          "usableForDeathYear": false,
+          "evidence": "وقال الذهبي: مات في حدود الخمسين",
+          "reason": "Naeherung «حدود» plus fehlendes Hunderterwort. Der Parser fuehrt das korrekt als Schranke, nicht als Jahr."
+        }
+      ],
+      "adjudication": null
+    },
+    {
+      "id": "tahdhib-6576-9482-6577",
+      "frameIndex": 15,
+      "entryNumber": 6576,
+      "nameSurface": "محمد بن عمرو الحَدَثَاني",
+      "annotations": [
+        {
+          "annotator": "A1",
+          "annotatorKind": "single-agent-first-pass",
+          "method": "vollstaendige Lektuere des Eintragstextes; anschliessend maschineller Gegenscan auf 19 Sterbe- und Lebensverben, um uebersehene Stellen aufzudecken",
+          "class": "no-death-statement",
+          "usableForDeathYear": false,
+          "evidence": null,
+          "reason": "Vollstaendig gelesen; kein Sterbeverb und keine Sterbeangabe ueber den Eintragsgegenstand im Text."
+        }
+      ],
+      "adjudication": null
+    },
+    {
+      "id": "tahdhib-9297-13107-9299",
+      "frameIndex": 16,
+      "entryNumber": 9297,
+      "nameSurface": "أم محمد بن عبد الرحمن بن ثوبان",
+      "annotations": [
+        {
+          "annotator": "A1",
+          "annotatorKind": "single-agent-first-pass",
+          "method": "vollstaendige Lektuere des Eintragstextes; anschliessend maschineller Gegenscan auf 19 Sterbe- und Lebensverben, um uebersehene Stellen aufzudecken",
+          "class": "no-death-statement",
+          "usableForDeathYear": false,
+          "evidence": null,
+          "reason": "Vollstaendig gelesen; kein Sterbeverb und keine Sterbeangabe ueber den Eintragsgegenstand im Text."
+        }
+      ],
+      "adjudication": null
+    },
+    {
+      "id": "tahdhib-4369-6257-4370",
+      "frameIndex": 17,
+      "entryNumber": 4369,
+      "nameSurface": "عبد الكريم بن عبد الله بن شَقِيْق، العُقَيْلِي، البصري",
+      "annotations": [
+        {
+          "annotator": "A1",
+          "annotatorKind": "single-agent-first-pass",
+          "method": "vollstaendige Lektuere des Eintragstextes; anschliessend maschineller Gegenscan auf 19 Sterbe- und Lebensverben, um uebersehene Stellen aufzudecken",
+          "class": "no-death-statement",
+          "usableForDeathYear": false,
+          "evidence": null,
+          "reason": "Vollstaendig gelesen; kein Sterbeverb und keine Sterbeangabe ueber den Eintragsgegenstand im Text."
+        }
+      ],
+      "adjudication": null
+    },
+    {
+      "id": "tahdhib-8146-11616-8147",
+      "frameIndex": 18,
+      "entryNumber": 8146,
+      "nameSurface": "يحيى بن المُهَلَّب البَجَلي، أبو كُدَيْنَة الكوفيّ",
+      "annotations": [
+        {
+          "annotator": "A1",
+          "annotatorKind": "single-agent-first-pass",
+          "method": "vollstaendige Lektuere des Eintragstextes; anschliessend maschineller Gegenscan auf 19 Sterbe- und Lebensverben, um uebersehene Stellen aufzudecken",
+          "class": "no-death-statement",
+          "usableForDeathYear": false,
+          "evidence": null,
+          "reason": "Vollstaendig gelesen; kein Sterbeverb und keine Sterbeangabe ueber den Eintragsgegenstand im Text."
+        }
+      ],
+      "adjudication": null
+    },
+    {
+      "id": "tahdhib-2661-3818-2662",
+      "frameIndex": 19,
+      "entryNumber": 2661,
+      "nameSurface": "سُلَيمان بن جابر الهَجَريُّ",
+      "annotations": [
+        {
+          "annotator": "A1",
+          "annotatorKind": "single-agent-first-pass",
+          "method": "vollstaendige Lektuere des Eintragstextes; anschliessend maschineller Gegenscan auf 19 Sterbe- und Lebensverben, um uebersehene Stellen aufzudecken",
+          "class": "no-death-statement",
+          "usableForDeathYear": false,
+          "evidence": null,
+          "reason": "Vollstaendig gelesen; kein Sterbeverb und keine Sterbeangabe ueber den Eintragsgegenstand im Text."
+        }
+      ],
+      "adjudication": null
+    },
+    {
+      "id": "tahdhib-3578-5104-3579",
+      "frameIndex": 20,
+      "entryNumber": 3578,
+      "nameSurface": "عبد الله بن عبد الله بن عثمان بن حَكِيم بن حِزَام بن خُوَيلد الأسديُّ، الحِزَامي",
+      "annotations": [
+        {
+          "annotator": "A1",
+          "annotatorKind": "single-agent-first-pass",
+          "method": "vollstaendige Lektuere des Eintragstextes; anschliessend maschineller Gegenscan auf 19 Sterbe- und Lebensverben, um uebersehene Stellen aufzudecken",
+          "class": "no-death-statement",
+          "usableForDeathYear": false,
+          "evidence": null,
+          "reason": "Vollstaendig gelesen; kein Sterbeverb und keine Sterbeangabe ueber den Eintragsgegenstand im Text."
+        }
+      ],
+      "adjudication": null
+    },
+    {
+      "id": "tahdhib-6812-9783-6813",
+      "frameIndex": 21,
+      "entryNumber": 6812,
+      "nameSurface": "محمد بن فلان بن طلحة",
+      "annotations": [
+        {
+          "annotator": "A1",
+          "annotatorKind": "single-agent-first-pass",
+          "method": "vollstaendige Lektuere des Eintragstextes; anschliessend maschineller Gegenscan auf 19 Sterbe- und Lebensverben, um uebersehene Stellen aufzudecken",
+          "class": "no-death-statement",
+          "usableForDeathYear": false,
+          "evidence": null,
+          "reason": "Vollstaendig gelesen; kein Sterbeverb und keine Sterbeangabe ueber den Eintragsgegenstand im Text."
+        }
+      ],
+      "adjudication": null
+    },
+    {
+      "id": "tahdhib-7771-11063-7772",
+      "frameIndex": 22,
+      "entryNumber": 7771,
+      "nameSurface": "همَّام بن يَحْيَى",
+      "annotations": [
+        {
+          "annotator": "A1",
+          "annotatorKind": "single-agent-first-pass",
+          "method": "vollstaendige Lektuere des Eintragstextes; anschliessend maschineller Gegenscan auf 19 Sterbe- und Lebensverben, um uebersehene Stellen aufzudecken",
+          "class": "no-death-statement",
+          "usableForDeathYear": false,
+          "evidence": null,
+          "reason": "Vollstaendig gelesen; kein Sterbeverb und keine Sterbeangabe ueber den Eintragsgegenstand im Text."
+        }
+      ],
+      "adjudication": null
+    },
+    {
+      "id": "tahdhib-7150-10172-7151",
+      "frameIndex": 23,
+      "entryNumber": 7150,
+      "nameSurface": "مُعاذ بن محمد محمد بن مُعاذ بن محمد بن أُبَيٍّ بن كعب",
+      "annotations": [
+        {
+          "annotator": "A1",
+          "annotatorKind": "single-agent-first-pass",
+          "method": "vollstaendige Lektuere des Eintragstextes; anschliessend maschineller Gegenscan auf 19 Sterbe- und Lebensverben, um uebersehene Stellen aufzudecken",
+          "class": "no-death-statement",
+          "usableForDeathYear": false,
+          "evidence": null,
+          "reason": "Vollstaendig gelesen; kein Sterbeverb und keine Sterbeangabe ueber den Eintragsgegenstand im Text."
+        }
+      ],
+      "adjudication": null
+    },
+    {
+      "id": "tahdhib-7266-10349-7267",
+      "frameIndex": 24,
+      "entryNumber": 7266,
+      "nameSurface": "المُغِيرة بن عبد الرَّحمن بن المُغِيرة بن أبي ذئب العامري",
+      "annotations": [
+        {
+          "annotator": "A1",
+          "annotatorKind": "single-agent-first-pass",
+          "method": "vollstaendige Lektuere des Eintragstextes; anschliessend maschineller Gegenscan auf 19 Sterbe- und Lebensverben, um uebersehene Stellen aufzudecken",
+          "class": "no-death-statement",
+          "usableForDeathYear": false,
+          "evidence": null,
+          "reason": "Vollstaendig gelesen; kein Sterbeverb und keine Sterbeangabe ueber den Eintragsgegenstand im Text."
+        }
+      ],
+      "adjudication": null
+    },
+    {
+      "id": "tahdhib-6723-9675-6724",
+      "frameIndex": 25,
+      "entryNumber": 6723,
+      "nameSurface": "محمد بن أبي موسى",
+      "annotations": [
+        {
+          "annotator": "A1",
+          "annotatorKind": "single-agent-first-pass",
+          "method": "vollstaendige Lektuere des Eintragstextes; anschliessend maschineller Gegenscan auf 19 Sterbe- und Lebensverben, um uebersehene Stellen aufzudecken",
+          "class": "no-death-statement",
+          "usableForDeathYear": false,
+          "evidence": null,
+          "reason": "Vollstaendig gelesen; kein Sterbeverb und keine Sterbeangabe ueber den Eintragsgegenstand im Text."
+        }
+      ],
+      "adjudication": null
+    },
+    {
+      "id": "tahdhib-8581-12174-8582",
+      "frameIndex": 26,
+      "entryNumber": 8581,
+      "nameSurface": "أبو حَصِين بن يحيى بن سليمان الرازي",
+      "annotations": [
+        {
+          "annotator": "A1",
+          "annotatorKind": "single-agent-first-pass",
+          "method": "vollstaendige Lektuere des Eintragstextes; anschliessend maschineller Gegenscan auf 19 Sterbe- und Lebensverben, um uebersehene Stellen aufzudecken",
+          "class": "no-death-statement",
+          "usableForDeathYear": false,
+          "evidence": null,
+          "reason": "Vollstaendig gelesen; kein Sterbeverb und keine Sterbeangabe ueber den Eintragsgegenstand im Text."
+        }
+      ],
+      "adjudication": null
+    },
+    {
+      "id": "tahdhib-6511-9403-6512",
+      "frameIndex": 27,
+      "entryNumber": 6511,
+      "nameSurface": "محمد بن عثمان بن عبد الرحمن بن سعيد بن يربوع المخزومي المدني",
+      "annotations": [
+        {
+          "annotator": "A1",
+          "annotatorKind": "single-agent-first-pass",
+          "method": "vollstaendige Lektuere des Eintragstextes; anschliessend maschineller Gegenscan auf 19 Sterbe- und Lebensverben, um uebersehene Stellen aufzudecken",
+          "class": "no-death-statement",
+          "usableForDeathYear": false,
+          "evidence": null,
+          "reason": "Vollstaendig gelesen; kein Sterbeverb und keine Sterbeangabe ueber den Eintragsgegenstand im Text."
+        }
+      ],
+      "adjudication": null
+    },
+    {
+      "id": "tahdhib-7245-10323-7246",
+      "frameIndex": 28,
+      "entryNumber": 7245,
+      "nameSurface": "المُغِيرة بن أبي بُرْدَة",
+      "annotations": [
+        {
+          "annotator": "A1",
+          "annotatorKind": "single-agent-first-pass",
+          "method": "vollstaendige Lektuere des Eintragstextes; anschliessend maschineller Gegenscan auf 19 Sterbe- und Lebensverben, um uebersehene Stellen aufzudecken",
+          "class": "no-death-statement",
+          "usableForDeathYear": false,
+          "evidence": null,
+          "reason": "Vollstaendig gelesen; kein Sterbeverb und keine Sterbeangabe ueber den Eintragsgegenstand im Text."
+        }
+      ],
+      "adjudication": null
+    },
+    {
+      "id": "tahdhib-4382-6295-4383",
+      "frameIndex": 29,
+      "entryNumber": 4382,
+      "nameSurface": "عبد الملك بن أَعْيَن، الكوفي",
+      "annotations": [
+        {
+          "annotator": "A1",
+          "annotatorKind": "single-agent-first-pass",
+          "method": "vollstaendige Lektuere des Eintragstextes; anschliessend maschineller Gegenscan auf 19 Sterbe- und Lebensverben, um uebersehene Stellen aufzudecken",
+          "class": "no-death-statement",
+          "usableForDeathYear": false,
+          "evidence": null,
+          "reason": "Vollstaendig gelesen; kein Sterbeverb und keine Sterbeangabe ueber den Eintragsgegenstand im Text."
+        }
+      ],
+      "adjudication": null
+    },
+    {
+      "id": "tahdhib-7421-10561-7422",
+      "frameIndex": 30,
+      "entryNumber": 7421,
+      "nameSurface": "(م د تم مق موسى بن عبد الله بن يزيد الخَطْمي الكوفي",
+      "annotations": [
+        {
+          "annotator": "A1",
+          "annotatorKind": "single-agent-first-pass",
+          "method": "vollstaendige Lektuere des Eintragstextes; anschliessend maschineller Gegenscan auf 19 Sterbe- und Lebensverben, um uebersehene Stellen aufzudecken",
+          "class": "no-death-statement",
+          "usableForDeathYear": false,
+          "evidence": null,
+          "reason": "Vollstaendig gelesen; kein Sterbeverb und keine Sterbeangabe ueber den Eintragsgegenstand im Text."
+        }
+      ],
+      "adjudication": null
+    },
+    {
+      "id": "tahdhib-3714-5283-3715",
+      "frameIndex": 31,
+      "entryNumber": 3714,
+      "nameSurface": "عبد الله بن قيس النَّخَعِيُّ، كوفيٌّ",
+      "annotations": [
+        {
+          "annotator": "A1",
+          "annotatorKind": "single-agent-first-pass",
+          "method": "vollstaendige Lektuere des Eintragstextes; anschliessend maschineller Gegenscan auf 19 Sterbe- und Lebensverben, um uebersehene Stellen aufzudecken",
+          "class": "no-death-statement",
+          "usableForDeathYear": false,
+          "evidence": null,
+          "reason": "Vollstaendig gelesen; kein Sterbeverb und keine Sterbeangabe ueber den Eintragsgegenstand im Text."
+        }
+      ],
+      "adjudication": null
+    },
+    {
+      "id": "tahdhib-3638-5182-3639",
+      "frameIndex": 32,
+      "entryNumber": 3638,
+      "nameSurface": "عبد الله بن عُروة بن الزُّبَير بن العَوَّام، أبو بكر الأَسَديُّ",
+      "annotations": [
+        {
+          "annotator": "A1",
+          "annotatorKind": "single-agent-first-pass",
+          "method": "vollstaendige Lektuere des Eintragstextes; anschliessend maschineller Gegenscan auf 19 Sterbe- und Lebensverben, um uebersehene Stellen aufzudecken",
+          "class": "death-statement-no-year",
+          "usableForDeathYear": false,
+          "evidence": "وقال الذهبي: بقي الي قريب العشرين وميه … فقد بقي عبد الله الي سنه خمس وعشرين وميه او بعدها",
+          "reason": "Nur Lebendaussagen (alive_in) und eine untere Schranke, keine Sterbeangabe. «بلغ خمسا او ستا وتسعين سنه» ist ein Lebensalter."
+        }
+      ],
+      "adjudication": null
+    },
+    {
+      "id": "tahdhib-3056-4365-3057",
+      "frameIndex": 33,
+      "entryNumber": 3056,
+      "nameSurface": "(تمييز): صَعْصَعة بن نَاجِية بن عِقَال بن محمد بن سُفيان بن مُجَاشع بن دَارم التميميُّ",
+      "annotations": [
+        {
+          "annotator": "A1",
+          "annotatorKind": "single-agent-first-pass",
+          "method": "vollstaendige Lektuere des Eintragstextes; anschliessend maschineller Gegenscan auf 19 Sterbe- und Lebensverben, um uebersehene Stellen aufzudecken",
+          "class": "no-death-statement",
+          "usableForDeathYear": false,
+          "evidence": null,
+          "reason": "Vollstaendig gelesen; kein Sterbeverb und keine Sterbeangabe ueber den Eintragsgegenstand im Text."
+        }
+      ],
+      "adjudication": null
+    },
+    {
+      "id": "tahdhib-1051-1798-1052",
+      "frameIndex": 34,
+      "entryNumber": 1051,
+      "nameSurface": "حابس بنُ سَعْد",
+      "annotations": [
+        {
+          "annotator": "A1",
+          "annotatorKind": "single-agent-first-pass",
+          "method": "vollstaendige Lektuere des Eintragstextes; anschliessend maschineller Gegenscan auf 19 Sterbe- und Lebensverben, um uebersehene Stellen aufzudecken",
+          "class": "death-year-via-event-in-entry",
+          "usableForDeathYear": null,
+          "evidence": "وقتل بصفين\" وقال يعقوب بن سفيان: كانت صفين في شهر ربيع الاول، سنه سبع وثلاثين",
+          "reason": "Todesereignis und Ereignisjahr stehen BEIDE im Eintrag, aber in zwei getrennten Saetzen. 37 folgt erst aus der Verknuepfung. Zusaetzlich ist die Person selbst umstritten («ويغلب علي الظن ان ليس له صحبه»)."
+        }
+      ],
+      "adjudication": null
+    },
+    {
+      "id": "tahdhib-3953-5608-3954",
+      "frameIndex": 35,
+      "entryNumber": 3953,
+      "nameSurface": "عبد الحميد بن عبد الرحمن المدنيُّ",
+      "annotations": [
+        {
+          "annotator": "A1",
+          "annotatorKind": "single-agent-first-pass",
+          "method": "vollstaendige Lektuere des Eintragstextes; anschliessend maschineller Gegenscan auf 19 Sterbe- und Lebensverben, um uebersehene Stellen aufzudecken",
+          "class": "no-death-statement",
+          "usableForDeathYear": false,
+          "evidence": null,
+          "reason": "Vollstaendig gelesen; kein Sterbeverb und keine Sterbeangabe ueber den Eintragsgegenstand im Text."
+        }
+      ],
+      "adjudication": null
+    },
+    {
+      "id": "tahdhib-7733-10966-7734",
+      "frameIndex": 36,
+      "entryNumber": 7733,
+      "nameSurface": "هشام بن إسماعيل المكِّي",
+      "annotations": [
+        {
+          "annotator": "A1",
+          "annotatorKind": "single-agent-first-pass",
+          "method": "vollstaendige Lektuere des Eintragstextes; anschliessend maschineller Gegenscan auf 19 Sterbe- und Lebensverben, um uebersehene Stellen aufzudecken",
+          "class": "no-death-statement",
+          "usableForDeathYear": false,
+          "evidence": null,
+          "reason": "Vollstaendig gelesen; kein Sterbeverb und keine Sterbeangabe ueber den Eintragsgegenstand im Text."
+        }
+      ],
+      "adjudication": null
+    },
+    {
+      "id": "tahdhib-6200-9040-6201",
+      "frameIndex": 37,
+      "entryNumber": 6200,
+      "nameSurface": "محمد بن الخَليل بن حمَّاد بن سُليْمَان الخُشَنِيّ، أبو عبد الله الدِّمشقِيّ، البَلاطِيّ",
+      "annotations": [
+        {
+          "annotator": "A1",
+          "annotatorKind": "single-agent-first-pass",
+          "method": "vollstaendige Lektuere des Eintragstextes; anschliessend maschineller Gegenscan auf 19 Sterbe- und Lebensverben, um uebersehene Stellen aufzudecken",
+          "class": "no-death-statement",
+          "usableForDeathYear": false,
+          "evidence": null,
+          "reason": "Vollstaendig gelesen; kein Sterbeverb und keine Sterbeangabe ueber den Eintragsgegenstand im Text."
+        }
+      ],
+      "adjudication": null
+    },
+    {
+      "id": "tahdhib-1840-2770-1841",
+      "frameIndex": 38,
+      "entryNumber": 1840,
+      "nameSurface": "خليفة بن غالب الليثي، أبو غالب، البصري",
+      "annotations": [
+        {
+          "annotator": "A1",
+          "annotatorKind": "single-agent-first-pass",
+          "method": "vollstaendige Lektuere des Eintragstextes; anschliessend maschineller Gegenscan auf 19 Sterbe- und Lebensverben, um uebersehene Stellen aufzudecken",
+          "class": "no-death-statement",
+          "usableForDeathYear": false,
+          "evidence": null,
+          "reason": "Vollstaendig gelesen; kein Sterbeverb und keine Sterbeangabe ueber den Eintragsgegenstand im Text."
+        }
+      ],
+      "adjudication": null
+    },
+    {
+      "id": "tahdhib-5346-7908-5347",
+      "frameIndex": 39,
+      "entryNumber": 5346,
+      "nameSurface": "عَمْرُو بنُ عثمان بنِ عبدِ الرحمن بنِ سعيد بنِ يَرْبوع بنِ عَنْكَثة بنِ عامِر بنِ مَخزوم القُرشي",
+      "annotations": [
+        {
+          "annotator": "A1",
+          "annotatorKind": "single-agent-first-pass",
+          "method": "vollstaendige Lektuere des Eintragstextes; anschliessend maschineller Gegenscan auf 19 Sterbe- und Lebensverben, um uebersehene Stellen aufzudecken",
+          "class": "no-death-statement",
+          "usableForDeathYear": false,
+          "evidence": null,
+          "reason": "Vollstaendig gelesen; kein Sterbeverb und keine Sterbeangabe ueber den Eintragsgegenstand im Text."
+        }
+      ],
+      "adjudication": null
+    },
+    {
+      "id": "tahdhib-263-639-262",
+      "frameIndex": 40,
+      "entryNumber": 263,
+      "nameSurface": "إبراهيم بن مسلم، العبديّ، أبو إسحاق، الكوفيّ",
+      "annotations": [
+        {
+          "annotator": "A1",
+          "annotatorKind": "single-agent-first-pass",
+          "method": "vollstaendige Lektuere des Eintragstextes; anschliessend maschineller Gegenscan auf 19 Sterbe- und Lebensverben, um uebersehene Stellen aufzudecken",
+          "class": "no-death-statement",
+          "usableForDeathYear": false,
+          "evidence": null,
+          "reason": "Vollstaendig gelesen; kein Sterbeverb und keine Sterbeangabe ueber den Eintragsgegenstand im Text."
+        }
+      ],
+      "adjudication": null
+    },
+    {
+      "id": "tahdhib-9181-13018-9183",
+      "frameIndex": 41,
+      "entryNumber": 9181,
+      "nameSurface": "قَيْلة أم بني أنمار",
+      "annotations": [
+        {
+          "annotator": "A1",
+          "annotatorKind": "single-agent-first-pass",
+          "method": "vollstaendige Lektuere des Eintragstextes; anschliessend maschineller Gegenscan auf 19 Sterbe- und Lebensverben, um uebersehene Stellen aufzudecken",
+          "class": "no-death-statement",
+          "usableForDeathYear": false,
+          "evidence": null,
+          "reason": "Vollstaendig gelesen; kein Sterbeverb und keine Sterbeangabe ueber den Eintragsgegenstand im Text."
+        }
+      ],
+      "adjudication": null
+    },
+    {
+      "id": "tahdhib-8852-12485-8853",
+      "frameIndex": 42,
+      "entryNumber": 8852,
+      "nameSurface": "أبو قتادة الأنصاري فارس رسول الله",
+      "annotations": [
+        {
+          "annotator": "A1",
+          "annotatorKind": "single-agent-first-pass",
+          "method": "vollstaendige Lektuere des Eintragstextes; anschliessend maschineller Gegenscan auf 19 Sterbe- und Lebensverben, um uebersehene Stellen aufzudecken",
+          "class": "year-without-century-early",
+          "usableForDeathYear": true,
+          "evidence": "وقال الواقدي: توفي بالكوفه سنه اربع وخمسين … والاكثر علي انه مات سنه اربع وخمسين",
+          "reason": "Woertliche Lesung 54 ist richtig. Im Eintrag belegt: Gefaehrte des Propheten («روي عن: النبي صلي الله عليه وسلم»), «ابو قتاده بقي الي بعد الخمسين», «فصل من مات بعد الخمسين الي الستين». Konkurrierende Lesung 38 («وحكي خليفه: سنه ثمان وثلاثين») steht daneben und ist im Text als شاذ gekennzeichnet."
+        }
+      ],
+      "adjudication": null
+    },
+    {
+      "id": "tahdhib-3994-5658-3995",
+      "frameIndex": 43,
+      "entryNumber": 3994,
+      "nameSurface": "عبد الرحمن بن بُجَيد بن وَهب بن قَيظي بن قيس بن لَوْذان بن ثَعْلَبة بن عَدي بن مَجْدَعة بن حارثة الأنصاريُّ، الحارثيُّ، المَدنيُّ، مختلف في صُحبته",
+      "annotations": [
+        {
+          "annotator": "A1",
+          "annotatorKind": "single-agent-first-pass",
+          "method": "vollstaendige Lektuere des Eintragstextes; anschliessend maschineller Gegenscan auf 19 Sterbe- und Lebensverben, um uebersehene Stellen aufzudecken",
+          "class": "no-death-statement",
+          "usableForDeathYear": false,
+          "evidence": null,
+          "reason": "Vollstaendig gelesen; kein Sterbeverb und keine Sterbeangabe ueber den Eintragsgegenstand im Text."
+        }
+      ],
+      "adjudication": null
+    },
+    {
+      "id": "tahdhib-6130-8959-6131",
+      "frameIndex": 44,
+      "entryNumber": 6130,
+      "nameSurface": "محمد بن حَبيب بن أبي حَبيب الجَرْمِي",
+      "annotations": [
+        {
+          "annotator": "A1",
+          "annotatorKind": "single-agent-first-pass",
+          "method": "vollstaendige Lektuere des Eintragstextes; anschliessend maschineller Gegenscan auf 19 Sterbe- und Lebensverben, um uebersehene Stellen aufzudecken",
+          "class": "no-death-statement",
+          "usableForDeathYear": false,
+          "evidence": null,
+          "reason": "Vollstaendig gelesen; kein Sterbeverb und keine Sterbeangabe ueber den Eintragsgegenstand im Text."
+        }
+      ],
+      "adjudication": null
+    },
+    {
+      "id": "tahdhib-5961-8719-5962",
+      "frameIndex": 45,
+      "entryNumber": 5961,
+      "nameSurface": "كُلْثُوم بن جَوْشَن القُشَيري، الرَّقِّي",
+      "annotations": [
+        {
+          "annotator": "A1",
+          "annotatorKind": "single-agent-first-pass",
+          "method": "vollstaendige Lektuere des Eintragstextes; anschliessend maschineller Gegenscan auf 19 Sterbe- und Lebensverben, um uebersehene Stellen aufzudecken",
+          "class": "no-death-statement",
+          "usableForDeathYear": false,
+          "evidence": null,
+          "reason": "Vollstaendig gelesen; kein Sterbeverb und keine Sterbeangabe ueber den Eintragsgegenstand im Text."
+        }
+      ],
+      "adjudication": null
+    },
+    {
+      "id": "tahdhib-6154-8988-6155",
+      "frameIndex": 46,
+      "entryNumber": 6154,
+      "nameSurface": "محمد بن الحُصَين التَّمِيمِيّ",
+      "annotations": [
+        {
+          "annotator": "A1",
+          "annotatorKind": "single-agent-first-pass",
+          "method": "vollstaendige Lektuere des Eintragstextes; anschliessend maschineller Gegenscan auf 19 Sterbe- und Lebensverben, um uebersehene Stellen aufzudecken",
+          "class": "no-death-statement",
+          "usableForDeathYear": false,
+          "evidence": null,
+          "reason": "Vollstaendig gelesen; kein Sterbeverb und keine Sterbeangabe ueber den Eintragsgegenstand im Text."
+        }
+      ],
+      "adjudication": null
+    },
+    {
+      "id": "tahdhib-3492-4983-3493",
+      "frameIndex": 47,
+      "entryNumber": 3492,
+      "nameSurface": "عبد الله بن السائب بن أبي السَّائب، صَيْفي بن عابد بن عبد الله بن عمر بن مخزوم المَخْزُومي، أبو السائب",
+      "annotations": [
+        {
+          "annotator": "A1",
+          "annotatorKind": "single-agent-first-pass",
+          "method": "vollstaendige Lektuere des Eintragstextes; anschliessend maschineller Gegenscan auf 19 Sterbe- und Lebensverben, um uebersehene Stellen aufzudecken",
+          "class": "death-statement-no-year",
+          "usableForDeathYear": false,
+          "evidence": "وتوفي بمكه قبل عبد الله بن الزبير بيسير",
+          "reason": "Sterbeangabe relativ zum Tod einer anderen Person, kein Jahr im Eintrag."
+        }
+      ],
+      "adjudication": null
+    },
+    {
+      "id": "tahdhib-3840-5465-3841",
+      "frameIndex": 48,
+      "entryNumber": 3840,
+      "nameSurface": "عبد الله بن نُجَيد بن عمران بن حصين الخُزَاعِيُّ",
+      "annotations": [
+        {
+          "annotator": "A1",
+          "annotatorKind": "single-agent-first-pass",
+          "method": "vollstaendige Lektuere des Eintragstextes; anschliessend maschineller Gegenscan auf 19 Sterbe- und Lebensverben, um uebersehene Stellen aufzudecken",
+          "class": "no-death-statement",
+          "usableForDeathYear": false,
+          "evidence": null,
+          "reason": "Vollstaendig gelesen; kein Sterbeverb und keine Sterbeangabe ueber den Eintragsgegenstand im Text."
+        }
+      ],
+      "adjudication": null
+    },
+    {
+      "id": "tahdhib-2468-3568-2469",
+      "frameIndex": 49,
+      "entryNumber": 2468,
+      "nameSurface": "سعيد بن عبد الرَّحمن بن أبي العَمْياء الكِنانيُّ، المصريُّ",
+      "annotations": [
+        {
+          "annotator": "A1",
+          "annotatorKind": "single-agent-first-pass",
+          "method": "vollstaendige Lektuere des Eintragstextes; anschliessend maschineller Gegenscan auf 19 Sterbe- und Lebensverben, um uebersehene Stellen aufzudecken",
+          "class": "no-death-statement",
+          "usableForDeathYear": false,
+          "evidence": null,
+          "reason": "Vollstaendig gelesen; kein Sterbeverb und keine Sterbeangabe ueber den Eintragsgegenstand im Text."
+        }
+      ],
+      "adjudication": null
+    },
+    {
+      "id": "tahdhib-4393-6318-4394",
+      "frameIndex": 50,
+      "entryNumber": 4393,
+      "nameSurface": "عبد الملك بن حسين",
+      "annotations": [
+        {
+          "annotator": "A1",
+          "annotatorKind": "single-agent-first-pass",
+          "method": "vollstaendige Lektuere des Eintragstextes; anschliessend maschineller Gegenscan auf 19 Sterbe- und Lebensverben, um uebersehene Stellen aufzudecken",
+          "class": "no-death-statement",
+          "usableForDeathYear": false,
+          "evidence": null,
+          "reason": "Vollstaendig gelesen; kein Sterbeverb und keine Sterbeangabe ueber den Eintragsgegenstand im Text."
+        }
+      ],
+      "adjudication": null
+    },
+    {
+      "id": "tahdhib-5781-8478-5782",
+      "frameIndex": 51,
+      "entryNumber": 5781,
+      "nameSurface": "القاسِمُ بنُ كَثِير بن النُّعْمان الإِسْكَنْدَراني قاضيها",
+      "annotations": [
+        {
+          "annotator": "A1",
+          "annotatorKind": "single-agent-first-pass",
+          "method": "vollstaendige Lektuere des Eintragstextes; anschliessend maschineller Gegenscan auf 19 Sterbe- und Lebensverben, um uebersehene Stellen aufzudecken",
+          "class": "death-statement-no-year",
+          "usableForDeathYear": false,
+          "evidence": "توفي قريبا من سنه عشرين وميتين",
+          "reason": "Naeherung «قريبا من». Der Parser fuehrt sie als Schranke 220 — richtig, das ist kein behauptetes Todesjahr."
+        }
+      ],
+      "adjudication": null
+    },
+    {
+      "id": "tahdhib-6856-9831-6857",
+      "frameIndex": 52,
+      "entryNumber": 6856,
+      "nameSurface": "مبارك بن سُحَيم",
+      "annotations": [
+        {
+          "annotator": "A1",
+          "annotatorKind": "single-agent-first-pass",
+          "method": "vollstaendige Lektuere des Eintragstextes; anschliessend maschineller Gegenscan auf 19 Sterbe- und Lebensverben, um uebersehene Stellen aufzudecken",
+          "class": "no-death-statement",
+          "usableForDeathYear": false,
+          "evidence": null,
+          "reason": "Vollstaendig gelesen; kein Sterbeverb und keine Sterbeangabe ueber den Eintragsgegenstand im Text."
+        }
+      ],
+      "adjudication": null
+    },
+    {
+      "id": "tahdhib-4807-6997-4808",
+      "frameIndex": 53,
+      "entryNumber": 4807,
+      "nameSurface": "عُروة بن النَّزَّال التَّمِيْمِيّ الكوفيّ",
+      "annotations": [
+        {
+          "annotator": "A1",
+          "annotatorKind": "single-agent-first-pass",
+          "method": "vollstaendige Lektuere des Eintragstextes; anschliessend maschineller Gegenscan auf 19 Sterbe- und Lebensverben, um uebersehene Stellen aufzudecken",
+          "class": "no-death-statement",
+          "usableForDeathYear": false,
+          "evidence": null,
+          "reason": "Vollstaendig gelesen; kein Sterbeverb und keine Sterbeangabe ueber den Eintragsgegenstand im Text."
+        }
+      ],
+      "adjudication": null
+    },
+    {
+      "id": "tahdhib-7252-10333-7253",
+      "frameIndex": 54,
+      "entryNumber": 7252,
+      "nameSurface": "المُغِيرة بن سلمان",
+      "annotations": [
+        {
+          "annotator": "A1",
+          "annotatorKind": "single-agent-first-pass",
+          "method": "vollstaendige Lektuere des Eintragstextes; anschliessend maschineller Gegenscan auf 19 Sterbe- und Lebensverben, um uebersehene Stellen aufzudecken",
+          "class": "no-death-statement",
+          "usableForDeathYear": false,
+          "evidence": null,
+          "reason": "Vollstaendig gelesen; kein Sterbeverb und keine Sterbeangabe ueber den Eintragsgegenstand im Text."
+        }
+      ],
+      "adjudication": null
+    },
+    {
+      "id": "tahdhib-2380-3452-2381",
+      "frameIndex": 55,
+      "entryNumber": 2380,
+      "nameSurface": "سعدان بن سالم، أبو الصباح الأيلي",
+      "annotations": [
+        {
+          "annotator": "A1",
+          "annotatorKind": "single-agent-first-pass",
+          "method": "vollstaendige Lektuere des Eintragstextes; anschliessend maschineller Gegenscan auf 19 Sterbe- und Lebensverben, um uebersehene Stellen aufzudecken",
+          "class": "no-death-statement",
+          "usableForDeathYear": false,
+          "evidence": null,
+          "reason": "Vollstaendig gelesen; kein Sterbeverb und keine Sterbeangabe ueber den Eintragsgegenstand im Text."
+        }
+      ],
+      "adjudication": null
+    },
+    {
+      "id": "tahdhib-1221-2004-1222",
+      "frameIndex": 56,
+      "entryNumber": 1221,
+      "nameSurface": "حُذَيفة بن اليَمَان",
+      "annotations": [
+        {
+          "annotator": "A1",
+          "annotatorKind": "single-agent-first-pass",
+          "method": "vollstaendige Lektuere des Eintragstextes; anschliessend maschineller Gegenscan auf 19 Sterbe- und Lebensverben, um uebersehene Stellen aufzudecken",
+          "class": "year-without-century-early",
+          "usableForDeathYear": true,
+          "evidence": "وقال ابن نمير وغيره: مات سنه ست وثلاثين",
+          "reason": "Woertliche Lesung 36 ist richtig. Im Eintrag belegt: Gefaehrte («واسلم هو وابوه وارادا حضور بدر», «روي حذيفه: عن النبي صلي الله عليه وسلم») und «ومات بعد قتل عثمان باربعين يوما» — ʿUṯmān faellt 35."
+        }
+      ],
+      "adjudication": null
+    },
+    {
+      "id": "tahdhib-5204-7690-5205",
+      "frameIndex": 57,
+      "entryNumber": 5204,
+      "nameSurface": "عمر بن عبد الملك بن حَكيم الطَّائي، أبو حفص الحِمصي",
+      "annotations": [
+        {
+          "annotator": "A1",
+          "annotatorKind": "single-agent-first-pass",
+          "method": "vollstaendige Lektuere des Eintragstextes; anschliessend maschineller Gegenscan auf 19 Sterbe- und Lebensverben, um uebersehene Stellen aufzudecken",
+          "class": "no-death-statement",
+          "usableForDeathYear": false,
+          "evidence": null,
+          "reason": "Vollstaendig gelesen; kein Sterbeverb und keine Sterbeangabe ueber den Eintragsgegenstand im Text."
+        }
+      ],
+      "adjudication": null
+    },
+    {
+      "id": "tahdhib-2274-3336-2275",
+      "frameIndex": 58,
+      "entryNumber": 2274,
+      "nameSurface": "زيد النميري",
+      "annotations": [
+        {
+          "annotator": "A1",
+          "annotatorKind": "single-agent-first-pass",
+          "method": "vollstaendige Lektuere des Eintragstextes; anschliessend maschineller Gegenscan auf 19 Sterbe- und Lebensverben, um uebersehene Stellen aufzudecken",
+          "class": "no-death-statement",
+          "usableForDeathYear": false,
+          "evidence": null,
+          "reason": "Vollstaendig gelesen; kein Sterbeverb und keine Sterbeangabe ueber den Eintragsgegenstand im Text."
+        }
+      ],
+      "adjudication": null
+    },
+    {
+      "id": "tahdhib-3362-4790-3363",
+      "frameIndex": 59,
+      "entryNumber": 3362,
+      "nameSurface": "عبد الله بن أبي أُمَامة بن ثَعْلَبة الأنصاري، الحارثيُّ، البَلَويُّ، المدنيُّ",
+      "annotations": [
+        {
+          "annotator": "A1",
+          "annotatorKind": "single-agent-first-pass",
+          "method": "vollstaendige Lektuere des Eintragstextes; anschliessend maschineller Gegenscan auf 19 Sterbe- und Lebensverben, um uebersehene Stellen aufzudecken",
+          "class": "no-death-statement",
+          "usableForDeathYear": false,
+          "evidence": null,
+          "reason": "Vollstaendig gelesen; kein Sterbeverb und keine Sterbeangabe ueber den Eintragsgegenstand im Text."
+        }
+      ],
+      "adjudication": null
+    },
+    {
+      "id": "tahdhib-5065-7481-5066",
+      "frameIndex": 60,
+      "entryNumber": 5065,
+      "nameSurface": "عليّ بن الهيثم البغداديّ",
+      "annotations": [
+        {
+          "annotator": "A1",
+          "annotatorKind": "single-agent-first-pass",
+          "method": "vollstaendige Lektuere des Eintragstextes; anschliessend maschineller Gegenscan auf 19 Sterbe- und Lebensverben, um uebersehene Stellen aufzudecken",
+          "class": "no-death-statement",
+          "usableForDeathYear": false,
+          "evidence": null,
+          "reason": "Vollstaendig gelesen; kein Sterbeverb und keine Sterbeangabe ueber den Eintragsgegenstand im Text."
+        }
+      ],
+      "adjudication": null
+    },
+    {
+      "id": "tahdhib-5942-8700-5943",
+      "frameIndex": 61,
+      "entryNumber": 5942,
+      "nameSurface": "كُرَيب بن أَبْرَهة بن الصَّبَّاح",
+      "annotations": [
+        {
+          "annotator": "A1",
+          "annotatorKind": "single-agent-first-pass",
+          "method": "vollstaendige Lektuere des Eintragstextes; anschliessend maschineller Gegenscan auf 19 Sterbe- und Lebensverben, um uebersehene Stellen aufzudecken",
+          "class": "no-death-statement",
+          "usableForDeathYear": false,
+          "evidence": null,
+          "reason": "Vollstaendig gelesen; kein Sterbeverb und keine Sterbeangabe ueber den Eintragsgegenstand im Text."
+        }
+      ],
+      "adjudication": null
+    },
+    {
+      "id": "tahdhib-5235-7733-5236",
+      "frameIndex": 62,
+      "entryNumber": 5235,
+      "nameSurface": "عمر بن مُعَتِّب",
+      "annotations": [
+        {
+          "annotator": "A1",
+          "annotatorKind": "single-agent-first-pass",
+          "method": "vollstaendige Lektuere des Eintragstextes; anschliessend maschineller Gegenscan auf 19 Sterbe- und Lebensverben, um uebersehene Stellen aufzudecken",
+          "class": "no-death-statement",
+          "usableForDeathYear": false,
+          "evidence": null,
+          "reason": "Vollstaendig gelesen; kein Sterbeverb und keine Sterbeangabe ueber den Eintragsgegenstand im Text."
+        }
+      ],
+      "adjudication": null
+    },
+    {
+      "id": "tahdhib-6498-9393-6499",
+      "frameIndex": 63,
+      "entryNumber": 6498,
+      "nameSurface": "محمد بن عبيد الكِنْدي، أبو جابر الكوفي",
+      "annotations": [
+        {
+          "annotator": "A1",
+          "annotatorKind": "single-agent-first-pass",
+          "method": "vollstaendige Lektuere des Eintragstextes; anschliessend maschineller Gegenscan auf 19 Sterbe- und Lebensverben, um uebersehene Stellen aufzudecken",
+          "class": "no-death-statement",
+          "usableForDeathYear": false,
+          "evidence": null,
+          "reason": "Vollstaendig gelesen; kein Sterbeverb und keine Sterbeangabe ueber den Eintragsgegenstand im Text."
+        }
+      ],
+      "adjudication": null
+    },
+    {
+      "id": "tahdhib-3950-5604-3951",
+      "frameIndex": 64,
+      "entryNumber": 3950,
+      "nameSurface": "عبد الحميد بن عبد الله بن أبي عَمرو بن حَفْص بن المغيرة بن عبد الله بن عُمَر بن مَخْزوم المخزوميُّ",
+      "annotations": [
+        {
+          "annotator": "A1",
+          "annotatorKind": "single-agent-first-pass",
+          "method": "vollstaendige Lektuere des Eintragstextes; anschliessend maschineller Gegenscan auf 19 Sterbe- und Lebensverben, um uebersehene Stellen aufzudecken",
+          "class": "no-death-statement",
+          "usableForDeathYear": false,
+          "evidence": null,
+          "reason": "Vollstaendig gelesen; kein Sterbeverb und keine Sterbeangabe ueber den Eintragsgegenstand im Text."
+        }
+      ],
+      "adjudication": null
+    },
+    {
+      "id": "tahdhib-335-742-334",
+      "frameIndex": 65,
+      "entryNumber": 335,
+      "nameSurface": "أزهر بن راشد، الكاهليّ",
+      "annotations": [
+        {
+          "annotator": "A1",
+          "annotatorKind": "single-agent-first-pass",
+          "method": "vollstaendige Lektuere des Eintragstextes; anschliessend maschineller Gegenscan auf 19 Sterbe- und Lebensverben, um uebersehene Stellen aufzudecken",
+          "class": "no-death-statement",
+          "usableForDeathYear": false,
+          "evidence": null,
+          "reason": "Vollstaendig gelesen; kein Sterbeverb und keine Sterbeangabe ueber den Eintragsgegenstand im Text."
+        }
+      ],
+      "adjudication": null
+    },
+    {
+      "id": "tahdhib-2253-3312-2254",
+      "frameIndex": 66,
+      "entryNumber": 2253,
+      "nameSurface": "زيد بن أبي عتاب",
+      "annotations": [
+        {
+          "annotator": "A1",
+          "annotatorKind": "single-agent-first-pass",
+          "method": "vollstaendige Lektuere des Eintragstextes; anschliessend maschineller Gegenscan auf 19 Sterbe- und Lebensverben, um uebersehene Stellen aufzudecken",
+          "class": "no-death-statement",
+          "usableForDeathYear": false,
+          "evidence": null,
+          "reason": "Vollstaendig gelesen; kein Sterbeverb und keine Sterbeangabe ueber den Eintragsgegenstand im Text."
+        }
+      ],
+      "adjudication": null
+    },
+    {
+      "id": "tahdhib-7057-10056-7058",
+      "frameIndex": 67,
+      "entryNumber": 7057,
+      "nameSurface": "مسلم بن يسار الجهنيّ",
+      "annotations": [
+        {
+          "annotator": "A1",
+          "annotatorKind": "single-agent-first-pass",
+          "method": "vollstaendige Lektuere des Eintragstextes; anschliessend maschineller Gegenscan auf 19 Sterbe- und Lebensverben, um uebersehene Stellen aufzudecken",
+          "class": "no-death-statement",
+          "usableForDeathYear": false,
+          "evidence": null,
+          "reason": "Vollstaendig gelesen; kein Sterbeverb und keine Sterbeangabe ueber den Eintragsgegenstand im Text."
+        }
+      ],
+      "adjudication": null
+    },
+    {
+      "id": "tahdhib-3896-5530-3897",
+      "frameIndex": 68,
+      "entryNumber": 3896,
+      "nameSurface": "عبد الله بن يَسار الأعرج، المَكيُّ",
+      "annotations": [
+        {
+          "annotator": "A1",
+          "annotatorKind": "single-agent-first-pass",
+          "method": "vollstaendige Lektuere des Eintragstextes; anschliessend maschineller Gegenscan auf 19 Sterbe- und Lebensverben, um uebersehene Stellen aufzudecken",
+          "class": "no-death-statement",
+          "usableForDeathYear": false,
+          "evidence": null,
+          "reason": "Vollstaendig gelesen; kein Sterbeverb und keine Sterbeangabe ueber den Eintragsgegenstand im Text."
+        }
+      ],
+      "adjudication": null
+    },
+    {
+      "id": "tahdhib-1581-2488-1582",
+      "frameIndex": 69,
+      "entryNumber": 1581,
+      "nameSurface": "حماد بن عبد الرحمن الأنصاري",
+      "annotations": [
+        {
+          "annotator": "A1",
+          "annotatorKind": "single-agent-first-pass",
+          "method": "vollstaendige Lektuere des Eintragstextes; anschliessend maschineller Gegenscan auf 19 Sterbe- und Lebensverben, um uebersehene Stellen aufzudecken",
+          "class": "no-death-statement",
+          "usableForDeathYear": false,
+          "evidence": null,
+          "reason": "Vollstaendig gelesen; kein Sterbeverb und keine Sterbeangabe ueber den Eintragsgegenstand im Text."
+        }
+      ],
+      "adjudication": null
+    },
+    {
+      "id": "tahdhib-1754-2666-1755",
+      "frameIndex": 70,
+      "entryNumber": 1754,
+      "nameSurface": "خالد بن غَلَّاق القيسي",
+      "annotations": [
+        {
+          "annotator": "A1",
+          "annotatorKind": "single-agent-first-pass",
+          "method": "vollstaendige Lektuere des Eintragstextes; anschliessend maschineller Gegenscan auf 19 Sterbe- und Lebensverben, um uebersehene Stellen aufzudecken",
+          "class": "no-death-statement",
+          "usableForDeathYear": false,
+          "evidence": null,
+          "reason": "Vollstaendig gelesen; kein Sterbeverb und keine Sterbeangabe ueber den Eintragsgegenstand im Text."
+        }
+      ],
+      "adjudication": null
+    },
+    {
+      "id": "tahdhib-4392-6317-4393",
+      "frameIndex": 71,
+      "entryNumber": 4392,
+      "nameSurface": "عبد الملك بن الحسن بن أبي حكيم، الجَاري",
+      "annotations": [
+        {
+          "annotator": "A1",
+          "annotatorKind": "single-agent-first-pass",
+          "method": "vollstaendige Lektuere des Eintragstextes; anschliessend maschineller Gegenscan auf 19 Sterbe- und Lebensverben, um uebersehene Stellen aufzudecken",
+          "class": "no-death-statement",
+          "usableForDeathYear": false,
+          "evidence": null,
+          "reason": "Vollstaendig gelesen; kein Sterbeverb und keine Sterbeangabe ueber den Eintragsgegenstand im Text."
+        }
+      ],
+      "adjudication": null
+    },
+    {
+      "id": "tahdhib-4336-6209-4337",
+      "frameIndex": 72,
+      "entryNumber": 4336,
+      "nameSurface": "عبد العزيز بن مروان بن الحكم بن أبي العاص بن أمية ، أبو الأصبغ ، المدني . أمير مصر",
+      "annotations": [
+        {
+          "annotator": "A1",
+          "annotatorKind": "single-agent-first-pass",
+          "method": "vollstaendige Lektuere des Eintragstextes; anschliessend maschineller Gegenscan auf 19 Sterbe- und Lebensverben, um uebersehene Stellen aufzudecken",
+          "class": "year-without-century-early",
+          "usableForDeathYear": true,
+          "evidence": "فلم يزل بها الي ان توفي في جمادي الاخره سنه ست وثمانين",
+          "reason": "Woertliche Lesung 86 ist richtig. Im Eintrag belegt durch das zweite Jahr derselben Groessenordnung: «استخلفه علي مصر … في رجب سنه خمس وستين». Der Eintrag nennt drei abweichende Lesungen (82, 84, 85) — der richtige Zielzustand ist eine Konfliktmarkierung, nicht ein einzelnes Jahr."
+        }
+      ],
+      "adjudication": null
+    },
+    {
+      "id": "tahdhib-4468-6454-4469",
+      "frameIndex": 73,
+      "entryNumber": 4468,
+      "nameSurface": "عبد الواحد بن واصل، آخر",
+      "annotations": [
+        {
+          "annotator": "A1",
+          "annotatorKind": "single-agent-first-pass",
+          "method": "vollstaendige Lektuere des Eintragstextes; anschliessend maschineller Gegenscan auf 19 Sterbe- und Lebensverben, um uebersehene Stellen aufzudecken",
+          "class": "no-death-statement",
+          "usableForDeathYear": false,
+          "evidence": null,
+          "reason": "Vollstaendig gelesen; kein Sterbeverb und keine Sterbeangabe ueber den Eintragsgegenstand im Text."
+        }
+      ],
+      "adjudication": null
+    },
+    {
+      "id": "tahdhib-1496-2369-1497",
+      "frameIndex": 74,
+      "entryNumber": 1496,
+      "nameSurface": "حفص بن عمر بن ميمون العدني، أبو إسماعيل الملقب بالفرخ",
+      "annotations": [
+        {
+          "annotator": "A1",
+          "annotatorKind": "single-agent-first-pass",
+          "method": "vollstaendige Lektuere des Eintragstextes; anschliessend maschineller Gegenscan auf 19 Sterbe- und Lebensverben, um uebersehene Stellen aufzudecken",
+          "class": "no-death-statement",
+          "usableForDeathYear": false,
+          "evidence": null,
+          "reason": "Vollstaendig gelesen; kein Sterbeverb und keine Sterbeangabe ueber den Eintragsgegenstand im Text."
+        }
+      ],
+      "adjudication": null
+    },
+    {
+      "id": "tahdhib-3424-4881-3425",
+      "frameIndex": 75,
+      "entryNumber": 3424,
+      "nameSurface": "عبد الله بن حَسَّان التَّمِيمِيُّ، أبو الجُنَيد، العَنْبَري",
+      "annotations": [
+        {
+          "annotator": "A1",
+          "annotatorKind": "single-agent-first-pass",
+          "method": "vollstaendige Lektuere des Eintragstextes; anschliessend maschineller Gegenscan auf 19 Sterbe- und Lebensverben, um uebersehene Stellen aufzudecken",
+          "class": "no-death-statement",
+          "usableForDeathYear": false,
+          "evidence": null,
+          "reason": "Vollstaendig gelesen; kein Sterbeverb und keine Sterbeangabe ueber den Eintragsgegenstand im Text."
+        }
+      ],
+      "adjudication": null
+    },
+    {
+      "id": "tahdhib-8874-12511-8875",
+      "frameIndex": 76,
+      "entryNumber": 8874,
+      "nameSurface": "أبو ماجدة، ويقال: أبو ماجد، الحنفي، العجلي، الكوفي، اسمه عائد بن نضلة، قاله أبو حاتم",
+      "annotations": [
+        {
+          "annotator": "A1",
+          "annotatorKind": "single-agent-first-pass",
+          "method": "vollstaendige Lektuere des Eintragstextes; anschliessend maschineller Gegenscan auf 19 Sterbe- und Lebensverben, um uebersehene Stellen aufzudecken",
+          "class": "no-death-statement",
+          "usableForDeathYear": false,
+          "evidence": null,
+          "reason": "Vollstaendig gelesen; kein Sterbeverb und keine Sterbeangabe ueber den Eintragsgegenstand im Text."
+        }
+      ],
+      "adjudication": null
+    },
+    {
+      "id": "tahdhib-7673-10905-7674",
+      "frameIndex": 77,
+      "entryNumber": 7673,
+      "nameSurface": "هارون بن سعد",
+      "annotations": [
+        {
+          "annotator": "A1",
+          "annotatorKind": "single-agent-first-pass",
+          "method": "vollstaendige Lektuere des Eintragstextes; anschliessend maschineller Gegenscan auf 19 Sterbe- und Lebensverben, um uebersehene Stellen aufzudecken",
+          "class": "no-death-statement",
+          "usableForDeathYear": false,
+          "evidence": null,
+          "reason": "Vollstaendig gelesen; kein Sterbeverb und keine Sterbeangabe ueber den Eintragsgegenstand im Text."
+        }
+      ],
+      "adjudication": null
+    },
+    {
+      "id": "tahdhib-2206-3247-2207",
+      "frameIndex": 78,
+      "entryNumber": 2206,
+      "nameSurface": "زياد بن أبي مسلم",
+      "annotations": [
+        {
+          "annotator": "A1",
+          "annotatorKind": "single-agent-first-pass",
+          "method": "vollstaendige Lektuere des Eintragstextes; anschliessend maschineller Gegenscan auf 19 Sterbe- und Lebensverben, um uebersehene Stellen aufzudecken",
+          "class": "no-death-statement",
+          "usableForDeathYear": false,
+          "evidence": null,
+          "reason": "Vollstaendig gelesen; kein Sterbeverb und keine Sterbeangabe ueber den Eintragsgegenstand im Text."
+        }
+      ],
+      "adjudication": null
+    },
+    {
+      "id": "tahdhib-4098-5802-4099",
+      "frameIndex": 79,
+      "entryNumber": 4098,
+      "nameSurface": "عبد الرحمن بن صَفْوان بن قُدامَة الجُمَحيُّ",
+      "annotations": [
+        {
+          "annotator": "A1",
+          "annotatorKind": "single-agent-first-pass",
+          "method": "vollstaendige Lektuere des Eintragstextes; anschliessend maschineller Gegenscan auf 19 Sterbe- und Lebensverben, um uebersehene Stellen aufzudecken",
+          "class": "no-death-statement",
+          "usableForDeathYear": false,
+          "evidence": "اقام صفوان بن قدامه بالمدينه حتي مات بها",
+          "reason": "Die einzige Sterbeangabe im Eintrag betrifft den VATER Ṣafwān, nicht den Eintragsgegenstand ʿAbd ar-Raḥmān. Praezisionsfalle: ein Parser, der auf «مات» im Eintragstext greift, wuerde hier ein fremdes Todesdatum zuschreiben."
+        }
+      ],
+      "adjudication": null
+    },
+    {
+      "id": "tahdhib-307-697-306",
+      "frameIndex": 80,
+      "entryNumber": 307,
+      "nameSurface": "أُبيّ بن عِمارة",
+      "annotations": [
+        {
+          "annotator": "A1",
+          "annotatorKind": "single-agent-first-pass",
+          "method": "vollstaendige Lektuere des Eintragstextes; anschliessend maschineller Gegenscan auf 19 Sterbe- und Lebensverben, um uebersehene Stellen aufzudecken",
+          "class": "no-death-statement",
+          "usableForDeathYear": false,
+          "evidence": null,
+          "reason": "Vollstaendig gelesen; kein Sterbeverb und keine Sterbeangabe ueber den Eintragsgegenstand im Text."
+        }
+      ],
+      "adjudication": null
+    },
+    {
+      "id": "tahdhib-6170-9011-6171",
+      "frameIndex": 81,
+      "entryNumber": 6170,
+      "nameSurface": "محمد بن حِمْيَر جَزَريٌّ",
+      "annotations": [
+        {
+          "annotator": "A1",
+          "annotatorKind": "single-agent-first-pass",
+          "method": "vollstaendige Lektuere des Eintragstextes; anschliessend maschineller Gegenscan auf 19 Sterbe- und Lebensverben, um uebersehene Stellen aufzudecken",
+          "class": "no-death-statement",
+          "usableForDeathYear": false,
+          "evidence": null,
+          "reason": "Vollstaendig gelesen; kein Sterbeverb und keine Sterbeangabe ueber den Eintragsgegenstand im Text."
+        }
+      ],
+      "adjudication": null
+    },
+    {
+      "id": "tahdhib-5316-7862-5317",
+      "frameIndex": 82,
+      "entryNumber": 5316,
+      "nameSurface": "عمرُو بنُ صُلَيْع",
+      "annotations": [
+        {
+          "annotator": "A1",
+          "annotatorKind": "single-agent-first-pass",
+          "method": "vollstaendige Lektuere des Eintragstextes; anschliessend maschineller Gegenscan auf 19 Sterbe- und Lebensverben, um uebersehene Stellen aufzudecken",
+          "class": "no-death-statement",
+          "usableForDeathYear": false,
+          "evidence": null,
+          "reason": "Vollstaendig gelesen; kein Sterbeverb und keine Sterbeangabe ueber den Eintragsgegenstand im Text."
+        }
+      ],
+      "adjudication": null
+    },
+    {
+      "id": "tahdhib-5022-7421-5023",
+      "frameIndex": 83,
+      "entryNumber": 5022,
+      "nameSurface": "عليّ بن علقمة الأنْمَاريّ الكوفيّ",
+      "annotations": [
+        {
+          "annotator": "A1",
+          "annotatorKind": "single-agent-first-pass",
+          "method": "vollstaendige Lektuere des Eintragstextes; anschliessend maschineller Gegenscan auf 19 Sterbe- und Lebensverben, um uebersehene Stellen aufzudecken",
+          "class": "no-death-statement",
+          "usableForDeathYear": false,
+          "evidence": null,
+          "reason": "Vollstaendig gelesen; kein Sterbeverb und keine Sterbeangabe ueber den Eintragsgegenstand im Text."
+        }
+      ],
+      "adjudication": null
+    },
+    {
+      "id": "tahdhib-4643-6716-4644",
+      "frameIndex": 84,
+      "entryNumber": 4643,
+      "nameSurface": "عَبِيْدَة بن سفيان بن الحارث بن الحضرمي",
+      "annotations": [
+        {
+          "annotator": "A1",
+          "annotatorKind": "single-agent-first-pass",
+          "method": "vollstaendige Lektuere des Eintragstextes; anschliessend maschineller Gegenscan auf 19 Sterbe- und Lebensverben, um uebersehene Stellen aufzudecken",
+          "class": "no-death-statement",
+          "usableForDeathYear": false,
+          "evidence": null,
+          "reason": "Vollstaendig gelesen; kein Sterbeverb und keine Sterbeangabe ueber den Eintragsgegenstand im Text."
+        }
+      ],
+      "adjudication": null
+    },
+    {
+      "id": "tahdhib-2414-3502-2415",
+      "frameIndex": 85,
+      "entryNumber": 2414,
+      "nameSurface": "سعيد بن ذي حدَّان، كوفي",
+      "annotations": [
+        {
+          "annotator": "A1",
+          "annotatorKind": "single-agent-first-pass",
+          "method": "vollstaendige Lektuere des Eintragstextes; anschliessend maschineller Gegenscan auf 19 Sterbe- und Lebensverben, um uebersehene Stellen aufzudecken",
+          "class": "no-death-statement",
+          "usableForDeathYear": false,
+          "evidence": null,
+          "reason": "Vollstaendig gelesen; kein Sterbeverb und keine Sterbeangabe ueber den Eintragsgegenstand im Text."
+        }
+      ],
+      "adjudication": null
+    },
+    {
+      "id": "tahdhib-6575-9482-6576",
+      "frameIndex": 86,
+      "entryNumber": 6575,
+      "nameSurface": "محمد بن عمرو، أبو أحمد البَلْخِي",
+      "annotations": [
+        {
+          "annotator": "A1",
+          "annotatorKind": "single-agent-first-pass",
+          "method": "vollstaendige Lektuere des Eintragstextes; anschliessend maschineller Gegenscan auf 19 Sterbe- und Lebensverben, um uebersehene Stellen aufzudecken",
+          "class": "no-death-statement",
+          "usableForDeathYear": false,
+          "evidence": null,
+          "reason": "Vollstaendig gelesen; kein Sterbeverb und keine Sterbeangabe ueber den Eintragsgegenstand im Text."
+        }
+      ],
+      "adjudication": null
+    },
+    {
+      "id": "tahdhib-9098-12952-9100",
+      "frameIndex": 87,
+      "entryNumber": 9098,
+      "nameSurface": "دِقْرة بنت غالب الراسبَّية البصرية، أم عبد الرحمن بن أذينة",
+      "annotations": [
+        {
+          "annotator": "A1",
+          "annotatorKind": "single-agent-first-pass",
+          "method": "vollstaendige Lektuere des Eintragstextes; anschliessend maschineller Gegenscan auf 19 Sterbe- und Lebensverben, um uebersehene Stellen aufzudecken",
+          "class": "no-death-statement",
+          "usableForDeathYear": false,
+          "evidence": null,
+          "reason": "Vollstaendig gelesen; kein Sterbeverb und keine Sterbeangabe ueber den Eintragsgegenstand im Text."
+        }
+      ],
+      "adjudication": null
+    },
+    {
+      "id": "tahdhib-640-1232-641",
+      "frameIndex": 88,
+      "entryNumber": 640,
+      "nameSurface": "إياس بن نُذَير الضَّبِّيُّ، الكُوفِيّ",
+      "annotations": [
+        {
+          "annotator": "A1",
+          "annotatorKind": "single-agent-first-pass",
+          "method": "vollstaendige Lektuere des Eintragstextes; anschliessend maschineller Gegenscan auf 19 Sterbe- und Lebensverben, um uebersehene Stellen aufzudecken",
+          "class": "no-death-statement",
+          "usableForDeathYear": false,
+          "evidence": null,
+          "reason": "Vollstaendig gelesen; kein Sterbeverb und keine Sterbeangabe ueber den Eintragsgegenstand im Text."
+        }
+      ],
+      "adjudication": null
+    },
+    {
+      "id": "tahdhib-7313-10431-7314",
+      "frameIndex": 89,
+      "entryNumber": 7313,
+      "nameSurface": "المُنْذِر بن عبيد المدني",
+      "annotations": [
+        {
+          "annotator": "A1",
+          "annotatorKind": "single-agent-first-pass",
+          "method": "vollstaendige Lektuere des Eintragstextes; anschliessend maschineller Gegenscan auf 19 Sterbe- und Lebensverben, um uebersehene Stellen aufzudecken",
+          "class": "no-death-statement",
+          "usableForDeathYear": false,
+          "evidence": null,
+          "reason": "Vollstaendig gelesen; kein Sterbeverb und keine Sterbeangabe ueber den Eintragsgegenstand im Text."
+        }
+      ],
+      "adjudication": null
+    },
+    {
+      "id": "tahdhib-596-1183-596",
+      "frameIndex": 90,
+      "entryNumber": 596,
+      "nameSurface": "أُمَيُّ بن رَبِيعَة المُراديّ، الصَّيرفي، أبو عَبْد الرَّحْمَنِ، الكُوفِيّ",
+      "annotations": [
+        {
+          "annotator": "A1",
+          "annotatorKind": "single-agent-first-pass",
+          "method": "vollstaendige Lektuere des Eintragstextes; anschliessend maschineller Gegenscan auf 19 Sterbe- und Lebensverben, um uebersehene Stellen aufzudecken",
+          "class": "no-death-statement",
+          "usableForDeathYear": false,
+          "evidence": null,
+          "reason": "Vollstaendig gelesen; kein Sterbeverb und keine Sterbeangabe ueber den Eintragsgegenstand im Text."
+        }
+      ],
+      "adjudication": null
+    },
+    {
+      "id": "tahdhib-5619-8251-5620",
+      "frameIndex": 91,
+      "entryNumber": 5619,
+      "nameSurface": "عيسى بنُ مَسعود بنِ الحَكَم الزُّرَقي الأَنْصاري",
+      "annotations": [
+        {
+          "annotator": "A1",
+          "annotatorKind": "single-agent-first-pass",
+          "method": "vollstaendige Lektuere des Eintragstextes; anschliessend maschineller Gegenscan auf 19 Sterbe- und Lebensverben, um uebersehene Stellen aufzudecken",
+          "class": "no-death-statement",
+          "usableForDeathYear": false,
+          "evidence": null,
+          "reason": "Vollstaendig gelesen; kein Sterbeverb und keine Sterbeangabe ueber den Eintragsgegenstand im Text."
+        }
+      ],
+      "adjudication": null
+    },
+    {
+      "id": "tahdhib-1467-2336-1468",
+      "frameIndex": 92,
+      "entryNumber": 1467,
+      "nameSurface": "حصين بن وَحْوَح الأنصاري الأوسي المدني",
+      "annotations": [
+        {
+          "annotator": "A1",
+          "annotatorKind": "single-agent-first-pass",
+          "method": "vollstaendige Lektuere des Eintragstextes; anschliessend maschineller Gegenscan auf 19 Sterbe- und Lebensverben, um uebersehene Stellen aufzudecken",
+          "class": "death-statement-no-year",
+          "usableForDeathYear": false,
+          "evidence": "وقال ابن الكلبي: قتل هو واخوه محصن بالقادسيه",
+          "reason": "Todesereignis ohne Jahr; das Jahr von al-Qādisiyya steht nicht im Eintrag."
+        }
+      ],
+      "adjudication": null
+    },
+    {
+      "id": "tahdhib-5322-7872-5323",
+      "frameIndex": 93,
+      "entryNumber": 5322,
+      "nameSurface": "عمرُو بنُ عاصم البُرْجُمي، أبو محمد البصري",
+      "annotations": [
+        {
+          "annotator": "A1",
+          "annotatorKind": "single-agent-first-pass",
+          "method": "vollstaendige Lektuere des Eintragstextes; anschliessend maschineller Gegenscan auf 19 Sterbe- und Lebensverben, um uebersehene Stellen aufzudecken",
+          "class": "no-death-statement",
+          "usableForDeathYear": false,
+          "evidence": null,
+          "reason": "Vollstaendig gelesen; kein Sterbeverb und keine Sterbeangabe ueber den Eintragsgegenstand im Text."
+        }
+      ],
+      "adjudication": null
+    },
+    {
+      "id": "tahdhib-6950-9937-6951",
+      "frameIndex": 94,
+      "entryNumber": 6950,
+      "nameSurface": "مرثد بن أبي مرثد كَنَّاز بن الحُصَين الغَنَوي",
+      "annotations": [
+        {
+          "annotator": "A1",
+          "annotatorKind": "single-agent-first-pass",
+          "method": "vollstaendige Lektuere des Eintragstextes; anschliessend maschineller Gegenscan auf 19 Sterbe- und Lebensverben, um uebersehene Stellen aufzudecken",
+          "class": "year-without-century-early",
+          "usableForDeathYear": true,
+          "evidence": "وقتل مرثد يوم الرجيع في حياه رسول الله صلي الله عليه وسلم … كان قتله في صفر سنه اربع",
+          "reason": "Woertliche Lesung 4 ist richtig und im Eintrag doppelt belegt: «في حياه رسول الله» schliesst jedes spaetere Jahrhundert aus, «شهد بدرا» ebenso."
+        }
+      ],
+      "adjudication": null
+    },
+    {
+      "id": "tahdhib-4093-5794-4094",
+      "frameIndex": 95,
+      "entryNumber": 4093,
+      "nameSurface": "عبد الرحمن بن شَيْبة بن عُثمان القُرَشِيُّ العَبْدَريُّ المكّيُّ، خازن الكعبة",
+      "annotations": [
+        {
+          "annotator": "A1",
+          "annotatorKind": "single-agent-first-pass",
+          "method": "vollstaendige Lektuere des Eintragstextes; anschliessend maschineller Gegenscan auf 19 Sterbe- und Lebensverben, um uebersehene Stellen aufzudecken",
+          "class": "no-death-statement",
+          "usableForDeathYear": false,
+          "evidence": null,
+          "reason": "Vollstaendig gelesen; kein Sterbeverb und keine Sterbeangabe ueber den Eintragsgegenstand im Text."
+        }
+      ],
+      "adjudication": null
+    },
+    {
+      "id": "tahdhib-1451-2315-1452",
+      "frameIndex": 96,
+      "entryNumber": 1451,
+      "nameSurface": "حصين بن عبيد بن خلف الخزاعي",
+      "annotations": [
+        {
+          "annotator": "A1",
+          "annotatorKind": "single-agent-first-pass",
+          "method": "vollstaendige Lektuere des Eintragstextes; anschliessend maschineller Gegenscan auf 19 Sterbe- und Lebensverben, um uebersehene Stellen aufzudecken",
+          "class": "death-statement-no-year",
+          "usableForDeathYear": false,
+          "evidence": "وقد قيل: انه مات مشركا",
+          "reason": "Sterbeangabe ohne Jahr und ohne Ort."
+        }
+      ],
+      "adjudication": null
+    },
+    {
+      "id": "tahdhib-3170-4527-3171",
+      "frameIndex": 97,
+      "entryNumber": 3170,
+      "nameSurface": "طلحة بن يزيد، أبو حمزة، الكوفي",
+      "annotations": [
+        {
+          "annotator": "A1",
+          "annotatorKind": "single-agent-first-pass",
+          "method": "vollstaendige Lektuere des Eintragstextes; anschliessend maschineller Gegenscan auf 19 Sterbe- und Lebensverben, um uebersehene Stellen aufzudecken",
+          "class": "no-death-statement",
+          "usableForDeathYear": false,
+          "evidence": null,
+          "reason": "Vollstaendig gelesen; kein Sterbeverb und keine Sterbeangabe ueber den Eintragsgegenstand im Text."
+        }
+      ],
+      "adjudication": null
+    },
+    {
+      "id": "tahdhib-7346-10478-7347",
+      "frameIndex": 98,
+      "entryNumber": 7346,
+      "nameSurface": "المنهال بن عمرو",
+      "annotations": [
+        {
+          "annotator": "A1",
+          "annotatorKind": "single-agent-first-pass",
+          "method": "vollstaendige Lektuere des Eintragstextes; anschliessend maschineller Gegenscan auf 19 Sterbe- und Lebensverben, um uebersehene Stellen aufzudecken",
+          "class": "no-death-statement",
+          "usableForDeathYear": false,
+          "evidence": null,
+          "reason": "Vollstaendig gelesen; kein Sterbeverb und keine Sterbeangabe ueber den Eintragsgegenstand im Text."
+        }
+      ],
+      "adjudication": null
+    },
+    {
+      "id": "tahdhib-4765-6917-4766",
+      "frameIndex": 99,
+      "entryNumber": 4765,
+      "nameSurface": "عثمان بن يحيى",
+      "annotations": [
+        {
+          "annotator": "A1",
+          "annotatorKind": "single-agent-first-pass",
+          "method": "vollstaendige Lektuere des Eintragstextes; anschliessend maschineller Gegenscan auf 19 Sterbe- und Lebensverben, um uebersehene Stellen aufzudecken",
+          "class": "no-death-statement",
+          "usableForDeathYear": false,
+          "evidence": null,
+          "reason": "Vollstaendig gelesen; kein Sterbeverb und keine Sterbeangabe ueber den Eintragsgegenstand im Text."
+        }
+      ],
+      "adjudication": null
+    }
+  ]
+}

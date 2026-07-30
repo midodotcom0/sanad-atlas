@@ -1,0 +1,4345 @@
+{
+  "provenance": {
+    "producedBy": "scripts/atlas-gold-sample.mjs (atlas-gold-sample-p47-1.1.0)",
+    "seed": "sanad-atlas/gold/2026-07-30",
+    "drawnAt": "deterministisch — der Datenstand, nicht die Uhrzeit, bestimmt das Ergebnis",
+    "inputs": {
+      "derived": ".cache/turath-derived/*.json (Ausgabe von scripts/import-turath-corpus.mjs)",
+      "raw": ".cache/turath/<turathBookId>.json (Editionstext, Turath)"
+    },
+    "boundary": "Dieser Rahmen benutzt Importerausgaben, um zu bestimmen WAS angesehen wird. Die Urteile in der zugehoerigen .gold.json duerfen nicht daraus abgeleitet werden.",
+    "relativeFormStratifier": "sanad-relative-forms-1.0.0",
+    "digest": "538680dc58bc852b7dcd51f1b7ecbb2c"
+  },
+  "question": "Trifft der Resolver je distinkter Namensform die richtige Entscheidung?",
+  "population": 9920,
+  "frameSize": 9920,
+  "frameDefinition": "distinkte normalisierte Namensformen aus bukhari und muslim, ohne prophetMention",
+  "design": "stratifizierte Ziehung nach denselben fuenf Merkmalen wie hadith-occurrences, Mindestbelegung 1, Rest proportional",
+  "sampleSize": 100,
+  "items": [
+    {
+      "id": "form:للناس",
+      "sourceId": "bukhari",
+      "recordId": "bukhari-1606-1606-2722",
+      "hadithNumber": 1606,
+      "volume": "2",
+      "printedPage": 607,
+      "chainId": "bukhari-1606-1606-2722#c0",
+      "position": 5,
+      "stratum": "L0|K0|N0|R0|H0",
+      "cellSize": 2347,
+      "inclusionWeight": 130.3889,
+      "rawSurfaceForm": "لِلنَّاس",
+      "form": "للناس",
+      "transmissionTerm": "قال",
+      "previousForm": "سالم بن عبد الله",
+      "nextForm": "عروه",
+      "isnadContext": "حدثنا يحيي بن بكير: حدثنا الليث، عن عقيل، عن ابن شهاب، عن سالم بن عبد الله: ان ابن عمر ﵄ قال: تمتع رسول الله صلي الله عليه وسلم في حجه الوداع بالعمره الي الحج، واهدي، فساق معه الهدي من ذي الحليفه، وبدا رسول الله صلي الله عليه وسلم فاهل بالعمره، ثم اهل بالحج، فتمتع الناس مع النبي صلي الله عليه وسلم بالعمره الي الحج، فكان من الناس من اهدي فساق الهدي، ومنهم من لم يهد، فلما قدم النبي صلي الله عليه وسلم مكه، قال للناس: (م",
+      "importerFlags": {
+        "relativeForm": false,
+        "prophetMention": false
+      },
+      "samplingFlags": {
+        "relativeForm": false,
+        "relativeFormVersion": "sanad-relative-forms-1.0.0"
+      },
+      "exactHeadMatches": [],
+      "exactHeadMatchCount": 0,
+      "occurrenceCount": 3,
+      "samplePositions": [
+        {
+          "chainId": "bukhari-1606-1606-2722#c0",
+          "position": 5
+        },
+        {
+          "chainId": "muslim-1671-12-4295#c1",
+          "position": 5
+        },
+        {
+          "chainId": "muslim-2360-138-6058#c0",
+          "position": 6
+        }
+      ]
+    },
+    {
+      "id": "form:فاتيت مكه",
+      "sourceId": "muslim",
+      "recordId": "muslim-2473-132-6292",
+      "hadithNumber": 2473,
+      "volume": "4",
+      "printedPage": 1919,
+      "chainId": "muslim-2473-132-6292#c0",
+      "position": 11,
+      "stratum": "L0|K0|N0|R0|H0",
+      "cellSize": 2347,
+      "inclusionWeight": 130.3889,
+      "rawSurfaceForm": "فَأَتَيْتُ مَكَّة",
+      "form": "فاتيت مكه",
+      "transmissionTerm": "قال",
+      "previousForm": "قول الكهنه",
+      "nextForm": "فارتفعت حين ارتفعت",
+      "isnadContext": "حدثنا هداب بن خالد الازدي. حدثنا سليمان بن المغيره. اخبرنا حميد بن هلال عن عبد الله بن الصامت. قال: قال ابو ذر: خرجنا من قومنا غفار. وكانوا يحلون الشهر الحرام. فخرجت انا واخي انيس وامنا. فنزلنا علي خال لنا. فاكرمنا خالنا واحسن الينا. فحسدنا قومه فقالوا: انك اذا خرجت عن اهلك خالف اليهم انيس. فجاء خالنا فنثا علينا الذي قيل له. فقلت: اما ما مضي من معروفك فقد كدرته، ولا جماع لك فيما بعد. فقربنا صرمتنا. فاحتملنا عليها. وت",
+      "importerFlags": {
+        "relativeForm": false,
+        "prophetMention": false
+      },
+      "samplingFlags": {
+        "relativeForm": false,
+        "relativeFormVersion": "sanad-relative-forms-1.0.0"
+      },
+      "exactHeadMatches": [],
+      "exactHeadMatchCount": 0,
+      "occurrenceCount": 1,
+      "samplePositions": [
+        {
+          "chainId": "muslim-2473-132-6292#c0",
+          "position": 11
+        }
+      ]
+    },
+    {
+      "id": "form:يمينه ضحك",
+      "sourceId": "bukhari",
+      "recordId": "bukhari-342-342-601",
+      "hadithNumber": 342,
+      "volume": "1",
+      "printedPage": 135,
+      "chainId": "bukhari-342-342-601#c0",
+      "position": 10,
+      "stratum": "L0|K0|N0|R0|H0",
+      "cellSize": 2347,
+      "inclusionWeight": 130.3889,
+      "rawSurfaceForm": "يَمِينِهِ ضَحِك",
+      "form": "يمينه ضحك",
+      "transmissionTerm": "عن",
+      "previousForm": "شماله اهل النار",
+      "nextForm": "لخازنها",
+      "isnadContext": "حدثنا يحيي بن بكير قال: حدثنا الليث، عن يونس، عن ابن شهاب، عن انس بن مالك قال: كان ابو ذر يحدث: ان رسول الله صلي الله عليه وسلم قال: (فرج عن سقف بيتي وانا بمكه، فنزل جبريل، ففرج صدري، ثم غسله بماء زمزم، ثم جاء بطست من ذهب، ممتلي حكمه وايمانا، فافرغه في صدري، ثم اطبقه، ثم اخذ بيدي فعرج بي الي السماء الدنيا، فلما جيت الي السماء الدنيا، قال جبريل لخازن السماء: افتح، قال: من هذا؟ قال: هذا جبريل، قال: هل معك احد؟ قال: نعم",
+      "importerFlags": {
+        "relativeForm": false,
+        "prophetMention": false
+      },
+      "samplingFlags": {
+        "relativeForm": false,
+        "relativeFormVersion": "sanad-relative-forms-1.0.0"
+      },
+      "exactHeadMatches": [],
+      "exactHeadMatchCount": 0,
+      "occurrenceCount": 1,
+      "samplePositions": [
+        {
+          "chainId": "bukhari-342-342-601#c0",
+          "position": 10
+        }
+      ]
+    },
+    {
+      "id": "form:ابن عبده",
+      "sourceId": "muslim",
+      "recordId": "muslim-1266-241-2985",
+      "hadithNumber": 1266,
+      "volume": "2",
+      "printedPage": 923,
+      "chainId": "muslim-1266-241-2985#c0",
+      "position": 2,
+      "stratum": "L0|K0|N0|R0|H0",
+      "cellSize": 2347,
+      "inclusionWeight": 130.3889,
+      "rawSurfaceForm": "ابْنُ عَبْدَة",
+      "form": "ابن عبده",
+      "transmissionTerm": "قال",
+      "previousForm": "ابن عيينه",
+      "nextForm": "سفيان",
+      "isnadContext": "وحدثني عمرو والناقد وابن ابي عمر واحمد بن عبده. جميعا عن ابن عيينه. قال ابن عبده: حدثنا سفيان عن عمرو عن عطاء، عن ابن عباس. قال:",
+      "importerFlags": {
+        "relativeForm": false,
+        "prophetMention": false
+      },
+      "samplingFlags": {
+        "relativeForm": false,
+        "relativeFormVersion": "sanad-relative-forms-1.0.0"
+      },
+      "exactHeadMatches": [],
+      "exactHeadMatchCount": 0,
+      "occurrenceCount": 4,
+      "samplePositions": [
+        {
+          "chainId": "muslim-1266-241-2985#c0",
+          "position": 2
+        },
+        {
+          "chainId": "muslim-1438-132-3478#c0",
+          "position": 1
+        },
+        {
+          "chainId": "muslim-2584-63-6517#c0",
+          "position": 1
+        },
+        {
+          "chainId": "muslim-2773-2-6957#c0",
+          "position": 1
+        }
+      ]
+    },
+    {
+      "id": "form:قدمه",
+      "sourceId": "bukhari",
+      "recordId": "bukhari-7-7-18",
+      "hadithNumber": 7,
+      "volume": "1",
+      "printedPage": 7,
+      "chainId": "bukhari-7-7-18#c0",
+      "position": 14,
+      "stratum": "L0|K0|N0|R0|H0",
+      "cellSize": 2347,
+      "inclusionWeight": 130.3889,
+      "rawSurfaceForm": "قَدَمِه",
+      "form": "قدمه",
+      "transmissionTerm": "عن",
+      "previousForm": "عباده الاوثان",
+      "nextForm": "بعض بطارقته",
+      "isnadContext": "حدثنا ابو اليمان الحكم بن نافع قال: اخبرنا شعيب عن الزهري قال: اخبرني عبيد الله بن عبد الله بن عتبه بن مسعود، ان عبد الله بن عباس اخبره، ان ابا سفيان بن حرب اخبره: ان هرقل ارسل اليه في ركب من قريش، وكانوا تجارا بالشام، في المده التي كان رسول الله صلي الله عليه وسلم ماد فيها ابا سفيان وكفار قريش، فاتوه وهم بايلياء، فدعاهم في مجلسه، وحوله عظماء الروم، ثم دعاهم ودعا بترجمانه، فقال: ايكم اقرب نسبا بهذا الرجل الذي يزعم ان",
+      "importerFlags": {
+        "relativeForm": false,
+        "prophetMention": false
+      },
+      "samplingFlags": {
+        "relativeForm": false,
+        "relativeFormVersion": "sanad-relative-forms-1.0.0"
+      },
+      "exactHeadMatches": [],
+      "exactHeadMatchCount": 0,
+      "occurrenceCount": 1,
+      "samplePositions": [
+        {
+          "chainId": "bukhari-7-7-18#c0",
+          "position": 14
+        }
+      ]
+    },
+    {
+      "id": "form:يساري نورا",
+      "sourceId": "bukhari",
+      "recordId": "bukhari-5957-5957-9555",
+      "hadithNumber": 5957,
+      "volume": "5",
+      "printedPage": 2327,
+      "chainId": "bukhari-5957-5957-9555#c0",
+      "position": 9,
+      "stratum": "L0|K0|N0|R0|H0",
+      "cellSize": 2347,
+      "inclusionWeight": 130.3889,
+      "rawSurfaceForm": "يَسَارِي نُورًا",
+      "form": "يساري نورا",
+      "transmissionTerm": "وعن",
+      "previousForm": "يميني نورا",
+      "nextForm": "النبي صلي الله عليه وسلم",
+      "isnadContext": "حدثنا علي بن عبد الله: حدثنا ابن مهدي، عن سفيان، عن سلمه، عن كريب، عن ابن عباس ﵄ قال: بت عند ميمونه، فقام النبي صلي الله عليه وسلم فاتي حاجته، فغسل وجهه ويديه، ثم نام، ثم قام، فاتي القربه فاطلق شناقها، ثم توضا وضوءا بين وضوءين لم يكثر وقد ابلغ، فصلي، فقمت فتمطيت، كراهيه ان يري اني كنت اتقيه، فتوضات، فقام يصلي، فقمت عن يساره، فاخذ باذني فادارني عن يمينه، فتتامت صلاته ثلاث عشره ركعه، ثم اضطجع فنام حتي نفخ، وكان اذا نام",
+      "importerFlags": {
+        "relativeForm": false,
+        "prophetMention": false
+      },
+      "samplingFlags": {
+        "relativeForm": false,
+        "relativeFormVersion": "sanad-relative-forms-1.0.0"
+      },
+      "exactHeadMatches": [],
+      "exactHeadMatchCount": 0,
+      "occurrenceCount": 2,
+      "samplePositions": [
+        {
+          "chainId": "bukhari-5957-5957-9555#c0",
+          "position": 9
+        },
+        {
+          "chainId": "muslim-763-181-1717#c0",
+          "position": 9
+        }
+      ]
+    },
+    {
+      "id": "form:والله بعرفه",
+      "sourceId": "bukhari",
+      "recordId": "bukhari-4330-4330-6789",
+      "hadithNumber": 4330,
+      "volume": "4",
+      "printedPage": 1683,
+      "chainId": "bukhari-4330-4330-6789#c0",
+      "position": 7,
+      "stratum": "L0|K0|N0|R0|H0",
+      "cellSize": 2347,
+      "inclusionWeight": 130.3889,
+      "rawSurfaceForm": "وَاللَّهِ بِعَرَفَة",
+      "form": "والله بعرفه",
+      "transmissionTerm": "وانا",
+      "previousForm": "عمر",
+      "nextForm": "رسول الله صلي الله عليه وسلم",
+      "isnadContext": "حدثني محمد بن بشار: حدثنا عبد الرحمن: حدثنا سفيان، عن قيس، عن طارق بن شهاب: قالت اليهود لعمر: انكم تقروون ايه، لو نزلت فينا لاتخذناها عيدا. فقال عمر: اني لاعلم حيث انزلت، واين انزلت، واين رسول الله صلي الله عليه وسلم حين انزلت: يوم عرفه، وانا والله بعرفه. قال",
+      "importerFlags": {
+        "relativeForm": false,
+        "prophetMention": false
+      },
+      "samplingFlags": {
+        "relativeForm": false,
+        "relativeFormVersion": "sanad-relative-forms-1.0.0"
+      },
+      "exactHeadMatches": [],
+      "exactHeadMatchCount": 0,
+      "occurrenceCount": 1,
+      "samplePositions": [
+        {
+          "chainId": "bukhari-4330-4330-6789#c0",
+          "position": 7
+        }
+      ]
+    },
+    {
+      "id": "form:شاهد",
+      "sourceId": "bukhari",
+      "recordId": "bukhari-4151-4151-6489",
+      "hadithNumber": 4151,
+      "volume": "4",
+      "printedPage": 1601,
+      "chainId": "bukhari-4151-4151-6489#c0",
+      "position": 4,
+      "stratum": "L0|K0|N0|R0|H0",
+      "cellSize": 2347,
+      "inclusionWeight": 130.3889,
+      "rawSurfaceForm": "شَاهِد",
+      "form": "شاهد",
+      "transmissionTerm": "وانا",
+      "previousForm": "ابي",
+      "nextForm": "سير النبي صلي الله عليه وسلم في حجته؟",
+      "isnadContext": "حدثنا مسدد: حدثنا يحيي، عن هشام قال: حدثني ابي قال: سيل اسامه، وانا شاهد، عن سير النبي صلي الله عليه وسلم في حجته؟ فقال:",
+      "importerFlags": {
+        "relativeForm": false,
+        "prophetMention": false
+      },
+      "samplingFlags": {
+        "relativeForm": false,
+        "relativeFormVersion": "sanad-relative-forms-1.0.0"
+      },
+      "exactHeadMatches": [],
+      "exactHeadMatchCount": 0,
+      "occurrenceCount": 4,
+      "samplePositions": [
+        {
+          "chainId": "bukhari-4151-4151-6489#c0",
+          "position": 4
+        },
+        {
+          "chainId": "bukhari-5003-5003-8022#c0",
+          "position": 9
+        },
+        {
+          "chainId": "muslim-1286-283-3032#c0",
+          "position": 6
+        },
+        {
+          "chainId": "muslim-1492-3-3673#c0",
+          "position": 8
+        }
+      ]
+    },
+    {
+      "id": "form:كهمس",
+      "sourceId": "bukhari",
+      "recordId": "bukhari-4203-4203-6550",
+      "hadithNumber": 4203,
+      "volume": "4",
+      "printedPage": 1621,
+      "chainId": "bukhari-4203-4203-6550#c0",
+      "position": 3,
+      "stratum": "L0|K0|N0|R0|H0",
+      "cellSize": 2347,
+      "inclusionWeight": 130.3889,
+      "rawSurfaceForm": "كَهْمَس",
+      "form": "كهمس",
+      "transmissionTerm": "عن",
+      "previousForm": "معتمر بن سليمان",
+      "nextForm": "ابن بريده",
+      "isnadContext": "حدثني احمد بن الحسن: حدثنا احمد بن محمد بن حنبل بن هلال: حدثنا معتمر بن سليمان، عن كهمس، عن ابن بريده، عن ابيه قال:",
+      "importerFlags": {
+        "relativeForm": false,
+        "prophetMention": false
+      },
+      "samplingFlags": {
+        "relativeForm": false,
+        "relativeFormVersion": "sanad-relative-forms-1.0.0"
+      },
+      "exactHeadMatches": [],
+      "exactHeadMatchCount": 0,
+      "occurrenceCount": 8,
+      "samplePositions": [
+        {
+          "chainId": "bukhari-4203-4203-6550#c0",
+          "position": 3
+        },
+        {
+          "chainId": "muslim-8-1-61#c0",
+          "position": 1
+        },
+        {
+          "chainId": "muslim-8-1-61#c1",
+          "position": 2
+        },
+        {
+          "chainId": "muslim-554-58-1180#c0",
+          "position": 2
+        },
+        {
+          "chainId": "muslim-838-304-1869#c0",
+          "position": 2
+        }
+      ]
+    },
+    {
+      "id": "form:احمد بن اسحق",
+      "sourceId": "bukhari",
+      "recordId": "bukhari-7068-7068-11210",
+      "hadithNumber": 7068,
+      "volume": "6",
+      "printedPage": 2725,
+      "chainId": "bukhari-7068-7068-11210#c0",
+      "position": 0,
+      "stratum": "L0|K0|N0|R0|H0",
+      "cellSize": 2347,
+      "inclusionWeight": 130.3889,
+      "rawSurfaceForm": "أَحْمَدُ بْنُ إسحق",
+      "form": "احمد بن اسحق",
+      "transmissionTerm": "حدثنا",
+      "previousForm": null,
+      "nextForm": "عمرو بن عاصم",
+      "isnadContext": "حدثنا احمد بن اسحق: حدثنا عمرو بن عاصم: حدثنا همام: حدثنا اسحق بن عبد الله: سمعت عبد الرحمن بن ابي عمره قال: سمعت ابا هريره قال: سمعت النبي صلي الله عليه وسلم قال:",
+      "importerFlags": {
+        "relativeForm": false,
+        "prophetMention": false
+      },
+      "samplingFlags": {
+        "relativeForm": false,
+        "relativeFormVersion": "sanad-relative-forms-1.0.0"
+      },
+      "exactHeadMatches": [],
+      "exactHeadMatchCount": 0,
+      "occurrenceCount": 1,
+      "samplePositions": [
+        {
+          "chainId": "bukhari-7068-7068-11210#c0",
+          "position": 0
+        }
+      ]
+    },
+    {
+      "id": "form:احدثهم فسكت",
+      "sourceId": "bukhari",
+      "recordId": "bukhari-5129-5129-8231",
+      "hadithNumber": 5129,
+      "volume": "5",
+      "printedPage": 2075,
+      "chainId": "bukhari-5129-5129-8231#c0",
+      "position": 7,
+      "stratum": "L0|K0|N0|R0|H0",
+      "cellSize": 2347,
+      "inclusionWeight": 130.3889,
+      "rawSurfaceForm": "أَحْدَثُهُمْ فَسَكَت",
+      "form": "احدثهم فسكت",
+      "transmissionTerm": "انا",
+      "previousForm": "عاشر عشره",
+      "nextForm": null,
+      "isnadContext": "حدثنا عمر بن حفص بن غياث: حدثنا ابي: حدثنا الاعمش قال: حدثني مجاهد، عن عبد الله بن عمر ﵄ قال: بينا نحن عند النبي صلي الله عليه وسلم جلوس اذ اتي بجمار نخله، فقال النبي صلي الله عليه وسلم: (ان من الشجر لما بركته كبركه المسلم). فظننت انه يعني النخله، فاردت ان اقول: هي النخله يا رسول الله، ثم التفت فاذا انا عاشر عشره انا احدثهم فسكت، فقال",
+      "importerFlags": {
+        "relativeForm": false,
+        "prophetMention": false
+      },
+      "samplingFlags": {
+        "relativeForm": false,
+        "relativeFormVersion": "sanad-relative-forms-1.0.0"
+      },
+      "exactHeadMatches": [],
+      "exactHeadMatchCount": 0,
+      "occurrenceCount": 1,
+      "samplePositions": [
+        {
+          "chainId": "bukhari-5129-5129-8231#c0",
+          "position": 7
+        }
+      ]
+    },
+    {
+      "id": "form:فاحجم القوم",
+      "sourceId": "muslim",
+      "recordId": "muslim-2470-128-6286",
+      "hadithNumber": 2470,
+      "volume": "4",
+      "printedPage": 1917,
+      "chainId": "muslim-2470-128-6286#c0",
+      "position": 5,
+      "stratum": "L0|K0|N0|R0|H0",
+      "cellSize": 2347,
+      "inclusionWeight": 130.3889,
+      "rawSurfaceForm": "فَأَحْجَمَ الْقَوْم",
+      "form": "فاحجم القوم",
+      "transmissionTerm": "قال",
+      "previousForm": "انس",
+      "nextForm": "سماك بن خرشه",
+      "isnadContext": "حدثنا ابو بكر بن ابي شيبه. حدثنا عفان. حدثنا حماد بن سلمه. حدثنا ثابت عن انس؛ ان رسول الله صلي الله عليه وسلم اخذ سيفا يوم احد. فقال \"من ياخذ مني هذا؟ \" فبسطوا ايديهم. كل انسان منهم يقول: انا، انا. قال \"فمن ياخذه بحقه؟ \" قال فاحجم القوم. فقال سماك بن خرشه، ابو دجانه: انا اخذه بحقه. قال",
+      "importerFlags": {
+        "relativeForm": false,
+        "prophetMention": false
+      },
+      "samplingFlags": {
+        "relativeForm": false,
+        "relativeFormVersion": "sanad-relative-forms-1.0.0"
+      },
+      "exactHeadMatches": [],
+      "exactHeadMatchCount": 0,
+      "occurrenceCount": 1,
+      "samplePositions": [
+        {
+          "chainId": "muslim-2470-128-6286#c0",
+          "position": 5
+        }
+      ]
+    },
+    {
+      "id": "form:اعزل عنها",
+      "sourceId": "muslim",
+      "recordId": "muslim-1439-135-3482",
+      "hadithNumber": 1439,
+      "volume": "2",
+      "printedPage": 1064,
+      "chainId": "muslim-1439-135-3482#c0",
+      "position": 5,
+      "stratum": "L0|K0|N0|R0|H0",
+      "cellSize": 2347,
+      "inclusionWeight": 130.3889,
+      "rawSurfaceForm": "أَعْزِلُ عَنْهَا",
+      "form": "اعزل عنها",
+      "transmissionTerm": "وانا",
+      "previousForm": "جابر بن عبد الله",
+      "nextForm": "النبي صلي الله عليه وسلم",
+      "isnadContext": "حدثنا سعيد بن عمرو الاشعثي. حدثنا سفيان بن عيينه عن سعيد بن حسان، عن عروه بن عياض، عن جابر بن عبد الله، قال: سال رجل النبي صلي الله عليه وسلم فقال: ان عندي جاريه لي. وانا اعزل عنها. فقال",
+      "importerFlags": {
+        "relativeForm": false,
+        "prophetMention": false
+      },
+      "samplingFlags": {
+        "relativeForm": false,
+        "relativeFormVersion": "sanad-relative-forms-1.0.0"
+      },
+      "exactHeadMatches": [],
+      "exactHeadMatchCount": 0,
+      "occurrenceCount": 1,
+      "samplePositions": [
+        {
+          "chainId": "muslim-1439-135-3482#c0",
+          "position": 5
+        }
+      ]
+    },
+    {
+      "id": "form:وابن عمر",
+      "sourceId": "bukhari",
+      "recordId": "bukhari-3739-3739-6009",
+      "hadithNumber": 3739,
+      "volume": "4",
+      "printedPage": 1456,
+      "chainId": "bukhari-3739-3739-6009#c0",
+      "position": 4,
+      "stratum": "L0|K0|N0|R0|H0",
+      "cellSize": 2347,
+      "inclusionWeight": 130.3889,
+      "rawSurfaceForm": "وَابْنُ عُمَر",
+      "form": "وابن عمر",
+      "transmissionTerm": "انا",
+      "previousForm": "البراء",
+      "nextForm": "محمود",
+      "isnadContext": "حدثنا مسلم بن ابراهيم: حدثنا شعبه، عن ابي اسحاق، عن البراء قال: استصغرت انا وابن عمر. حدثني محمود: حدثنا وهب، عن شعبه، عن ابي اسحاق، عن البراء قال:",
+      "importerFlags": {
+        "relativeForm": false,
+        "prophetMention": false
+      },
+      "samplingFlags": {
+        "relativeForm": false,
+        "relativeFormVersion": "sanad-relative-forms-1.0.0"
+      },
+      "exactHeadMatches": [],
+      "exactHeadMatchCount": 0,
+      "occurrenceCount": 1,
+      "samplePositions": [
+        {
+          "chainId": "bukhari-3739-3739-6009#c0",
+          "position": 4
+        }
+      ]
+    },
+    {
+      "id": "form:قد عرفنا",
+      "sourceId": "muslim",
+      "recordId": "muslim-1759-52-4519",
+      "hadithNumber": 1759,
+      "volume": "3",
+      "printedPage": 1380,
+      "chainId": "muslim-1759-52-4519#c0",
+      "position": 10,
+      "stratum": "L0|K0|N0|R0|H0",
+      "cellSize": 2347,
+      "inclusionWeight": 130.3889,
+      "rawSurfaceForm": "قَدْ عَرَفْنَا",
+      "form": "قد عرفنا",
+      "transmissionTerm": "انا",
+      "previousForm": "عمر",
+      "nextForm": "الحق",
+      "isnadContext": "حدثني محمد بن رافع. اخبرنا حجين. حدثنا ليث عن عقيل، عن ابن شهاب، عن عروه بن الزبير، عن عايشه؛ انها اخبرته: ان فاطمه بنت رسول الله صلي الله عليه وسلم ارسلت الي ابي بكر الصديق تساله ميراثها من رسول الله صلي الله عليه وسلم. مما افاء عليه بالمدينه وفدك. وما بقي من خمس خيبر. فقال ابو بكر: ان رسول الله صلي الله عليه وسلم قال (لا نورث ما تركنا صدقه. انما ياكل ال محمد (صلي الله عليه وسلم) في هذا المال). واني والله! لا اغير ش",
+      "importerFlags": {
+        "relativeForm": false,
+        "prophetMention": false
+      },
+      "samplingFlags": {
+        "relativeForm": false,
+        "relativeFormVersion": "sanad-relative-forms-1.0.0"
+      },
+      "exactHeadMatches": [],
+      "exactHeadMatchCount": 0,
+      "occurrenceCount": 1,
+      "samplePositions": [
+        {
+          "chainId": "muslim-1759-52-4519#c0",
+          "position": 10
+        }
+      ]
+    },
+    {
+      "id": "form:جعفر بن عون",
+      "sourceId": "bukhari",
+      "recordId": "bukhari-444-444-777",
+      "hadithNumber": 444,
+      "volume": "1",
+      "printedPage": 174,
+      "chainId": "bukhari-444-444-777#c0",
+      "position": 8,
+      "stratum": "L0|K0|N0|R0|H0",
+      "cellSize": 2347,
+      "inclusionWeight": 130.3889,
+      "rawSurfaceForm": "جَعْفَرُ بْنُ عَوْن",
+      "form": "جعفر بن عون",
+      "transmissionTerm": "وقال",
+      "previousForm": "علي",
+      "nextForm": "رسول الله صلي الله عليه وسلم",
+      "isnadContext": "حدثنا علي بن عبد الله قال: حدثنا سفيان، عن يحيي، عن عمره، عن عايشه قالت: اتتها بريره تسالها في كتابتها، فقالت: ان شيت اعطيت اهلك ويكون الولاء لي، وقال اهلها: ان شيت اعطيتها ما بقي - وقال سفيان مره: ان شيت اعتقتها - ويكون الولاء لنا. فلما جاء رسول الله صلي الله عليه وسلم ذكرته ذلك، فقال: (ابتاعيها فاعتقيها، فان الولاء لمن اعتق). ثم قام رسول الله صلي الله عليه وسلم علي المنبر - وقال سفيان مره: فصعد رسول الله صلي الله ع",
+      "importerFlags": {
+        "relativeForm": false,
+        "prophetMention": false
+      },
+      "samplingFlags": {
+        "relativeForm": false,
+        "relativeFormVersion": "sanad-relative-forms-1.0.0"
+      },
+      "exactHeadMatches": [],
+      "exactHeadMatchCount": 0,
+      "occurrenceCount": 15,
+      "samplePositions": [
+        {
+          "chainId": "bukhari-444-444-777#c0",
+          "position": 8
+        },
+        {
+          "chainId": "bukhari-607-607-1042#c0",
+          "position": 1
+        },
+        {
+          "chainId": "bukhari-1867-1867-3157#c0",
+          "position": 1
+        },
+        {
+          "chainId": "bukhari-2776-2776-4714#c0",
+          "position": 1
+        },
+        {
+          "chainId": "bukhari-5788-5788-9277#c0",
+          "position": 1
+        }
+      ]
+    },
+    {
+      "id": "form:فتاه",
+      "sourceId": "bukhari",
+      "recordId": "bukhari-4449-4449-7016",
+      "hadithNumber": 4449,
+      "volume": "4",
+      "printedPage": 1754,
+      "chainId": "bukhari-4449-4449-7016#c0",
+      "position": 16,
+      "stratum": "L0|K0|N0|R0|H0",
+      "cellSize": 2347,
+      "inclusionWeight": 130.3889,
+      "rawSurfaceForm": "فَتَاه",
+      "form": "فتاه",
+      "transmissionTerm": "فقال",
+      "previousForm": "سعيد -",
+      "nextForm": "سعيد - اخبره فرجعا",
+      "isnadContext": "حدثنا ابراهيم بن موسي: اخبرنا هشام بن يوسف: ان ابن جريج اخبرهم قال: اخبرني يعلي بن مسلم وعمرو بن دينار، عن سعيد بن جبير، يزيد احدهما علي صاحبه، وغيرهما قد سمعته يحدثه عن سعيد قال: انا لعند ابن عباس في بيته، اذ قال: سلوني، قلت: اي ابا عباس، جعلني الله فداءك، بالكوفه رجل قاص يقال له نوف، يزعم انه ليس بموسي بني اسراييل، اما عمرو فقال لي: قال قد كذب عدو الله، واما يعلي فقال لي: قال ابن عباس: حدثني ابي بن كعب قال: قال رسو",
+      "importerFlags": {
+        "relativeForm": false,
+        "prophetMention": false
+      },
+      "samplingFlags": {
+        "relativeForm": false,
+        "relativeFormVersion": "sanad-relative-forms-1.0.0"
+      },
+      "exactHeadMatches": [],
+      "exactHeadMatchCount": 0,
+      "occurrenceCount": 2,
+      "samplePositions": [
+        {
+          "chainId": "bukhari-4449-4449-7016#c0",
+          "position": 16
+        },
+        {
+          "chainId": "muslim-2380-172-6098#c0",
+          "position": 5
+        }
+      ]
+    },
+    {
+      "id": "form:زيد بن حباب",
+      "sourceId": "muslim",
+      "recordId": "muslim-1528-39-3778",
+      "hadithNumber": 1528,
+      "volume": "3",
+      "printedPage": 1162,
+      "chainId": "muslim-1528-39-3778#c0",
+      "position": 1,
+      "stratum": "L0|K0|N0|R0|H0",
+      "cellSize": 2347,
+      "inclusionWeight": 130.3889,
+      "rawSurfaceForm": "زَيْدُ بْنُ حُبَاب",
+      "form": "زيد بن حباب",
+      "transmissionTerm": "حدثنا",
+      "previousForm": "ابي بكر بن ابي شيبه وابن نمير وابي كريب",
+      "nextForm": "الضحاك بن عثمان",
+      "isnadContext": "حدثنا ابي بكر بن ابي شيبه وابن نمير وابي كريب. قالوا: حدثنا زيد بن حباب عن الضحاك بن عثمان، عن بكير بن عبد الله ابن الاشج، عن سليمان بن يسار، عن ابي هريره:",
+      "importerFlags": {
+        "relativeForm": false,
+        "prophetMention": false
+      },
+      "samplingFlags": {
+        "relativeForm": false,
+        "relativeFormVersion": "sanad-relative-forms-1.0.0"
+      },
+      "exactHeadMatches": [],
+      "exactHeadMatchCount": 0,
+      "occurrenceCount": 1,
+      "samplePositions": [
+        {
+          "chainId": "muslim-1528-39-3778#c0",
+          "position": 1
+        }
+      ]
+    },
+    {
+      "id": "form:حميد بن نافع",
+      "sourceId": "bukhari",
+      "recordId": "bukhari-1221-1221-2086",
+      "hadithNumber": 1221,
+      "volume": "1",
+      "printedPage": 430,
+      "chainId": "bukhari-1221-1221-2086#c0",
+      "position": 3,
+      "stratum": "L0|K0|N0|R0|H1",
+      "cellSize": 428,
+      "inclusionWeight": 107,
+      "rawSurfaceForm": "حُمَيْدُ بْنُ نَافِع",
+      "form": "حميد بن نافع",
+      "transmissionTerm": "اخبرني",
+      "previousForm": "ايوب بن موسي",
+      "nextForm": "زينب بنت ابي سلمه",
+      "isnadContext": "حدثنا الحميدي: حدثنا سفيان: حدثنا ايوب بن موسي قال: اخبرني حميد بن نافع، عن زينب بنت ابي سلمه قالت: لما جاء نعي ابي سفيان من الشام، دعت ام حبيبه ﵂ بصفره في اليوم الثالث، فمسحت عارضيها وذراعيها، وقالت: اني كنت عن هذا لغنيه، لولا اني سمعت النبي صلي الله عليه وسلم يقول:",
+      "importerFlags": {
+        "relativeForm": false,
+        "prophetMention": false
+      },
+      "samplingFlags": {
+        "relativeForm": false,
+        "relativeFormVersion": "sanad-relative-forms-1.0.0"
+      },
+      "exactHeadMatches": [
+        {
+          "entryId": "tahdhib-1647-2551-1648",
+          "sourceId": "tahdhib",
+          "entryNumber": 1647,
+          "head": "حميد بن نافع الأنصاري، أبو أفلح المدني",
+          "deathYear": null
+        },
+        {
+          "entryId": "kashif-1259-346-1276",
+          "sourceId": "kashif",
+          "entryNumber": 1259,
+          "head": "حميد بن نافع",
+          "deathYear": null
+        }
+      ],
+      "exactHeadMatchCount": 2,
+      "occurrenceCount": 12,
+      "samplePositions": [
+        {
+          "chainId": "bukhari-1221-1221-2086#c0",
+          "position": 3
+        },
+        {
+          "chainId": "bukhari-1222-1222-2087#c0",
+          "position": 3
+        },
+        {
+          "chainId": "bukhari-5024-5024-8059#c0",
+          "position": 3
+        },
+        {
+          "chainId": "bukhari-5025-5025-8061#c0",
+          "position": 2
+        },
+        {
+          "chainId": "bukhari-5030-5030-8069#c0",
+          "position": 3
+        }
+      ]
+    },
+    {
+      "id": "form:محمد بن عيسي",
+      "sourceId": "bukhari",
+      "recordId": "bukhari-1680-1680-2841",
+      "hadithNumber": 1680,
+      "volume": "2",
+      "printedPage": 627,
+      "chainId": "bukhari-1680-1680-2841#c0",
+      "position": 0,
+      "stratum": "L0|K0|N0|R0|H1",
+      "cellSize": 428,
+      "inclusionWeight": 107,
+      "rawSurfaceForm": "مُحَمَّدُ بْنُ عِيسَى",
+      "form": "محمد بن عيسي",
+      "transmissionTerm": "وقال",
+      "previousForm": null,
+      "nextForm": "حماد",
+      "isnadContext": "وقال محمد بن عيسي: حدثنا حماد، عن ايوب، عن نافع، عن ابن عمر ﵄:",
+      "importerFlags": {
+        "relativeForm": false,
+        "prophetMention": false
+      },
+      "samplingFlags": {
+        "relativeForm": false,
+        "relativeFormVersion": "sanad-relative-forms-1.0.0"
+      },
+      "exactHeadMatches": [
+        {
+          "entryId": "mizan-8038-2029-7787",
+          "sourceId": "mizan",
+          "entryNumber": 8038,
+          "head": "محمد بن عيسى الطرسوسى",
+          "deathYear": 276
+        },
+        {
+          "entryId": "kashif-5101-894-5086",
+          "sourceId": "kashif",
+          "entryNumber": 5101,
+          "head": "محمد بن عيسى الدامغاني",
+          "deathYear": null
+        },
+        {
+          "entryId": "kashif-5102-894-5087",
+          "sourceId": "kashif",
+          "entryNumber": 5102,
+          "head": "محمد بن عيسى أبو عيسى الترمذي الحافظ الضرير",
+          "deathYear": null
+        }
+      ],
+      "exactHeadMatchCount": 3,
+      "occurrenceCount": 2,
+      "samplePositions": [
+        {
+          "chainId": "bukhari-1680-1680-2841#c0",
+          "position": 0
+        },
+        {
+          "chainId": "bukhari-5724-5724-9188#c0",
+          "position": 0
+        }
+      ]
+    },
+    {
+      "id": "form:قيس بن وهب",
+      "sourceId": "muslim",
+      "recordId": "muslim-2938-113-7307",
+      "hadithNumber": 2938,
+      "volume": "4",
+      "printedPage": 2256,
+      "chainId": "muslim-2938-113-7307#c0",
+      "position": 3,
+      "stratum": "L0|K0|N0|R0|H1",
+      "cellSize": 428,
+      "inclusionWeight": 107,
+      "rawSurfaceForm": "قيس بن وهب",
+      "form": "قيس بن وهب",
+      "transmissionTerm": "عن",
+      "previousForm": "ابي حمزه",
+      "nextForm": "ابي الوداك",
+      "isnadContext": "حدثني محمد بن عبد الله بن قهزاذ، من اهل مرو. حدثنا عبد الله بن عثمان عن ابي حمزه، عن قيس بن وهب، عن ابي الوداك، عن ابي سعيد الخدري، قال: قال رسول الله صلي الله عليه وسلم \"يخرج الدجال فيتوجه قبله رجل من المومنين. فتلقاه المسالح، مسالح الدجال. فيقولون له: اين تعمد؟ فيقول: اعمد الي هذا الذي خرج. قال فيقولون له: او ما تومن بربنا؟ فيقول: ما بربنا خفاء. فيقولون: اقتلوه. فيقول بعضهم لبعض: اليس قد نهاكم ربكم ان تقتلوا احدا د",
+      "importerFlags": {
+        "relativeForm": false,
+        "prophetMention": false
+      },
+      "samplingFlags": {
+        "relativeForm": false,
+        "relativeFormVersion": "sanad-relative-forms-1.0.0"
+      },
+      "exactHeadMatches": [
+        {
+          "entryId": "tahdhib-5897-8638-5898",
+          "sourceId": "tahdhib",
+          "entryNumber": 5897,
+          "head": "قيس بن وَهب الهمْدَانيّ، الكُوفيّ",
+          "deathYear": null
+        },
+        {
+          "entryId": "kashif-4619-829-4613",
+          "sourceId": "kashif",
+          "entryNumber": 4619,
+          "head": "قيس بن وهب الهمداني",
+          "deathYear": null
+        }
+      ],
+      "exactHeadMatchCount": 2,
+      "occurrenceCount": 1,
+      "samplePositions": [
+        {
+          "chainId": "muslim-2938-113-7307#c0",
+          "position": 3
+        }
+      ]
+    },
+    {
+      "id": "form:احمد بن حميد",
+      "sourceId": "bukhari",
+      "recordId": "bukhari-4300-4300-6732",
+      "hadithNumber": 4300,
+      "volume": "4",
+      "printedPage": 1669,
+      "chainId": "bukhari-4300-4300-6732#c0",
+      "position": 0,
+      "stratum": "L0|K0|N0|R0|H1",
+      "cellSize": 428,
+      "inclusionWeight": 107,
+      "rawSurfaceForm": "أَحْمَدُ بْنُ حُمَيْد",
+      "form": "احمد بن حميد",
+      "transmissionTerm": "حدثنا",
+      "previousForm": null,
+      "nextForm": "عبيد الله الاشجعي",
+      "isnadContext": "حدثنا احمد بن حميد: اخبرنا عبيد الله الاشجعي، عن سفيان، عن الشيباني، عن عكرمه، عن ابن عباس ﵄:",
+      "importerFlags": {
+        "relativeForm": false,
+        "prophetMention": false
+      },
+      "samplingFlags": {
+        "relativeForm": false,
+        "relativeFormVersion": "sanad-relative-forms-1.0.0"
+      },
+      "exactHeadMatches": [
+        {
+          "entryId": "tahdhib-32-274-31",
+          "sourceId": "tahdhib",
+          "entryNumber": 32,
+          "head": "أحمد بن حميد، الطُّرَيْثيثي ، أبو الحسن، خَتَنُ عُبيد الله بن موسى",
+          "deathYear": 220
+        },
+        {
+          "entryId": "kashif-24-184-23",
+          "sourceId": "kashif",
+          "entryNumber": 24,
+          "head": "أحمد بن حميد الطريثيثي الحافظ",
+          "deathYear": null
+        }
+      ],
+      "exactHeadMatchCount": 2,
+      "occurrenceCount": 1,
+      "samplePositions": [
+        {
+          "chainId": "bukhari-4300-4300-6732#c0",
+          "position": 0
+        }
+      ]
+    },
+    {
+      "id": "form:امها",
+      "sourceId": "bukhari",
+      "recordId": "bukhari-5025-5025-8061",
+      "hadithNumber": 5025,
+      "volume": "5",
+      "printedPage": 2043,
+      "chainId": "bukhari-5025-5025-8061#c0",
+      "position": 4,
+      "stratum": "L0|K0|N0|R1|H0",
+      "cellSize": 62,
+      "inclusionWeight": 31,
+      "rawSurfaceForm": "أُمِّهَا",
+      "form": "امها",
+      "transmissionTerm": "عن",
+      "previousForm": "زينب بنت ام سلمه",
+      "nextForm": "زينب بنت ام سلمه تحدث",
+      "isnadContext": "حدثنا ادم بن ابي اياس: حدثنا شعبه: حدثنا حميد بن نافع، عن زينب بنت ام سلمه، عن امها: ان امراه توفي زوجها، فخشوا علي عينيها، فاتوا رسول الله صلي الله عليه وسلم فاستاذنوه في الكحل، فقال: (لا تكتحل، قد كانت احداكن تمكث في شر احلاسها، او شر بيتها، فاذا كان حول فمر كلب رمت ببعره، فلا حتي تمضي اربعه اشهر وعشر). وسمعت زينب بنت ام سلمه تحدث، عن ام حبيبه:",
+      "importerFlags": {
+        "relativeForm": true,
+        "prophetMention": false
+      },
+      "samplingFlags": {
+        "relativeForm": true,
+        "relativeFormVersion": "sanad-relative-forms-1.0.0"
+      },
+      "exactHeadMatches": [],
+      "exactHeadMatchCount": 0,
+      "occurrenceCount": 2,
+      "samplePositions": [
+        {
+          "chainId": "bukhari-5025-5025-8061#c0",
+          "position": 4
+        },
+        {
+          "chainId": "muslim-1488-60-3658#c0",
+          "position": 5
+        }
+      ]
+    },
+    {
+      "id": "form:جده",
+      "sourceId": "bukhari",
+      "recordId": "bukhari-154-154-284",
+      "hadithNumber": 154,
+      "volume": "1",
+      "printedPage": 70,
+      "chainId": "bukhari-154-154-284#c0",
+      "position": 2,
+      "stratum": "L0|K0|N0|R1|H0",
+      "cellSize": 62,
+      "inclusionWeight": 31,
+      "rawSurfaceForm": "جَدِّه",
+      "form": "جده",
+      "transmissionTerm": "عن",
+      "previousForm": "عمرو بن يحيي بن سعيد بن عمرو المكي",
+      "nextForm": "ابي هريره",
+      "isnadContext": "حدثنا احمد بن محمد المكي قال: حدثنا عمرو بن يحيي بن سعيد بن عمرو المكي، عن جده، عن ابي هريره قال:",
+      "importerFlags": {
+        "relativeForm": true,
+        "prophetMention": false
+      },
+      "samplingFlags": {
+        "relativeForm": true,
+        "relativeFormVersion": "sanad-relative-forms-1.0.0"
+      },
+      "exactHeadMatches": [],
+      "exactHeadMatchCount": 0,
+      "occurrenceCount": 39,
+      "samplePositions": [
+        {
+          "chainId": "bukhari-154-154-284#c0",
+          "position": 2
+        },
+        {
+          "chainId": "bukhari-467-467-818#c0",
+          "position": 3
+        },
+        {
+          "chainId": "bukhari-1376-1376-2337#c0",
+          "position": 4
+        },
+        {
+          "chainId": "bukhari-1761-1761-2985#c0",
+          "position": 3
+        },
+        {
+          "chainId": "bukhari-1780-1780-3016#c0",
+          "position": 3
+        }
+      ]
+    },
+    {
+      "id": "form:مورق العجلي",
+      "sourceId": "bukhari",
+      "recordId": "bukhari-2733-2733-4644",
+      "hadithNumber": 2733,
+      "volume": "3",
+      "printedPage": 1058,
+      "chainId": "bukhari-2733-2733-4644#c0",
+      "position": 3,
+      "stratum": "L0|K0|N1|R0|H0",
+      "cellSize": 136,
+      "inclusionWeight": 68,
+      "rawSurfaceForm": "مُوَرِّقٍ الْعِجْلِي",
+      "form": "مورق العجلي",
+      "transmissionTerm": "عن",
+      "previousForm": "عاصم",
+      "nextForm": "انس ﵁",
+      "isnadContext": "حدثنا سليمان بن داود ابو الربيع، عن اسماعيل بن زكرياء: حدثنا عاصم، عن مورق العجلي، عن انس ﵁ قال:",
+      "importerFlags": {
+        "relativeForm": false,
+        "prophetMention": false
+      },
+      "samplingFlags": {
+        "relativeForm": false,
+        "relativeFormVersion": "sanad-relative-forms-1.0.0"
+      },
+      "exactHeadMatches": [
+        {
+          "entryId": "kashif-5674-986-5649",
+          "sourceId": "kashif",
+          "entryNumber": 5674,
+          "head": "مورق العجلي",
+          "deathYear": null
+        }
+      ],
+      "exactHeadMatchCount": 1,
+      "occurrenceCount": 2,
+      "samplePositions": [
+        {
+          "chainId": "bukhari-2733-2733-4644#c0",
+          "position": 3
+        },
+        {
+          "chainId": "muslim-2428-66-6201#c0",
+          "position": 4
+        }
+      ]
+    },
+    {
+      "id": "form:اسحق الواسطي",
+      "sourceId": "bukhari",
+      "recordId": "bukhari-598-598-1029",
+      "hadithNumber": 598,
+      "volume": "1",
+      "printedPage": 225,
+      "chainId": "bukhari-598-598-1029#c0",
+      "position": 0,
+      "stratum": "L0|K0|N1|R0|H0",
+      "cellSize": 136,
+      "inclusionWeight": 68,
+      "rawSurfaceForm": "إسحق الْوَاسِطِي",
+      "form": "اسحق الواسطي",
+      "transmissionTerm": "حدثنا",
+      "previousForm": null,
+      "nextForm": "خالد",
+      "isnadContext": "حدثنا اسحق الواسطي قال: حدثنا خالد، عن الجريري، عن ابن بريده، عن عبد الله بن مغفل المزني:",
+      "importerFlags": {
+        "relativeForm": false,
+        "prophetMention": false
+      },
+      "samplingFlags": {
+        "relativeForm": false,
+        "relativeFormVersion": "sanad-relative-forms-1.0.0"
+      },
+      "exactHeadMatches": [],
+      "exactHeadMatchCount": 0,
+      "occurrenceCount": 7,
+      "samplePositions": [
+        {
+          "chainId": "bukhari-598-598-1029#c0",
+          "position": 0
+        },
+        {
+          "chainId": "bukhari-704-704-1209#c0",
+          "position": 0
+        },
+        {
+          "chainId": "bukhari-1551-1551-2637#c0",
+          "position": 0
+        },
+        {
+          "chainId": "bukhari-1854-1854-3136#c0",
+          "position": 0
+        },
+        {
+          "chainId": "bukhari-1879-1879-3177#c0",
+          "position": 0
+        }
+      ]
+    },
+    {
+      "id": "form:بشر بن السري",
+      "sourceId": "bukhari",
+      "recordId": "bukhari-6641-6641-10618",
+      "hadithNumber": 6641,
+      "volume": "6",
+      "printedPage": 2587,
+      "chainId": "bukhari-6641-6641-10618#c0",
+      "position": 1,
+      "stratum": "L0|K0|N1|R0|H1",
+      "cellSize": 2,
+      "inclusionWeight": 2,
+      "rawSurfaceForm": "بِشْرُ بْنُ السَّرِي",
+      "form": "بشر بن السري",
+      "transmissionTerm": "حدثنا",
+      "previousForm": "علي بن عبد الله",
+      "nextForm": "نافع بن عمر",
+      "isnadContext": "حدثنا علي بن عبد الله: حدثنا بشر بن السري: حدثنا نافع بن عمر، عن ابن ابي مليكه قال: قالت اسماء، عن النبي صلي الله عليه وسلم قال: (انا علي حوضي انتظر من يرد علي، فيوخذ بناس من دوني، فاقول: امتي، فيقول: لا تدري، مشوا علي القهقري). قال ابن ابي مليكه: اللهم انا نعوذ بك ان",
+      "importerFlags": {
+        "relativeForm": false,
+        "prophetMention": false
+      },
+      "samplingFlags": {
+        "relativeForm": false,
+        "relativeFormVersion": "sanad-relative-forms-1.0.0"
+      },
+      "exactHeadMatches": [
+        {
+          "entryId": "tahdhib-737-1370-738",
+          "sourceId": "tahdhib",
+          "entryNumber": 737,
+          "head": "بِشرُ بنُ السَّرِيّ البَصْريّ، أبو عَمْرٍو الأفْوَهُ",
+          "deathYear": 195
+        },
+        {
+          "entryId": "mizan-1195-316-1165",
+          "sourceId": "mizan",
+          "entryNumber": 1195,
+          "head": "بشر بن السري البصري الافوه",
+          "deathYear": 195
+        },
+        {
+          "entryId": "kashif-579-260-599",
+          "sourceId": "kashif",
+          "entryNumber": 579,
+          "head": "بشر بن السري البصري الافوه الواعظ",
+          "deathYear": 195
+        }
+      ],
+      "exactHeadMatchCount": 3,
+      "occurrenceCount": 5,
+      "samplePositions": [
+        {
+          "chainId": "bukhari-6641-6641-10618#c0",
+          "position": 1
+        },
+        {
+          "chainId": "muslim-19-30-89#c0",
+          "position": 1
+        },
+        {
+          "chainId": "muslim-1451-22-3521#c0",
+          "position": 1
+        },
+        {
+          "chainId": "muslim-2351-118-6030#c0",
+          "position": 1
+        },
+        {
+          "chainId": "muslim-2810-61-7029#c0",
+          "position": 1
+        }
+      ]
+    },
+    {
+      "id": "form:ابو خلده",
+      "sourceId": "bukhari",
+      "recordId": "bukhari-864-864-1465",
+      "hadithNumber": 864,
+      "volume": "1",
+      "printedPage": 307,
+      "chainId": "bukhari-864-864-1465#c0",
+      "position": 2,
+      "stratum": "L0|K1|N0|R0|H0",
+      "cellSize": 345,
+      "inclusionWeight": 86.25,
+      "rawSurfaceForm": "أَبُو خَلْدَة",
+      "form": "ابو خلده",
+      "transmissionTerm": "حدثنا",
+      "previousForm": "حرمي بن عماره",
+      "nextForm": "انس بن مالك",
+      "isnadContext": "حدثنا محمد بن ابي بكر المقدمي قال: حدثنا حرمي بن عماره قال: حدثنا ابو خلده، هو خالد بن دينار، قال: سمعت انس بن مالك يقول: كان النبي صلي الله عليه وسلم اذا اشتد البرد بكر بالصلاه، واذا اشتد الحر ابرد بالصلاه، يعني الجمعه. قال يونس بن بكير: اخبرنا ابو خلده فقال: بالصلاه، ولم يذكر الجمعه. وقال: بشر بن ثابت: حدثنا ابو خلده قال:",
+      "importerFlags": {
+        "relativeForm": false,
+        "prophetMention": false
+      },
+      "samplingFlags": {
+        "relativeForm": false,
+        "relativeFormVersion": "sanad-relative-forms-1.0.0"
+      },
+      "exactHeadMatches": [],
+      "exactHeadMatchCount": 0,
+      "occurrenceCount": 1,
+      "samplePositions": [
+        {
+          "chainId": "bukhari-864-864-1465#c0",
+          "position": 2
+        }
+      ]
+    },
+    {
+      "id": "form:ابي مجلز",
+      "sourceId": "bukhari",
+      "recordId": "bukhari-958-958-1628",
+      "hadithNumber": 958,
+      "volume": "1",
+      "printedPage": 340,
+      "chainId": "bukhari-958-958-1628#c0",
+      "position": 3,
+      "stratum": "L0|K1|N0|R0|H0",
+      "cellSize": 345,
+      "inclusionWeight": 86.25,
+      "rawSurfaceForm": "أَبِي مِجْلَز",
+      "form": "ابي مجلز",
+      "transmissionTerm": "عن",
+      "previousForm": "التيمي",
+      "nextForm": "انس",
+      "isnadContext": "اخبرنا احمد بن يونس قال: حدثنا زايده، عن التيمي، عن ابي مجلز، عن انس قال:",
+      "importerFlags": {
+        "relativeForm": false,
+        "prophetMention": false
+      },
+      "samplingFlags": {
+        "relativeForm": false,
+        "relativeFormVersion": "sanad-relative-forms-1.0.0"
+      },
+      "exactHeadMatches": [],
+      "exactHeadMatchCount": 0,
+      "occurrenceCount": 13,
+      "samplePositions": [
+        {
+          "chainId": "bukhari-958-958-1628#c0",
+          "position": 3
+        },
+        {
+          "chainId": "bukhari-3748-3748-6020#c0",
+          "position": 3
+        },
+        {
+          "chainId": "bukhari-3749-3749-6021#c0",
+          "position": 3
+        },
+        {
+          "chainId": "bukhari-3750-3750-6022#c0",
+          "position": 4
+        },
+        {
+          "chainId": "bukhari-3751-3751-6023#c0",
+          "position": 3
+        }
+      ]
+    },
+    {
+      "id": "form:ابي بريده",
+      "sourceId": "bukhari",
+      "recordId": "bukhari-1064-1064-1817",
+      "hadithNumber": 1064,
+      "volume": "1",
+      "printedPage": 375,
+      "chainId": "bukhari-1064-1064-1817#c0",
+      "position": 9,
+      "stratum": "L0|K1|N0|R0|H0",
+      "cellSize": 345,
+      "inclusionWeight": 86.25,
+      "rawSurfaceForm": "أَبِي بُرَيْدَة",
+      "form": "ابي بريده",
+      "transmissionTerm": "عن",
+      "previousForm": "الحسين",
+      "nextForm": "عمران بن حصين",
+      "isnadContext": "حدثنا اسحق بن منصور قال: اخبرنا روح بن عباده: اخبرنا حسين، عن عبد الله بن بريده، عن عمران بن حصين ﵁: انه سال نبي الله صلي الله عليه وسلم. اخبرنا اسحق قال: اخبرنا عبد الصمد قال: سمعت ابي قال: حدثنا الحسين، عن ابي بريده قال: حدثني عمران بن حصين، وكان مبسورا، قال: سالت رسول الله صلي الله عليه وسلم عن صلاه الرجل قاعدا، فقال:",
+      "importerFlags": {
+        "relativeForm": false,
+        "prophetMention": false
+      },
+      "samplingFlags": {
+        "relativeForm": false,
+        "relativeFormVersion": "sanad-relative-forms-1.0.0"
+      },
+      "exactHeadMatches": [],
+      "exactHeadMatchCount": 0,
+      "occurrenceCount": 1,
+      "samplePositions": [
+        {
+          "chainId": "bukhari-1064-1064-1817#c0",
+          "position": 9
+        }
+      ]
+    },
+    {
+      "id": "form:ابي مراوح",
+      "sourceId": "bukhari",
+      "recordId": "bukhari-2382-2382-4055",
+      "hadithNumber": 2382,
+      "volume": "2",
+      "printedPage": 891,
+      "chainId": "bukhari-2382-2382-4055#c0",
+      "position": 3,
+      "stratum": "L0|K1|N0|R0|H0",
+      "cellSize": 345,
+      "inclusionWeight": 86.25,
+      "rawSurfaceForm": "أَبِي مُرَاوِح",
+      "form": "ابي مراوح",
+      "transmissionTerm": "عن",
+      "previousForm": "ابيه",
+      "nextForm": "ابي ذر ﵁",
+      "isnadContext": "حدثنا عبيد الله بن موسي، عن هشام بن عروه، عن ابيه، عن ابي مراوح، عن ابي ذر ﵁ قال:",
+      "importerFlags": {
+        "relativeForm": false,
+        "prophetMention": false
+      },
+      "samplingFlags": {
+        "relativeForm": false,
+        "relativeFormVersion": "sanad-relative-forms-1.0.0"
+      },
+      "exactHeadMatches": [],
+      "exactHeadMatchCount": 0,
+      "occurrenceCount": 2,
+      "samplePositions": [
+        {
+          "chainId": "bukhari-2382-2382-4055#c0",
+          "position": 3
+        },
+        {
+          "chainId": "muslim-1121-107-2558#c0",
+          "position": 7
+        }
+      ]
+    },
+    {
+      "id": "form:ابو حفص",
+      "sourceId": "bukhari",
+      "recordId": "bukhari-3390-3390-5568",
+      "hadithNumber": 3390,
+      "volume": "3",
+      "printedPage": 1313,
+      "chainId": "bukhari-3390-3390-5568#c0",
+      "position": 2,
+      "stratum": "L0|K1|N0|R0|H1",
+      "cellSize": 60,
+      "inclusionWeight": 60,
+      "rawSurfaceForm": "أَبُو حَفْص",
+      "form": "ابو حفص",
+      "transmissionTerm": "حدثنا",
+      "previousForm": "يحيي بن كثير ابو غسان",
+      "nextForm": "نافعا",
+      "isnadContext": "حدثنا محمد بن المثني: حدثنا يحيي بن كثير ابو غسان: حدثنا ابو حفص، واسمه عمر بن العلاء، اخو ابي عمرو بن العلاء، قال: سمعت نافعا، عن ابن عمر رضي الله عنهما: كان النبي صلي الله عليه وسلم يخطب الي جذع، فلما اتخذ المنبر تحول اليه فحن الجذع، فاتاه فمسح يده عليه. وقال عبد الحميد: اخبرنا عثمان بن عمر:",
+      "importerFlags": {
+        "relativeForm": false,
+        "prophetMention": false
+      },
+      "samplingFlags": {
+        "relativeForm": false,
+        "relativeFormVersion": "sanad-relative-forms-1.0.0"
+      },
+      "exactHeadMatches": [
+        {
+          "entryId": "tahdhib-8584-12176-8585",
+          "sourceId": "tahdhib",
+          "entryNumber": 8584,
+          "head": "أبو حفص البصري",
+          "deathYear": null
+        },
+        {
+          "entryId": "tahdhib-8585-12177-8586",
+          "sourceId": "tahdhib",
+          "entryNumber": 8585,
+          "head": "أبو حفص الدمشقي",
+          "deathYear": null
+        },
+        {
+          "entryId": "taqrib-8056-557-8056",
+          "sourceId": "taqrib",
+          "entryNumber": 8056,
+          "head": "أبو حفص البصري",
+          "deathYear": null
+        },
+        {
+          "entryId": "taqrib-8057-557-8057",
+          "sourceId": "taqrib",
+          "entryNumber": 8057,
+          "head": "أبو حفص الدمشقي",
+          "deathYear": null
+        },
+        {
+          "entryId": "kashif-6585-1106-6543",
+          "sourceId": "kashif",
+          "entryNumber": 6585,
+          "head": "أبو حفص البصري",
+          "deathYear": null
+        },
+        {
+          "entryId": "kashif-6586-1106-6544",
+          "sourceId": "kashif",
+          "entryNumber": 6586,
+          "head": "أبو حفص الدمشقي",
+          "deathYear": null
+        }
+      ],
+      "exactHeadMatchCount": 6,
+      "occurrenceCount": 2,
+      "samplePositions": [
+        {
+          "chainId": "bukhari-3390-3390-5568#c0",
+          "position": 2
+        },
+        {
+          "chainId": "bukhari-5497-5497-8821#c0",
+          "position": 6
+        }
+      ]
+    },
+    {
+      "id": "form:ابو الجويريه",
+      "sourceId": "bukhari",
+      "recordId": "bukhari-1356-1356-2302",
+      "hadithNumber": 1356,
+      "volume": "2",
+      "printedPage": 517,
+      "chainId": "bukhari-1356-1356-2302#c0",
+      "position": 2,
+      "stratum": "L0|K1|N1|R0|H0",
+      "cellSize": 15,
+      "inclusionWeight": 15,
+      "rawSurfaceForm": "أَبُو الْجُوَيْرِيَة",
+      "form": "ابو الجويريه",
+      "transmissionTerm": "حدثنا",
+      "previousForm": "اسراييل",
+      "nextForm": "وابي وجدي",
+      "isnadContext": "حدثنا محمد بن يوسف: حدثنا اسراييل: حدثنا ابو الجويريه: ان معن بن يزيد ﵁ حدثه قال: بايعت رسول الله صلي الله عليه وسلم انا وابي وجدي، وخطب علي فانكحني، وخاصمت اليه:",
+      "importerFlags": {
+        "relativeForm": false,
+        "prophetMention": false
+      },
+      "samplingFlags": {
+        "relativeForm": false,
+        "relativeFormVersion": "sanad-relative-forms-1.0.0"
+      },
+      "exactHeadMatches": [
+        {
+          "entryId": "taqrib-8028-554-8028",
+          "sourceId": "taqrib",
+          "entryNumber": 8028,
+          "head": "أبو الجويرية العبدي آخر",
+          "deathYear": null
+        }
+      ],
+      "exactHeadMatchCount": 1,
+      "occurrenceCount": 2,
+      "samplePositions": [
+        {
+          "chainId": "bukhari-1356-1356-2302#c0",
+          "position": 2
+        },
+        {
+          "chainId": "bukhari-4346-4346-6815#c0",
+          "position": 3
+        }
+      ]
+    },
+    {
+      "id": "form:ثم سار حتي تهور الليل مال",
+      "sourceId": "muslim",
+      "recordId": "muslim-681-311-1498",
+      "hadithNumber": 681,
+      "volume": "1",
+      "printedPage": 472,
+      "chainId": "muslim-681-311-1498#c0",
+      "position": 8,
+      "stratum": "L1|K0|N0|R0|H0",
+      "cellSize": 2474,
+      "inclusionWeight": 130.2105,
+      "rawSurfaceForm": "ثُمَّ سَارَ حَتَّى تَهَوَّرَ اللَّيْلُ مَال",
+      "form": "ثم سار حتي تهور الليل مال",
+      "transmissionTerm": "قال",
+      "previousForm": "راحلته",
+      "nextForm": "فدعمته من غير ان اوقظه",
+      "isnadContext": "وحدثنا شيبان بن فروخ. حدثنا سليمان (يعني ابن المغيره) حدثنا ثابت عن عبد الله بن رباح، عن ابي قتاده؛ قال: خطبنا رسول الله صلي الله عليه وسلم فقال: \"انكم تسيرون عشيتكم وليلتكم. وتاتون الماء، ان شاء الله، غدا\". فانطلق الناس لا يلوي احد علي احد. قال ابو قتاده: فبينما رسول الله صلي الله عليه وسلم يسير حتي ابهار الليل وانا الي جنبه. قال: فنعس رسول الله صلي الله عليه وسلم. فمال عن راحلته. فاتيته فدعمته. من غير ان اوقظه. حتي",
+      "importerFlags": {
+        "relativeForm": false,
+        "prophetMention": false
+      },
+      "samplingFlags": {
+        "relativeForm": false,
+        "relativeFormVersion": "sanad-relative-forms-1.0.0"
+      },
+      "exactHeadMatches": [],
+      "exactHeadMatchCount": 0,
+      "occurrenceCount": 1,
+      "samplePositions": [
+        {
+          "chainId": "muslim-681-311-1498#c0",
+          "position": 8
+        }
+      ]
+    },
+    {
+      "id": "form:واطعنا وسلمنا",
+      "sourceId": "muslim",
+      "recordId": "muslim-126-200-288",
+      "hadithNumber": 126,
+      "volume": "1",
+      "printedPage": 116,
+      "chainId": "muslim-126-200-288#c0",
+      "position": 9,
+      "stratum": "L1|K0|N0|R0|H0",
+      "cellSize": 2474,
+      "inclusionWeight": 130.2105,
+      "rawSurfaceForm": "وَأَطَعْنَا وَسَلَّمْنَا",
+      "form": "واطعنا وسلمنا",
+      "transmissionTerm": "سمعنا",
+      "previousForm": "النبي صلي الله عليه وسلم",
+      "nextForm": null,
+      "isnadContext": "حدثنا ابو بكر بن ابي شيبه وابو كريب واسحاق بن ابراهيم واللفظ لابي بكر. (قال اسحاق: اخبرنا. وقال الاخران حدثنا) وكيع عن سفيان، عن ادم بن سليمان، مولي خالد؛ قال: سمعت سعيد بن جبير يحدث عن ابن عباس قال لما نزلت هذه الايه: ﴿وان تبدوا ما في انفسكم او تخفوه يحاسبكم به الله﴾ [٢/ البقره/ ايه ٢٨٤] قال، دخل قلوبهم منها شيء لم يدخل قلوبهم من شيء. فقال النبي صلي الله عليه وسلم \"قولوا: سمعنا واطعنا وسلمنا",
+      "importerFlags": {
+        "relativeForm": false,
+        "prophetMention": false
+      },
+      "samplingFlags": {
+        "relativeForm": false,
+        "relativeFormVersion": "sanad-relative-forms-1.0.0"
+      },
+      "exactHeadMatches": [],
+      "exactHeadMatchCount": 0,
+      "occurrenceCount": 1,
+      "samplePositions": [
+        {
+          "chainId": "muslim-126-200-288#c0",
+          "position": 9
+        }
+      ]
+    },
+    {
+      "id": "form:مسروق بن الاجدع",
+      "sourceId": "bukhari",
+      "recordId": "bukhari-3912-3912-6209",
+      "hadithNumber": 3912,
+      "volume": "4",
+      "printedPage": 1522,
+      "chainId": "bukhari-3912-3912-6209#c0",
+      "position": 4,
+      "stratum": "L1|K0|N0|R0|H0",
+      "cellSize": 2474,
+      "inclusionWeight": 130.2105,
+      "rawSurfaceForm": "مَسْرُوقُ بْنُ الْأَجْدَع",
+      "form": "مسروق بن الاجدع",
+      "transmissionTerm": "حدثني",
+      "previousForm": "ابي وايل",
+      "nextForm": "قاعده",
+      "isnadContext": "حدثنا موسي بن اسماعيل: حدثنا ابو عوانه، عن حصين، عن ابي وايل قال: حدثني مسروق بن الاجدع قال: حدثتني ام رومان، وهي ام عايشه ﵄، قالت: بينا انا قاعده انا وعايشه، اذ ولجت امراه من الانصار فقالت:",
+      "importerFlags": {
+        "relativeForm": false,
+        "prophetMention": false
+      },
+      "samplingFlags": {
+        "relativeForm": false,
+        "relativeFormVersion": "sanad-relative-forms-1.0.0"
+      },
+      "exactHeadMatches": [
+        {
+          "entryId": "kashif-5391-942-5372",
+          "sourceId": "kashif",
+          "entryNumber": 5391,
+          "head": "مسروق بن الاجدع أبو عائشة الهمداني",
+          "deathYear": null
+        }
+      ],
+      "exactHeadMatchCount": 1,
+      "occurrenceCount": 2,
+      "samplePositions": [
+        {
+          "chainId": "bukhari-3912-3912-6209#c0",
+          "position": 4
+        },
+        {
+          "chainId": "bukhari-4414-4414-6946#c0",
+          "position": 4
+        }
+      ]
+    },
+    {
+      "id": "form:حديث عايشه حين",
+      "sourceId": "bukhari",
+      "recordId": "bukhari-7106-7106-11265",
+      "hadithNumber": 7106,
+      "volume": "6",
+      "printedPage": 2743,
+      "chainId": "bukhari-7106-7106-11265#c0",
+      "position": 5,
+      "stratum": "L1|K0|N0|R0|H0",
+      "cellSize": 2474,
+      "inclusionWeight": 130.2105,
+      "rawSurfaceForm": "حَدِيثِ عَائِشَةَ حِين",
+      "form": "حديث عايشه حين",
+      "transmissionTerm": "عن",
+      "previousForm": "عروه بن الزبير",
+      "nextForm": "لها اهل الافك ما قالوا",
+      "isnadContext": "حدثنا يحيي بن بكير: حدثنا الليث، عن يونس، عن ابن شهاب: اخبرني عروه بن الزبير، وسعيد بن المسيب، وعلقمه بن وقاص، وعبيد الله بن عبد الله، عن حديث عايشه حين قال لها اهل الافك ما قالوا، وكل حدثني طايفه من الحديث، قالت: فاضطجعت علي فراشي، وانا حينيذ اعلم اني برييه، وان الله يبريني، ولكن والله ما كنت اظن ان",
+      "importerFlags": {
+        "relativeForm": false,
+        "prophetMention": false
+      },
+      "samplingFlags": {
+        "relativeForm": false,
+        "relativeFormVersion": "sanad-relative-forms-1.0.0"
+      },
+      "exactHeadMatches": [],
+      "exactHeadMatchCount": 0,
+      "occurrenceCount": 1,
+      "samplePositions": [
+        {
+          "chainId": "bukhari-7106-7106-11265#c0",
+          "position": 5
+        }
+      ]
+    },
+    {
+      "id": "form:يساري فتيان حديثا السن",
+      "sourceId": "bukhari",
+      "recordId": "bukhari-3766-3766-6039",
+      "hadithNumber": 3766,
+      "volume": "4",
+      "printedPage": 1464,
+      "chainId": "bukhari-3766-3766-6039#c0",
+      "position": 6,
+      "stratum": "L1|K0|N0|R0|H0",
+      "cellSize": 2474,
+      "inclusionWeight": 130.2105,
+      "rawSurfaceForm": "يَسَارِي فَتَيَانِ حَدِيثَا السِّن",
+      "form": "يساري فتيان حديثا السن",
+      "transmissionTerm": "وعن",
+      "previousForm": "يميني",
+      "nextForm": null,
+      "isnadContext": "حدثني يعقوب بن ابراهيم: حدثنا ابراهيم بن سعد، عن ابيه، عن جده قال: قال عبد الرحمن بن عوف: اني لفي الصف يوم بدر، اذ التفت فاذا عن يميني وعن يساري فتيان حديثا السن، فكاني لم امن بمكانهما، اذ قال",
+      "importerFlags": {
+        "relativeForm": false,
+        "prophetMention": false
+      },
+      "samplingFlags": {
+        "relativeForm": false,
+        "relativeFormVersion": "sanad-relative-forms-1.0.0"
+      },
+      "exactHeadMatches": [],
+      "exactHeadMatchCount": 0,
+      "occurrenceCount": 1,
+      "samplePositions": [
+        {
+          "chainId": "bukhari-3766-3766-6039#c0",
+          "position": 6
+        }
+      ]
+    },
+    {
+      "id": "form:زهير بن حرب وعبد بن حميد",
+      "sourceId": "muslim",
+      "recordId": "muslim-134-214-301",
+      "hadithNumber": 134,
+      "volume": "1",
+      "printedPage": 120,
+      "chainId": "muslim-134-214-301#c0",
+      "position": 0,
+      "stratum": "L1|K0|N0|R0|H0",
+      "cellSize": 2474,
+      "inclusionWeight": 130.2105,
+      "rawSurfaceForm": "زُهَيْرُ بْنُ حَرْبٍ وَعَبْدُ بْنُ حميد",
+      "form": "زهير بن حرب وعبد بن حميد",
+      "transmissionTerm": "حدثني",
+      "previousForm": null,
+      "nextForm": "يعقوب",
+      "isnadContext": "حدثني زهير بن حرب وعبد بن حميد. جميعا عن يعقوب. قال زهير: حدثنا يعقوب بن ابراهيم. حدثنا ابن اخي ابن شهاب، عن عمه قال: اخبرني عروه بن الزبير؛ ان",
+      "importerFlags": {
+        "relativeForm": false,
+        "prophetMention": false
+      },
+      "samplingFlags": {
+        "relativeForm": false,
+        "relativeFormVersion": "sanad-relative-forms-1.0.0"
+      },
+      "exactHeadMatches": [],
+      "exactHeadMatchCount": 0,
+      "occurrenceCount": 7,
+      "samplePositions": [
+        {
+          "chainId": "muslim-134-214-301#c0",
+          "position": 0
+        },
+        {
+          "chainId": "muslim-198-335-434#c0",
+          "position": 0
+        },
+        {
+          "chainId": "muslim-198-336-435#c0",
+          "position": 0
+        },
+        {
+          "chainId": "muslim-347-86-725#c0",
+          "position": 0
+        },
+        {
+          "chainId": "muslim-2601-93-6558#c0",
+          "position": 0
+        }
+      ]
+    },
+    {
+      "id": "form:اسحاق بن سعيد",
+      "sourceId": "bukhari",
+      "recordId": "bukhari-3009-3009-5085",
+      "hadithNumber": 3009,
+      "volume": "3",
+      "printedPage": 1161,
+      "chainId": "bukhari-3009-3009-5085#c0",
+      "position": 2,
+      "stratum": "L1|K0|N0|R0|H0",
+      "cellSize": 2474,
+      "inclusionWeight": 130.2105,
+      "rawSurfaceForm": "إِسْحَاقُ بْنُ سَعِيد",
+      "form": "اسحاق بن سعيد",
+      "transmissionTerm": "حدثنا",
+      "previousForm": "هاشم بن القاسم",
+      "nextForm": "ابيه",
+      "isnadContext": "قال ابو موسي: حدثنا هاشم بن القاسم: حدثنا اسحاق بن سعيد، عن ابيه، عن ابي هريره ﵁ قال: كيف انتم اذا لم تجتبوا دينارا ولا درهما؟ فقيل له: وكيف تري ذلك كاينا يا ابا هريره؟ قال: اي والذي نفس ابي هريره بيده، عن قول الصادق المصدوق، قالوا:",
+      "importerFlags": {
+        "relativeForm": false,
+        "prophetMention": false
+      },
+      "samplingFlags": {
+        "relativeForm": false,
+        "relativeFormVersion": "sanad-relative-forms-1.0.0"
+      },
+      "exactHeadMatches": [],
+      "exactHeadMatchCount": 0,
+      "occurrenceCount": 1,
+      "samplePositions": [
+        {
+          "chainId": "bukhari-3009-3009-5085#c0",
+          "position": 2
+        }
+      ]
+    },
+    {
+      "id": "form:سهم ابن منجاب",
+      "sourceId": "muslim",
+      "recordId": "muslim-827-417-3188",
+      "hadithNumber": 827,
+      "volume": "2",
+      "printedPage": 976,
+      "chainId": "muslim-827-417-3188#c0",
+      "position": 4,
+      "stratum": "L1|K0|N0|R0|H0",
+      "cellSize": 2474,
+      "inclusionWeight": 130.2105,
+      "rawSurfaceForm": "سهم ابن مِنْجَاب",
+      "form": "سهم ابن منجاب",
+      "transmissionTerm": "عن",
+      "previousForm": "ابراهيم",
+      "nextForm": "قزعه",
+      "isnadContext": "حدثنا عثمان بن ابي شيبه. حدثنا جرير عن مغيره، عن ابراهيم، عن سهم ابن منجاب، عن قزعه، عن ابي سعيد الخدري. قال:",
+      "importerFlags": {
+        "relativeForm": false,
+        "prophetMention": false
+      },
+      "samplingFlags": {
+        "relativeForm": false,
+        "relativeFormVersion": "sanad-relative-forms-1.0.0"
+      },
+      "exactHeadMatches": [],
+      "exactHeadMatchCount": 0,
+      "occurrenceCount": 1,
+      "samplePositions": [
+        {
+          "chainId": "muslim-827-417-3188#c0",
+          "position": 4
+        }
+      ]
+    },
+    {
+      "id": "form:ابن عباس يرويه",
+      "sourceId": "bukhari",
+      "recordId": "bukhari-6724-6724-10733",
+      "hadithNumber": 6724,
+      "volume": "6",
+      "printedPage": 2612,
+      "chainId": "bukhari-6724-6724-10733#c0",
+      "position": 4,
+      "stratum": "L1|K0|N0|R0|H0",
+      "cellSize": 2474,
+      "inclusionWeight": 130.2105,
+      "rawSurfaceForm": "ابْنِ عَبَّاسٍ يَرْوِيه",
+      "form": "ابن عباس يرويه",
+      "transmissionTerm": "عن",
+      "previousForm": "ابي رجاء",
+      "nextForm": "النبي صلي الله عليه وسلم",
+      "isnadContext": "حدثنا سليمان بن حرب: حدثنا حماد، عن الجعد، عن ابي رجاء، عن ابن عباس يرويه قال:",
+      "importerFlags": {
+        "relativeForm": false,
+        "prophetMention": false
+      },
+      "samplingFlags": {
+        "relativeForm": false,
+        "relativeFormVersion": "sanad-relative-forms-1.0.0"
+      },
+      "exactHeadMatches": [],
+      "exactHeadMatchCount": 0,
+      "occurrenceCount": 1,
+      "samplePositions": [
+        {
+          "chainId": "bukhari-6724-6724-10733#c0",
+          "position": 4
+        }
+      ]
+    },
+    {
+      "id": "form:عبد الله مولي اسماء",
+      "sourceId": "muslim",
+      "recordId": "muslim-1291-297-3048",
+      "hadithNumber": 1291,
+      "volume": "2",
+      "printedPage": 940,
+      "chainId": "muslim-1291-297-3048#c0",
+      "position": 3,
+      "stratum": "L1|K0|N0|R0|H0",
+      "cellSize": 2474,
+      "inclusionWeight": 130.2105,
+      "rawSurfaceForm": "عَبْدُ اللَّهِ مَوْلَى أَسْمَاء",
+      "form": "عبد الله مولي اسماء",
+      "transmissionTerm": "حدثني",
+      "previousForm": "ابن جريج",
+      "nextForm": null,
+      "isnadContext": "حدثنا محمد بن ابي بكر المقدمي. حدثنا يحيي (وهو القطان) عن ابن جريج. حدثني عبد الله مولي اسماء قال:",
+      "importerFlags": {
+        "relativeForm": false,
+        "prophetMention": false
+      },
+      "samplingFlags": {
+        "relativeForm": false,
+        "relativeFormVersion": "sanad-relative-forms-1.0.0"
+      },
+      "exactHeadMatches": [],
+      "exactHeadMatchCount": 0,
+      "occurrenceCount": 1,
+      "samplePositions": [
+        {
+          "chainId": "muslim-1291-297-3048#c0",
+          "position": 3
+        }
+      ]
+    },
+    {
+      "id": "form:عامر بن سعد بن مالك",
+      "sourceId": "bukhari",
+      "recordId": "bukhari-3721-3721-5982",
+      "hadithNumber": 3721,
+      "volume": "3",
+      "printedPage": 1431,
+      "chainId": "bukhari-3721-3721-5982#c0",
+      "position": 3,
+      "stratum": "L1|K0|N0|R0|H0",
+      "cellSize": 2474,
+      "inclusionWeight": 130.2105,
+      "rawSurfaceForm": "عَامِرِ بْنِ سَعْدِ بْنِ\n\n⦗١٤٣٢⦘\nمَالِك",
+      "form": "عامر بن سعد بن مالك",
+      "transmissionTerm": "عن",
+      "previousForm": "الزهري",
+      "nextForm": "ابيه",
+      "isnadContext": "حدثنا يحيي بن قزعه: حدثنا ابراهيم، عن الزهري، عن عامر بن سعد بن مالك، عن ابيه قال: عادني النبي صلي الله عليه وسلم عام حجه الوداع من مرض اشفيت منه علي الموت، فقلت: يا رسول الله، بلغ بي من الوجع ما تري، وانا ذو مال، ولا يرثني الا ابنه لي واحده، افاتصدق بثلثي مالي؟ قال: (لا). قال: فاتصدق بشطره؟ قال: (لا). قال: (الثلث يا سعد، والثلث كثير، انك ان تذر ورثتك اغنياء، خير من ان تذرهم عاله يتكففون الناس). قال احمد بن يونس، عن ",
+      "importerFlags": {
+        "relativeForm": false,
+        "prophetMention": false
+      },
+      "samplingFlags": {
+        "relativeForm": false,
+        "relativeFormVersion": "sanad-relative-forms-1.0.0"
+      },
+      "exactHeadMatches": [],
+      "exactHeadMatchCount": 0,
+      "occurrenceCount": 1,
+      "samplePositions": [
+        {
+          "chainId": "bukhari-3721-3721-5982#c0",
+          "position": 3
+        }
+      ]
+    },
+    {
+      "id": "form:الحكم ابن موسي",
+      "sourceId": "muslim",
+      "recordId": "muslim-1004-13-4160",
+      "hadithNumber": 1004,
+      "volume": "3",
+      "printedPage": 1254,
+      "chainId": "muslim-1004-13-4160#c1",
+      "position": 0,
+      "stratum": "L1|K0|N0|R0|H0",
+      "cellSize": 2474,
+      "inclusionWeight": 130.2105,
+      "rawSurfaceForm": "الحكم ابن مُوسَى",
+      "form": "الحكم ابن موسي",
+      "transmissionTerm": "وحدثني",
+      "previousForm": null,
+      "nextForm": "شعيب بن اسحاق",
+      "isnadContext": "ح وحدثني الحكم ابن موسي. حدثنا شعيب بن اسحاق.",
+      "importerFlags": {
+        "relativeForm": false,
+        "prophetMention": false
+      },
+      "samplingFlags": {
+        "relativeForm": false,
+        "relativeFormVersion": "sanad-relative-forms-1.0.0"
+      },
+      "exactHeadMatches": [],
+      "exactHeadMatchCount": 0,
+      "occurrenceCount": 1,
+      "samplePositions": [
+        {
+          "chainId": "muslim-1004-13-4160#c1",
+          "position": 0
+        }
+      ]
+    },
+    {
+      "id": "form:معمر بن عبد الله",
+      "sourceId": "muslim",
+      "recordId": "muslim-1592-93-4013",
+      "hadithNumber": 1592,
+      "volume": "3",
+      "printedPage": 1214,
+      "chainId": "muslim-1592-93-4013#c1",
+      "position": 3,
+      "stratum": "L1|K0|N0|R0|H0",
+      "cellSize": 2474,
+      "inclusionWeight": 130.2105,
+      "rawSurfaceForm": "مَعْمَرِ بْنِ عَبْدِ اللَّه",
+      "form": "معمر بن عبد الله",
+      "transmissionTerm": "عن",
+      "previousForm": "عمرو بن الحارث",
+      "nextForm": null,
+      "isnadContext": "ح وحدثني ابو الطاهر. اخبرنا ابن وهب عن عمرو بن الحارث؛ ان ابا النصر حدثه؛ ان بسر بن سعيد حدثه عن معمر بن عبد الله؛ انه",
+      "importerFlags": {
+        "relativeForm": false,
+        "prophetMention": false
+      },
+      "samplingFlags": {
+        "relativeForm": false,
+        "relativeFormVersion": "sanad-relative-forms-1.0.0"
+      },
+      "exactHeadMatches": [
+        {
+          "entryId": "mizan-8688-2184-8400",
+          "sourceId": "mizan",
+          "entryNumber": 8688,
+          "head": "معمر بن عبد الله الأنصاري",
+          "deathYear": null
+        }
+      ],
+      "exactHeadMatchCount": 1,
+      "occurrenceCount": 2,
+      "samplePositions": [
+        {
+          "chainId": "muslim-1592-93-4013#c1",
+          "position": 3
+        },
+        {
+          "chainId": "muslim-1605-130-4057#c0",
+          "position": 5
+        }
+      ]
+    },
+    {
+      "id": "form:عبد الله ابن المبارك",
+      "sourceId": "muslim",
+      "recordId": "muslim-1740-18-4479",
+      "hadithNumber": 1740,
+      "volume": "3",
+      "printedPage": 1362,
+      "chainId": "muslim-1740-18-4479#c0",
+      "position": 1,
+      "stratum": "L1|K0|N0|R0|H0",
+      "cellSize": 2474,
+      "inclusionWeight": 130.2105,
+      "rawSurfaceForm": "عبد الله ابن الْمُبَارَك",
+      "form": "عبد الله ابن المبارك",
+      "transmissionTerm": "اخبرنا",
+      "previousForm": "محمد بن عبد الرحمن بن سهم",
+      "nextForm": "معمر",
+      "isnadContext": "وحدثنا محمد بن عبد الرحمن بن سهم. اخبرنا عبد الله ابن المبارك. اخبرنا معمر، عن همام بن منبه، عن ابي هريره. قال:",
+      "importerFlags": {
+        "relativeForm": false,
+        "prophetMention": false
+      },
+      "samplingFlags": {
+        "relativeForm": false,
+        "relativeFormVersion": "sanad-relative-forms-1.0.0"
+      },
+      "exactHeadMatches": [
+        {
+          "entryId": "taqrib-3570-245-3569",
+          "sourceId": "taqrib",
+          "entryNumber": 3570,
+          "head": "عبد الله ابن المبارك المروزي",
+          "deathYear": null
+        }
+      ],
+      "exactHeadMatchCount": 1,
+      "occurrenceCount": 1,
+      "samplePositions": [
+        {
+          "chainId": "muslim-1740-18-4479#c0",
+          "position": 1
+        }
+      ]
+    },
+    {
+      "id": "form:زاذان ابي عمر",
+      "sourceId": "muslim",
+      "recordId": "muslim-1657-29-4236",
+      "hadithNumber": 1657,
+      "volume": "3",
+      "printedPage": 1278,
+      "chainId": "muslim-1657-29-4236#c0",
+      "position": 4,
+      "stratum": "L1|K0|N0|R0|H0",
+      "cellSize": 2474,
+      "inclusionWeight": 130.2105,
+      "rawSurfaceForm": "زَاذَانَ أَبِي عُمَر",
+      "form": "زاذان ابي عمر",
+      "transmissionTerm": "عن",
+      "previousForm": "ذكوان ابي صالح",
+      "nextForm": "رسول الله صلي الله عليه وسلم",
+      "isnadContext": "حدثني ابو كامل فضيل بن حسين الجحدري. حدثنا ابو عوانه عن فراس، عن ذكوان ابي صالح، عن زاذان ابي عمر. قال: اتيت ابن عمر، وقد اعتق مملوكا. قال: فاخذ من الارض عودا او شييا. فقال: ما فيه من الاجر ما يسوي هذا. الا اني سمعت رسول الله صلي الله عليه وسلم يقول",
+      "importerFlags": {
+        "relativeForm": false,
+        "prophetMention": false
+      },
+      "samplingFlags": {
+        "relativeForm": false,
+        "relativeFormVersion": "sanad-relative-forms-1.0.0"
+      },
+      "exactHeadMatches": [],
+      "exactHeadMatchCount": 0,
+      "occurrenceCount": 1,
+      "samplePositions": [
+        {
+          "chainId": "muslim-1657-29-4236#c0",
+          "position": 4
+        }
+      ]
+    },
+    {
+      "id": "form:بينه وبين السايل",
+      "sourceId": "muslim",
+      "recordId": "muslim-749-148-1681",
+      "hadithNumber": 749,
+      "volume": "1",
+      "printedPage": 517,
+      "chainId": "muslim-749-148-1681#c0",
+      "position": 5,
+      "stratum": "L1|K0|N0|R0|H0",
+      "cellSize": 2474,
+      "inclusionWeight": 130.2105,
+      "rawSurfaceForm": "بَيْنَهُ وَبَيْنَ السَّائِل",
+      "form": "بينه وبين السايل",
+      "transmissionTerm": "وانا",
+      "previousForm": "عبد الله بن عمر",
+      "nextForm": "بذلك المكان من رسول الله صلي الله عليه وسلم",
+      "isnadContext": "وحدثني ابو الربيع الزهراني. حدثنا حماد. حدثنا ايوب وبديل عن عبد الله بن شقيق، عن عبد الله بن عمر؛ ان رجلا سال النبي صلي الله عليه وسلم. وانا بينه وبين السايل. فقال: يا رسول الله! كيف صلاه الليل؟ قال \"مثني مثني. فاذا خشيت الصبح فصل ركعه. واجعل اخر صلاتك وترا\" ثم ساله رجل، علي راس الحول، وانا بذلك المكان من رسول الله صلي الله عليه وسلم. فلا ادري، هو ذلك الرجل او رجل اخر. فقال",
+      "importerFlags": {
+        "relativeForm": false,
+        "prophetMention": false
+      },
+      "samplingFlags": {
+        "relativeForm": false,
+        "relativeFormVersion": "sanad-relative-forms-1.0.0"
+      },
+      "exactHeadMatches": [],
+      "exactHeadMatchCount": 0,
+      "occurrenceCount": 1,
+      "samplePositions": [
+        {
+          "chainId": "muslim-749-148-1681#c0",
+          "position": 5
+        }
+      ]
+    },
+    {
+      "id": "form:البراء يقول في هذه الايه",
+      "sourceId": "muslim",
+      "recordId": "muslim-1898-141-4845",
+      "hadithNumber": 1898,
+      "volume": "3",
+      "printedPage": 1508,
+      "chainId": "muslim-1898-141-4845#c0",
+      "position": 4,
+      "stratum": "L1|K0|N0|R0|H0",
+      "cellSize": 2474,
+      "inclusionWeight": 130.2105,
+      "rawSurfaceForm": "الْبَرَاءَ يَقُولُ فِي هَذِهِ الْآيَة",
+      "form": "البراء يقول في هذه الايه",
+      "transmissionTerm": "انه سمع",
+      "previousForm": "ابي اسحاق",
+      "nextForm": "رسول الله صلي الله عليه وسلم",
+      "isnadContext": "حدثنا محمد بن المثني ومحمد بن بشار (واللفظ لابن المثني). قالا: حدثنا محمد بن جعفر. حدثنا شعبه عن ابي اسحاق؛ انه سمع البراء يقول في هذه الايه: ﴿لا يستوي القاعدون من المومنين والمجاهدون في سبيل الله﴾ [٤ /النساء /٩٥] فامر رسول الله صلي الله عليه وسلم زيدا فجاء بكتف يكتبها. فشكا اليه ابن مكتوم ضرارته. فنزلت: ﴿لا يستوي القاعدون من المومنين غير اولي الضرر﴾. قال شعبه:",
+      "importerFlags": {
+        "relativeForm": false,
+        "prophetMention": false
+      },
+      "samplingFlags": {
+        "relativeForm": false,
+        "relativeFormVersion": "sanad-relative-forms-1.0.0"
+      },
+      "exactHeadMatches": [],
+      "exactHeadMatchCount": 0,
+      "occurrenceCount": 1,
+      "samplePositions": [
+        {
+          "chainId": "muslim-1898-141-4845#c0",
+          "position": 4
+        }
+      ]
+    },
+    {
+      "id": "form:هشام بن حكيم بن حزام",
+      "sourceId": "bukhari",
+      "recordId": "bukhari-2287-2287-3873",
+      "hadithNumber": 2287,
+      "volume": "2",
+      "printedPage": 851,
+      "chainId": "bukhari-2287-2287-3873#c0",
+      "position": 6,
+      "stratum": "L1|K0|N0|R0|H0",
+      "cellSize": 2474,
+      "inclusionWeight": 130.2105,
+      "rawSurfaceForm": "هِشَامَ بْنَ حَكِيمِ بْنِ حِزَام",
+      "form": "هشام بن حكيم بن حزام",
+      "transmissionTerm": "سمعت",
+      "previousForm": "عمر بن الخطاب ﵁",
+      "nextForm": "هذا يقرا علي غير ما اقراتنيها",
+      "isnadContext": "حدثنا عبد الله بن يوسف: اخبرنا مالك، عن ابن شهاب، عن عروه بن الزبير، عن عبد الرحمن بن عبد القاري انه قال: سمعت عمر بن الخطاب ﵁ يقول: سمعت هشام بن حكيم بن حزام: يقرا سوره الفرقان علي غير ما اقروها، وكان رسول الله صلي الله عليه وسلم اقرانيها، وكدت ان اعجل عليه، ثم امهلته حتي انصرف، ثم لببته بردايه، فجيت به رسول الله صلي الله عليه وسلم فقلت: اني سمعت هذا يقرا علي غير ما اقراتنيها، فقال",
+      "importerFlags": {
+        "relativeForm": false,
+        "prophetMention": false
+      },
+      "samplingFlags": {
+        "relativeForm": false,
+        "relativeFormVersion": "sanad-relative-forms-1.0.0"
+      },
+      "exactHeadMatches": [
+        {
+          "entryId": "kashif-5960-1022-5928",
+          "sourceId": "kashif",
+          "entryNumber": 5960,
+          "head": "هشام بن حكيم بن حزام الاسدي من الطلقاء كأبيه",
+          "deathYear": null
+        }
+      ],
+      "exactHeadMatchCount": 1,
+      "occurrenceCount": 2,
+      "samplePositions": [
+        {
+          "chainId": "bukhari-2287-2287-3873#c0",
+          "position": 6
+        },
+        {
+          "chainId": "muslim-2613-117-6591#c0",
+          "position": 4
+        }
+      ]
+    },
+    {
+      "id": "form:عمر ابن سعيد بن مسروق",
+      "sourceId": "muslim",
+      "recordId": "muslim-1968-22-5028",
+      "hadithNumber": 1968,
+      "volume": "3",
+      "printedPage": 1559,
+      "chainId": "muslim-1968-22-5028#c0",
+      "position": 6,
+      "stratum": "L1|K0|N0|R0|H0",
+      "cellSize": 2474,
+      "inclusionWeight": 130.2105,
+      "rawSurfaceForm": "عمر ابن سَعِيدِ بْنِ مَسْرُوق",
+      "form": "عمر ابن سعيد بن مسروق",
+      "transmissionTerm": "حدثنيه",
+      "previousForm": "جده رافع",
+      "nextForm": "ابيه",
+      "isnadContext": "وحدثنا ابن ابي عمر. حدثنا سفيان عن اسماعيل بن مسلم، عن سعيد بن مسروق، عن عبايه، عن جده رافع. ثم حدثنيه عمر ابن سعيد بن مسروق عن ابيه، عن عبايه بن رفاعه بن رافع ابن خديج، عن جده. قال: قلنا: يا رسول الله! انا لاقوا العدو غدا. وليس معنا مدي. فنذكي بالليط؟ وذكر الحديث بقصته. وقال:",
+      "importerFlags": {
+        "relativeForm": false,
+        "prophetMention": false
+      },
+      "samplingFlags": {
+        "relativeForm": false,
+        "relativeFormVersion": "sanad-relative-forms-1.0.0"
+      },
+      "exactHeadMatches": [],
+      "exactHeadMatchCount": 0,
+      "occurrenceCount": 1,
+      "samplePositions": [
+        {
+          "chainId": "muslim-1968-22-5028#c0",
+          "position": 6
+        }
+      ]
+    },
+    {
+      "id": "form:عروه بن الجعد",
+      "sourceId": "bukhari",
+      "recordId": "bukhari-2695-2695-4579",
+      "hadithNumber": 2695,
+      "volume": "3",
+      "printedPage": 1047,
+      "chainId": "bukhari-2695-2695-4579#c0",
+      "position": 4,
+      "stratum": "L1|K0|N0|R0|H1",
+      "cellSize": 560,
+      "inclusionWeight": 112,
+      "rawSurfaceForm": "عُرْوَةَ بْنِ الْجَعْد",
+      "form": "عروه بن الجعد",
+      "transmissionTerm": "عن",
+      "previousForm": "الشعبي",
+      "nextForm": "النبي صلي الله عليه وسلم",
+      "isnadContext": "حدثنا حفص بن عمر: حدثنا شعبه، عن حصين وابن ابي السفر، عن الشعبي، عن عروه بن الجعد، عن النبي صلي الله عليه وسلم قال:",
+      "importerFlags": {
+        "relativeForm": false,
+        "prophetMention": false
+      },
+      "samplingFlags": {
+        "relativeForm": false,
+        "relativeFormVersion": "sanad-relative-forms-1.0.0"
+      },
+      "exactHeadMatches": [
+        {
+          "entryId": "tahdhib-4795-6968-4796",
+          "sourceId": "tahdhib",
+          "entryNumber": 4795,
+          "head": "عُروة بن الجَعْد",
+          "deathYear": null
+        },
+        {
+          "entryId": "kashif-3772-705-3786",
+          "sourceId": "kashif",
+          "entryNumber": 3772,
+          "head": "عروة بن الجعد البارقي",
+          "deathYear": null
+        }
+      ],
+      "exactHeadMatchCount": 2,
+      "occurrenceCount": 1,
+      "samplePositions": [
+        {
+          "chainId": "bukhari-2695-2695-4579#c0",
+          "position": 4
+        }
+      ]
+    },
+    {
+      "id": "form:عمرو بن ابي سلمه",
+      "sourceId": "bukhari",
+      "recordId": "bukhari-1183-1183-2020",
+      "hadithNumber": 1183,
+      "volume": "1",
+      "printedPage": 418,
+      "chainId": "bukhari-1183-1183-2020#c0",
+      "position": 1,
+      "stratum": "L1|K0|N0|R0|H1",
+      "cellSize": 560,
+      "inclusionWeight": 112,
+      "rawSurfaceForm": "عَمْرُو بْنُ أَبِي سَلَمَة",
+      "form": "عمرو بن ابي سلمه",
+      "transmissionTerm": "حدثنا",
+      "previousForm": "محمد",
+      "nextForm": "الاوزاعي",
+      "isnadContext": "حدثنا محمد: حدثنا عمرو بن ابي سلمه، عن الاوزاعي قال: اخبرني ابن شهاب قال: اخبرني سعيد بن المسيب: ان ابا هريره ﵁ قال: سمعت رسول الله صلي الله عليه وسلم يقول:",
+      "importerFlags": {
+        "relativeForm": false,
+        "prophetMention": false
+      },
+      "samplingFlags": {
+        "relativeForm": false,
+        "relativeFormVersion": "sanad-relative-forms-1.0.0"
+      },
+      "exactHeadMatches": [
+        {
+          "entryId": "tahdhib-5307-7841-5308",
+          "sourceId": "tahdhib",
+          "entryNumber": 5307,
+          "head": "عمرُو بنُ أبي سلمة التِّنِّيسي، أبو حفص الدمشقي",
+          "deathYear": 213
+        },
+        {
+          "entryId": "mizan-6379-1612-6185",
+          "sourceId": "mizan",
+          "entryNumber": 6379,
+          "head": "عمرو بن أبي سلمة، أبو حفص التنيسى",
+          "deathYear": 214
+        },
+        {
+          "entryId": "kashif-4166-764-4172",
+          "sourceId": "kashif",
+          "entryNumber": 4166,
+          "head": "عمرو بن أبي سلمة التنيسي أبو حفص",
+          "deathYear": 214
+        }
+      ],
+      "exactHeadMatchCount": 3,
+      "occurrenceCount": 2,
+      "samplePositions": [
+        {
+          "chainId": "bukhari-1183-1183-2020#c0",
+          "position": 1
+        },
+        {
+          "chainId": "muslim-1159-185-2656#c0",
+          "position": 1
+        }
+      ]
+    },
+    {
+      "id": "form:عبد الله بن نمير",
+      "sourceId": "bukhari",
+      "recordId": "bukhari-329-329-579",
+      "hadithNumber": 329,
+      "volume": "1",
+      "printedPage": 128,
+      "chainId": "bukhari-329-329-579#c0",
+      "position": 1,
+      "stratum": "L1|K0|N0|R0|H1",
+      "cellSize": 560,
+      "inclusionWeight": 112,
+      "rawSurfaceForm": "عَبْدُ اللَّهِ بْنُ نُمَيْر",
+      "form": "عبد الله بن نمير",
+      "transmissionTerm": "حدثنا",
+      "previousForm": "زكرياء بن يحيي",
+      "nextForm": "هشام بن عروه",
+      "isnadContext": "حدثنا زكرياء بن يحيي قال: حدثنا عبد الله بن نمير قال: حدثنا هشام بن عروه، عن ابيه، عن عايشه:",
+      "importerFlags": {
+        "relativeForm": false,
+        "prophetMention": false
+      },
+      "samplingFlags": {
+        "relativeForm": false,
+        "relativeFormVersion": "sanad-relative-forms-1.0.0"
+      },
+      "exactHeadMatches": [
+        {
+          "entryId": "tahdhib-3845-5469-3846",
+          "sourceId": "tahdhib",
+          "entryNumber": 3845,
+          "head": "عبد الله بن نُمَير الهَمْدانيُّ الخَارِفيُّ، أبو هشام الكوفيُّ",
+          "deathYear": 199
+        },
+        {
+          "entryId": "kashif-3024-594-3036",
+          "sourceId": "kashif",
+          "entryNumber": 3024,
+          "head": "عبد الله بن نمير الهمداني أبو هشام",
+          "deathYear": 199
+        }
+      ],
+      "exactHeadMatchCount": 2,
+      "occurrenceCount": 42,
+      "samplePositions": [
+        {
+          "chainId": "bukhari-329-329-579#c0",
+          "position": 1
+        },
+        {
+          "chainId": "bukhari-451-451-791#c0",
+          "position": 1
+        },
+        {
+          "chainId": "bukhari-472-472-827#c0",
+          "position": 1
+        },
+        {
+          "chainId": "bukhari-1458-1458-2484#c0",
+          "position": 1
+        },
+        {
+          "chainId": "bukhari-2451-2451-4163#c0",
+          "position": 1
+        }
+      ]
+    },
+    {
+      "id": "form:عبد الرحمن بن ابي نعم",
+      "sourceId": "bukhari",
+      "recordId": "bukhari-4094-4094-6417",
+      "hadithNumber": 4094,
+      "volume": "4",
+      "printedPage": 1581,
+      "chainId": "bukhari-4094-4094-6417#c0",
+      "position": 3,
+      "stratum": "L1|K0|N0|R0|H1",
+      "cellSize": 560,
+      "inclusionWeight": 112,
+      "rawSurfaceForm": "عَبْدُ الرَّحْمَنِ بْنُ أَبِي نُعْم",
+      "form": "عبد الرحمن بن ابي نعم",
+      "transmissionTerm": "حدثنا",
+      "previousForm": "عماره بن القعقاع بن شبرمه",
+      "nextForm": "ابا سعيد الخدري",
+      "isnadContext": "حدثنا قتيبه: حدثنا عبد الواحد، عن عماره بن القعقاع بن شبرمه: حدثنا عبد الرحمن بن ابي نعم قال: سمعت ابا سعيد الخدري يقول: بعث علي بن ابي طالب ﵁ الي رسول الله صلي الله عليه وسلم من اليمن بذهيبه في اديم مقروظ، لم تحصل من ترابها، قال: فقسمها بين اربعه نفر: بين عيينه بن بدر، واقرع بن حابس، وزيد الخيل، والرابع: اما علقمه، واما عامر بن الطفيل، فقال رجل من اصحابه: كنا نحن احق بهذا من هولاء، قال: فبلغ ذلك النبي صلي الله عليه ",
+      "importerFlags": {
+        "relativeForm": false,
+        "prophetMention": false
+      },
+      "samplingFlags": {
+        "relativeForm": false,
+        "relativeFormVersion": "sanad-relative-forms-1.0.0"
+      },
+      "exactHeadMatches": [
+        {
+          "entryId": "tahdhib-4232-5991-4233",
+          "sourceId": "tahdhib",
+          "entryNumber": 4232,
+          "head": "عبد الرحمن بن أبي نُعْم البَجَلِي، أبو الحكم، الكوفي، العابد",
+          "deathYear": null
+        },
+        {
+          "entryId": "mizan-4992-1261-4846",
+          "sourceId": "mizan",
+          "entryNumber": 4992,
+          "head": "عبد الرحمن بن أبي نعم البجلي",
+          "deathYear": null
+        },
+        {
+          "entryId": "kashif-3330-636-3341",
+          "sourceId": "kashif",
+          "entryNumber": 3330,
+          "head": "عبد الرحمن بن أبي نعم البجلي الزاهد",
+          "deathYear": null
+        }
+      ],
+      "exactHeadMatchCount": 3,
+      "occurrenceCount": 3,
+      "samplePositions": [
+        {
+          "chainId": "bukhari-4094-4094-6417#c0",
+          "position": 3
+        },
+        {
+          "chainId": "muslim-1064-143-2382#c0",
+          "position": 3
+        },
+        {
+          "chainId": "muslim-1660-37-4249#c1",
+          "position": 3
+        }
+      ]
+    },
+    {
+      "id": "form:ابراهيم بن نافع",
+      "sourceId": "bukhari",
+      "recordId": "bukhari-273-273-479",
+      "hadithNumber": 273,
+      "volume": "1",
+      "printedPage": 107,
+      "chainId": "bukhari-273-273-479#c0",
+      "position": 1,
+      "stratum": "L1|K0|N0|R0|H1",
+      "cellSize": 560,
+      "inclusionWeight": 112,
+      "rawSurfaceForm": "إِبْرَاهِيمُ بْنُ نَافِع",
+      "form": "ابراهيم بن نافع",
+      "transmissionTerm": "حدثنا",
+      "previousForm": "خلاد بن يحيي",
+      "nextForm": "الحسن بن مسلم",
+      "isnadContext": "حدثنا خلاد بن يحيي قال: حدثنا ابراهيم بن نافع، عن الحسن بن مسلم، عن صفيه بنت شيبه، عن عايشه قالت:",
+      "importerFlags": {
+        "relativeForm": false,
+        "prophetMention": false
+      },
+      "samplingFlags": {
+        "relativeForm": false,
+        "relativeFormVersion": "sanad-relative-forms-1.0.0"
+      },
+      "exactHeadMatches": [
+        {
+          "entryId": "tahdhib-284-663-283",
+          "sourceId": "tahdhib",
+          "entryNumber": 284,
+          "head": "إبراهيم بن نافع، المخزوميّ، أبو إسحاق، المكيّ",
+          "deathYear": null
+        },
+        {
+          "entryId": "tahdhib-285-664-284",
+          "sourceId": "tahdhib",
+          "entryNumber": 285,
+          "head": "إبراهيم بن نافع، النّاجي، الجلّاب، بصريّ",
+          "deathYear": null
+        },
+        {
+          "entryId": "mizan-235-68-223",
+          "sourceId": "mizan",
+          "entryNumber": 235,
+          "head": "إبراهيم بن نافع الناجي",
+          "deathYear": null
+        },
+        {
+          "entryId": "mizan-236-69-224",
+          "sourceId": "mizan",
+          "entryNumber": 236,
+          "head": "إبراهيم بن نافع الأموي",
+          "deathYear": null
+        },
+        {
+          "entryId": "kashif-216-218-219",
+          "sourceId": "kashif",
+          "entryNumber": 216,
+          "head": "إبراهيم بن نافع المخزومي",
+          "deathYear": null
+        }
+      ],
+      "exactHeadMatchCount": 5,
+      "occurrenceCount": 9,
+      "samplePositions": [
+        {
+          "chainId": "bukhari-273-273-479#c0",
+          "position": 1
+        },
+        {
+          "chainId": "bukhari-306-306-535#c0",
+          "position": 1
+        },
+        {
+          "chainId": "bukhari-3185-3185-5298#c0",
+          "position": 2
+        },
+        {
+          "chainId": "bukhari-4481-4481-7083#c0",
+          "position": 1
+        },
+        {
+          "chainId": "bukhari-4909-4909-7868#c0",
+          "position": 1
+        }
+      ]
+    },
+    {
+      "id": "form:رجل طلق امراته حايضا؟",
+      "sourceId": "muslim",
+      "recordId": "muslim-1471-13-3596",
+      "hadithNumber": 1471,
+      "volume": "2",
+      "printedPage": 1097,
+      "chainId": "muslim-1471-13-3596#c0",
+      "position": 6,
+      "stratum": "L1|K0|N0|R1|H0",
+      "cellSize": 72,
+      "inclusionWeight": 36,
+      "rawSurfaceForm": "رَجُلٍ طَلَّقَ امْرَأَتَهُ حَائِضًا؟",
+      "form": "رجل طلق امراته حايضا؟",
+      "transmissionTerm": "عن",
+      "previousForm": "ابن عمر يسال",
+      "nextForm": "النبي",
+      "isnadContext": "وحدثنا اسحاق بن ابراهيم. اخبرنا عبد الرزاق. اخبرنا ابن جريج. اخبرني ابن طاوس عن ابيه؛ انه سمع ابن عمر يسال عن رجل طلق امراته حايضا؟ فقال:",
+      "importerFlags": {
+        "relativeForm": false,
+        "prophetMention": false
+      },
+      "samplingFlags": {
+        "relativeForm": true,
+        "relativeFormVersion": "sanad-relative-forms-1.0.0"
+      },
+      "exactHeadMatches": [],
+      "exactHeadMatchCount": 0,
+      "occurrenceCount": 1,
+      "samplePositions": [
+        {
+          "chainId": "muslim-1471-13-3596#c0",
+          "position": 6
+        }
+      ]
+    },
+    {
+      "id": "form:ابيه حسين بن علي",
+      "sourceId": "bukhari",
+      "recordId": "bukhari-2246-2246-3801",
+      "hadithNumber": 2246,
+      "volume": "2",
+      "printedPage": 837,
+      "chainId": "bukhari-2246-2246-3801#c0",
+      "position": 4,
+      "stratum": "L1|K0|N0|R1|H0",
+      "cellSize": 72,
+      "inclusionWeight": 36,
+      "rawSurfaceForm": "أَبِيهِ حُسَيْنِ بْنِ عَلِي",
+      "form": "ابيه حسين بن علي",
+      "transmissionTerm": "عن",
+      "previousForm": "علي بن حسين بن علي",
+      "nextForm": "علي بن ابي طالب ﵃",
+      "isnadContext": "حدثنا ابراهيم بن موسي: اخبرنا هشام: ان ابن جريج اخبرهم قال: اخبرني ابن شهاب، عن علي بن حسين بن علي، عن ابيه حسين بن علي، عن علي بن ابي طالب ﵃ انه قال: اصبت شارفا مع رسول الله صلي الله عليه وسلم في مغنم يوم بدر، قال: واعطاني رسول الله صلي الله عليه وسلم شارفا اخري، فانختهما يوما عند باب رجل من الانصار، وانا اريد ان",
+      "importerFlags": {
+        "relativeForm": false,
+        "prophetMention": false
+      },
+      "samplingFlags": {
+        "relativeForm": true,
+        "relativeFormVersion": "sanad-relative-forms-1.0.0"
+      },
+      "exactHeadMatches": [],
+      "exactHeadMatchCount": 0,
+      "occurrenceCount": 1,
+      "samplePositions": [
+        {
+          "chainId": "bukhari-2246-2246-3801#c0",
+          "position": 4
+        }
+      ]
+    },
+    {
+      "id": "form:عبيد بن عمير الليثي",
+      "sourceId": "muslim",
+      "recordId": "muslim-2984-45-7404",
+      "hadithNumber": 2984,
+      "volume": "4",
+      "printedPage": 2288,
+      "chainId": "muslim-2984-45-7404#c0",
+      "position": 4,
+      "stratum": "L1|K0|N1|R0|H0",
+      "cellSize": 554,
+      "inclusionWeight": 110.8,
+      "rawSurfaceForm": "عبيد بن عمير الليثي",
+      "form": "عبيد بن عمير الليثي",
+      "transmissionTerm": "عن",
+      "previousForm": "وهب بن كيسان",
+      "nextForm": "ابي هريره",
+      "isnadContext": "حدثنا ابو بكر بن ابي شيبه وزهير بن حرب (واللفظ لابي بكر) قالا: حدثنا يزيد بن هارون. حدثنا عبد العزيز بن ابي سلمه عن وهب بن كيسان، عن عبيد بن عمير الليثي، عن ابي هريره، عن النبي صلي الله عليه وسلم قال \"بينا رجل بفلاه من الارض، فسمع صوتا في سحابه: اسق حديقه فلان. فتنحي ذلك السحاب. فافرغ ماءه في حره. فاذا شرجه من تلك الشراج قد استوعبت ذلك الماء كله. فتتبع الماء. فاذا رجل قايم في حديقته يحول الماء بمسحاته. فقال له: يا عب",
+      "importerFlags": {
+        "relativeForm": false,
+        "prophetMention": false
+      },
+      "samplingFlags": {
+        "relativeForm": false,
+        "relativeFormVersion": "sanad-relative-forms-1.0.0"
+      },
+      "exactHeadMatches": [],
+      "exactHeadMatchCount": 0,
+      "occurrenceCount": 1,
+      "samplePositions": [
+        {
+          "chainId": "muslim-2984-45-7404#c0",
+          "position": 4
+        }
+      ]
+    },
+    {
+      "id": "form:جرير بن حازم الازدي",
+      "sourceId": "bukhari",
+      "recordId": "bukhari-4758-4758-7615",
+      "hadithNumber": 4758,
+      "volume": "4",
+      "printedPage": 1924,
+      "chainId": "bukhari-4758-4758-7615#c0",
+      "position": 1,
+      "stratum": "L1|K0|N1|R0|H0",
+      "cellSize": 554,
+      "inclusionWeight": 110.8,
+      "rawSurfaceForm": "جَرِيرُ بْنُ حَازِمٍ الْأَزْدِي",
+      "form": "جرير بن حازم الازدي",
+      "transmissionTerm": "حدثنا",
+      "previousForm": "مسلم بن ابراهيم",
+      "nextForm": "قتاده",
+      "isnadContext": "حدثنا مسلم بن ابراهيم: حدثنا جرير بن حازم الازدي: حدثنا قتاده قال: سالت انس بن مالك عن قراءه النبي صلي الله عليه وسلم فقال:",
+      "importerFlags": {
+        "relativeForm": false,
+        "prophetMention": false
+      },
+      "samplingFlags": {
+        "relativeForm": false,
+        "relativeFormVersion": "sanad-relative-forms-1.0.0"
+      },
+      "exactHeadMatches": [],
+      "exactHeadMatchCount": 0,
+      "occurrenceCount": 1,
+      "samplePositions": [
+        {
+          "chainId": "bukhari-4758-4758-7615#c0",
+          "position": 1
+        }
+      ]
+    },
+    {
+      "id": "form:محمد بن النثني",
+      "sourceId": "muslim",
+      "recordId": "muslim-1167-216-2696",
+      "hadithNumber": 1167,
+      "volume": "2",
+      "printedPage": 826,
+      "chainId": "muslim-1167-216-2696#c0",
+      "position": 0,
+      "stratum": "L1|K0|N1|R0|H0",
+      "cellSize": 554,
+      "inclusionWeight": 110.8,
+      "rawSurfaceForm": "محمد بن النثنى",
+      "form": "محمد بن النثني",
+      "transmissionTerm": "حدثنا",
+      "previousForm": null,
+      "nextForm": "ابو عامر",
+      "isnadContext": "حدثنا محمد بن النثني. حدثنا ابو عامر. حدثنا هشام عن يحيي، عن ابي سلمه. قال تذاكرنا ليله القدر. فاتيت ابا سعيد الخدري ﵁ وكان لي صديقا. فقلت: الا تخرج بنا الي النخل؟ فخرج وعليه خميصه. فقلت له: سمعت رسول الله صلي الله عليه وسلم يذكر ليله القدر؟ فقال:",
+      "importerFlags": {
+        "relativeForm": false,
+        "prophetMention": false
+      },
+      "samplingFlags": {
+        "relativeForm": false,
+        "relativeFormVersion": "sanad-relative-forms-1.0.0"
+      },
+      "exactHeadMatches": [],
+      "exactHeadMatchCount": 0,
+      "occurrenceCount": 1,
+      "samplePositions": [
+        {
+          "chainId": "muslim-1167-216-2696#c0",
+          "position": 0
+        }
+      ]
+    },
+    {
+      "id": "form:عبد الله بن وهب المصري",
+      "sourceId": "muslim",
+      "recordId": "muslim-2094-61-5416",
+      "hadithNumber": 2094,
+      "volume": "3",
+      "printedPage": 1658,
+      "chainId": "muslim-2094-61-5416#c0",
+      "position": 1,
+      "stratum": "L1|K0|N1|R0|H0",
+      "cellSize": 554,
+      "inclusionWeight": 110.8,
+      "rawSurfaceForm": "عَبْدُ اللَّهِ بْنُ وَهْبٍ الْمِصْرِي",
+      "form": "عبد الله بن وهب المصري",
+      "transmissionTerm": "حدثنا",
+      "previousForm": "يحيي بن ايوب",
+      "nextForm": "يونس بن يزيد",
+      "isnadContext": "حدثنا يحيي بن ايوب. حدثنا عبد الله بن وهب المصري اخبرني يونس بن يزيد عن ابن شهاب. حدثني انس بن مالك قال:",
+      "importerFlags": {
+        "relativeForm": false,
+        "prophetMention": false
+      },
+      "samplingFlags": {
+        "relativeForm": false,
+        "relativeFormVersion": "sanad-relative-forms-1.0.0"
+      },
+      "exactHeadMatches": [],
+      "exactHeadMatchCount": 0,
+      "occurrenceCount": 1,
+      "samplePositions": [
+        {
+          "chainId": "muslim-2094-61-5416#c0",
+          "position": 1
+        }
+      ]
+    },
+    {
+      "id": "form:سنان بن ابي سنان الدولي",
+      "sourceId": "bukhari",
+      "recordId": "bukhari-2756-2756-4683",
+      "hadithNumber": 2756,
+      "volume": "3",
+      "printedPage": 1066,
+      "chainId": "bukhari-2756-2756-4683#c0",
+      "position": 7,
+      "stratum": "L1|K0|N1|R0|H0",
+      "cellSize": 554,
+      "inclusionWeight": 110.8,
+      "rawSurfaceForm": "سِنَانِ بْنِ أَبِي سِنَانٍ الدُّؤَلِي",
+      "form": "سنان بن ابي سنان الدولي",
+      "transmissionTerm": "عن",
+      "previousForm": "ابن شهاب",
+      "nextForm": "النبي صلي الله عليه وسلم",
+      "isnadContext": "حدثنا ابو اليمان: اخبرنا شعيب، عن الزهري: حدثنا سنان بن ابي سنان وابو سلمه: ان جابرا اخبره. حدثنا موسي بن اسماعيل: حدثنا ابراهيم بن سعد: اخبرنا ابن شهاب، عن سنان بن ابي سنان الدولي:",
+      "importerFlags": {
+        "relativeForm": false,
+        "prophetMention": false
+      },
+      "samplingFlags": {
+        "relativeForm": false,
+        "relativeFormVersion": "sanad-relative-forms-1.0.0"
+      },
+      "exactHeadMatches": [],
+      "exactHeadMatchCount": 0,
+      "occurrenceCount": 5,
+      "samplePositions": [
+        {
+          "chainId": "bukhari-2756-2756-4683#c0",
+          "position": 7
+        },
+        {
+          "chainId": "bukhari-3905-3905-6199#c0",
+          "position": 9
+        },
+        {
+          "chainId": "bukhari-5439-5439-8733#c0",
+          "position": 6
+        },
+        {
+          "chainId": "muslim-2220-103-5719#c0",
+          "position": 4
+        },
+        {
+          "chainId": "muslim-843-13-5883#c1",
+          "position": 3
+        }
+      ]
+    },
+    {
+      "id": "form:عبد الله بن عمر النميري",
+      "sourceId": "bukhari",
+      "recordId": "bukhari-2494-2494-4231",
+      "hadithNumber": 2494,
+      "volume": "2",
+      "printedPage": 932,
+      "chainId": "bukhari-2494-2494-4231#c0",
+      "position": 1,
+      "stratum": "L1|K0|N1|R0|H1",
+      "cellSize": 21,
+      "inclusionWeight": 21,
+      "rawSurfaceForm": "عَبْدُ اللَّهِ بْنُ عُمَرَ النُّمَيْرِي",
+      "form": "عبد الله بن عمر النميري",
+      "transmissionTerm": "حدثنا",
+      "previousForm": "حجاج",
+      "nextForm": "ثوبان",
+      "isnadContext": "حدثنا حجاج: حدثنا عبد الله بن عمر النميري: حدثنا ثوبان. وقال الليث: حدثني يونس، عن ابن شهاب قال: اخبرني عروه وابن المسيب وعلقمه بن وقاص وعبيد الله، عن حديث عايشه ﵂، وبعض حديثهم يصدق بعضا، حين قال لها اهل الافك: فدعا رسول الله صلي الله عليه وسلم عليا واسامه، حين استلبث الوحي، يستامرهما في فراق اهله، فاما اسامه فقال: اهلك ولا نعلم الا خيرا، وقالت بريره: ان رايت عليها امرا اغمصه اكثر من انها جاريه حديثه السن، تنام عن عج",
+      "importerFlags": {
+        "relativeForm": false,
+        "prophetMention": false
+      },
+      "samplingFlags": {
+        "relativeForm": false,
+        "relativeFormVersion": "sanad-relative-forms-1.0.0"
+      },
+      "exactHeadMatches": [
+        {
+          "entryId": "tahdhib-3659-5212-3660",
+          "sourceId": "tahdhib",
+          "entryNumber": 3659,
+          "head": "عبد الله بن عُمَر النُّمَيْريُّ",
+          "deathYear": null
+        },
+        {
+          "entryId": "kashif-2876-569-2888",
+          "sourceId": "kashif",
+          "entryNumber": 2876,
+          "head": "عبد الله بن عمر النميري",
+          "deathYear": null
+        }
+      ],
+      "exactHeadMatchCount": 2,
+      "occurrenceCount": 7,
+      "samplePositions": [
+        {
+          "chainId": "bukhari-2494-2494-4231#c0",
+          "position": 1
+        },
+        {
+          "chainId": "bukhari-2723-2723-4627#c0",
+          "position": 1
+        },
+        {
+          "chainId": "bukhari-3801-3801-6075#c0",
+          "position": 1
+        },
+        {
+          "chainId": "bukhari-4413-4413-6945#c1",
+          "position": 1
+        },
+        {
+          "chainId": "bukhari-6285-6285-10027#c1",
+          "position": 1
+        }
+      ]
+    },
+    {
+      "id": "form:ابيه وايل الحضرمي",
+      "sourceId": "muslim",
+      "recordId": "muslim-1984-12-5075",
+      "hadithNumber": 1984,
+      "volume": "3",
+      "printedPage": 1573,
+      "chainId": "muslim-1984-12-5075#c0",
+      "position": 5,
+      "stratum": "L1|K0|N1|R1|H0",
+      "cellSize": 2,
+      "inclusionWeight": 2,
+      "rawSurfaceForm": "أَبِيهِ وَائِلٍ الحضرمي",
+      "form": "ابيه وايل الحضرمي",
+      "transmissionTerm": "عن",
+      "previousForm": "علقمه بن وايل",
+      "nextForm": "الخمر؟ فنهاه",
+      "isnadContext": "حدثنا محمد بن المثني ومحمد بن بشار (واللفظ لابن المثني) قالا: حدثنا محمد ابن جعفر. حدثنا شعبه عن سماك بن حرب، عن علقمه بن وايل، عن ابيه وايل الحضرمي؛ ان طارق ابن سويد الجعفي سال النبي صلي الله عليه وسلم عن الخمر؟ فنهاه، او كره ان",
+      "importerFlags": {
+        "relativeForm": false,
+        "prophetMention": false
+      },
+      "samplingFlags": {
+        "relativeForm": true,
+        "relativeFormVersion": "sanad-relative-forms-1.0.0"
+      },
+      "exactHeadMatches": [],
+      "exactHeadMatchCount": 0,
+      "occurrenceCount": 1,
+      "samplePositions": [
+        {
+          "chainId": "muslim-1984-12-5075#c0",
+          "position": 5
+        }
+      ]
+    },
+    {
+      "id": "form:ابي محمد مولي ابي قتاده",
+      "sourceId": "bukhari",
+      "recordId": "bukhari-2973-2973-5028",
+      "hadithNumber": 2973,
+      "volume": "3",
+      "printedPage": 1144,
+      "chainId": "bukhari-2973-2973-5028#c0",
+      "position": 4,
+      "stratum": "L1|K1|N0|R0|H0",
+      "cellSize": 285,
+      "inclusionWeight": 95,
+      "rawSurfaceForm": "أَبِي مُحَمَّدٍ مَوْلَى أَبِي قَتَادَة",
+      "form": "ابي محمد مولي ابي قتاده",
+      "transmissionTerm": "عن",
+      "previousForm": "ابن افلح",
+      "nextForm": "ابي قتاده ﵁",
+      "isnadContext": "حدثنا عبد الله بن مسلمه، عن مالك، عن يحيي بن سعيد، عن ابن افلح، عن ابي محمد مولي ابي قتاده، عن ابي قتاده ﵁ قال: خرجنا مع رسول الله صلي الله عليه وسلم عام حنين، فلما التقينا، كانت للمسلمين جوله، فرايت رجلا من المشركين علا رجلا من المسلمين، فاستدرت حتي اتيته من ورايه حتي ضربته بالسيف علي حبل عاتقه، فاقبل علي فضمني ضمه وجدت منها ريح الموت، ثم ادركه الموت فارسلني، فلحقت عمر بن الخطاب فقلت: ما بال الناس؟ قال: امر الله، ثم",
+      "importerFlags": {
+        "relativeForm": false,
+        "prophetMention": false
+      },
+      "samplingFlags": {
+        "relativeForm": false,
+        "relativeFormVersion": "sanad-relative-forms-1.0.0"
+      },
+      "exactHeadMatches": [],
+      "exactHeadMatchCount": 0,
+      "occurrenceCount": 3,
+      "samplePositions": [
+        {
+          "chainId": "bukhari-2973-2973-5028#c0",
+          "position": 4
+        },
+        {
+          "chainId": "bukhari-4066-4066-6382#c0",
+          "position": 4
+        },
+        {
+          "chainId": "bukhari-6749-6749-10775#c0",
+          "position": 4
+        }
+      ]
+    },
+    {
+      "id": "form:ابي وابن ادريس",
+      "sourceId": "muslim",
+      "recordId": "muslim-442-136-935",
+      "hadithNumber": 442,
+      "volume": "1",
+      "printedPage": 327,
+      "chainId": "muslim-442-136-935#c0",
+      "position": 1,
+      "stratum": "L1|K1|N0|R0|H0",
+      "cellSize": 285,
+      "inclusionWeight": 95,
+      "rawSurfaceForm": "أَبِي وَابْنُ إِدْرِيس",
+      "form": "ابي وابن ادريس",
+      "transmissionTerm": "حدثنا",
+      "previousForm": "محمد بن عبد الله بن نمير",
+      "nextForm": "عبيد الله",
+      "isnadContext": "حدثنا محمد بن عبد الله بن نمير. حدثنا ابي وابن ادريس. قالا: حدثنا عبيد الله عن نافع، عن ابن عمر؛ ان",
+      "importerFlags": {
+        "relativeForm": false,
+        "prophetMention": false
+      },
+      "samplingFlags": {
+        "relativeForm": false,
+        "relativeFormVersion": "sanad-relative-forms-1.0.0"
+      },
+      "exactHeadMatches": [],
+      "exactHeadMatchCount": 0,
+      "occurrenceCount": 1,
+      "samplePositions": [
+        {
+          "chainId": "muslim-442-136-935#c0",
+          "position": 1
+        }
+      ]
+    },
+    {
+      "id": "form:ابي حازم بن دينار",
+      "sourceId": "bukhari",
+      "recordId": "bukhari-652-652-1120",
+      "hadithNumber": 652,
+      "volume": "1",
+      "printedPage": 242,
+      "chainId": "bukhari-652-652-1120#c0",
+      "position": 2,
+      "stratum": "L1|K1|N0|R0|H0",
+      "cellSize": 285,
+      "inclusionWeight": 95,
+      "rawSurfaceForm": "أَبِي حَازِمِ بْنِ دِينَار",
+      "form": "ابي حازم بن دينار",
+      "transmissionTerm": "عن",
+      "previousForm": "مالك",
+      "nextForm": "سهل بن سعد الساعدي",
+      "isnadContext": "حدثنا عبد الله بن يوسف قال: اخبرنا مالك، عن ابي حازم بن دينار، عن سهل بن سعد الساعدي:",
+      "importerFlags": {
+        "relativeForm": false,
+        "prophetMention": false
+      },
+      "samplingFlags": {
+        "relativeForm": false,
+        "relativeFormVersion": "sanad-relative-forms-1.0.0"
+      },
+      "exactHeadMatches": [],
+      "exactHeadMatchCount": 0,
+      "occurrenceCount": 4,
+      "samplePositions": [
+        {
+          "chainId": "bukhari-652-652-1120#c0",
+          "position": 2
+        },
+        {
+          "chainId": "bukhari-2319-2319-3939#c0",
+          "position": 2
+        },
+        {
+          "chainId": "bukhari-2704-2704-4592#c0",
+          "position": 2
+        },
+        {
+          "chainId": "bukhari-5297-5297-8500#c0",
+          "position": 2
+        }
+      ]
+    },
+    {
+      "id": "form:ابو برده بن ابي موسي",
+      "sourceId": "bukhari",
+      "recordId": "bukhari-1365-1365-2317",
+      "hadithNumber": 1365,
+      "volume": "2",
+      "printedPage": 520,
+      "chainId": "bukhari-1365-1365-2317#c0",
+      "position": 3,
+      "stratum": "L1|K1|N0|R0|H1",
+      "cellSize": 3,
+      "inclusionWeight": 3,
+      "rawSurfaceForm": "أَبُو بُرْدَةَ بْنُ أَبِي مُوسَى",
+      "form": "ابو برده بن ابي موسي",
+      "transmissionTerm": "حدثنا",
+      "previousForm": "ابو برده بن عبد الله بن ابي برده",
+      "nextForm": "ابيه ﵁",
+      "isnadContext": "حدثنا موسي بن اسماعيل: حدثنا عبد الواحد: حدثنا ابو برده بن عبد الله بن ابي برده: حدثنا ابو برده بن ابي موسي، عن ابيه ﵁ قال:",
+      "importerFlags": {
+        "relativeForm": false,
+        "prophetMention": false
+      },
+      "samplingFlags": {
+        "relativeForm": false,
+        "relativeFormVersion": "sanad-relative-forms-1.0.0"
+      },
+      "exactHeadMatches": [
+        {
+          "entryId": "tahdhib-8473-12043-8474",
+          "sourceId": "tahdhib",
+          "entryNumber": 8473,
+          "head": "أبو بردة بن أبي موسى الأشعري",
+          "deathYear": 104
+        },
+        {
+          "entryId": "kashif-6508-1093-6459",
+          "sourceId": "kashif",
+          "entryNumber": 6508,
+          "head": "أبو بردة بن أبي موسى",
+          "deathYear": 104
+        }
+      ],
+      "exactHeadMatchCount": 2,
+      "occurrenceCount": 3,
+      "samplePositions": [
+        {
+          "chainId": "bukhari-1365-1365-2317#c0",
+          "position": 3
+        },
+        {
+          "chainId": "muslim-104-167-247#c0",
+          "position": 3
+        },
+        {
+          "chainId": "muslim-154-241-337#c0",
+          "position": 4
+        }
+      ]
+    },
+    {
+      "id": "form:ام الحصين جدته",
+      "sourceId": "muslim",
+      "recordId": "muslim-1298-312-3065",
+      "hadithNumber": 1298,
+      "volume": "2",
+      "printedPage": 944,
+      "chainId": "muslim-1298-312-3065#c0",
+      "position": 5,
+      "stratum": "L1|K1|N0|R1|H0",
+      "cellSize": 1,
+      "inclusionWeight": 1,
+      "rawSurfaceForm": "أُمِّ الْحُصَيْنِ جَدَّتِه",
+      "form": "ام الحصين جدته",
+      "transmissionTerm": "عن",
+      "previousForm": "يحيي بن الحصين",
+      "nextForm": "رسول الله صلي الله عليه وسلم",
+      "isnadContext": "وحدثني احمد بن حنبل. حدثنا محمد بن سلمه عن ابي عبد الرحيم، عن زيد بن ابي انيسه، عن يحيي بن الحصين، عن ام الحصين جدته. قالت:",
+      "importerFlags": {
+        "relativeForm": false,
+        "prophetMention": false
+      },
+      "samplingFlags": {
+        "relativeForm": true,
+        "relativeFormVersion": "sanad-relative-forms-1.0.0"
+      },
+      "exactHeadMatches": [],
+      "exactHeadMatchCount": 0,
+      "occurrenceCount": 1,
+      "samplePositions": [
+        {
+          "chainId": "muslim-1298-312-3065#c0",
+          "position": 5
+        }
+      ]
+    },
+    {
+      "id": "form:ابا ادريس الخولاني",
+      "sourceId": "bukhari",
+      "recordId": "bukhari-6673-6673-10660",
+      "hadithNumber": 6673,
+      "volume": "6",
+      "printedPage": 2595,
+      "chainId": "bukhari-6673-6673-10660#c0",
+      "position": 4,
+      "stratum": "L1|K1|N1|R0|H0",
+      "cellSize": 181,
+      "inclusionWeight": 90.5,
+      "rawSurfaceForm": "أَبَا إِدْرِيسَ الْخَوْلَانِي",
+      "form": "ابا ادريس الخولاني",
+      "transmissionTerm": "انه سمع",
+      "previousForm": "بسر بن عبيد الله الحضرمي",
+      "nextForm": "حذيفه بن اليمان",
+      "isnadContext": "حدثنا محمد بن المثني: حدثنا الوليد بن مسلم: حدثنا ابن جابر: حدثني بسر بن عبيد الله الحضرمي: انه سمع ابا ادريس الخولاني: انه سمع حذيفه بن اليمان يقول: كان الناس يسالون رسول الله صلي الله عليه وسلم عن الخير، وكنت اساله عن الشر، مخافه ان يدركني، فقلت: يا رسول الله، انا كنا في جاهليه وشر، فجاءنا الله بهذا الخير، فهل بعد هذا الخير من شر؟ قال:",
+      "importerFlags": {
+        "relativeForm": false,
+        "prophetMention": false
+      },
+      "samplingFlags": {
+        "relativeForm": false,
+        "relativeFormVersion": "sanad-relative-forms-1.0.0"
+      },
+      "exactHeadMatches": [],
+      "exactHeadMatchCount": 0,
+      "occurrenceCount": 2,
+      "samplePositions": [
+        {
+          "chainId": "bukhari-6673-6673-10660#c0",
+          "position": 4
+        },
+        {
+          "chainId": "muslim-1847-51-4721#c0",
+          "position": 4
+        }
+      ]
+    },
+    {
+      "id": "form:ابي المتوكل الناجي",
+      "sourceId": "bukhari",
+      "recordId": "bukhari-2308-2308-3917",
+      "hadithNumber": 2308,
+      "volume": "2",
+      "printedPage": 861,
+      "chainId": "bukhari-2308-2308-3917#c0",
+      "position": 4,
+      "stratum": "L1|K1|N1|R0|H0",
+      "cellSize": 181,
+      "inclusionWeight": 90.5,
+      "rawSurfaceForm": "أَبِي الْمُتَوَكِّلِ النَّاجِي",
+      "form": "ابي المتوكل الناجي",
+      "transmissionTerm": "عن",
+      "previousForm": "قتاده",
+      "nextForm": "ابي سعيد الخدري ﵁",
+      "isnadContext": "حدثنا اسحاق بن ابراهيم: اخبرنا معاذ بن هشام: حدثني ابي، عن قتاده، عن ابي المتوكل الناجي، عن ابي سعيد الخدري ﵁، عن رسول الله صلي الله عليه وسلم قال: اذا خلص المومنون من النار حبسوا بقنطره بين الجنه والنار، فيتقاصون مظالم كانت بينهم في الدنيا حتي اذا نقوا وهذبوا، اذن لهم بدخول الجنه، فوالذي نفس محمد صلي الله عليه وسلم بيده، لاحدهم بمسكنه في الجنه ادل بمنزله كان في الدنيا). وقال يونس بن محمد: حدثنا شيبان، عن قتاده:",
+      "importerFlags": {
+        "relativeForm": false,
+        "prophetMention": false
+      },
+      "samplingFlags": {
+        "relativeForm": false,
+        "relativeFormVersion": "sanad-relative-forms-1.0.0"
+      },
+      "exactHeadMatches": [],
+      "exactHeadMatchCount": 0,
+      "occurrenceCount": 4,
+      "samplePositions": [
+        {
+          "chainId": "bukhari-2308-2308-3917#c0",
+          "position": 4
+        },
+        {
+          "chainId": "bukhari-6170-6170-9877#c0",
+          "position": 4
+        },
+        {
+          "chainId": "muslim-715-114-4037#c0",
+          "position": 3
+        },
+        {
+          "chainId": "muslim-1987-22-5085#c0",
+          "position": 3
+        }
+      ]
+    },
+    {
+      "id": "form:ابو الوليد المكي",
+      "sourceId": "muslim",
+      "recordId": "muslim-1536-83-3841",
+      "hadithNumber": 1536,
+      "volume": "3",
+      "printedPage": 1175,
+      "chainId": "muslim-1536-83-3841#c0",
+      "position": 6,
+      "stratum": "L1|K1|N1|R0|H1",
+      "cellSize": 5,
+      "inclusionWeight": 5,
+      "rawSurfaceForm": "أَبُو الْوَلِيدِ الْمَكِّي",
+      "form": "ابو الوليد المكي",
+      "transmissionTerm": "حدثنا",
+      "previousForm": "زيد بن انيسه",
+      "nextForm": "جابر بن عبد الله",
+      "isnadContext": "حدثنا اسحاق بن ابراهيم ومحمد بن احمد بن ابي خلف. كلاهما عن زكريا. قال ابن ابي خلف: حدثنا زكريا بن عدي. اخبرنا عبيد الله عن زيد بن انيسه. حدثنا ابو الوليد المكي (وهو جالس عند عطاء بن ابي رباح) عن جابر بن عبد الله؛ ان رسول الله صلي الله عليه وسلم نهي عن المحاقله والمزابنه والمخابره. وان تشتري النخل حتي تشقه.",
+      "importerFlags": {
+        "relativeForm": false,
+        "prophetMention": false
+      },
+      "samplingFlags": {
+        "relativeForm": false,
+        "relativeFormVersion": "sanad-relative-forms-1.0.0"
+      },
+      "exactHeadMatches": [
+        {
+          "entryId": "tahdhib-8981-12659-8982",
+          "sourceId": "tahdhib",
+          "entryNumber": 8981,
+          "head": "أبو الوليد المكي",
+          "deathYear": null
+        },
+        {
+          "entryId": "taqrib-8438-606-8438",
+          "sourceId": "taqrib",
+          "entryNumber": 8438,
+          "head": "أبو الوليد المكي",
+          "deathYear": null
+        },
+        {
+          "entryId": "kashif-6890-1157-6846",
+          "sourceId": "kashif",
+          "entryNumber": 6890,
+          "head": "أبو الوليد المكي",
+          "deathYear": null
+        }
+      ],
+      "exactHeadMatchCount": 3,
+      "occurrenceCount": 1,
+      "samplePositions": [
+        {
+          "chainId": "muslim-1536-83-3841#c0",
+          "position": 6
+        }
+      ]
+    },
+    {
+      "id": "form:بذلك المكان من رسول الله صلي الله عليه وسلم",
+      "sourceId": "muslim",
+      "recordId": "muslim-749-148-1681",
+      "hadithNumber": 749,
+      "volume": "1",
+      "printedPage": 517,
+      "chainId": "muslim-749-148-1681#c0",
+      "position": 6,
+      "stratum": "L2|K0|N0|R0|H0",
+      "cellSize": 1304,
+      "inclusionWeight": 118.5455,
+      "rawSurfaceForm": "بِذَلِكَ الْمَكَانِ مِنْ رَسُولِ اللَّهِ ﷺ",
+      "form": "بذلك المكان من رسول الله صلي الله عليه وسلم",
+      "transmissionTerm": "وانا",
+      "previousForm": "بينه وبين السايل",
+      "nextForm": "النبي صلي الله عليه وسلم",
+      "isnadContext": "وحدثني ابو الربيع الزهراني. حدثنا حماد. حدثنا ايوب وبديل عن عبد الله بن شقيق، عن عبد الله بن عمر؛ ان رجلا سال النبي صلي الله عليه وسلم. وانا بينه وبين السايل. فقال: يا رسول الله! كيف صلاه الليل؟ قال \"مثني مثني. فاذا خشيت الصبح فصل ركعه. واجعل اخر صلاتك وترا\" ثم ساله رجل، علي راس الحول، وانا بذلك المكان من رسول الله صلي الله عليه وسلم. فلا ادري، هو ذلك الرجل او رجل اخر. فقال",
+      "importerFlags": {
+        "relativeForm": false,
+        "prophetMention": false
+      },
+      "samplingFlags": {
+        "relativeForm": false,
+        "relativeFormVersion": "sanad-relative-forms-1.0.0"
+      },
+      "exactHeadMatches": [],
+      "exactHeadMatchCount": 0,
+      "occurrenceCount": 1,
+      "samplePositions": [
+        {
+          "chainId": "muslim-749-148-1681#c0",
+          "position": 6
+        }
+      ]
+    },
+    {
+      "id": "form:يحيي بن ايوب ومحمد بن عباد",
+      "sourceId": "muslim",
+      "recordId": "muslim-976-105-2189",
+      "hadithNumber": 976,
+      "volume": "2",
+      "printedPage": 671,
+      "chainId": "muslim-976-105-2189#c0",
+      "position": 0,
+      "stratum": "L2|K0|N0|R0|H0",
+      "cellSize": 1304,
+      "inclusionWeight": 118.5455,
+      "rawSurfaceForm": "يَحْيَى بْنُ أَيُّوبَ وَمُحَمَّدُ بْنُ عَبَّاد",
+      "form": "يحيي بن ايوب ومحمد بن عباد",
+      "transmissionTerm": "حدثنا",
+      "previousForm": null,
+      "nextForm": "مروان بن معاويه",
+      "isnadContext": "حدثنا يحيي بن ايوب ومحمد بن عباد (واللفظ ليحيي) قالا: حدثنا مروان بن معاويه عن يزيد (يعني ابن كيسان) عن ابي حازم، عن ابي هريره؛ قال:",
+      "importerFlags": {
+        "relativeForm": false,
+        "prophetMention": false
+      },
+      "samplingFlags": {
+        "relativeForm": false,
+        "relativeFormVersion": "sanad-relative-forms-1.0.0"
+      },
+      "exactHeadMatches": [],
+      "exactHeadMatchCount": 0,
+      "occurrenceCount": 1,
+      "samplePositions": [
+        {
+          "chainId": "muslim-976-105-2189#c0",
+          "position": 0
+        }
+      ]
+    },
+    {
+      "id": "form:- يعني الله ﵎ - لا ينبغي لعبد لي",
+      "sourceId": "muslim",
+      "recordId": "muslim-2376-166-6092",
+      "hadithNumber": 2376,
+      "volume": "4",
+      "printedPage": 1846,
+      "chainId": "muslim-2376-166-6092#c0",
+      "position": 7,
+      "stratum": "L2|K0|N0|R0|H0",
+      "cellSize": 1304,
+      "inclusionWeight": 118.5455,
+      "rawSurfaceForm": "- يَعْنِي اللَّهَ ﵎ - لَا يَنْبَغِي لِعَبْدٍ لِي",
+      "form": "- يعني الله ﵎ - لا ينبغي لعبد لي",
+      "transmissionTerm": "قال",
+      "previousForm": "النبي صلي الله عليه وسلم",
+      "nextForm": "ابن المثني",
+      "isnadContext": "حدثنا ابو بكر بن ابي شيبه ومحمد بن المثني ومحمد بن بشار. قالوا: حدثنا محمد بن جعفر. حدثنا شعبه عن سعد بن ابراهيم. قال: سمعت حميد بن عبد الرحمن يحدث عن ابي هريره، عن النبي صلي الله عليه وسلم؛ انه \"قال - يعني الله ﵎ - لا ينبغي لعبد لي (وقال ابن المثني: لعبدي) ان يقول: انا خير من يونس بن متي، ﵇",
+      "importerFlags": {
+        "relativeForm": false,
+        "prophetMention": false
+      },
+      "samplingFlags": {
+        "relativeForm": false,
+        "relativeFormVersion": "sanad-relative-forms-1.0.0"
+      },
+      "exactHeadMatches": [],
+      "exactHeadMatchCount": 0,
+      "occurrenceCount": 1,
+      "samplePositions": [
+        {
+          "chainId": "muslim-2376-166-6092#c0",
+          "position": 7
+        }
+      ]
+    },
+    {
+      "id": "form:بموسي اخذ بقايمه من قوايم العرش",
+      "sourceId": "bukhari",
+      "recordId": "bukhari-6991-6991-11120",
+      "hadithNumber": 6991,
+      "volume": "6",
+      "printedPage": 2701,
+      "chainId": "bukhari-6991-6991-11120#c0",
+      "position": 6,
+      "stratum": "L2|K0|N0|R0|H0",
+      "cellSize": 1304,
+      "inclusionWeight": 118.5455,
+      "rawSurfaceForm": "بِمُوسَى آخِذٌ بِقَائِمَةٍ مِنْ قَوَائِمِ الْعَرْش",
+      "form": "بموسي اخذ بقايمه من قوايم العرش",
+      "transmissionTerm": "انا",
+      "previousForm": "النبي صلي الله عليه وسلم",
+      "nextForm": "الماجشون",
+      "isnadContext": "حدثنا محمد بن يوسف: حدثنا سفيان، عن عمرو بن يحيي، عن ابيه، عن ابي سعيد الخدري، عن النبي صلي الله عليه وسلم: قال النبي صلي الله عليه وسلم: (يصعقون يوم القيامه، فاذا انا بموسي اخذ بقايمه من قوايم العرش). وقال الماجشون: عن عبد الله بن الفضل، عن ابي سلمه، عن ابي هريره، عن النبي صلي الله عليه وسلم قال:",
+      "importerFlags": {
+        "relativeForm": false,
+        "prophetMention": false
+      },
+      "samplingFlags": {
+        "relativeForm": false,
+        "relativeFormVersion": "sanad-relative-forms-1.0.0"
+      },
+      "exactHeadMatches": [],
+      "exactHeadMatchCount": 0,
+      "occurrenceCount": 1,
+      "samplePositions": [
+        {
+          "chainId": "bukhari-6991-6991-11120#c0",
+          "position": 6
+        }
+      ]
+    },
+    {
+      "id": "form:الروح قل الروح من امر ربي وما اوتيتم من العلم الا قليلا﴾",
+      "sourceId": "bukhari",
+      "recordId": "bukhari-125-125-227",
+      "hadithNumber": 125,
+      "volume": "1",
+      "printedPage": 58,
+      "chainId": "bukhari-125-125-227#c0",
+      "position": 10,
+      "stratum": "L2|K0|N0|R0|H0",
+      "cellSize": 1304,
+      "inclusionWeight": 118.5455,
+      "rawSurfaceForm": "الرُّوحِ قُلِ الرُّوحُ مِنْ أَمْرِ رَبِّي وَمَا أُوتِيتُمْ مِنَ الْعِلْمِ إِلا قَلِيلا﴾",
+      "form": "الروح قل الروح من امر ربي وما اوتيتم من العلم الا قليلا﴾",
+      "transmissionTerm": "عن",
+      "previousForm": "بعضهم",
+      "nextForm": "النبي صلي الله عليه وسلم",
+      "isnadContext": "حدثنا قيس بن حفص قال: حدثنا عبد الواحد قال: حدثنا الاعمش سليمان، عن ابراهيم، عن علقمه، عن عبد الله قال: بينا انا امشي مع النبي صلي الله عليه وسلم في خرب المدينه، وهو يتوكا علي عسيب معه، فمر بنفر من اليهود، فقال بعضهم لبعض: سلوه عن الروح؟ وقال بعضهم: لا تسالوه، لا يجيء فيه بشيء تكرهونه، فقال بعضهم: لنسالنه، فقام رجل منهم فقال: يا ابا القاسم، ما الروح؟ فسكت، فقلت: انه يوحي اليه، فقمت، فلما انجلي عنه، فقال: ﴿ويسالونك عن",
+      "importerFlags": {
+        "relativeForm": false,
+        "prophetMention": false
+      },
+      "samplingFlags": {
+        "relativeForm": false,
+        "relativeFormVersion": "sanad-relative-forms-1.0.0"
+      },
+      "exactHeadMatches": [],
+      "exactHeadMatchCount": 0,
+      "occurrenceCount": 2,
+      "samplePositions": [
+        {
+          "chainId": "bukhari-125-125-227#c0",
+          "position": 10
+        },
+        {
+          "chainId": "bukhari-7018-7018-11153#c0",
+          "position": 10
+        }
+      ]
+    },
+    {
+      "id": "form:الله تعالي لنبيه صلي الله عليه وسلم",
+      "sourceId": "bukhari",
+      "recordId": "bukhari-4445-4445-7008",
+      "hadithNumber": 4445,
+      "volume": "4",
+      "printedPage": 1749,
+      "chainId": "bukhari-4445-4445-7008#c0",
+      "position": 5,
+      "stratum": "L2|K0|N0|R0|H0",
+      "cellSize": 1304,
+      "inclusionWeight": 118.5455,
+      "rawSurfaceForm": "اللَّهُ تَعَالَى لِنَبِيِّهِ ﷺ",
+      "form": "الله تعالي لنبيه صلي الله عليه وسلم",
+      "transmissionTerm": "فقال",
+      "previousForm": "ابن عباس ﵄",
+      "nextForm": "اصحابك فلا تسمعهم",
+      "isnadContext": "حدثنا يعقوب بن ابراهيم: حدثنا هشيم: حدثنا ابو بشر، عن سعيد بن جبير، عن ابن عباس ﵄: في قوله تعالي: ﴿ولا تجهر بصلاتك ولا تخافت بها﴾. قال: نزلت ورسول الله صلي الله عليه وسلم مختف بمكه، كان اذا صلي باصحابه رفع صوته بالقران، فاذا سمعه المشركون سبوا القران ومن انزله ومن جاء به، فقال الله تعالي لنبيه صلي الله عليه وسلم: ﴿ولا تجهر بصلاتك﴾ اي بقراءتك، فيسمع المشركون فيسبوا القران ﴿ولا تخافت بها﴾ عن اصحابك فلا تسمعهم",
+      "importerFlags": {
+        "relativeForm": false,
+        "prophetMention": false
+      },
+      "samplingFlags": {
+        "relativeForm": false,
+        "relativeFormVersion": "sanad-relative-forms-1.0.0"
+      },
+      "exactHeadMatches": [],
+      "exactHeadMatchCount": 0,
+      "occurrenceCount": 2,
+      "samplePositions": [
+        {
+          "chainId": "bukhari-4445-4445-7008#c0",
+          "position": 5
+        },
+        {
+          "chainId": "muslim-446-145-946#c0",
+          "position": 6
+        }
+      ]
+    },
+    {
+      "id": "form:له مقاله رسول الله صلي الله عليه وسلم",
+      "sourceId": "muslim",
+      "recordId": "muslim-1680-33-4327",
+      "hadithNumber": 1680,
+      "volume": "3",
+      "printedPage": 1308,
+      "chainId": "muslim-1680-33-4327#c0",
+      "position": 7,
+      "stratum": "L2|K0|N0|R0|H0",
+      "cellSize": 1304,
+      "inclusionWeight": 118.5455,
+      "rawSurfaceForm": "لَهُ مَقَالَةَ رَسُولِ اللَّهِ ﷺ",
+      "form": "له مقاله رسول الله صلي الله عليه وسلم",
+      "transmissionTerm": "فقال",
+      "previousForm": "رسول الله صلي الله عليه وسلم",
+      "nextForm": "ابن اشوع",
+      "isnadContext": "وحدثني محمد بن حاتم. حدثنا سعيد بن سليمان. حدثنا هشيم. اخبرنا اسماعيل بن سالم عن علقمه بن وايل، عن ابيه. قال: اتي رسول الله صلي الله عليه وسلم برجل قتل رجلا. فاقاد ولي المقتول منه. فانطلق به وفي عنقه نسعه يجرها. فلما ادبر قال رسول الله صلي الله عليه وسلم (القاتل والمقتول في المنار) فاتي رجل الرجل فقال له مقاله رسول الله صلي الله عليه وسلم. فخلي عنه. قال اسماعيل بن سالم: فذكرت ذلك لحبيب بن ابي ثابت فقال: حدثني ابن اشو",
+      "importerFlags": {
+        "relativeForm": false,
+        "prophetMention": false
+      },
+      "samplingFlags": {
+        "relativeForm": false,
+        "relativeFormVersion": "sanad-relative-forms-1.0.0"
+      },
+      "exactHeadMatches": [],
+      "exactHeadMatchCount": 0,
+      "occurrenceCount": 1,
+      "samplePositions": [
+        {
+          "chainId": "muslim-1680-33-4327#c0",
+          "position": 7
+        }
+      ]
+    },
+    {
+      "id": "form:عثمان وابو بكر ابنا ابي شيبه",
+      "sourceId": "muslim",
+      "recordId": "muslim-572-89-1220",
+      "hadithNumber": 572,
+      "volume": "1",
+      "printedPage": 400,
+      "chainId": "muslim-572-89-1220#c0",
+      "position": 0,
+      "stratum": "L2|K0|N0|R0|H0",
+      "cellSize": 1304,
+      "inclusionWeight": 118.5455,
+      "rawSurfaceForm": "عُثْمَانُ وَأَبُو بَكْرِ ابْنَا أَبِي شَيْبَة",
+      "form": "عثمان وابو بكر ابنا ابي شيبه",
+      "transmissionTerm": "وحدثنا",
+      "previousForm": null,
+      "nextForm": "جرير",
+      "isnadContext": "وحدثنا عثمان وابو بكر ابنا ابي شيبه، واسحاق بن ابراهيم. جميعا عن جرير. قال عثمان: حدثنا جرير عن منصور، عن ابراهيم، عن علقمه؛ قال:",
+      "importerFlags": {
+        "relativeForm": false,
+        "prophetMention": false
+      },
+      "samplingFlags": {
+        "relativeForm": false,
+        "relativeFormVersion": "sanad-relative-forms-1.0.0"
+      },
+      "exactHeadMatches": [],
+      "exactHeadMatchCount": 0,
+      "occurrenceCount": 1,
+      "samplePositions": [
+        {
+          "chainId": "muslim-572-89-1220#c0",
+          "position": 0
+        }
+      ]
+    },
+    {
+      "id": "form:وامسك الله عنه جريه الماء حتي كان مثل الطاق",
+      "sourceId": "muslim",
+      "recordId": "muslim-2380-170-6096",
+      "hadithNumber": 2380,
+      "volume": "4",
+      "printedPage": 1847,
+      "chainId": "muslim-2380-170-6096#c0",
+      "position": 10,
+      "stratum": "L2|K0|N0|R0|H0",
+      "cellSize": 1304,
+      "inclusionWeight": 118.5455,
+      "rawSurfaceForm": "وَأَمْسَكَ اللَّهُ عَنْهُ جِرْيَةَ الْمَاءِ حَتَّى كَانَ مِثْلَ الطَّاق",
+      "form": "وامسك الله عنه جريه الماء حتي كان مثل الطاق",
+      "transmissionTerm": "قال",
+      "previousForm": "موسي",
+      "nextForm": "لفتاه",
+      "isnadContext": "حدثنا عمرو بن محمد الناقد واسحاق بن ابراهيم الحنظلي وعبيد الله بن سعيد ومحمد بن ابي عمر المكي. كلهم عن ابن عيينه (واللفظ لابن ابي عمر). حدثنا سفيان بن عيينه. حدثنا عمرو بن دينار عن سعيد بن جبير. قال: قلت لابن عباس: ان نوفا البكالي يزعم ان موسي، ﵇، صاحب بني اسراييل ليس هو موسي صاحب الخضر، ﵇. فقال: كذب عدو الله. سمعت ابي بن كعب يقول: سمعت رسول الله صلي الله عليه وسلم يقول \" قام موسي ﵇ خطيبا في بني اسراييل. فسيل: اي الن",
+      "importerFlags": {
+        "relativeForm": false,
+        "prophetMention": false
+      },
+      "samplingFlags": {
+        "relativeForm": false,
+        "relativeFormVersion": "sanad-relative-forms-1.0.0"
+      },
+      "exactHeadMatches": [],
+      "exactHeadMatchCount": 0,
+      "occurrenceCount": 1,
+      "samplePositions": [
+        {
+          "chainId": "muslim-2380-170-6096#c0",
+          "position": 10
+        }
+      ]
+    },
+    {
+      "id": "form:سعيد بن منصور وابو بكر بن ابي شيبه وعمرو الناقد وزهير بن حرب",
+      "sourceId": "muslim",
+      "recordId": "muslim-1536-101-3860",
+      "hadithNumber": 1536,
+      "volume": "3",
+      "printedPage": 1178,
+      "chainId": "muslim-1536-101-3860#c0",
+      "position": 0,
+      "stratum": "L2|K0|N0|R0|H0",
+      "cellSize": 1304,
+      "inclusionWeight": 118.5455,
+      "rawSurfaceForm": "سَعِيدُ بْنُ مَنْصُورٍ وَأَبُو بَكْرِ بْنُ أَبِي شَيْبَةَ وَعَمْرٌو النَّاقِدُ وَزُهَيْرُ بْنُ حَرْب",
+      "form": "سعيد بن منصور وابو بكر بن ابي شيبه وعمرو الناقد وزهير بن حرب",
+      "transmissionTerm": "وحدثنا",
+      "previousForm": null,
+      "nextForm": "سفيان بن عيينه",
+      "isnadContext": "وحدثنا سعيد بن منصور وابو بكر بن ابي شيبه وعمرو الناقد وزهير بن حرب. قالوا: حدثنا سفيان بن عيينه عن حميد الاعرج، عن سليمان بن عتيق، عن جابر. قال: نهي النبي صلي الله عليه وسلم عن بيع السنين. وفي روايه ابن ابي شيبه:",
+      "importerFlags": {
+        "relativeForm": false,
+        "prophetMention": false
+      },
+      "samplingFlags": {
+        "relativeForm": false,
+        "relativeFormVersion": "sanad-relative-forms-1.0.0"
+      },
+      "exactHeadMatches": [],
+      "exactHeadMatchCount": 0,
+      "occurrenceCount": 1,
+      "samplePositions": [
+        {
+          "chainId": "muslim-1536-101-3860#c0",
+          "position": 0
+        }
+      ]
+    },
+    {
+      "id": "form:محمد بن عبد الله بن نمير ومحمد بن العلاء",
+      "sourceId": "muslim",
+      "recordId": "muslim-144-26-7201",
+      "hadithNumber": 144,
+      "volume": "4",
+      "printedPage": 2218,
+      "chainId": "muslim-144-26-7201#c0",
+      "position": 0,
+      "stratum": "L2|K0|N0|R0|H0",
+      "cellSize": 1304,
+      "inclusionWeight": 118.5455,
+      "rawSurfaceForm": "مُحَمَّدُ بْنُ عَبْدِ اللَّهِ بْنِ نُمَيْرٍ ومحمد بن العلاء",
+      "form": "محمد بن عبد الله بن نمير ومحمد بن العلاء",
+      "transmissionTerm": "حدثنا",
+      "previousForm": null,
+      "nextForm": "ابي معاويه",
+      "isnadContext": "حدثنا محمد بن عبد الله بن نمير ومحمد بن العلاء، ابو كريب. جميعا عن ابي معاويه. قال ابن العلاء: حدثنا ابو معاويه. حدثنا الاعمش عن شقيق، عن حذيفه. قال: كنا عند عمر. فقال: ايكم يحفظ حديث رسول الله صلي الله عليه وسلم في الفتنه كما قال؟ قال فقلت: انا. قال: انك لجريء. وكيف قال؟ قال قلت: سمعت رسول الله صلي الله عليه وسلم يقول \"فتنه الرجل في اهله وماله ونفسه وولده وجاره، يكفرها الصيام والصلاه والصدقه والامر بالمعروف والنهي ع",
+      "importerFlags": {
+        "relativeForm": false,
+        "prophetMention": false
+      },
+      "samplingFlags": {
+        "relativeForm": false,
+        "relativeFormVersion": "sanad-relative-forms-1.0.0"
+      },
+      "exactHeadMatches": [],
+      "exactHeadMatchCount": 0,
+      "occurrenceCount": 1,
+      "samplePositions": [
+        {
+          "chainId": "muslim-144-26-7201#c0",
+          "position": 0
+        }
+      ]
+    },
+    {
+      "id": "form:عبد الرحمن بن حميد بن عبد الرحمن بن عوف",
+      "sourceId": "muslim",
+      "recordId": "muslim-1977-40-5052",
+      "hadithNumber": 1977,
+      "volume": "3",
+      "printedPage": 1565,
+      "chainId": "muslim-1977-40-5052#c0",
+      "position": 2,
+      "stratum": "L2|K0|N0|R0|H1",
+      "cellSize": 46,
+      "inclusionWeight": 46,
+      "rawSurfaceForm": "عبد الرحمن بن حُمَيْدِ بْنِ عَبْدِ الرَّحْمَنِ بْنِ عَوْف",
+      "form": "عبد الرحمن بن حميد بن عبد الرحمن بن عوف",
+      "transmissionTerm": "حدثني",
+      "previousForm": "سفيان",
+      "nextForm": "سعيد بن المسيب",
+      "isnadContext": "وحدثناه اسحاق بن ابراهيم. اخبرنا سفيان. حدثني عبد الرحمن بن حميد بن عبد الرحمن بن عوف عن سعيد بن المسيب، عن ام سلمه ترفعه. قال:",
+      "importerFlags": {
+        "relativeForm": false,
+        "prophetMention": false
+      },
+      "samplingFlags": {
+        "relativeForm": false,
+        "relativeFormVersion": "sanad-relative-forms-1.0.0"
+      },
+      "exactHeadMatches": [
+        {
+          "entryId": "tahdhib-4036-5714-4037",
+          "sourceId": "tahdhib",
+          "entryNumber": 4036,
+          "head": "عبد الرحمن بن حُمَيْد بن عبد الرحمن بن عَوْف الزُّهْريُّ المدَنيُّ",
+          "deathYear": 137
+        },
+        {
+          "entryId": "kashif-3182-616-3193",
+          "sourceId": "kashif",
+          "entryNumber": 3182,
+          "head": "عبد الرحمن بن حميد بن عبد الرحمن بن عوف",
+          "deathYear": null
+        }
+      ],
+      "exactHeadMatchCount": 2,
+      "occurrenceCount": 1,
+      "samplePositions": [
+        {
+          "chainId": "muslim-1977-40-5052#c0",
+          "position": 2
+        }
+      ]
+    },
+    {
+      "id": "form:عمه عبد الله بن زيد بن عاصم",
+      "sourceId": "muslim",
+      "recordId": "muslim-1360-454-3238",
+      "hadithNumber": 1360,
+      "volume": "2",
+      "printedPage": 991,
+      "chainId": "muslim-1360-454-3238#c0",
+      "position": 4,
+      "stratum": "L2|K0|N0|R1|H0",
+      "cellSize": 17,
+      "inclusionWeight": 17,
+      "rawSurfaceForm": "عَمِّهِ عَبْدِ اللَّهِ بْنِ زَيْدِ بْنِ عَاصِم",
+      "form": "عمه عبد الله بن زيد بن عاصم",
+      "transmissionTerm": "عن",
+      "previousForm": "عباد بن تميم",
+      "nextForm": "رسول الله صلي الله عليه وسلم",
+      "isnadContext": "حدثنا قتيبه بن سعيد. حدثنا عبد العزيز (يعني ابن محمد الدراوردي) عن عمرو بن يحيي المازني، عن عباد بن تميم، عن عمه عبد الله بن زيد بن عاصم؛ ان",
+      "importerFlags": {
+        "relativeForm": false,
+        "prophetMention": false
+      },
+      "samplingFlags": {
+        "relativeForm": true,
+        "relativeFormVersion": "sanad-relative-forms-1.0.0"
+      },
+      "exactHeadMatches": [],
+      "exactHeadMatchCount": 0,
+      "occurrenceCount": 1,
+      "samplePositions": [
+        {
+          "chainId": "muslim-1360-454-3238#c0",
+          "position": 4
+        }
+      ]
+    },
+    {
+      "id": "form:حسن بن علي الحلواني وحجاج بن الشاعر",
+      "sourceId": "muslim",
+      "recordId": "muslim-796-242-1788",
+      "hadithNumber": 796,
+      "volume": "1",
+      "printedPage": 548,
+      "chainId": "muslim-796-242-1788#c0",
+      "position": 0,
+      "stratum": "L2|K0|N1|R0|H0",
+      "cellSize": 677,
+      "inclusionWeight": 112.8333,
+      "rawSurfaceForm": "حَسَنُ بْنُ عَلِيٍّ الْحُلْوَانِيُّ وَحَجَّاجُ بْنُ الشَّاعِر",
+      "form": "حسن بن علي الحلواني وحجاج بن الشاعر",
+      "transmissionTerm": "وحدثني",
+      "previousForm": null,
+      "nextForm": "يعقوب بن ابراهيم",
+      "isnadContext": "وحدثني حسن بن علي الحلواني وحجاج بن الشاعر (وتقاربا في اللفظ) قالا: حدثنا يعقوب بن ابراهيم. حدثنا ابي. حدثنا يزيد بن الهاد؛ ان عبد الله بن خباب حدثه؛ ان ابا سعيد الخدري حدثه؛ ان اسيد بن حضير، بينما هو، ليله، يقرا في مربده. اذ جالت فرسه. فقرا. ثم جالت اخري. فقرا. ثم جالت ايضا. قال اسيد: فخشيت ان تطا يحيي. فقمت اليها. فاذا مثل الظله فوق راسي. فيها امثال السرج. عرجت في الجو حتي ما اراها. قال فغدوت علي رسول الله صلي الله",
+      "importerFlags": {
+        "relativeForm": false,
+        "prophetMention": false
+      },
+      "samplingFlags": {
+        "relativeForm": false,
+        "relativeFormVersion": "sanad-relative-forms-1.0.0"
+      },
+      "exactHeadMatches": [],
+      "exactHeadMatchCount": 0,
+      "occurrenceCount": 1,
+      "samplePositions": [
+        {
+          "chainId": "muslim-796-242-1788#c0",
+          "position": 0
+        }
+      ]
+    },
+    {
+      "id": "form:علي بن حجر السعدي ويعقوب بن ابراهيم",
+      "sourceId": "muslim",
+      "recordId": "muslim-1548-113-3875",
+      "hadithNumber": 1548,
+      "volume": "3",
+      "printedPage": 1181,
+      "chainId": "muslim-1548-113-3875#c0",
+      "position": 0,
+      "stratum": "L2|K0|N1|R0|H0",
+      "cellSize": 677,
+      "inclusionWeight": 112.8333,
+      "rawSurfaceForm": "عَلِيُّ بْنُ حُجْرٍ السَّعْدِيُّ وَيَعْقُوبُ بْنُ إِبْرَاهِيم",
+      "form": "علي بن حجر السعدي ويعقوب بن ابراهيم",
+      "transmissionTerm": "وحدثني",
+      "previousForm": null,
+      "nextForm": "اسماعيل",
+      "isnadContext": "وحدثني علي بن حجر السعدي ويعقوب بن ابراهيم. قالا: حدثنا اسماعيل (وهو ابن عليه) عن ايوب، عن يعلي بن حكيم، عن سليمان بن يسار، عن رافع بن خديج قال: كنا نحاقل الارض علي عهد رسول الله صلي الله عليه وسلم. فنكريها بالربع والثلث والطعام المسمي. فجاينا ذات بوم رجل من عمومتي. فقال: نهانا رسول الله صلي الله عليه وسلم عن امر كان لنا نافعا. وطواعيه الله ورسوله انفع لنا. نهانا ان",
+      "importerFlags": {
+        "relativeForm": false,
+        "prophetMention": false
+      },
+      "samplingFlags": {
+        "relativeForm": false,
+        "relativeFormVersion": "sanad-relative-forms-1.0.0"
+      },
+      "exactHeadMatches": [],
+      "exactHeadMatchCount": 0,
+      "occurrenceCount": 1,
+      "samplePositions": [
+        {
+          "chainId": "muslim-1548-113-3875#c0",
+          "position": 0
+        }
+      ]
+    },
+    {
+      "id": "form:سعيد بن منصور وابو الربيع الزهراني",
+      "sourceId": "muslim",
+      "recordId": "muslim-2568-39-6485",
+      "hadithNumber": 2568,
+      "volume": "4",
+      "printedPage": 1989,
+      "chainId": "muslim-2568-39-6485#c0",
+      "position": 0,
+      "stratum": "L2|K0|N1|R0|H0",
+      "cellSize": 677,
+      "inclusionWeight": 112.8333,
+      "rawSurfaceForm": "سعيد بن منصور وأبو الربيع الزهراني",
+      "form": "سعيد بن منصور وابو الربيع الزهراني",
+      "transmissionTerm": "حدثنا",
+      "previousForm": null,
+      "nextForm": "حماد",
+      "isnadContext": "حدثنا سعيد بن منصور وابو الربيع الزهراني. قالا: حدثنا حماد (يعنيان ابن زيد) عن ايوب، عن ابي قلابه، عن ابي اسماء، عن ثوبان",
+      "importerFlags": {
+        "relativeForm": false,
+        "prophetMention": false
+      },
+      "samplingFlags": {
+        "relativeForm": false,
+        "relativeFormVersion": "sanad-relative-forms-1.0.0"
+      },
+      "exactHeadMatches": [],
+      "exactHeadMatchCount": 0,
+      "occurrenceCount": 1,
+      "samplePositions": [
+        {
+          "chainId": "muslim-2568-39-6485#c0",
+          "position": 0
+        }
+      ]
+    },
+    {
+      "id": "form:وعثمان بن عفان الي النبي صلي الله عليه وسلم",
+      "sourceId": "bukhari",
+      "recordId": "bukhari-3989-3989-6290",
+      "hadithNumber": 3989,
+      "volume": "4",
+      "printedPage": 1545,
+      "chainId": "bukhari-3989-3989-6290#c0",
+      "position": 5,
+      "stratum": "L2|K0|N1|R0|H0",
+      "cellSize": 677,
+      "inclusionWeight": 112.8333,
+      "rawSurfaceForm": "وَعُثْمَانُ بْنُ عَفَّانَ إِلَى النَّبِيِّ ﷺ",
+      "form": "وعثمان بن عفان الي النبي صلي الله عليه وسلم",
+      "transmissionTerm": "انا",
+      "previousForm": "سعيد بن المسيب",
+      "nextForm": "النبي صلي الله عليه وسلم",
+      "isnadContext": "حدثنا يحيي بن بكير: حدثنا الليث، عن يونس، عن ابن شهاب، عن سعيد بن المسيب: ان جبير بن مطعم اخبره قال: مشيت انا وعثمان بن عفان الي النبي صلي الله عليه وسلم، فقلنا اعطيت بني المطلب من خمس خيبر وتركتنا، ونحن بمنزله واحده منك. فقال:",
+      "importerFlags": {
+        "relativeForm": false,
+        "prophetMention": false
+      },
+      "samplingFlags": {
+        "relativeForm": false,
+        "relativeFormVersion": "sanad-relative-forms-1.0.0"
+      },
+      "exactHeadMatches": [],
+      "exactHeadMatchCount": 0,
+      "occurrenceCount": 1,
+      "samplePositions": [
+        {
+          "chainId": "bukhari-3989-3989-6290#c0",
+          "position": 5
+        }
+      ]
+    },
+    {
+      "id": "form:هشام بن سليمان المخزومي وعبد المجيد",
+      "sourceId": "muslim",
+      "recordId": "muslim-1229-179-2913",
+      "hadithNumber": 1229,
+      "volume": "2",
+      "printedPage": 902,
+      "chainId": "muslim-1229-179-2913#c0",
+      "position": 1,
+      "stratum": "L2|K0|N1|R0|H0",
+      "cellSize": 677,
+      "inclusionWeight": 112.8333,
+      "rawSurfaceForm": "هِشَامُ بْنُ سُلَيْمَانَ الْمَخْزُومِيُّ وَعَبْدُ الْمَجِيد",
+      "form": "هشام بن سليمان المخزومي وعبد المجيد",
+      "transmissionTerm": "حدثنا",
+      "previousForm": "ابن ابي عمر",
+      "nextForm": "ابن جريج",
+      "isnadContext": "وحدثنا ابن ابي عمر. حدثنا هشام بن سليمان المخزومي وعبد المجيد عن ابن جريج، عن نافع، عن ابن عمر. قال",
+      "importerFlags": {
+        "relativeForm": false,
+        "prophetMention": false
+      },
+      "samplingFlags": {
+        "relativeForm": false,
+        "relativeFormVersion": "sanad-relative-forms-1.0.0"
+      },
+      "exactHeadMatches": [],
+      "exactHeadMatchCount": 0,
+      "occurrenceCount": 1,
+      "samplePositions": [
+        {
+          "chainId": "muslim-1229-179-2913#c0",
+          "position": 1
+        }
+      ]
+    },
+    {
+      "id": "form:يعقوب بن ابراهيم الدورقي وحجاج بن الشاعر",
+      "sourceId": "muslim",
+      "recordId": "muslim-2892-25-7200",
+      "hadithNumber": 2892,
+      "volume": "4",
+      "printedPage": 2217,
+      "chainId": "muslim-2892-25-7200#c0",
+      "position": 0,
+      "stratum": "L2|K0|N1|R0|H0",
+      "cellSize": 677,
+      "inclusionWeight": 112.8333,
+      "rawSurfaceForm": "يعقوب بن إبراهيم الدورقي وحجاج بن الشاعر",
+      "form": "يعقوب بن ابراهيم الدورقي وحجاج بن الشاعر",
+      "transmissionTerm": "وحدثني",
+      "previousForm": null,
+      "nextForm": "ابي عاصم",
+      "isnadContext": "وحدثني يعقوب بن ابراهيم الدورقي وحجاج بن الشاعر. جميعا عن ابي عاصم. قال حجاج: حدثنا ابو عاصم. اخبرنا عزره بن ثابت. اخبرنا علباء بن احمر. حدثني ابو زيد",
+      "importerFlags": {
+        "relativeForm": false,
+        "prophetMention": false
+      },
+      "samplingFlags": {
+        "relativeForm": false,
+        "relativeFormVersion": "sanad-relative-forms-1.0.0"
+      },
+      "exactHeadMatches": [],
+      "exactHeadMatchCount": 0,
+      "occurrenceCount": 1,
+      "samplePositions": [
+        {
+          "chainId": "muslim-2892-25-7200#c0",
+          "position": 0
+        }
+      ]
+    },
+    {
+      "id": "form:عباس بن سهل بن سعد الساعدي",
+      "sourceId": "muslim",
+      "recordId": "muslim-1392-11-5881",
+      "hadithNumber": 1392,
+      "volume": "4",
+      "printedPage": 1785,
+      "chainId": "muslim-1392-11-5881#c0",
+      "position": 3,
+      "stratum": "L2|K0|N1|R0|H1",
+      "cellSize": 8,
+      "inclusionWeight": 8,
+      "rawSurfaceForm": "عَبَّاسِ بْنِ سَهْلِ بْنِ سَعْدٍ السَّاعِدِي",
+      "form": "عباس بن سهل بن سعد الساعدي",
+      "transmissionTerm": "عن",
+      "previousForm": "عمرو بن يحيي",
+      "nextForm": "ابي حميد",
+      "isnadContext": "حدثنا عبد الله بن مسلمه بن قعنب. حدثنا سليمان بن بلال عن عمرو بن يحيي، عن عباس بن سهل بن سعد الساعدي، عن ابي حميد. قال: خرجنا مع رسول الله صلي الله عليه وسلم غزوه تبوك. فاتينا وادي القري علي حديقه لامراه. فقال رسول الله صلي الله عليه وسلم \"اخرصوها\" فخرصناها. وخرصها رسول الله صلي الله عليه وسلم عشره اوسق. وقال \"احصيها حتي نرجع اليك، ان شاء الله\" وانطلقنا. حتي قدمنا تبوك. فقال رسول الله صلي الله عليه وسلم \"ستهب عليكم ا",
+      "importerFlags": {
+        "relativeForm": false,
+        "prophetMention": false
+      },
+      "samplingFlags": {
+        "relativeForm": false,
+        "relativeFormVersion": "sanad-relative-forms-1.0.0"
+      },
+      "exactHeadMatches": [
+        {
+          "entryId": "tahdhib-3316-4731-3317",
+          "sourceId": "tahdhib",
+          "entryNumber": 3316,
+          "head": "عباس بن سَهْل بن سعد السَّاعديُّ",
+          "deathYear": null
+        },
+        {
+          "entryId": "kashif-2596-525-2608",
+          "sourceId": "kashif",
+          "entryNumber": 2596,
+          "head": "عباس بن سهل بن سعد الساعدي",
+          "deathYear": null
+        }
+      ],
+      "exactHeadMatchCount": 2,
+      "occurrenceCount": 1,
+      "samplePositions": [
+        {
+          "chainId": "muslim-1392-11-5881#c0",
+          "position": 3
+        }
+      ]
+    },
+    {
+      "id": "form:رجل من اصحاب النبي صلي الله عليه وسلم",
+      "sourceId": "bukhari",
+      "recordId": "bukhari-4271-4271-6677",
+      "hadithNumber": 4271,
+      "volume": "4",
+      "printedPage": 1652,
+      "chainId": "bukhari-4271-4271-6677#c0",
+      "position": 6,
+      "stratum": "L2|K0|N1|R1|H0",
+      "cellSize": 5,
+      "inclusionWeight": 5,
+      "rawSurfaceForm": "رَجُلٍ مِنْ أَصْحَاب النَّبِيِّ ﷺ",
+      "form": "رجل من اصحاب النبي صلي الله عليه وسلم",
+      "transmissionTerm": "عن",
+      "previousForm": "مروان الاصفر",
+      "nextForm": "النبي صلي الله عليه وسلم",
+      "isnadContext": "حدثنا محمد: حدثنا النفيلي: حدثنا مسكين، عن شعبه، عن خالد الحذاء، عن مروان الاصفر، عن رجل من اصحاب النبي صلي الله عليه وسلم، وهو ابن عمر:",
+      "importerFlags": {
+        "relativeForm": false,
+        "prophetMention": false
+      },
+      "samplingFlags": {
+        "relativeForm": true,
+        "relativeFormVersion": "sanad-relative-forms-1.0.0"
+      },
+      "exactHeadMatches": [],
+      "exactHeadMatchCount": 0,
+      "occurrenceCount": 1,
+      "samplePositions": [
+        {
+          "chainId": "bukhari-4271-4271-6677#c0",
+          "position": 6
+        }
+      ]
+    },
+    {
+      "id": "form:ابو الهيثم خالد بن خداش بن عجلان",
+      "sourceId": "muslim",
+      "recordId": "muslim-1563-32-3932",
+      "hadithNumber": 1563,
+      "volume": "3",
+      "printedPage": 1196,
+      "chainId": "muslim-1563-32-3932#c0",
+      "position": 0,
+      "stratum": "L2|K1|N0|R0|H0",
+      "cellSize": 196,
+      "inclusionWeight": 98,
+      "rawSurfaceForm": "أَبُو الْهَيْثَمِ خَالِدُ بْنُ خِدَاشِ بْنِ عجلان",
+      "form": "ابو الهيثم خالد بن خداش بن عجلان",
+      "transmissionTerm": "حدثنا",
+      "previousForm": null,
+      "nextForm": "حماد ابن زيد",
+      "isnadContext": "حدثنا ابو الهيثم خالد بن خداش بن عجلان. حدثنا حماد ابن زيد عن ايوب، عن يحيي بن ابي كثير، عن عبد الله بن ابي قتاده؛ ان ابا قتاده طلب غريما له فتواري عنه. ثم وجده. فقال: اني معسر. فقال: الله؟ قال: الله. قال: فاني سمعت رسول الله صلي الله عليه وسلم يقول",
+      "importerFlags": {
+        "relativeForm": false,
+        "prophetMention": false
+      },
+      "samplingFlags": {
+        "relativeForm": false,
+        "relativeFormVersion": "sanad-relative-forms-1.0.0"
+      },
+      "exactHeadMatches": [],
+      "exactHeadMatchCount": 0,
+      "occurrenceCount": 1,
+      "samplePositions": [
+        {
+          "chainId": "muslim-1563-32-3932#c0",
+          "position": 0
+        }
+      ]
+    },
+    {
+      "id": "form:ابو بكر بن ابي شيبه وابن نمير وابو كريب",
+      "sourceId": "muslim",
+      "recordId": "muslim-1305-324-3079",
+      "hadithNumber": 1305,
+      "volume": "2",
+      "printedPage": 947,
+      "chainId": "muslim-1305-324-3079#c0",
+      "position": 0,
+      "stratum": "L2|K1|N0|R0|H0",
+      "cellSize": 196,
+      "inclusionWeight": 98,
+      "rawSurfaceForm": "أَبُو بَكْرِ بْنُ أَبِي شَيْبَةَ وَابْنُ نُمَيْرٍ وَأَبُو كُرَيْب",
+      "form": "ابو بكر بن ابي شيبه وابن نمير وابو كريب",
+      "transmissionTerm": "وحدثنا",
+      "previousForm": null,
+      "nextForm": "حفص بن غياث",
+      "isnadContext": "وحدثنا ابو بكر بن ابي شيبه وابن نمير وابو كريب. قالوا: اخبرنا حفص بن غياث عن هشام، بهذا الاسناد. اما ابو بكر فقال",
+      "importerFlags": {
+        "relativeForm": false,
+        "prophetMention": false
+      },
+      "samplingFlags": {
+        "relativeForm": false,
+        "relativeFormVersion": "sanad-relative-forms-1.0.0"
+      },
+      "exactHeadMatches": [],
+      "exactHeadMatchCount": 0,
+      "occurrenceCount": 1,
+      "samplePositions": [
+        {
+          "chainId": "muslim-1305-324-3079#c0",
+          "position": 0
+        }
+      ]
+    },
+    {
+      "id": "form:ابو بكر بن عثمان بن سهل بن حنيف",
+      "sourceId": "bukhari",
+      "recordId": "bukhari-524-524-911",
+      "hadithNumber": 524,
+      "volume": "1",
+      "printedPage": 202,
+      "chainId": "bukhari-524-524-911#c0",
+      "position": 2,
+      "stratum": "L2|K1|N0|R0|H1",
+      "cellSize": 1,
+      "inclusionWeight": 1,
+      "rawSurfaceForm": "أَبُو بَكْرِ بْنُ عُثْمَانَ بْنِ سَهْلِ بْنِ حُنَيْف",
+      "form": "ابو بكر بن عثمان بن سهل بن حنيف",
+      "transmissionTerm": "اخبرنا",
+      "previousForm": "عبد الله",
+      "nextForm": "ابا امامه",
+      "isnadContext": "حدثنا ابن مقاتل قال: اخبرنا عبد الله قال: اخبرنا ابو بكر بن عثمان بن سهل بن حنيف قال: سمعت ابا امامه يقول:",
+      "importerFlags": {
+        "relativeForm": false,
+        "prophetMention": false
+      },
+      "samplingFlags": {
+        "relativeForm": false,
+        "relativeFormVersion": "sanad-relative-forms-1.0.0"
+      },
+      "exactHeadMatches": [
+        {
+          "entryId": "tahdhib-8502-12075-8503",
+          "sourceId": "tahdhib",
+          "entryNumber": 8502,
+          "head": "أبو بكر بن عثمان بن سهل بن حنيف الأنصاري الأوسي المدني",
+          "deathYear": null
+        },
+        {
+          "entryId": "kashif-6531-1097-6488",
+          "sourceId": "kashif",
+          "entryNumber": 6531,
+          "head": "أبو بكر بن عثمان بن سهل بن حنيف",
+          "deathYear": null
+        }
+      ],
+      "exactHeadMatchCount": 2,
+      "occurrenceCount": 2,
+      "samplePositions": [
+        {
+          "chainId": "bukhari-524-524-911#c0",
+          "position": 2
+        },
+        {
+          "chainId": "bukhari-872-872-1479#c0",
+          "position": 2
+        }
+      ]
+    },
+    {
+      "id": "form:ابو جعفر محمد بن جهضم الثقفي",
+      "sourceId": "muslim",
+      "recordId": "muslim-385-12-795",
+      "hadithNumber": 385,
+      "volume": "1",
+      "printedPage": 289,
+      "chainId": "muslim-385-12-795#c0",
+      "position": 1,
+      "stratum": "L2|K1|N1|R0|H0",
+      "cellSize": 113,
+      "inclusionWeight": 56.5,
+      "rawSurfaceForm": "أبو جعفر محمد بن جَهْضَمٍ الثَّقَفِي",
+      "form": "ابو جعفر محمد بن جهضم الثقفي",
+      "transmissionTerm": "اخبرنا",
+      "previousForm": "اسحاق بن منصور",
+      "nextForm": "اسماعيل بن جعفر",
+      "isnadContext": "حدثني اسحاق بن منصور. اخبرنا ابو جعفر محمد بن جهضم الثقفي. حدثنا اسماعيل بن جعفر عن عماره بن غزيه، عن خبيب بن عبد الرحمن بن اساف، عن حفص بن عاصم بن عمر بن الخطاب، عن ابيه، عن جده عمر بن الخطاب؛ قال:",
+      "importerFlags": {
+        "relativeForm": false,
+        "prophetMention": false
+      },
+      "samplingFlags": {
+        "relativeForm": false,
+        "relativeFormVersion": "sanad-relative-forms-1.0.0"
+      },
+      "exactHeadMatches": [],
+      "exactHeadMatchCount": 0,
+      "occurrenceCount": 1,
+      "samplePositions": [
+        {
+          "chainId": "muslim-385-12-795#c0",
+          "position": 1
+        }
+      ]
+    },
+    {
+      "id": "form:ابي بكر بن ابي الجهم بن صخير العدوي",
+      "sourceId": "muslim",
+      "recordId": "muslim-1480-47-3639",
+      "hadithNumber": 1480,
+      "volume": "2",
+      "printedPage": 1119,
+      "chainId": "muslim-1480-47-3639#c0",
+      "position": 3,
+      "stratum": "L2|K1|N1|R0|H0",
+      "cellSize": 113,
+      "inclusionWeight": 56.5,
+      "rawSurfaceForm": "أَبِي بَكْرِ بْنِ أَبِي الْجَهْمِ بْنِ صُخَيْرٍ الْعَدَوِي",
+      "form": "ابي بكر بن ابي الجهم بن صخير العدوي",
+      "transmissionTerm": "عن",
+      "previousForm": "سفيان",
+      "nextForm": "فاطمه بنت قيس تقول",
+      "isnadContext": "وحدثنا ابو بكر بن ابي شيبه. حدثنا وكيع حدثنا سفيان عن ابي بكر بن ابي الجهم بن صخير العدوي قال: سمعت فاطمه بنت قيس تقول:",
+      "importerFlags": {
+        "relativeForm": false,
+        "prophetMention": false
+      },
+      "samplingFlags": {
+        "relativeForm": false,
+        "relativeFormVersion": "sanad-relative-forms-1.0.0"
+      },
+      "exactHeadMatches": [],
+      "exactHeadMatchCount": 0,
+      "occurrenceCount": 1,
+      "samplePositions": [
+        {
+          "chainId": "muslim-1480-47-3639#c0",
+          "position": 3
+        }
+      ]
+    }
+  ]
+}

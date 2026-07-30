@@ -1,0 +1,19 @@
+{
+  "artifactType": "adjudication",
+  "schemaVersion": "p47-gold-1.0.0",
+  "task": "hadith-occurrences",
+  "frameDigest": "REPLACE_WITH_FRAME_DIGEST",
+  "completedAt": "REPLACE_WITH_ISO_8601_TIMESTAMP",
+  "items": [
+    {
+      "id": "REPLACE_WITH_FRAME_ITEM_ID",
+      "decision": "linked",
+      "narratorId": "REPLACE_WITH_STABLE_CANONICAL_PERSON_ID",
+      "narratorRevision": 1,
+      "evidenceReferences": ["REPLACE_WITH_SOURCE_PASSAGE_OR_PRECISE_CITATION"],
+      "rationale": "REPLACE_WITH_FACHLICHE_BEGRUENDUNG",
+      "method": "adjudicated",
+      "adjudicator": "REPLACE_WITH_THIRD_ANNOTATOR_ID"
+    }
+  ]
+}

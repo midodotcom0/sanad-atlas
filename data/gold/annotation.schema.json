@@ -1,0 +1,176 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://sanad-atlas.invalid/data/gold/annotation.schema.json",
+  "title": "Sanad Atlas P4.7 annotation artifacts",
+  "oneOf": [
+    { "$ref": "#/$defs/annotationFile" },
+    { "$ref": "#/$defs/adjudicationFile" },
+    { "$ref": "#/$defs/predictionFile" }
+  ],
+  "$defs": {
+    "task": {
+      "enum": ["hadith-occurrences", "narrator-forms"]
+    },
+    "goldDecision": {
+      "enum": ["linked", "ambiguous", "not-a-narrator", "invalid-frame"]
+    },
+    "annotationItem": {
+      "type": "object",
+      "required": ["id", "decision", "narratorId", "narratorRevision", "evidenceReferences", "rationale"],
+      "properties": {
+        "id": { "type": "string", "minLength": 1 },
+        "decision": { "$ref": "#/$defs/goldDecision" },
+        "narratorId": {
+          "type": ["string", "null"],
+          "pattern": "^SA-P-[A-Z2-7]{8}$"
+        },
+        "narratorRevision": { "type": ["integer", "null"], "minimum": 1 },
+        "evidenceReferences": {
+          "type": "array",
+          "items": { "type": "string", "minLength": 1 },
+          "uniqueItems": true
+        },
+        "rationale": { "type": "string", "minLength": 1 }
+      },
+      "allOf": [
+        {
+          "if": { "properties": { "decision": { "const": "linked" } } },
+          "then": {
+            "properties": {
+              "narratorId": { "type": "string", "minLength": 1 },
+              "narratorRevision": { "type": "integer", "minimum": 1 },
+              "evidenceReferences": { "minItems": 1 }
+            }
+          },
+          "else": {
+            "properties": {
+              "narratorId": { "type": "null" },
+              "narratorRevision": { "type": "null" }
+            }
+          }
+        }
+      ]
+    },
+    "annotationFile": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "artifactType",
+        "schemaVersion",
+        "task",
+        "frameDigest",
+        "annotator",
+        "blindToOtherAnnotation",
+        "blindToSystemPredictions",
+        "items"
+      ],
+      "properties": {
+        "artifactType": { "const": "independent-annotation" },
+        "schemaVersion": { "const": "p47-gold-1.0.0" },
+        "task": { "$ref": "#/$defs/task" },
+        "frameDigest": { "type": "string", "pattern": "^[0-9a-f]{32}$" },
+        "annotator": { "type": "string", "minLength": 1 },
+        "blindToOtherAnnotation": { "const": true },
+        "blindToSystemPredictions": { "const": true },
+        "completedAt": { "type": "string", "format": "date-time" },
+        "items": {
+          "type": "array",
+          "items": { "$ref": "#/$defs/annotationItem" }
+        }
+      }
+    },
+    "adjudicationItem": {
+      "unevaluatedProperties": false,
+      "allOf": [
+        { "$ref": "#/$defs/annotationItem" },
+        {
+          "type": "object",
+          "required": ["method", "adjudicator"],
+          "properties": {
+            "method": { "enum": ["agreement", "adjudicated"] },
+            "adjudicator": { "type": ["string", "null"] }
+          }
+        }
+      ]
+    },
+    "adjudicationFile": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["artifactType", "schemaVersion", "task", "frameDigest", "items"],
+      "properties": {
+        "artifactType": { "const": "adjudication" },
+        "schemaVersion": { "const": "p47-gold-1.0.0" },
+        "task": { "$ref": "#/$defs/task" },
+        "frameDigest": { "type": "string", "pattern": "^[0-9a-f]{32}$" },
+        "completedAt": { "type": "string", "format": "date-time" },
+        "items": {
+          "type": "array",
+          "items": { "$ref": "#/$defs/adjudicationItem" }
+        }
+      }
+    },
+    "predictionItem": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["task", "id", "decision", "narratorId", "narratorRevision"],
+      "properties": {
+        "task": { "$ref": "#/$defs/task" },
+        "id": { "type": "string", "minLength": 1 },
+        "decision": { "enum": ["linked", "abstain", "conflict"] },
+        "narratorId": {
+          "type": ["string", "null"],
+          "pattern": "^SA-P-[A-Z2-7]{8}$"
+        },
+        "narratorRevision": { "type": ["integer", "null"], "minimum": 1 }
+      },
+      "allOf": [
+        {
+          "if": { "properties": { "decision": { "const": "linked" } } },
+          "then": {
+            "properties": {
+              "narratorId": { "type": "string", "minLength": 1 },
+              "narratorRevision": { "type": "integer", "minimum": 1 }
+            }
+          },
+          "else": {
+            "properties": {
+              "narratorId": { "type": "null" },
+              "narratorRevision": { "type": "null" }
+            }
+          }
+        }
+      ]
+    },
+    "predictionFile": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "artifactType",
+        "schemaVersion",
+        "resolverVersion",
+        "weightProfileVersion",
+        "frameDigests",
+        "items"
+      ],
+      "properties": {
+        "artifactType": { "const": "resolver-predictions" },
+        "schemaVersion": { "const": "p47-gold-1.0.0" },
+        "resolverVersion": { "type": "string", "minLength": 1 },
+        "weightProfileVersion": { "type": "string", "minLength": 1 },
+        "frameDigests": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["hadith-occurrences", "narrator-forms"],
+          "properties": {
+            "hadith-occurrences": { "type": "string", "pattern": "^[0-9a-f]{32}$" },
+            "narrator-forms": { "type": "string", "pattern": "^[0-9a-f]{32}$" }
+          }
+        },
+        "items": {
+          "type": "array",
+          "items": { "$ref": "#/$defs/predictionItem" }
+        }
+      }
+    }
+  }
+}
