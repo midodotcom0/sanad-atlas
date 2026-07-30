@@ -122,7 +122,32 @@ export function createLicenseGate(registry) {
     };
   }
 
-  return { sourceEntry, allowedDerivedFields, rightsStatusFor, fullTextCleared, publicRecordFields, publicRijalFields };
+  /**
+   * Oeffentliche Feldauswahl einer Lehrer-/Schueleraussage (P4.6).
+   *
+   * Die ABLEITUNG „X ist in Eintrag N als Lehrer von Y genannt" wird
+   * veroeffentlicht, sobald die Quelle „teacher_student_phrases" in ihrer
+   * Allowlist fuehrt -- der zugehoerige Fundstellenzeiger (entry_number,
+   * volume, page, url) ist ueber „source_pointer"/"entry_number" ohnehin
+   * freigegeben. Der WORTLAUT der Nennung ist Editionsprosa und faellt
+   * zusaetzlich unter fullTextCleared(); heute ist jede registrierte Quelle
+   * „review-required", `originalPhrase` bleibt also durchgaengig null und
+   * `textWithheld` true. Genau dieselbe Zweiteilung wie bei
+   * publicRijalFields() oben -- kein zweites Gate, keine Ausnahme.
+   * @param {Record<string, any>} row Zeile aus relationship_assertion (rijal_statement)
+   */
+  function publicRijalStatementFields(row) {
+    const source = row.source_key;
+    const includePhrase = fullTextCleared(source) && allowedDerivedFields(source).has("teacher_student_phrases");
+    return {
+      rijalEntryId: row.rijal_entry_id,
+      sourceWork: source,
+      originalPhrase: includePhrase ? row.original_phrase : null,
+      textWithheld: !includePhrase,
+    };
+  }
+
+  return { sourceEntry, allowedDerivedFields, rightsStatusFor, fullTextCleared, publicRecordFields, publicRijalFields, publicRijalStatementFields };
 }
 
 export { TEXT_RIGHTS_CLEARED_STATUSES };
