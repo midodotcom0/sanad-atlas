@@ -7,7 +7,7 @@ name: Deploy Sanad Atlas (Pages + Worker/D1)
 # deshalb ein einzelner Schritt (Job "rollback" unten) -- er schaltet den Zeiger
 # in D1 um, ohne Neubau, ohne Worker-Deploy, ohne neuen Pages-Build.
 #
-# atlas.db (rund 434 MB) entsteht IM Job und wird nie ins Repository und nie in
+# atlas.db (aktuell rund 553 MB) entsteht IM Job und wird nie ins Repository und nie in
 # ein Artefakt geschrieben -- Begruendung am Schritt "atlas.db bauen".
 
 on:
@@ -123,8 +123,12 @@ jobs:
         run: npm run test
       - name: Run corpus API repository tests
         run: npm run test:backend
+      - name: Rijāl-Aussagekandidaten und JS/Python-Parität prüfen
+        run: npm run test:rijal-statements
+      - name: Goldrahmen und Annotationsstatus prüfen
+        run: npm run test:gold:audit
 
-      # atlas.db entsteht hier und bleibt hier: 434 MB gehoeren weder ins
+      # atlas.db entsteht hier und bleibt hier: aktuell rund 553 MB gehoeren weder ins
       # Repository (.gitignore: worker/*.db) noch in ein Actions-Artefakt --
       # Artefakte zaehlen gegen das Speicherkontingent des Kontos, und die Datei
       # ist aus denselben Eingaben jederzeit deterministisch reproduzierbar

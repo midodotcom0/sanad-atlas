@@ -6,6 +6,38 @@ Harte Randbedingung des Auftraggebers: **der Betrieb muss dauerhaft kostenlos m�
 
 ---
 
+## Fortschritt nach Umsetzungswelle 2
+
+Der Audit-Bestand unten bleibt als Ausgangsmessung erhalten. Der aktuelle
+Arbeitsstand ist deutlich weiter:
+
+- P0, P1.2–P1.4, P2.1–P2.4, P3.1–P3.4, P4.1–P4.4 und P5.1–P5.3/P5.6/P5.7
+  sind implementiert und geprüft.
+- P4.5 hat jetzt einen reversiblen Merge-/Split-Lifecycle für echte
+  `SA-P-*`-Identitätsentitäten. Ein `UNC-*`-Namenscluster wird ausdrücklich
+  **nicht** automatisch zu einer Person, weil es Homonyme enthalten kann.
+- P4.6 extrahiert 126.005 Rijāl-Nennungen: 83.825 quellengebundene,
+  personenscharf segmentierte Identitätskandidaten und 42.180 begründete
+  Review-Fälle. Solange beide Enden nicht auf historische Personen aufgelöst
+  sind, entstehen bewusst 0 `rijal_statement`-Kanten.
+- P4.7 hat reproduzierbare Rahmen für 250 Hadithpositionen und 100 distinkte
+  Namensformen sowie ein Prüfprogramm für Doppelannotation, Cohen-κ,
+  Adjudikation und Präzision/Recall je Stratum. Der Goldbestand ist noch nicht
+  abgeschlossen: zwei unabhängige Fachannotationen, Adjudikation und
+  Resolver-Vorhersagen fehlen.
+- Der aktuelle deterministische D1-Build umfasst 13.066 Hadithdatensätze,
+  87.867 Erzählerpositionen, 34.451 Rijāl-Einträge und 147.458
+  Projektionskanten. Größe: 552,9 MB.
+- Verifikation: 84 Vitest-Tests, 27 Backendtests, 19/20 Atlas-Checks
+  (ein erwarteter Plattform-Fallback-Skip), 6 Rijāl-Vollkorpuschecks und 27
+  Worker-Vertragstests grün; TypeScript, ESLint und Produktionsbuild grün.
+
+Nächste fachliche Blocker: echte Goldannotation (P4.7), Frontend vollständig
+von Demonstrationsdaten lösen (P3.3/P5.4/P5.5), anschließend persistente
+Redaktionsoberfläche (P5.8) und das strikte Gold-CI-Gate (P6.1).
+
+---
+
 ## 1. Was der Audit bestätigt hat
 
 Die Zahlen aus Abschnitt 2 der Beschreibung stimmen exakt mit `public/data/corpus/manifest.json` überein — keine Abweichung:
@@ -61,7 +93,7 @@ Die in Abschnitt 11 vorgesehene Zielarchitektur ist unter der Nullkosten-Bedingu
 | Oracle Always Free | im Juni 2026 auf 2 OCPU/12 GB halbiert, Rückholung bei <20 % CPU | unzuverlässig |
 | Sentry Free | 5.000 Fehler/Monat, Überschuss verworfen | ausreichend |
 
-**Empfehlung:** statischer Next-Export auf GitHub Pages (existiert bereits) plus **ein** Cloudflare Worker mit **D1 als fachlicher Quelle der Wahrheit**. Kein Idle-Suspend, kein Kaltstart, keine Kreditkarte. Der Gesamtbestand liegt mit rund 250 MB inklusive Suchindex bei etwa 5 % des D1-Kontingents.
+**Empfehlung:** statischer Next-Export auf GitHub Pages (existiert bereits) plus **ein** Cloudflare Worker mit **D1 als fachlicher Quelle der Wahrheit**. Kein Idle-Suspend, kein Kaltstart, keine Kreditkarte. Der aktuelle deterministische Build liegt bei 552,9 MB.
 
 **FastAPI wird als Auslieferungslaufzeit aufgegeben**, weil jeder kostenlose Python-Host schläft, abgeschafft wurde oder Leerlaufspiele verlangt. Python bleibt als Importer, Parser und Entity-Resolution-Pipeline in GitHub Actions — dort ist es kostenlos und sachlich richtig platziert. `backend/` bleibt zusätzlich die lokale Referenzimplementierung für Contract-Tests. Unabhängig davon ist `repository.py` nicht auslieferungsreif: es scannt bei jeder Anfrage alle 13.066 Datensätze im Volltext (`:148, :167-176, :291, :320`).
 

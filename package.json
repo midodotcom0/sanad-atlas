@@ -16,7 +16,10 @@
     "atlas:release": "node worker/tools/atlas-release.mjs",
     "atlas:audit": "node worker/tools/query-plan-audit.mjs",
     "atlas:rollback:dryrun": "node worker/tools/release-dryrun.mjs",
-    "test:atlas": "node --experimental-sqlite --test tests/atlas-db-schema-translate.check.mjs tests/atlas-db-id-scheme.check.mjs tests/atlas-db-normalize-parity.check.mjs tests/atlas-db-build.check.mjs",
+    "test:atlas": "node --experimental-sqlite --test tests/atlas-db-schema-translate.check.mjs tests/atlas-db-id-scheme.check.mjs tests/atlas-db-normalize-parity.check.mjs tests/atlas-db-build.check.mjs tests/atlas-identity-lifecycle.check.mjs",
+    "test:rijal-statements": "node --test tests/rijal-statements.check.mjs",
+    "test:gold:audit": "node data/gold/check-gold.mjs",
+    "test:gold:strict": "node data/gold/check-gold.mjs --strict",
     "test:worker": "node --experimental-sqlite --test tests/worker-contract.check.mjs"
   },
   "dependencies": {
