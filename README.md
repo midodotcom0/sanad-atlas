@@ -23,7 +23,14 @@ npm install
 npm run dev
 ```
 
-Danach `http://localhost:3000/hadith` öffnen. Die wichtigsten Ansichten sind:
+`npm run dev` startet die Oberfläche und die lokale Forschungs-API gemeinsam.
+Die API liest die gebaute `worker/atlas.db` standardmäßig nur lesend und ist
+ausschließlich unter `127.0.0.1` erreichbar. Danach
+`http://localhost:3000/library` öffnen, einen Datensatz wählen und dessen
+Isnād visualisieren. Nur die Oberfläche lässt sich bei Bedarf mit
+`npm run dev:web` starten; nur die API mit `npm run dev:api`.
+
+Die wichtigsten Ansichten sind:
 
 - `/library` — cursorpaginierte Suche durch alle importierten Hadith-Vorkommen und alle Quelleneinträge aus Tahdhīb, Mīzān und Taqrīb, mit/ohne Diakritika;
 - `/hadith?record=…` — positionsgenaue Visualisierung einer importierten Kette; jeder Erzählerknoten öffnet die quellengetrennte Kandidatensuche;
