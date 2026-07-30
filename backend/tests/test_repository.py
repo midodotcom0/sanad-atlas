@@ -141,7 +141,7 @@ class CorpusRepositoryTests(unittest.TestCase):
     def test_cluster_routes_are_bounded_and_source_bound(self):
         result = self.repo.routes("HCL-abc")
         self.assertEqual(result["data"]["recordCount"], 1)
-        self.assertEqual(result["data"]["edges"][0]["evidenceKind"], "isnad_occurrence")
+        self.assertEqual(result["data"]["edges"][0]["evidenceKind"], "isnad_link")
         self.assertTrue(result["sourceReferences"])
 
     def test_rijal_entries_are_searchable_without_publishing_full_edition_text(self):
@@ -319,7 +319,7 @@ class CorpusRepositoryTests(unittest.TestCase):
         kinds = {item["relationshipType"] for item in items}
         self.assertEqual(kinds, {"transmitted_from", "transmitted_to"})
         for item in items:
-            self.assertEqual(item["evidenceKind"], "isnad_occurrence")
+            self.assertEqual(item["evidenceKind"], "isnad_link")
             self.assertIn("chainId", item)
             self.assertIn("position", item)
             self.assertIsNone(item["spanStart"])

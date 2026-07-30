@@ -587,7 +587,7 @@ class CorpusRepository:
                     })
                 for position, (source, target) in enumerate(zip(ids, ids[1:])):
                     edge_id = f"{source}:{target}"
-                    edge = edges.setdefault(edge_id, {"id": edge_id, "source": source, "target": target, "evidenceKind": "isnad_occurrence", "occurrences": [], "matnFamilies": []})
+                    edge = edges.setdefault(edge_id, {"id": edge_id, "source": source, "target": target, "evidenceKind": "isnad_link", "occurrences": [], "matnFamilies": []})
                     edge["occurrences"].append({"hadithId": record["id"], "chainOrder": chain.get("chainOrder", 0), "position": position})
                     if fingerprint not in edge["matnFamilies"]:
                         edge["matnFamilies"].append(fingerprint)
@@ -768,7 +768,7 @@ class CorpusRepository:
             items.append({
                 "relatedNarratorId": neighbor["relatedNarratorId"],
                 "relationshipType": neighbor["relationshipType"],
-                "evidenceKind": "isnad_occurrence",
+                "evidenceKind": "isnad_link",
                 "chainId": neighbor["chainId"],
                 "position": neighbor["position"],
                 "spanStart": None,
@@ -829,10 +829,13 @@ class CorpusRepository:
         level, score = aggregate_machine_confidence(scores)
         note = None
         if not assertions:
+            # Bewusst ohne Bestandszahl: eine feste Zahl im Antworttext wird beim
+            # naechsten Import unbemerkt falsch (sie nannte 27.105 bei inzwischen
+            # 34.045 Eintraegen). Braucht eine Ansicht die Groesse, holt sie sie
+            # aus der Datenbasis -- nicht aus einer Prosa-Konstanten.
             note = (
-                "Keine Todes- oder Geburtsjahresangabe für dieses Namenscluster in den importierten Rijāl-Werken gefunden "
-                "(aktuell nur ein kleiner Bruchteil der 27.105 Einträge mit erkanntem Todesjahr, Geburtsjahr wird derzeit "
-                "gar nicht extrahiert -- siehe Umsetzungsplan P1.1)."
+                "Keine Todes- oder Geburtsjahresangabe für dieses Namenscluster in den importierten "
+                "Rijāl-Werken gefunden."
             )
         return envelope(
             {"narratorId": narrator_id, "dateAssertions": assertions, "note": note},

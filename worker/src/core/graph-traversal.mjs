@@ -94,7 +94,7 @@ export async function traverseFromNode(db, startNodeId, options = {}) {
       source: row.source_node_id,
       target: row.target_node_id,
       relationshipType: row.relationship_type,
-      evidenceKind: "isnad_occurrence",
+      evidenceKind: "isnad_link",
       hadithId: row.hadith_record_id,
       chainOrder: row.chain_order,
       depth: row.depth,

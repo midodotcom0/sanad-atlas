@@ -226,25 +226,23 @@ Der Trockenlauf (`npm run atlas:rollback:dryrun`) ersetzt genau **einen** Bauste
 
 ---
 
-## 9. Offene Abweichung zur Referenz
+## 9. Zwei behobene Vertragsabweichungen — und was sie über den Contract-Test verraten
 
-**Fachliche Aussage hartcodiert in einer Antwort, mit veralteten Zahlen.** `backend/app/repository.py:832-836` gibt für einen Erzähler ohne Datierungsangabe zurück:
+Beide Punkte standen hier als offen. Sie sind entschieden und auf beiden Seiten gemeinsam umgesetzt.
 
-> „… (aktuell nur ein kleiner Bruchteil der 27.105 Einträge mit erkanntem Todesjahr, Geburtsjahr wird derzeit gar nicht extrahiert …)"
+**a) Fachliche Zahl im Antworttext — entfernt.** `backend/app/repository.py` gab für einen Erzähler ohne Datierungsangabe zurück: „… nur ein kleiner Bruchteil der 27.105 Einträge …". Gemessen an `atlas.db` waren es zu dem Zeitpunkt 34.045 Einträge, 4.951 davon mit Todesjahr und 281 mit Geburtsjahr — die Zahl war also schon falsch, und niemand hätte es bemerkt. Der Hinweis nennt jetzt gar keine Bestandsgröße mehr. Braucht eine Ansicht sie, kommt sie als Feld aus den Daten. Eine Bestandsgröße als Prosa-Konstante ist beim nächsten Import zwangsläufig veraltet.
 
-Beides stimmt am aktuellen Bestand nicht mehr, gemessen an `atlas.db`:
+**b) `evidenceKind` — auf das kanonische Vokabular gezogen.** Beide Seiten lieferten `isnad_occurrence`, obwohl `database/migrations/0005_evidence_envelope.sql` den Wert längst in `isnad_link` umbenannt hatte und `edge_projection.evidence_kind` in `atlas.db` korrekt belegt war. Die Abweichung saß allein in der Antwortdarstellung.
 
-| Behauptung | gemessen |
-|---|---|
-| 27.105 Einträge | **34.045** (`rijal_entry`) |
-| „ein kleiner Bruchteil" mit Todesjahr | **4.951** = 14,5 % |
-| „Geburtsjahr wird gar nicht extrahiert" | **281** Einträge mit Geburtsjahr |
+**Der eigentliche Befund liegt darunter.** Beide Fehler waren für den Contract-Test unsichtbar, und zwar aus demselben Grund: er vergleicht Worker gegen FastAPI. Weichen beide Seiten *gleich* ab, meldet er grün. Ein Test, der zwei Implementierungen gegeneinander hält, prüft ihre Übereinstimmung — nicht den Vertrag.
 
-Der Worker gibt diesen Text derzeit **wortgleich** aus (`worker/src/core/queries/narrators.mjs`, mit Kommentar an der Stelle), weil P3.2 Feldgleichheit verlangt und der Worker die Referenz nicht einseitig korrigieren darf. `backend/` gehört nicht zur Dateihoheit dieses Pakets.
+`tests/worker-contract.check.mjs` hat deshalb drei Fälle bekommen, die gegen die Spezifikation prüfen statt gegen die Gegenseite:
 
-Vorschlag zur Behebung: die Zahl aus der Datenbasis ableiten statt sie in den Text zu schreiben, oder — sauberer — sie ganz aus der Meldung nehmen und stattdessen als Feld ausliefern (`coverage: { rijalEntries, withDeathYear, withBirthYear }`). Bis dahin bleibt der Worker wortgleich.
+- `evidenceKind` liegt im Vokabular aus `database/schema.sql` — auf beiden Seiten, über alle Endpunkte, in beliebiger Verschachtelungstiefe.
+- `confidenceLevel` und `origin` sind kanonisch, und eine Antwort mit `origin: "machine"` meldet nie `verified`.
+- Kein Antworttext enthält eine fest verdrahtete Bestandszahl (Muster: Zifferngruppe vor „Einträge/Vorkommen/Datensätze").
 
-**Zweite Beobachtung, nicht geändert:** `evidenceKind` trägt in den API-Antworten von *beiden* Seiten den Wert `isnad_occurrence` (`repository.py:590,771` und der Worker-Port). Projektweit gilt laut `database/schema.sql:56` das Vokabular `isnad_link | rijal_statement | chronology_only`; `edge_projection.evidence_kind` ist in `atlas.db` korrekt mit `isnad_link` belegt. Die Abweichung liegt also nur in der Antwortdarstellung und ist auf beiden Seiten identisch — der Contract-Test kann sie deshalb nicht sehen. Eine Korrektur muss auf beiden Seiten gleichzeitig erfolgen und ist damit eine Vertragsänderung, keine Worker-Änderung.
+Der erste Fall schlägt zusätzlich fehl, wenn er *kein* `evidenceKind` findet — eine Prüfung, die ins Leere läuft, ist keine Prüfung.
 
 ---
 

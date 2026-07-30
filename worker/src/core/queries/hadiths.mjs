@@ -186,7 +186,7 @@ export async function getClusterRoutes(db, gate, dataVersion, clusterId, { colle
     const key = `${edge.source_node_id}:${edge.target_node_id}`;
     let entry = edgeMap.get(key);
     if (!entry) {
-      entry = { id: key, source: edge.source_node_id, target: edge.target_node_id, evidenceKind: "isnad_occurrence", occurrences: [], matnFamilies: [] };
+      entry = { id: key, source: edge.source_node_id, target: edge.target_node_id, evidenceKind: "isnad_link", occurrences: [], matnFamilies: [] };
       edgeMap.set(key, entry);
     }
     // Bytegleich zu repository.py's routes(): das Vorkommen traegt

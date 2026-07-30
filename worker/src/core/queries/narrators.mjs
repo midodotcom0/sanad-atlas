@@ -144,7 +144,7 @@ export async function getNarratorRelations(db, gate, dataVersion, narratorId, { 
   const items = window.map((row) => ({
     relatedNarratorId: row.target_node_id,
     relationshipType: row.relationship_type,
-    evidenceKind: "isnad_occurrence",
+    evidenceKind: "isnad_link",
     chainId: `${row.hadith_record_id}#${row.chain_order}`,
     position: neighborPosition(row),
     spanStart: null,
@@ -203,20 +203,14 @@ export async function getNarratorTimeline(db, gate, dataVersion, narratorId) {
   if (occurrences.length === 0) return null;
   const { assertions, references, scores } = await dateAssertionsFor(db, narratorId, occurrences[0].normalized_surface_form);
   const [level, score] = aggregateMachineConfidence(scores);
-  // Wortgleich zur Referenz (repository.py:832-836). Der Text ist fachlich
-  // fragwuerdig -- er nennt eine feste Zahl ("27.105 Einträge") und eine
-  // absolute Aussage ("gar nicht extrahiert"), beides in einer Antwort
-  // hartcodiert statt aus der Datenbasis abgeleitet, und beides veraltet, seit
-  // die Rijal-Basis auf 34.045 Eintraege gewachsen ist und Geburtsjahre
-  // vereinzelt extrahiert werden (rijal_entry.birth_year_ah). Trotzdem steht
-  // hier die Referenzfassung: P3.2 verlangt Feldgleichheit, und der Worker darf
-  // die Referenz nicht einseitig korrigieren. Die Korrektur gehoert in
-  // backend/app/repository.py (Eigentuemer: Agent Vertrag/Backend); danach ist
-  // dieser String hier mitzuziehen. Siehe docs/12-LAUFZEIT.md, "Offene
-  // Abweichung zur Referenz".
+  // Wortgleich zur Referenz (backend/app/repository.py). Die frueher hier
+  // stehende Bestandszahl ("27.105 Einträge") ist auf beiden Seiten entfernt:
+  // sie war beim naechsten Import zwangslaeufig falsch -- inzwischen sind es
+  // 34.045 Eintraege -- und eine fachliche Groesse gehoert nicht als Konstante
+  // in einen Antworttext. Braucht eine Ansicht sie, kommt sie aus den Daten.
   const note = assertions.length
     ? null
-    : "Keine Todes- oder Geburtsjahresangabe für dieses Namenscluster in den importierten Rijāl-Werken gefunden (aktuell nur ein kleiner Bruchteil der 27.105 Einträge mit erkanntem Todesjahr, Geburtsjahr wird derzeit gar nicht extrahiert -- siehe Umsetzungsplan P1.1).";
+    : "Keine Todes- oder Geburtsjahresangabe für dieses Namenscluster in den importierten Rijāl-Werken gefunden.";
   return envelope({ narratorId, dateAssertions: assertions, note }, cited(references, note ?? "Keine Datierungsangaben gefunden."), {
     confidenceLevel: level,
     confidenceScore: score,

@@ -253,4 +253,98 @@ if (!existsSync(dbPath)) {
     assert.strictEqual(w.status, 404);
     assert.deepStrictEqual(w.body, { detail: "Source not found" });
   });
+
+  // ---------------------------------------------------------------------
+  // Vertragsprüfung statt reinem Seitenvergleich.
+  //
+  // Alle Tests oben vergleichen Worker gegen FastAPI. Weichen BEIDE Seiten
+  // gleich ab, ist das unsichtbar -- genau so trugen die Antworten monatelang
+  // `evidenceKind: "isnad_occurrence"`, obwohl das Vokabular seit
+  // database/migrations/0005_evidence_envelope.sql `isnad_link` heisst.
+  // Die folgenden Faelle pruefen deshalb gegen die Spezifikation selbst,
+  // nicht gegen die jeweils andere Implementierung.
+  // ---------------------------------------------------------------------
+
+  const EVIDENCE_KINDS = new Set(["isnad_link", "rijal_statement", "chronology_only"]);
+  const CONFIDENCE_LEVELS = new Set(["verified", "high", "medium", "low", "unresolved", "conflict"]);
+  const ORIGINS = new Set(["machine", "editorial", "registry"]);
+
+  /** Sammelt jeden Wert eines Schluessels aus einer beliebig tiefen Antwort. */
+  function collectValues(node, key, found = []) {
+    if (Array.isArray(node)) for (const item of node) collectValues(item, key, found);
+    else if (node && typeof node === "object") {
+      for (const [k, v] of Object.entries(node)) {
+        if (k === key) found.push(v);
+        collectValues(v, key, found);
+      }
+    }
+    return found;
+  }
+
+  /** Beide Seiten desselben Endpunkts, damit die Pruefung nie nur eine trifft. */
+  const contractCases = [
+    { label: "narrator_profile", path: `/api/v1/narrators/${namedNarrator.node_id}`, method: "narrator_profile", args: [namedNarrator.node_id], kwargs: {} },
+    { label: "narrator_relations", path: `/api/v1/narrators/${namedNarrator.node_id}/relations?limit=10`, method: "narrator_relations", args: [namedNarrator.node_id], kwargs: { cursor: null, limit: 10 } },
+    { label: "narrator_timeline", path: `/api/v1/narrators/${namedNarrator.node_id}/timeline`, method: "narrator_timeline", args: [namedNarrator.node_id], kwargs: {} },
+    { label: "compare_narrators", path: `/api/v1/narrators/compare?a=${namedNarrator.node_id}&b=${secondNarrator.node_id}`, method: "compare_narrators", args: [namedNarrator.node_id, secondNarrator.node_id], kwargs: {} },
+    ...(clusterFingerprint
+      ? [{
+          label: "routes",
+          path: `/api/v1/clusters/HCL-${clusterFingerprint.matn_fingerprint}/routes`,
+          method: "routes",
+          args: [`HCL-${clusterFingerprint.matn_fingerprint}`],
+          kwargs: {},
+        }]
+      : []),
+  ];
+
+  async function bothSides(entry) {
+    const w = await workerCall(entry.path);
+    const py = pyCall(entry.method, entry.kwargs, entry.args);
+    return [["worker", w.body], ["fastapi", py]];
+  }
+
+  test("Vertrag: evidenceKind nutzt ausschliesslich das kanonische Vokabular", async () => {
+    let seen = 0;
+    for (const entry of contractCases) {
+      for (const [side, body] of await bothSides(entry)) {
+        for (const value of collectValues(body, "evidenceKind")) {
+          seen += 1;
+          assert.ok(
+            EVIDENCE_KINDS.has(value),
+            `${side} ${entry.label}: evidenceKind=${JSON.stringify(value)} steht nicht im Vokabular aus database/schema.sql`,
+          );
+        }
+      }
+    }
+    assert.ok(seen > 0, "kein einziges evidenceKind-Feld gefunden -- die Pruefung liefe ins Leere");
+  });
+
+  test("Vertrag: confidenceLevel und origin sind kanonisch, maschinell nie verified", async () => {
+    for (const entry of contractCases) {
+      for (const [side, body] of await bothSides(entry)) {
+        for (const value of collectValues(body, "confidenceLevel")) {
+          assert.ok(CONFIDENCE_LEVELS.has(value), `${side} ${entry.label}: confidenceLevel=${JSON.stringify(value)}`);
+        }
+        for (const value of collectValues(body, "origin")) {
+          assert.ok(ORIGINS.has(value), `${side} ${entry.label}: origin=${JSON.stringify(value)}`);
+        }
+        if (body?.origin === "machine") {
+          assert.notStrictEqual(body.confidenceLevel, "verified", `${side} ${entry.label}: maschinelle Antwort meldet verified`);
+        }
+      }
+    }
+  });
+
+  test("Vertrag: kein Antworttext traegt eine fest verdrahtete Bestandszahl", async () => {
+    // Eine Bestandsgroesse als Prosa-Konstante wird beim naechsten Import
+    // unbemerkt falsch -- sie nannte 27.105 bei inzwischen 34.045 Eintraegen.
+    const forbidden = /\d[\d.,]{2,}\s*(Einträge|Eintraege|Vorkommen|Datensätze|Datensaetze)/;
+    for (const entry of contractCases) {
+      for (const [side, body] of await bothSides(entry)) {
+        const hit = JSON.stringify(body).match(forbidden);
+        assert.strictEqual(hit, null, `${side} ${entry.label}: fest verdrahtete Bestandszahl „${hit?.[0]}" im Antworttext`);
+      }
+    }
+  });
 }
