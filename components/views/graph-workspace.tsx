@@ -2,7 +2,7 @@
 
 import { useMemo, useState } from "react";
 import Link from "next/link";
-import { collectionOptions, egoEdgeChronology, egoEdges, egoNodes, hadithEdges, hadithNodes, narratorMap } from "@/lib/mock-data";
+import { collectionOptions, egoEdgeChronology, egoEdges, egoNodes, narratorMap } from "@/lib/mock-data";
 import { buildKeyboardEdgeItems, type LiveHadithGraph } from "@/lib/hadith-graph";
 import type { GraphEdge, GraphNode } from "@/lib/types";
 import { AtlasGraph } from "../atlas-graph-dynamic";
@@ -98,8 +98,14 @@ export function GraphWorkspace({
   error?: string;
 }) {
   const isHadith = view === "hadith";
-  const nodes = isHadith ? liveGraph?.nodes ?? hadithNodes : egoNodes;
-  const edges = isHadith ? liveGraph?.edges ?? hadithEdges : egoEdges;
+  // P3.3 -- kein stiller Rueckfall. Frueher stand hier
+  // `liveGraph?.nodes ?? hadithNodes`: fehlte die Antwort des Workers, zeigte
+  // die Ansicht kommentarlos ein Demonstrationscluster, das wie ein echtes
+  // Rechercheergebnis aussah. Fehlende Daten sind jetzt sichtbar leer; die
+  // Ansicht sagt, dass nichts geladen wurde, statt etwas anderes zu zeigen.
+  const noLiveHadithData = isHadith && !liveGraph;
+  const nodes = isHadith ? liveGraph?.nodes ?? [] : egoNodes;
+  const edges = isHadith ? liveGraph?.edges ?? [] : egoEdges;
 
   // P5.3/P5.7 -- eine einzige Auswahl, egal ob sie per Kantenklick im Canvas
   // oder per `KeyboardEdgeList` gesetzt wird. `AtlasGraph` liest sie als
@@ -122,8 +128,8 @@ export function GraphWorkspace({
     <>
       <section className="graph-toolbar" aria-label="مرشحات الرسم">
         <div dir="rtl">
-          <span className="eyebrow">{isHadith ? liveGraph?.eyebrow ?? "عنقود الحديث HCL-0001" : "الراوي NAR-0042"}</span>
-          <h1 dir="rtl">{isHadith ? liveGraph?.title ?? "حديث إنما الأعمال بالنيات" : "يحيى بن سعيد الأنصاري"}</h1>
+          <span className="eyebrow">{isHadith ? liveGraph?.eyebrow ?? "لا عنقود محمّل" : "شبكة عرض توضيحية"}</span>
+          <h1 dir="rtl">{isHadith ? liveGraph?.title ?? "لم يُحمَّل أي حديث" : "بيانات عرض، لا نتيجة بحث"}</h1>
         </div>
         <div className="filter-set">
           <label htmlFor="collection-filter">المصنف</label>
@@ -144,14 +150,25 @@ export function GraphWorkspace({
         />
         {loading ? <div className="graph-load-state"><i /><strong>جار بناء السلسلة من مواضع المصدر…</strong></div> : null}
         {error ? <div className="graph-load-state error"><strong>تعذر تحميل السلسلة</strong><span>{error}</span></div> : null}
+        {noLiveHadithData && !loading && !error ? (
+          <div className="graph-load-state empty" dir="rtl">
+            <strong>لا توجد بيانات إسناد محمّلة</strong>
+            <span>اختر حديثا من المكتبة. لا يعرض هذا الرسم بيانات بديلة عند غياب النتيجة.</span>
+          </div>
+        ) : null}
         <Legend />
         <KeyboardNodeList nodes={nodes} onSelect={selectNode} />
         <KeyboardEdgeList nodes={nodes} edges={edges} selectedEdgeId={selectedEdgeId} onSelect={setSelectedEdgeId} />
       </div>
       {isHadith ? (
         <div className="route-summary" dir="rtl">
-          <span><b>{(liveGraph?.chainCount ?? 7).toLocaleString("ar")}</b> طرق ظاهرة</span><span><b>{(liveGraph?.occurrenceCount ?? 30).toLocaleString("ar")}</b> مواضع رواة</span><span><b>{liveGraph ? "آلي" : "٣"}</b> {liveGraph ? "حالة المراجعة" : "صيغ متنية"}</span>
-          <Link href={liveGraph ? "/library" : "/variants"}>{liveGraph ? "العودة إلى المكتبة" : "ربط المتن بالإسناد"} <Chevron direction="left" /></Link>
+          {/* P3.3 -- die Zahlen kommen aus der geladenen Antwort oder es steht
+              ein Strich. Frueher standen hier `?? 7` und `?? 30`: erfundene
+              Kennzahlen, die von echten nicht zu unterscheiden waren. */}
+          <span><b>{liveGraph ? liveGraph.chainCount.toLocaleString("ar") : "—"}</b> طرق ظاهرة</span>
+          <span><b>{liveGraph ? liveGraph.occurrenceCount.toLocaleString("ar") : "—"}</b> مواضع رواة</span>
+          <span><b>{liveGraph ? "آلي" : "—"}</b> حالة المراجعة</span>
+          <Link href="/library">العودة إلى المكتبة <Chevron direction="left" /></Link>
         </div>
       ) : (
         <div className="route-summary" dir="rtl">
