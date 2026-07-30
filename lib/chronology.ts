@@ -1,5 +1,16 @@
 import type { DateAssertion } from "./types";
 
+/**
+ * Die einzigen drei Ergebnisse einer automatischen Chronologiepruefung
+ * (Projektbeschreibung Abschnitt 7, Z. 233-237). Verbindliches Vokabular des
+ * Datenvertrags: `possible | impossible | insufficient`.
+ *
+ * `compareChronology()` unten ist die **einzige** Chronologieberechnung des
+ * Projekts. Eine zweite Rechnung an anderer Stelle -- insbesondere eine, die
+ * ein fehlendes Geburtsjahr aus einem Todesjahr ableitet -- ist ein fachlicher
+ * Fehler (Abschnitt 7, Z. 239) und wird von `tests/sourceless-dating.test.ts`
+ * verboten.
+ */
 export type ChronologyResult = "possible" | "impossible" | "insufficient";
 
 export interface LifeInterval {
@@ -9,6 +20,14 @@ export interface LifeInterval {
   deathMax: number;
 }
 
+/**
+ * Lebensintervalle einer Person, ausschliesslich aus belegten Datierungen.
+ *
+ * Fehlt die Geburts- ODER die Todesangabe, ist das Ergebnis leer. Es wird
+ * **nichts** ergaenzt: kein Geburtsjahr aus einem Todesjahr, keine
+ * Lebenserwartung, kein Mittelwert ueber widerspruechliche Angaben. Jede
+ * genannte Jahresangabe bleibt eine eigene Moeglichkeit mit eigener Quelle.
+ */
 export function possibleLifeIntervals(assertions: DateAssertion[], narratorId: string): LifeInterval[] {
   const birth = assertions.filter((item) => item.narratorId === narratorId && item.event === "birth");
   const death = assertions.filter((item) => item.narratorId === narratorId && item.event === "death");
@@ -34,4 +53,19 @@ export function compareChronology(assertions: DateAssertion[], firstId: string, 
   }
   if (maximumOverlap > 0) return { result: "possible" as ChronologyResult, overlapYears: maximumOverlap, gapYears: null };
   return { result: "impossible" as ChronologyResult, overlapYears: null, gapYears: Number.isFinite(minimumGap) ? minimumGap : null };
+}
+
+/**
+ * Die konkreten Datierungsbelege, auf denen ein `compareChronology()`-Ergebnis
+ * beruht. Damit kann jede angezeigte Chronologieaussage ihre Quellen mitnennen
+ * (Abnahmekriterium: keine Datierung ohne Quellenreferenz).
+ *
+ * Gibt genau dann eine leere Liste zurueck, wenn `compareChronology()` fuer
+ * dasselbe Paar `insufficient` liefert -- dann existiert keine Aussage und
+ * folglich auch keine Quelle, die zu zeigen waere.
+ */
+export function chronologyEvidence(assertions: DateAssertion[], firstId: string, secondId: string): DateAssertion[] {
+  if (!possibleLifeIntervals(assertions, firstId).length) return [];
+  if (!possibleLifeIntervals(assertions, secondId).length) return [];
+  return assertions.filter((item) => item.narratorId === firstId || item.narratorId === secondId);
 }

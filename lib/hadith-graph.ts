@@ -1,5 +1,5 @@
-import type { HadithGraphPayload } from "./api-client";
-import type { GraphEdge, GraphNode } from "./types";
+import type { ApiNarratorOccurrence, HadithGraphPayload } from "./api-client";
+import type { ConfidenceLevel, GraphEdge, GraphNode } from "./types";
 
 export type LiveHadithGraph = {
   nodes: GraphNode[];
@@ -14,13 +14,40 @@ export type LiveHadithGraph = {
   occurrences: Record<string, ApiNarratorOccurrenceContext>;
 };
 
+/**
+ * Eine Erzaehlerstelle mit ihrem Kettenkontext. `chainOrder` plus `position`
+ * plus `spanStart`/`spanEnd` binden sie an genau eine Stelle im Rohtext; nichts
+ * hier gilt global fuer eine Person.
+ */
 export type ApiNarratorOccurrenceContext = {
   chainOrder: number;
   position: number;
   rawSurfaceForm: string;
   normalizedSurfaceForm: string;
-  identityStatus: string;
+  /** Zeichenoffsets im Rohtext des Datensatzes, fuer den Ruecksprung zur Quelle. */
+  spanStart?: number | null;
+  spanEnd?: number | null;
+  /** Ueberlieferungsbegriff der Stelle (`عن`, `حدثنا`, `اخبرني` …). */
+  transmissionTerm?: string | null;
+  /** Relative Namensform (`ابيه`, `عمه` …): nur positionsgebunden aufloesbar. */
+  relativeForm?: boolean;
+  /** Vom Importer markierte Prophetennennung. */
+  prophetMention?: boolean;
+  identityStatus: ConfidenceLevel;
 };
+
+/**
+ * Prophetennennung.
+ *
+ * Frueher stand hier `occurrence.rawSurfaceForm.includes("رسول الله")`. Seit der
+ * Importer die Rohform mit Diakritika erhaelt (`رَسُولِ اللَّهِ`), greift dieser
+ * Vergleich nicht mehr. Die Entscheidung gehoert ohnehin in den Importer, der
+ * den Rohtext und die Normalisierung kennt; das Frontend liest nur noch das
+ * Ergebnisfeld. Fehlt es (aeltere Datenversion), wird nichts vermutet.
+ */
+function isProphetMention(occurrence: ApiNarratorOccurrence): boolean {
+  return occurrence.prophetMention === true;
+}
 
 export function toHadithGraph(payload: HadithGraphPayload): LiveHadithGraph {
   const nodes: GraphNode[] = [];
@@ -33,17 +60,21 @@ export function toHadithGraph(payload: HadithGraphPayload): LiveHadithGraph {
     chain.narratorOccurrences.forEach((occurrence, position) => {
       const id = `occ-${chain.chainOrder}-${occurrence.position}`;
       occurrences[id] = { chainOrder: chain.chainOrder, ...occurrence };
+      const prophet = isProphetMention(occurrence);
       nodes.push({
         data: {
           id,
           label: occurrence.rawSurfaceForm,
           subtitle: `السلسلة ${chain.chainOrder + 1} · الموضع ${occurrence.position + 1}`,
-          kind: occurrence.rawSurfaceForm.includes("رسول الله") ? "prophet" : "later",
-          status: occurrence.identityStatus === "unresolved" ? "low" : "high",
+          kind: prophet ? "prophet" : "later",
+          // Der Stand der Identitaetsauflaesung kommt unveraendert aus der API.
+          // Er wird hier weder verbessert noch geraten; `verified` kann auf
+          // diesem Weg nicht entstehen, weil kein maschineller Pfad es setzt.
+          status: occurrence.identityStatus,
           collections: payload.hadith.collection,
         },
         position: { x: 110 + position * 185, y },
-        classes: occurrence.rawSurfaceForm.includes("رسول الله") ? "prophet" : "later",
+        classes: prophet ? "prophet" : "later",
       });
       if (position > 0) {
         edges.push({
@@ -51,8 +82,12 @@ export function toHadithGraph(payload: HadithGraphPayload): LiveHadithGraph {
             id: `edge-${chain.chainOrder}-${position - 1}-${position}`,
             source: `occ-${chain.chainOrder}-${chain.narratorOccurrences[position - 1].position}`,
             target: id,
-            verb: "عن",
-            evidence: "isnad_occurrence",
+            verb: occurrence.transmissionTerm || "عن",
+            // Evidenzklasse aus dem gemeinsamen Vokabular
+            // (`isnad_link | rijal_statement | chronology_only`). Eine Kante aus
+            // einer konkreten Kette ist immer ein Isnād-Beleg -- niemals eine
+            // bloss chronologische Moeglichkeit.
+            evidence: "isnad_link",
             collection: payload.hadith.collection === "bukhari" ? "البخاري" : "مسلم",
             count: 1,
           },

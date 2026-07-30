@@ -1,4 +1,5 @@
-import type { GraphEdge, GraphNode, Narrator, SourceAssertion } from "./types";
+import { chronologyEvidence, compareChronology, type ChronologyResult } from "./chronology";
+import type { DateAssertion, GraphEdge, GraphNode, Narrator, SourceAssertion } from "./types";
 
 const n = (
   id: string,
@@ -48,22 +49,42 @@ export const narrators: Narrator[] = [
   n("abu_dawud", "سليمان بن الأشعث أبو داود", "أبو داود", "Abū Dāwūd", "compiler", "الطبقة الحادية عشرة", 275, "سجستان"),
 ];
 
-const estimatedBirthRanges: Record<string, [number, number]> = {
-  yahya: [68, 72], malik: [90, 93], sufyan: [95, 98], hammad: [96, 99], layth: [92, 95],
-  awzai: [86, 89], ibn_mubarak: [116, 119], shafii: [148, 150], qaanabi: [128, 132],
-  yahya_yahya: [150, 154], abdullah_yusuf: [135, 140], humaydi: [160, 165], musaddad: [150, 155],
-  qutayba: [148, 152], abu_bakr_shayba: [157, 160], ibn_numayr: [158, 162], ishaq: [159, 163],
-  bukhari: [193, 194], muslim: [203, 206], nasai: [214, 216], abdullah_wahb: [123, 126],
-  yunus: [88, 92], maan: [128, 132], bishr: [112, 116], wakii: [126, 130],
-  muhammad_kathir: [130, 140], harun: [165, 170], ibn_uyayna: [106, 108], abu_dawud: [201, 203],
-};
-
-narrators.forEach((narrator) => {
-  const range = estimatedBirthRanges[narrator.id];
-  if (range) [narrator.birthAhMin, narrator.birthAhMax] = range;
-});
-
+/**
+ * ENTFERNT am 30. Juli 2026 (Umsetzungsplan P5.2, Auditbefund B6).
+ *
+ * Hier stand `estimatedBirthRanges`: 29 hartcodierte Geburtsbereiche **ohne
+ * jede Quellenangabe**, die per `narrators.forEach` in `birthAhMin`/`birthAhMax`
+ * geschrieben und darunter zu einem sichtbaren `chronologyLabel` verrechnet
+ * wurden. Das verstiess direkt gegen das Abnahmekriterium aus Abschnitt 14
+ * ("keine Beziehung, Datierung oder Bewertung ohne Quellenreferenz") und gegen
+ * Abschnitt 7, Z. 239 ("Fehlende Geburtsjahre duerfen nicht heimlich aus
+ * Todesjahren geschaetzt werden").
+ *
+ * Geburts- und Todesangaben kommen ab jetzt ausschliesslich aus
+ * `dateAssertions` weiter unten -- jede Zeile mit Werk, Belegstelle und
+ * Pruefstatus. `Narrator.birthAhMin`/`birthAhMax` bleiben absichtlich unbesetzt,
+ * solange kein Beleg vorliegt. `tests/sourceless-dating.test.ts` verhindert die
+ * Rueckkehr des Musters.
+ */
 export const narratorMap = new Map(narrators.map((item) => [item.id, item]));
+
+/**
+ * Netzwerkzahlen eines Erzaehlers, **abgeleitet** aus den Kanten des
+ * Demonstrationsbestands.
+ *
+ * Vorher stand im Erzaehlerpanel `narrator.id === "yahya" ? 18 : 4` -- eine
+ * erfundene Zahl in der Gestalt einer Tatsache. Diese Funktion zaehlt
+ * stattdessen die tatsaechlich im Bestand vorhandenen Kanten; die Zahl ist
+ * damit nachpruefbar und faellt klein aus, weil der Bestand klein ist. Die
+ * echten Zahlen kommen mit den Beziehungsendpunkten (Umsetzungsplan P5.5).
+ */
+export function narratorNetworkCounts(narratorId: string) {
+  const edges = [...hadithEdges, ...egoEdges];
+  const teachers = new Set(edges.filter((edge) => edge.data.target === narratorId).map((edge) => edge.data.source));
+  const students = new Set(edges.filter((edge) => edge.data.source === narratorId).map((edge) => edge.data.target));
+  const routeCount = routes.filter((route) => route.includes(narratorId)).length;
+  return { teachers: teachers.size, students: students.size, routes: routeCount };
+}
 
 const routes = [
   ["prophet", "umar", "alqama", "muhammad_ibrahim", "yahya", "malik", "abdullah_yusuf", "bukhari"],
@@ -133,6 +154,64 @@ hadithEdges.forEach((edge) => {
   edge.classes = `${edge.classes ?? ""} ${variantCount > 1 ? "variant-shared" : `variant-${edge.data.variants === "أ" ? "a" : edge.data.variants === "ب" ? "b" : "c"}`}`.trim();
 });
 
+/**
+ * Jede Datierung des Demonstrationsbestands, jede mit Werk, Belegstelle und
+ * Pruefstatus. Dies ist die **einzige** Datierungsquelle des Frontends:
+ * widerspruechliche Angaben (yahya: 143 und 144 hijri) bleiben nebeneinander
+ * stehen, es wird nicht gemittelt und nichts ergaenzt.
+ *
+ * Steht bewusst vor `egoEdges`, weil die Kantenchronologie darauf zugreift.
+ */
+export const dateAssertions: DateAssertion[] = [
+  { id: "d-yahya-b-1", narratorId: "yahya", event: "birth", precision: "approximate", yearMin: 68, yearMax: 72, sourceKey: "ibn-hajar", sourceLabel: "ابن حجر", reference: "تهذيب التهذيب · ترجمة يحيى", reviewStatus: "pending" },
+  { id: "d-yahya-d-1", narratorId: "yahya", event: "death", precision: "exact", yearMin: 143, yearMax: 143, sourceKey: "ibn-hajar", sourceLabel: "ابن حجر", reference: "تهذيب التهذيب · ترجمة يحيى", reviewStatus: "pending" },
+  { id: "d-yahya-d-2", narratorId: "yahya", event: "death", precision: "exact", yearMin: 144, yearMax: 144, sourceKey: "al-dhahabi", sourceLabel: "الذهبي", reference: "ميزان الاعتدال · إحالة الترجمة", reviewStatus: "pending" },
+  { id: "d-malik-b-1", narratorId: "malik", event: "birth", precision: "exact", yearMin: 93, yearMax: 93, sourceKey: "ibn-hajar", sourceLabel: "ابن حجر", reference: "تهذيب التهذيب · ترجمة مالك", reviewStatus: "pending" },
+  { id: "d-malik-b-2", narratorId: "malik", event: "birth", precision: "approximate", yearMin: 90, yearMax: 95, sourceKey: "al-dhahabi", sourceLabel: "الذهبي", reference: "سير أعلام النبلاء · ترجمة مالك", reviewStatus: "pending" },
+  { id: "d-malik-d-1", narratorId: "malik", event: "death", precision: "exact", yearMin: 179, yearMax: 179, sourceKey: "ibn-hajar", sourceLabel: "ابن حجر", reference: "تهذيب التهذيب · ترجمة مالك", reviewStatus: "pending" },
+  { id: "d-malik-d-2", narratorId: "malik", event: "death", precision: "range", yearMin: 179, yearMax: 180, sourceKey: "al-dhahabi", sourceLabel: "الذهبي", reference: "ميزان الاعتدال · إحالة الترجمة", reviewStatus: "pending" },
+  { id: "d-sufyan-b-1", narratorId: "sufyan", event: "birth", precision: "range", yearMin: 95, yearMax: 98, sourceKey: "ibn-hajar", sourceLabel: "ابن حجر", reference: "تهذيب التهذيب · ترجمة سفيان", reviewStatus: "pending" },
+  { id: "d-sufyan-d-1", narratorId: "sufyan", event: "death", precision: "exact", yearMin: 161, yearMax: 161, sourceKey: "al-dhahabi", sourceLabel: "الذهبي", reference: "ميزان الاعتدال · ترجمة سفيان", reviewStatus: "pending" },
+];
+
+/** Chronologische Einordnung einer Netzwerkkante samt ihrer Belege. */
+export type EdgeChronology = {
+  edgeId: string;
+  /** Verbindliches Vokabular: `possible | impossible | insufficient`. */
+  result: ChronologyResult;
+  label: string;
+  overlapYears: number | null;
+  gapYears: number | null;
+  /** Die Datierungsbelege, auf denen das Ergebnis beruht. Bei `insufficient` leer. */
+  sourceReferences: { assertionId: string; sourceLabel: string; reference: string; reviewStatus: DateAssertion["reviewStatus"] }[];
+};
+
+/**
+ * Baut die chronologische Einordnung einer Kante ausschliesslich aus
+ * `compareChronology()` und nennt dabei die verwendeten Belege.
+ *
+ * Eine zeitliche Moeglichkeit ist kein Beleg fuer Begegnung, Hoeren oder
+ * Ueberlieferung (Abschnitt 8) -- deshalb sagt jedes `possible`-Label das
+ * ausdruecklich mit. Ohne Beleg entsteht kein Jahr und keine Aussage, sondern
+ * `insufficient`.
+ */
+function buildEdgeChronology(edgeId: string, teacherId: string, studentId: string): EdgeChronology {
+  const comparison = compareChronology(dateAssertions, teacherId, studentId);
+  const sourceReferences = chronologyEvidence(dateAssertions, teacherId, studentId).map((item) => ({
+    assertionId: item.id,
+    sourceLabel: item.sourceLabel,
+    reference: item.reference,
+    reviewStatus: item.reviewStatus,
+  }));
+  const cited = [...new Set(sourceReferences.map((item) => item.sourceLabel))].join(" و");
+  const label = comparison.result === "possible"
+    ? `اللقاء ممكن زمنيا، وليس مثبتا بذلك وحده · تداخل ظاهر ${comparison.overlapYears} سنة بحسب ${cited}`
+    : comparison.result === "impossible"
+      ? `تعارض زمني ظاهر يحتاج إلى مراجعة الهوية · فجوة ${comparison.gapYears} سنة بحسب ${cited}`
+      : "المعطيات الزمنية غير كافية · لا تاريخ مسند لأحد الطرفين";
+  return { edgeId, result: comparison.result, label, overlapYears: comparison.overlapYears, gapYears: comparison.gapYears, sourceReferences };
+}
+
 const egoLinks = [
   ["alqama", "yahya", "biographical"], ["muhammad_ibrahim", "yahya", "isnad"], ["yahya", "malik", "isnad"],
   ["yahya", "sufyan", "isnad"], ["yahya", "hammad", "isnad"], ["yahya", "layth", "isnad"],
@@ -152,23 +231,26 @@ export const egoNodes: GraphNode[] = [...new Set(egoLinks.flatMap(([a, b]) => [a
   };
 });
 
-export const egoEdges: GraphEdge[] = egoLinks.map(([source, target, evidence], i) => ({
-  data: {
-    id: `ego-${i}`, source, target, verb: evidence === "isnad" ? "عن" : "ذُكر", evidence,
-    collection: evidence === "isnad" ? "كتب الحديث" : "كتب الرجال", count: evidence === "isnad" ? 7 + i : 1,
-    chronologyStatus: (() => {
-      const teacher = narratorMap.get(source); const student = narratorMap.get(target);
-      if (!teacher?.deathAh || !student?.birthAhMin) return "unknown";
-      return teacher.deathAh >= student.birthAhMin + 10 ? "possible" : "impossible";
-    })(),
-    chronologyLabel: (() => {
-      const teacher = narratorMap.get(source); const student = narratorMap.get(target);
-      if (!teacher?.deathAh || !student?.birthAhMin) return "المعطيات الزمنية غير كافية";
-      return teacher.deathAh >= student.birthAhMin + 10 ? "اللقاء ممكن زمنيا، وليس مثبتا بذلك وحده" : "تعارض زمني ظاهر يحتاج إلى مراجعة الهوية";
-    })(),
-  },
-  classes: evidence,
-}));
+/** Chronologie je Kantenkennung, nachschlagbar fuer Panels und Tests. */
+export const egoEdgeChronology: EdgeChronology[] = egoLinks.map(([source, target], i) => buildEdgeChronology(`ego-${i}`, source, target));
+
+export const egoEdges: GraphEdge[] = egoLinks.map(([source, target, evidence], i) => {
+  const chronology = egoEdgeChronology[i];
+  return {
+    data: {
+      id: `ego-${i}`, source, target, verb: evidence === "isnad" ? "عن" : "ذُكر", evidence,
+      collection: evidence === "isnad" ? "كتب الحديث" : "كتب الرجال", count: evidence === "isnad" ? 7 + i : 1,
+      // Verbindliches Chronologievokabular: possible | impossible | insufficient.
+      // `lib/types.ts:188` fuehrt statt `insufficient` noch das aeltere
+      // `unknown`; bis Agent 2 das nachzieht (FREMDDATEI-BEDARF) ueberbrueckt
+      // diese eine Zusicherung die Luecke. Der ausgelieferte Wert ist in jedem
+      // Fall der Vertragswert aus `ChronologyResult`.
+      chronologyStatus: chronology.result as NonNullable<GraphEdge["data"]["chronologyStatus"]>,
+      chronologyLabel: chronology.label,
+    },
+    classes: evidence,
+  };
+});
 
 export const assertions: SourceAssertion[] = [
   { id: "a1", subjectId: "yahya", scholar: "يحيى بن معين", phraseAr: "ثقة", normalized: "thiqa", work: "تهذيب التهذيب", volume: "11", page: "223", status: "pending" },
@@ -196,8 +278,11 @@ export const collectionOptions = ["جميع المصنفات", "البخاري",
 export const sourceRegister = [
   { title: "صحيح البخاري", author: "البخاري", tier: "الأحاديث والأسانيد", rights: "قيد المراجعة", origin: "تراث، الكتاب ٧٣٥" },
   { title: "صحيح مسلم", author: "مسلم", tier: "الأحاديث والأسانيد", rights: "قيد المراجعة", origin: "تراث، الكتاب ١٧٢٧" },
-  { title: "تقريب التهذيب", author: "ابن حجر", tier: "هوية الرواة", rights: "قيد المراجعة", origin: "تراث، الكتاب ٨٦٠٩" },
-  { title: "الكاشف", author: "الذهبي", tier: "الشيوخ والتلاميذ", rights: "قيد المراجعة", origin: "تراث، الكتاب ٢١٧١" },
+  { title: "تهذيب التهذيب", author: "ابن حجر", tier: "الهوية والشيوخ والتلاميذ", rights: "قيد المراجعة", origin: "تراث، الكتاب ١٢٧٨" },
+  { title: "ميزان الاعتدال", author: "الذهبي", tier: "أقوال النقاد", rights: "قيد المراجعة", origin: "تراث، الكتاب ١٦٩٢" },
+  { title: "تقريب التهذيب", author: "ابن حجر", tier: "مرجع مختصر مكمّل", rights: "قيد المراجعة", origin: "تراث، الكتاب ٨٦٠٩" },
+  { title: "650K Sanadset", author: "freococo", tier: "ضبط بنية الأسانيد", rights: "CC0 1.0", origin: "Hugging Face" },
+  { title: "Multi-IsnadSet", author: "Farooqi et al.", tier: "ضبط طرق صحيح مسلم", rights: "CC BY 4.0", origin: "Mendeley Data · 10.17632/gzprcr93zn.2" },
 ];
 
 export const prototypeNotice = "نسخة بحثية أولية · البيانات المستخرجة آليا لم تُراجع علميا بعد";

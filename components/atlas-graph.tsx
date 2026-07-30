@@ -40,7 +40,6 @@ export function AtlasGraph({ nodes, edges, collection, highlightedIds = [], onSe
         layout: { name: "preset", fit: true, padding: 56 },
         minZoom: 0.42,
         maxZoom: 2.2,
-        wheelSensitivity: 0.18,
         boxSelectionEnabled: false,
         style: [
           {
@@ -56,7 +55,7 @@ export function AtlasGraph({ nodes, edges, collection, highlightedIds = [], onSe
               color: "#13272b",
               "font-family": "IBM Plex Sans Arabic, sans-serif",
               "font-size": 12,
-              "font-weight": 620,
+              "font-weight": 600,
               "text-wrap": "wrap",
               "text-max-width": "94px",
               "text-valign": "center",
