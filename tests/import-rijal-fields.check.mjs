@@ -42,7 +42,10 @@ test("jeder Namenskopf trägt Extraktionsmethode und Konfidenzband, nie verified
   for (const source of RIJAL_SOURCES) {
     for (const entry of load(source).entries) {
       const field = entry.parser.fields.nameSurface;
-      assert.ok(["title-span", "boundary-cut", "window-fallback"].includes(field.method), `${entry.id}: ${field.method}`);
+      // `title-span-cut` und `boundary-cut` sind gekürzte Köpfe: der Kopf wurde erkannt,
+      // aber an einer Grenze beschnitten. Sie bleiben zulässig, müssen die Kürzung aber
+      // ausweisen — ein stillschweigend gekürzter Kopf wäre wieder B1.
+      assert.ok(["title-span", "title-span-cut", "boundary-cut", "window-fallback"].includes(field.method), `${entry.id}: ${field.method}`);
       assert.ok(["high", "medium", "low"].includes(field.confidenceBand));
       assert.equal(entry.parser.reviewStatus, "unreviewed");
       assert.notEqual(entry.parser.confidenceBand, "verified");
@@ -86,7 +89,20 @@ test("ein Jahr ohne Hunderterangabe wird nicht heimlich ergänzt", { skip }, () 
       for (const assertion of entry.dateAssertions) {
         assert.equal(typeof assertion.centuryExplicit, "boolean");
         assert.equal(assertion.evidenceClass, "rijal_statement");
-        if (assertion.centuryExplicit) continue;
+        if (assertion.centuryExplicit) {
+          assert.ok(!assertion.centuryShared, `${entry.id}: centuryShared neben centuryExplicit`);
+          continue;
+        }
+        // Ein Jahrhundert darf aus derselben Aussage übernommen werden («سبع أو ثمان
+        // وعشرين ومائة» = 127 oder 128), aber niemals stillschweigend: die Zeile muss
+        // die Spenderphrase nennen, sonst wäre der Wert nicht mehr auf die Quelle
+        // zurückführbar.
+        if (assertion.centuryShared) {
+          assert.equal(typeof assertion.centurySharedFrom, "string", `${entry.id}: centuryShared ohne Spenderphrase`);
+          assert.ok(assertion.centurySharedFrom.length > 0, `${entry.id}: leere Spenderphrase`);
+          assert.ok(assertion.valueAh >= 100, `${entry.id}: centuryShared, aber ${assertion.valueAh} < 100`);
+          continue;
+        }
         implicit += 1;
         assert.ok(assertion.valueAh < 100, `${entry.id}: ${assertion.valueAh} ohne ausdrückliches Jahrhundert`);
       }

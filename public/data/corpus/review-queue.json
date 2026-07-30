@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-07-30T02:30:56.066Z",
+  "generatedAt": "2026-07-30T14:45:20.853Z",
   "parserVersion": "1.0.0",
   "note": "Maschinelle Vorschläge und abgelehnte Kandidaten. Kein Eintrag ist geprüft; keiner wurde verworfen.",
   "hadithParserErrors": [],
@@ -8,10 +8,10 @@
       "source": "tahdhib",
       "candidateId": "tahdhib-330-735-329",
       "entryNumber": 330,
-      "nameSurface": "أزداد ، ويُقالُ",
+      "nameSurface": "أزداد",
       "sourcePageId": 736,
       "spanStart": 400,
-      "spanEnd": 420,
+      "spanEnd": 412,
       "rejectReasons": [
         "no-personal-name-marker"
       ],
@@ -19,22 +19,9 @@
     },
     {
       "source": "tahdhib",
-      "candidateId": "tahdhib-432-893-431",
-      "entryNumber": 432,
-      "nameSurface": "سي) إسحاق",
-      "sourcePageId": 894,
-      "spanStart": 363,
-      "spanEnd": 401,
-      "rejectReasons": [
-        "no-personal-name-marker"
-      ],
-      "sourceUrl": "https://app.turath.io/book/1278?page=894"
-    },
-    {
-      "source": "tahdhib",
       "candidateId": "tahdhib-433-894-432",
       "entryNumber": 433,
-      "nameSurface": "إسحاق",
+      "nameSurface": "غير منسوب",
       "sourcePageId": 895,
       "spanStart": 470,
       "spanEnd": 488,
@@ -203,10 +190,10 @@
       "source": "tahdhib",
       "candidateId": "tahdhib-1120-1879-1121",
       "entryNumber": 1120,
-      "nameSurface": "الحَارِث، غير منسوب، يُقَال: له صُحْبَة",
+      "nameSurface": "الحَارِث، غير منسوب",
       "sourcePageId": 1880,
       "spanStart": 380,
-      "spanEnd": 420,
+      "spanEnd": 401,
       "rejectReasons": [
         "no-personal-name-marker"
       ],
@@ -216,10 +203,10 @@
       "source": "tahdhib",
       "candidateId": "tahdhib-1121-1880-1122",
       "entryNumber": 1121,
-      "nameSurface": "الحَارِث عن عليّ",
+      "nameSurface": "الحَارِث",
       "sourcePageId": 1881,
       "spanStart": 94,
-      "spanEnd": 111,
+      "spanEnd": 103,
       "rejectReasons": [
         "no-personal-name-marker"
       ],
@@ -359,10 +346,10 @@
       "source": "tahdhib",
       "candidateId": "tahdhib-1940-2899-1941",
       "entryNumber": 1940,
-      "nameSurface": "ذو الزوائد، صحابي، عداده في أهل المدينة",
+      "nameSurface": "ذو الزوائد",
       "sourcePageId": 2900,
       "spanStart": 500,
-      "spanEnd": 540,
+      "spanEnd": 512,
       "rejectReasons": [
         "no-personal-name-marker"
       ],
@@ -489,27 +476,14 @@
       "source": "tahdhib",
       "candidateId": "tahdhib-2326-3390-2327",
       "entryNumber": 2326,
-      "nameSurface": "سخبرة، يقال: له صحبة",
+      "nameSurface": "سخبرة، يقال",
       "sourcePageId": 3391,
       "spanStart": 498,
-      "spanEnd": 519,
+      "spanEnd": 511,
       "rejectReasons": [
         "no-personal-name-marker"
       ],
       "sourceUrl": "https://app.turath.io/book/1278?page=3391"
-    },
-    {
-      "source": "tahdhib",
-      "candidateId": "tahdhib-2357-3430-2358",
-      "entryNumber": 2357,
-      "nameSurface": "سعد بن عبادة بن دُلَيم بن حارثة بن أبي خزيمة -ويقال : خزيمة بن أبي خزيمة، ويقال حارثة بن خزام بن أبي خزيمة- بن ثعلبة بن ",
-      "sourcePageId": 3431,
-      "spanStart": 161,
-      "spanEnd": 414,
-      "rejectReasons": [
-        "name-head-too-long"
-      ],
-      "sourceUrl": "https://app.turath.io/book/1278?page=3431"
     },
     {
       "source": "tahdhib",
@@ -534,19 +508,6 @@
       "spanEnd": 54,
       "rejectReasons": [
         "no-personal-name-marker"
-      ],
-      "sourceUrl": "https://app.turath.io/book/1278?page=3712"
-    },
-    {
-      "source": "tahdhib",
-      "candidateId": "tahdhib-2576-3711-2577",
-      "entryNumber": 2576,
-      "nameSurface": "سَفينة مولى رسول الله ﷺ أبو عبد الرَّحمن، ويقال: أبو البَخْتريِّ، كان عبدًا لأُمِّ سَلَمة، فأعتَقَتْه، وشَرَطت عليه أن ي",
-      "sourcePageId": 3712,
-      "spanStart": 303,
-      "spanEnd": 576,
-      "rejectReasons": [
-        "name-head-too-long"
       ],
       "sourceUrl": "https://app.turath.io/book/1278?page=3712"
     },
@@ -578,38 +539,12 @@
     },
     {
       "source": "tahdhib",
-      "candidateId": "tahdhib-2773-3974-2774",
-      "entryNumber": 2773,
-      "nameSurface": "سَهْل بن أبي حَثْمة، واسمه: عبد الله، وقيل: عامر، وقيل: هو سَهل بن عبد الله بن أبي حَثْمَة عامر ، وقيل: عامر بن ساعدة بن",
-      "sourcePageId": 3975,
-      "spanStart": 98,
-      "spanEnd": 361,
-      "rejectReasons": [
-        "name-head-too-long"
-      ],
-      "sourceUrl": "https://app.turath.io/book/1278?page=3975"
-    },
-    {
-      "source": "tahdhib",
-      "candidateId": "tahdhib-2896-4146-2897",
-      "entryNumber": 2896,
-      "nameSurface": "شُرَيح بن الحارث بن قَيْس بن الجَهْم بن مُعاوية بن عامر الكنديُّ، أبو أُمَيَّة الكوفيُّ، القاضي. ويقال: شُرَيح بن شُرَحْ",
-      "sourcePageId": 4147,
-      "spanStart": 342,
-      "spanEnd": 589,
-      "rejectReasons": [
-        "name-head-too-long"
-      ],
-      "sourceUrl": "https://app.turath.io/book/1278?page=4147"
-    },
-    {
-      "source": "tahdhib",
       "candidateId": "tahdhib-2903-4156-2904",
       "entryNumber": 2903,
-      "nameSurface": "شُرَيح الحِجازيُّ. له صحبة",
+      "nameSurface": "شُرَيح الحِجازيُّ",
       "sourcePageId": 4157,
       "spanStart": 708,
-      "spanEnd": 735,
+      "spanEnd": 727,
       "rejectReasons": [
         "no-personal-name-marker"
       ],
@@ -658,10 +593,10 @@
       "source": "tahdhib",
       "candidateId": "tahdhib-3171-4528-3172",
       "entryNumber": 3171,
-      "nameSurface": "طلحة عن أبيه عن جده في مسح الرأس",
+      "nameSurface": "طلحة",
       "sourcePageId": 4529,
       "spanStart": 371,
-      "spanEnd": 406,
+      "spanEnd": 378,
       "rejectReasons": [
         "no-personal-name-marker"
       ],
@@ -723,10 +658,10 @@
       "source": "tahdhib",
       "candidateId": "tahdhib-3902-5536-3903",
       "entryNumber": 3902,
-      "nameSurface": "عبد الله الأَسلَميُّ: \"إنَّ رسول الله ﷺ وضع يده على صدره\" الحديث في التعوُّذ بـ: ﴿قُلْ هُوَ اللَّهُ أَحَدٌ﴾ والمعوَّذتَي",
+      "nameSurface": "عبد الله الأَسلَميُّ: \"إنَّ رسول الله",
       "sourcePageId": 5537,
       "spanStart": 502,
-      "spanEnd": 624,
+      "spanEnd": 540,
       "rejectReasons": [
         "no-personal-name-marker"
       ],
@@ -770,19 +705,6 @@
         "no-personal-name-marker"
       ],
       "sourceUrl": "https://app.turath.io/book/1278?page=5617"
-    },
-    {
-      "source": "tahdhib",
-      "candidateId": "tahdhib-4082-5782-4083",
-      "entryNumber": 4082,
-      "nameSurface": "عبد الرحمن بن سَمُرة بن حَبيب بن عبد شَمْس، وقيل: حَبيب بن ربيعة بن عبد شَمْس القُرَشيُّ، أبو سعيد، أسلم يوم الفتح، يُقَ",
-      "sourcePageId": 5783,
-      "spanStart": 438,
-      "spanEnd": 667,
-      "rejectReasons": [
-        "name-head-too-long"
-      ],
-      "sourceUrl": "https://app.turath.io/book/1278?page=5783"
     },
     {
       "source": "tahdhib",
@@ -890,19 +812,6 @@
     },
     {
       "source": "tahdhib",
-      "candidateId": "tahdhib-4881-7134-4882",
-      "entryNumber": 4881,
-      "nameSurface": "عُقبة بن عامر بن عَبْس بن عمرو بن عَدِيّ بن عمرو بن رِفَاعة بن (مَوْدوعة) بن عَدِيّ بن غَنْم بن الرَّبَعة بن رشدان بن قَ",
-      "sourcePageId": 7135,
-      "spanStart": 173,
-      "spanEnd": 439,
-      "rejectReasons": [
-        "name-head-too-long"
-      ],
-      "sourceUrl": "https://app.turath.io/book/1278?page=7135"
-    },
-    {
-      "source": "tahdhib",
       "candidateId": "tahdhib-4905-7168-4906",
       "entryNumber": 4905,
       "nameSurface": "عُقيل",
@@ -913,19 +822,6 @@
         "no-personal-name-marker"
       ],
       "sourceUrl": "https://app.turath.io/book/1278?page=7169"
-    },
-    {
-      "source": "tahdhib",
-      "candidateId": "tahdhib-5295-7824-5296",
-      "entryNumber": 5295,
-      "nameSurface": "عَمرُو بنُ زائدَة، ويقال: عَمْرُو بنُ قَيْس بنِ زائدة ، ويقال: زِيادة بنُ الأصم، وهو جُنْدَبُ بنُ هَرِم بنِ رَواحة بنِ ح",
-      "sourcePageId": 7825,
-      "spanStart": 88,
-      "spanEnd": 359,
-      "rejectReasons": [
-        "name-head-too-long"
-      ],
-      "sourceUrl": "https://app.turath.io/book/1278?page=7825"
     },
     {
       "source": "tahdhib",
@@ -955,20 +851,6 @@
     },
     {
       "source": "tahdhib",
-      "candidateId": "tahdhib-5759-8443-5760",
-      "entryNumber": 5759,
-      "nameSurface": "د ت",
-      "sourcePageId": 8444,
-      "spanStart": 237,
-      "spanEnd": 323,
-      "rejectReasons": [
-        "name-head-too-short",
-        "no-personal-name-marker"
-      ],
-      "sourceUrl": "https://app.turath.io/book/1278?page=8444"
-    },
-    {
-      "source": "tahdhib",
       "candidateId": "tahdhib-5833-8557-5834",
       "entryNumber": 5833,
       "nameSurface": "قَرَظَة غير منسوب",
@@ -979,32 +861,6 @@
         "no-personal-name-marker"
       ],
       "sourceUrl": "https://app.turath.io/book/1278?page=8558"
-    },
-    {
-      "source": "tahdhib",
-      "candidateId": "tahdhib-6014-8799-6015",
-      "entryNumber": 6014,
-      "nameSurface": "محمد بن إبراهيم بن مسلم بن مِهْرَان بن المُثَنَّى، ويُقال: محمد بن مسلم بن مِهْرَان بن المُثَنَّى، ويُقال: محمد بن مِهْر",
-      "sourcePageId": 8800,
-      "spanStart": 366,
-      "spanEnd": 696,
-      "rejectReasons": [
-        "name-head-too-long"
-      ],
-      "sourceUrl": "https://app.turath.io/book/1278?page=8800"
-    },
-    {
-      "source": "tahdhib",
-      "candidateId": "tahdhib-6253-9108-6254",
-      "entryNumber": 6253,
-      "nameSurface": "محمد بن سعيد بن حَسَّان بن قَيس الأَسْديّ، المصلوب، ويُقال: محمد بن سعيد بن عبد العزيز، ويُقال: ابن أبي عُتْبَة، ويُقال:",
-      "sourcePageId": 9109,
-      "spanStart": 94,
-      "spanEnd": 400,
-      "rejectReasons": [
-        "name-head-too-long"
-      ],
-      "sourceUrl": "https://app.turath.io/book/1278?page=9109"
     },
     {
       "source": "tahdhib",
@@ -1260,7 +1116,7 @@
       "nameSurface": "نابل صاحب العَبَاء",
       "sourcePageId": 10674,
       "spanStart": 108,
-      "spanEnd": 165,
+      "spanEnd": 129,
       "rejectReasons": [
         "no-personal-name-marker"
       ],
@@ -1359,19 +1215,6 @@
     },
     {
       "source": "tahdhib",
-      "candidateId": "tahdhib-7775-11066-7776",
-      "entryNumber": 7775,
-      "nameSurface": "هند بن أبي هَالَة، واسم أبي هَالَة: النَّباش بن زُرَارة، ويقال : زُرَارة بن النَّبَّاش، ويقال : مالك بن زُرَارَة بن نَبّ",
-      "sourcePageId": 11067,
-      "spanStart": 87,
-      "spanEnd": 450,
-      "rejectReasons": [
-        "name-head-too-long"
-      ],
-      "sourceUrl": "https://app.turath.io/book/1278?page=11067"
-    },
-    {
-      "source": "tahdhib",
       "candidateId": "tahdhib-8168-11645-8169",
       "entryNumber": 8168,
       "nameSurface": "شيخٌ",
@@ -1379,7 +1222,6 @@
       "spanStart": 596,
       "spanEnd": 601,
       "rejectReasons": [
-        "name-head-too-short",
         "no-personal-name-marker"
       ],
       "sourceUrl": "https://app.turath.io/book/1278?page=11646"
@@ -1425,134 +1267,16 @@
     },
     {
       "source": "tahdhib",
-      "candidateId": "tahdhib-8461-12028-8462",
-      "entryNumber": 8461,
-      "nameSurface": "أبو الأسود الدِّيْلي، ويقال: الدؤلي البصري القاضي، واسمه: ظالم بن عمرو بن سفيان بن جندل بن يعمر بن حلبس بن نُفاثة بن عدي",
-      "sourcePageId": 12029,
-      "spanStart": 47,
-      "spanEnd": 281,
-      "rejectReasons": [
-        "name-head-too-long"
-      ],
-      "sourceUrl": "https://app.turath.io/book/1278?page=12029"
-    },
-    {
-      "source": "tahdhib",
-      "candidateId": "tahdhib-8474-12045-8475",
-      "entryNumber": 8474,
-      "nameSurface": "أبو بردة بن نيار البَلَوي حليف الأنصار، واسمه: هانئ بن نيار بن عمرو بن عبيد بن كلاب بن غنم بن هُبَيرة بن ذُهْل بن هانئ ب",
-      "sourcePageId": 12046,
-      "spanStart": 47,
-      "spanEnd": 336,
-      "rejectReasons": [
-        "name-head-too-long"
-      ],
-      "sourceUrl": "https://app.turath.io/book/1278?page=12046"
-    },
-    {
-      "source": "tahdhib",
-      "candidateId": "tahdhib-8621-12218-8622",
-      "entryNumber": 8621,
-      "nameSurface": "أبو رافع القبطي مولى رسول الله ﷺ، قيل: اسمه إبراهيم، وقيل: أسلم، وقيل: ثابت، وقيل هُرْمز، يقال: إنه كان للعباس، فوهبه لل",
-      "sourcePageId": 12219,
-      "spanStart": 112,
-      "spanEnd": 323,
-      "rejectReasons": [
-        "name-head-too-long"
-      ],
-      "sourceUrl": "https://app.turath.io/book/1278?page=12219"
-    },
-    {
-      "source": "tahdhib",
-      "candidateId": "tahdhib-8758-12364-8759",
-      "entryNumber": 8758,
-      "nameSurface": "أبو عبد رب الدمشقي، الزاهد، ويقال: أبو عبد ربه، ويقال: أبو عبد رب العزة، مولى ابن غيلان الثقفي، ويقال: مولى بني عذرة، قي",
-      "sourcePageId": 12365,
-      "spanStart": 47,
-      "spanEnd": 271,
-      "rejectReasons": [
-        "name-head-too-long"
-      ],
-      "sourceUrl": "https://app.turath.io/book/1278?page=12365"
-    },
-    {
-      "source": "tahdhib",
-      "candidateId": "tahdhib-8811-12427-8812",
-      "entryNumber": 8811,
-      "nameSurface": "أبو عمرو بن العلاء بن عَمَّار بن العُرْيان بن عبد الله بن الحُصَين بن الحارث بن جَلْهم بن خزاعي بن مالك بن مازن بن عمرو ",
-      "sourcePageId": 12428,
-      "spanStart": 274,
-      "spanEnd": 569,
-      "rejectReasons": [
-        "name-head-too-long"
-      ],
-      "sourceUrl": "https://app.turath.io/book/1278?page=12428"
-    },
-    {
-      "source": "tahdhib",
       "candidateId": "tahdhib-8815-12436-8816",
       "entryNumber": 8815,
-      "nameSurface": "(م",
+      "nameSurface": "قوله",
       "sourcePageId": 12437,
       "spanStart": 299,
       "spanEnd": 390,
       "rejectReasons": [
-        "name-head-too-short",
         "no-personal-name-marker"
       ],
       "sourceUrl": "https://app.turath.io/book/1278?page=12437"
-    },
-    {
-      "source": "tahdhib",
-      "candidateId": "tahdhib-8840-12467-8841",
-      "entryNumber": 8840,
-      "nameSurface": "أبو غالب صاحب أبي أمامة بصري، ويقال: أصبهاني، قيل: اسمه حَزَوَّر، وقيل: سعيد بن الحَزَوَّر، وقيل: نافع مولى خالد بن عبد ",
-      "sourcePageId": 12468,
-      "spanStart": 450,
-      "spanEnd": 717,
-      "rejectReasons": [
-        "name-head-too-long"
-      ],
-      "sourceUrl": "https://app.turath.io/book/1278?page=12468"
-    },
-    {
-      "source": "tahdhib",
-      "candidateId": "tahdhib-8852-12485-8853",
-      "entryNumber": 8852,
-      "nameSurface": "أبو قتادة الأنصاري فارس رسول الله ﷺ، اسمه الحارث بن ربعي، وقيل النعمان، وقيل: عمرو، وقيل: عون، وقيل: مراوح، والمشهور الح",
-      "sourcePageId": 12486,
-      "spanStart": 341,
-      "spanEnd": 553,
-      "rejectReasons": [
-        "name-head-too-long"
-      ],
-      "sourceUrl": "https://app.turath.io/book/1278?page=12486"
-    },
-    {
-      "source": "tahdhib",
-      "candidateId": "tahdhib-8871-12508-8872",
-      "entryNumber": 8871,
-      "nameSurface": "أبو ليلى الأنصاري والد عبد الرحمن، له صحبة، واسمه بلال، ويقال: بُلَيْل، ويقال: داود بن بلال بن بُليل بن أُحَيْحة بن الجُ",
-      "sourcePageId": 12509,
-      "spanStart": 99,
-      "spanEnd": 347,
-      "rejectReasons": [
-        "name-head-too-long"
-      ],
-      "sourceUrl": "https://app.turath.io/book/1278?page=12509"
-    },
-    {
-      "source": "tahdhib",
-      "candidateId": "tahdhib-8908-12559-8909",
-      "entryNumber": 8908,
-      "nameSurface": "أبو مسلم الخولاني اليماني الزاهد، اسمه عبد الله بن ثُوَب، ويقال: ابن ثَوَاب ويقال ابن أثوب، ويقال: ابن عبد الله، ويقال: ",
-      "sourcePageId": 12560,
-      "spanStart": 92,
-      "spanEnd": 331,
-      "rejectReasons": [
-        "name-head-too-long"
-      ],
-      "sourceUrl": "https://app.turath.io/book/1278?page=12560"
     },
     {
       "source": "tahdhib",
@@ -1605,19 +1329,6 @@
         "no-personal-name-marker"
       ],
       "sourceUrl": "https://app.turath.io/book/1278?page=12944"
-    },
-    {
-      "source": "tahdhib",
-      "candidateId": "tahdhib-9092-12946-9094",
-      "entryNumber": 9092,
-      "nameSurface": "خولة بنت ثعلبة بن أَصْرم بن فهر بن ثعلبة بن غَنْم بن عوف بن عمرو بن عوف بن الخزرج، ويقال: خولة بنت ثعلبة بن مالك، ويقال:",
-      "sourcePageId": 12947,
-      "spanStart": 148,
-      "spanEnd": 408,
-      "rejectReasons": [
-        "name-head-too-long"
-      ],
-      "sourceUrl": "https://app.turath.io/book/1278?page=12947"
     },
     {
       "source": "tahdhib",
@@ -1686,19 +1397,6 @@
     },
     {
       "source": "tahdhib",
-      "candidateId": "tahdhib-9159-12999-9161",
-      "entryNumber": 9159,
-      "nameSurface": "عقيلة مولاة بني فزارة",
-      "sourcePageId": 13000,
-      "spanStart": 180,
-      "spanEnd": 202,
-      "rejectReasons": [
-        "no-personal-name-marker"
-      ],
-      "sourceUrl": "https://app.turath.io/book/1278?page=13000"
-    },
-    {
-      "source": "tahdhib",
       "candidateId": "tahdhib-9161-13001-9163",
       "entryNumber": 9161,
       "nameSurface": "عَمْرة",
@@ -1722,32 +1420,6 @@
         "no-personal-name-marker"
       ],
       "sourceUrl": "https://app.turath.io/book/1278?page=13017"
-    },
-    {
-      "source": "tahdhib",
-      "candidateId": "tahdhib-9190-13025-9192",
-      "entryNumber": 9190,
-      "nameSurface": "لبابة بنت الحارث بن حزن بن بُجير بن الهُزم بن رويبة بن عبد الله هلال بن عامر بن صعصعة، أم الفضل الهلالية، زوج العباس بن ",
-      "sourcePageId": 13026,
-      "spanStart": 100,
-      "spanEnd": 469,
-      "rejectReasons": [
-        "name-head-too-long"
-      ],
-      "sourceUrl": "https://app.turath.io/book/1278?page=13026"
-    },
-    {
-      "source": "tahdhib",
-      "candidateId": "tahdhib-9191-13026-9193",
-      "entryNumber": 9191,
-      "nameSurface": "لؤلؤة مولاة الأنصار",
-      "sourcePageId": 13027,
-      "spanStart": 344,
-      "spanEnd": 364,
-      "rejectReasons": [
-        "no-personal-name-marker"
-      ],
-      "sourceUrl": "https://app.turath.io/book/1278?page=13027"
     },
     {
       "source": "tahdhib",
@@ -1888,7 +1560,6 @@
       "spanStart": 54,
       "spanEnd": 68,
       "rejectReasons": [
-        "name-head-too-short",
         "no-personal-name-marker"
       ],
       "sourceUrl": "https://app.turath.io/book/1692?page=277"
@@ -1921,19 +1592,6 @@
     },
     {
       "source": "mizan",
-      "candidateId": "mizan-1132-298-1103",
-      "entryNumber": 1132,
-      "nameSurface": "بحير",
-      "sourcePageId": 299,
-      "spanStart": 691,
-      "spanEnd": 697,
-      "rejectReasons": [
-        "no-personal-name-marker"
-      ],
-      "sourceUrl": "https://app.turath.io/book/1692?page=299"
-    },
-    {
-      "source": "mizan",
       "candidateId": "mizan-1231-326-1198",
       "entryNumber": 1231,
       "nameSurface": "بشر",
@@ -1941,7 +1599,6 @@
       "spanStart": 1079,
       "spanEnd": 1087,
       "rejectReasons": [
-        "name-head-too-short",
         "no-personal-name-marker"
       ],
       "sourceUrl": "https://app.turath.io/book/1692?page=327"
@@ -1955,7 +1612,6 @@
       "spanStart": 1178,
       "spanEnd": 1181,
       "rejectReasons": [
-        "name-head-too-short",
         "no-personal-name-marker"
       ],
       "sourceUrl": "https://app.turath.io/book/1692?page=327"
@@ -1964,10 +1620,10 @@
       "source": "mizan",
       "candidateId": "mizan-1269-341-1235",
       "entryNumber": 1269,
-      "nameSurface": "وبكار",
+      "nameSurface": "وبكار شيخ للمقانعى",
       "sourcePageId": 342,
       "spanStart": 875,
-      "spanEnd": 881,
+      "spanEnd": 894,
       "rejectReasons": [
         "no-personal-name-marker"
       ],
@@ -2042,10 +1698,10 @@
       "source": "mizan",
       "candidateId": "mizan-1351-360-1315",
       "entryNumber": 1351,
-      "nameSurface": "توبة، والد الربيع، لا يعرف",
+      "nameSurface": "توبة، والد الربيع، لا",
       "sourcePageId": 361,
       "spanStart": 761,
-      "spanEnd": 787,
+      "spanEnd": 783,
       "rejectReasons": [
         "no-personal-name-marker"
       ],
@@ -2081,7 +1737,7 @@
       "source": "mizan",
       "candidateId": "mizan-1427-383-1389",
       "entryNumber": 1427,
-      "nameSurface": "جابر",
+      "nameSurface": "أو جويبر",
       "sourcePageId": 384,
       "spanStart": 655,
       "spanEnd": 670,
@@ -2089,19 +1745,6 @@
         "no-personal-name-marker"
       ],
       "sourceUrl": "https://app.turath.io/book/1692?page=384"
-    },
-    {
-      "source": "mizan",
-      "candidateId": "mizan-1447-388-1409",
-      "entryNumber": 1447,
-      "nameSurface": "وجبير",
-      "sourcePageId": 389,
-      "spanStart": 642,
-      "spanEnd": 648,
-      "rejectReasons": [
-        "no-personal-name-marker"
-      ],
-      "sourceUrl": "https://app.turath.io/book/1692?page=389"
     },
     {
       "source": "mizan",
@@ -2128,19 +1771,6 @@
         "no-personal-name-marker"
       ],
       "sourceUrl": "https://app.turath.io/book/1692?page=422"
-    },
-    {
-      "source": "mizan",
-      "candidateId": "mizan-1559-422-1520",
-      "entryNumber": 1559,
-      "nameSurface": "وجميل",
-      "sourcePageId": 423,
-      "spanStart": 862,
-      "spanEnd": 869,
-      "rejectReasons": [
-        "no-personal-name-marker"
-      ],
-      "sourceUrl": "https://app.turath.io/book/1692?page=423"
     },
     {
       "source": "mizan",
@@ -2198,10 +1828,10 @@
       "source": "mizan",
       "candidateId": "mizan-1658-444-1616",
       "entryNumber": 1658,
-      "nameSurface": "الحارث، حدث عن علي أنه مرض",
+      "nameSurface": "الحارث",
       "sourcePageId": 445,
       "spanStart": 1096,
-      "spanEnd": 1122,
+      "spanEnd": 1104,
       "rejectReasons": [
         "no-personal-name-marker"
       ],
@@ -2211,7 +1841,7 @@
       "source": "mizan",
       "candidateId": "mizan-1680-447-1638",
       "entryNumber": 1680,
-      "nameSurface": "حبان",
+      "nameSurface": "بالكسر",
       "sourcePageId": 448,
       "spanStart": 1043,
       "spanEnd": 1070,
@@ -2237,11 +1867,13 @@
       "source": "mizan",
       "candidateId": "mizan-1722-456-1678",
       "entryNumber": 1722,
-      "nameSurface": "حبيب",
+      "nameSurface": "",
       "sourcePageId": 457,
       "spanStart": 938,
       "spanEnd": 976,
       "rejectReasons": [
+        "name-head-too-short",
+        "name-head-not-arabic",
         "no-personal-name-marker"
       ],
       "sourceUrl": "https://app.turath.io/book/1692?page=457"
@@ -2365,19 +1997,6 @@
     },
     {
       "source": "mizan",
-      "candidateId": "mizan-2234-587-2177",
-      "entryNumber": 2234,
-      "nameSurface": "حليس",
-      "sourcePageId": 588,
-      "spanStart": 434,
-      "spanEnd": 459,
-      "rejectReasons": [
-        "no-personal-name-marker"
-      ],
-      "sourceUrl": "https://app.turath.io/book/1692?page=588"
-    },
-    {
-      "source": "mizan",
       "candidateId": "mizan-2284-601-2223",
       "entryNumber": 2284,
       "nameSurface": "حماد الرائض",
@@ -2404,19 +2023,6 @@
     },
     {
       "source": "mizan",
-      "candidateId": "mizan-2315-608-2254",
-      "entryNumber": 2315,
-      "nameSurface": "حمزة",
-      "sourcePageId": 609,
-      "spanStart": 353,
-      "spanEnd": 359,
-      "rejectReasons": [
-        "no-personal-name-marker"
-      ],
-      "sourceUrl": "https://app.turath.io/book/1692?page=609"
-    },
-    {
-      "source": "mizan",
       "candidateId": "mizan-2349-616-2287",
       "entryNumber": 2349,
       "nameSurface": "حميد الطويل",
@@ -2432,10 +2038,10 @@
       "source": "mizan",
       "candidateId": "mizan-2350-616-2288",
       "entryNumber": 2350,
-      "nameSurface": "حميد الطويل شيخ مجهول",
+      "nameSurface": "حميد الطويل",
       "sourcePageId": 617,
       "spanStart": 585,
-      "spanEnd": 606,
+      "spanEnd": 597,
       "rejectReasons": [
         "no-personal-name-marker"
       ],
@@ -2502,7 +2108,6 @@
       "spanStart": 881,
       "spanEnd": 884,
       "rejectReasons": [
-        "name-head-too-short",
         "no-personal-name-marker"
       ],
       "sourceUrl": "https://app.turath.io/book/1692?page=622"
@@ -2537,10 +2142,10 @@
       "source": "mizan",
       "candidateId": "mizan-2502-651-2437",
       "entryNumber": 2502,
-      "nameSurface": "خراش، تابعي",
+      "nameSurface": "خراش",
       "sourcePageId": 652,
       "spanStart": 127,
-      "spanEnd": 138,
+      "spanEnd": 133,
       "rejectReasons": [
         "no-personal-name-marker"
       ],
@@ -2563,10 +2168,10 @@
       "source": "mizan",
       "candidateId": "mizan-2528-656-2463",
       "entryNumber": 2528,
-      "nameSurface": "خلاد، لا يدرى من هو",
+      "nameSurface": "خلاد",
       "sourcePageId": 657,
       "spanStart": 835,
-      "spanEnd": 854,
+      "spanEnd": 841,
       "rejectReasons": [
         "no-personal-name-marker"
       ],
@@ -2628,10 +2233,10 @@
       "source": "mizan",
       "candidateId": "mizan-2580-668-2512",
       "entryNumber": 2580,
-      "nameSurface": "خيار، عن إبراهيم",
+      "nameSurface": "خيار",
       "sourcePageId": 669,
       "spanStart": 709,
-      "spanEnd": 725,
+      "spanEnd": 715,
       "rejectReasons": [
         "no-personal-name-marker"
       ],
@@ -2693,10 +2298,10 @@
       "source": "mizan",
       "candidateId": "mizan-2714-703-2644",
       "entryNumber": 2714,
-      "nameSurface": "راشد، عن وابصة رأيت رسول الله ﷺ في صلاته إذا ركع لو صب على ظهره ماء لا استقر",
+      "nameSurface": "راشد",
       "sourcePageId": 704,
       "spanStart": 43,
-      "spanEnd": 123,
+      "spanEnd": 49,
       "rejectReasons": [
         "no-personal-name-marker"
       ],
@@ -2875,10 +2480,10 @@
       "source": "mizan",
       "candidateId": "mizan-3037-774-2958",
       "entryNumber": 3037,
-      "nameSurface": "زيد عن عائشة",
+      "nameSurface": "زيد",
       "sourcePageId": 775,
       "spanStart": 482,
-      "spanEnd": 494,
+      "spanEnd": 486,
       "rejectReasons": [
         "no-personal-name-marker"
       ],
@@ -2896,19 +2501,6 @@
         "no-personal-name-marker"
       ],
       "sourceUrl": "https://app.turath.io/book/1692?page=775"
-    },
-    {
-      "source": "mizan",
-      "candidateId": "mizan-3062-779-2983",
-      "entryNumber": 3062,
-      "nameSurface": "وسالم",
-      "sourcePageId": 780,
-      "spanStart": 1068,
-      "spanEnd": 1074,
-      "rejectReasons": [
-        "no-personal-name-marker"
-      ],
-      "sourceUrl": "https://app.turath.io/book/1692?page=780"
     },
     {
       "source": "mizan",
@@ -2958,7 +2550,6 @@
       "spanStart": 1140,
       "spanEnd": 1143,
       "rejectReasons": [
-        "name-head-too-short",
         "no-personal-name-marker"
       ],
       "sourceUrl": "https://app.turath.io/book/1692?page=792"
@@ -3043,19 +2634,6 @@
     },
     {
       "source": "mizan",
-      "candidateId": "mizan-3563-901-3467",
-      "entryNumber": 3563,
-      "nameSurface": "سنان",
-      "sourcePageId": 902,
-      "spanStart": 1121,
-      "spanEnd": 1130,
-      "rejectReasons": [
-        "no-personal-name-marker"
-      ],
-      "sourceUrl": "https://app.turath.io/book/1692?page=902"
-    },
-    {
-      "source": "mizan",
       "candidateId": "mizan-3565-902-3469",
       "entryNumber": 3565,
       "nameSurface": "سندول",
@@ -3071,12 +2649,11 @@
       "source": "mizan",
       "candidateId": "mizan-3596-907-3499",
       "entryNumber": 3596,
-      "nameSurface": "سهل",
+      "nameSurface": "ويقال سهيل",
       "sourcePageId": 908,
       "spanStart": 827,
       "spanEnd": 857,
       "rejectReasons": [
-        "name-head-too-short",
         "no-personal-name-marker"
       ],
       "sourceUrl": "https://app.turath.io/book/1692?page=908"
@@ -3176,11 +2753,13 @@
       "source": "mizan",
       "candidateId": "mizan-3732-945-3632",
       "entryNumber": 3732,
-      "nameSurface": "شعيث",
+      "nameSurface": "",
       "sourcePageId": 946,
       "spanStart": 56,
       "spanEnd": 83,
       "rejectReasons": [
+        "name-head-too-short",
+        "name-head-not-arabic",
         "no-personal-name-marker"
       ],
       "sourceUrl": "https://app.turath.io/book/1692?page=946"
@@ -3278,38 +2857,12 @@
     },
     {
       "source": "mizan",
-      "candidateId": "mizan-3860-973-3756",
-      "entryNumber": 3860,
-      "nameSurface": "صبيح",
-      "sourcePageId": 974,
-      "spanStart": 1210,
-      "spanEnd": 1243,
-      "rejectReasons": [
-        "no-personal-name-marker"
-      ],
-      "sourceUrl": "https://app.turath.io/book/1692?page=974"
-    },
-    {
-      "source": "mizan",
       "candidateId": "mizan-3920-987-3813",
       "entryNumber": 3920,
-      "nameSurface": "وصهيب، عن الحسن",
+      "nameSurface": "وصهيب",
       "sourcePageId": 988,
       "spanStart": 325,
-      "spanEnd": 350,
-      "rejectReasons": [
-        "no-personal-name-marker"
-      ],
-      "sourceUrl": "https://app.turath.io/book/1692?page=988"
-    },
-    {
-      "source": "mizan",
-      "candidateId": "mizan-3924-987-3817",
-      "entryNumber": 3924,
-      "nameSurface": "صهيب، عن مولاه العباس",
-      "sourcePageId": 988,
-      "spanStart": 823,
-      "spanEnd": 844,
+      "spanEnd": 332,
       "rejectReasons": [
         "no-personal-name-marker"
       ],
@@ -3358,10 +2911,10 @@
       "source": "mizan",
       "candidateId": "mizan-4003-1005-3890",
       "entryNumber": 4003,
-      "nameSurface": "وطلحة عن زاذان",
+      "nameSurface": "وطلحة",
       "sourcePageId": 1006,
       "spanStart": 1255,
-      "spanEnd": 1269,
+      "spanEnd": 1261,
       "rejectReasons": [
         "no-personal-name-marker"
       ],
@@ -3369,38 +2922,12 @@
     },
     {
       "source": "mizan",
-      "candidateId": "mizan-4019-1010-3906",
-      "entryNumber": 4019,
-      "nameSurface": "طلحة القناد",
-      "sourcePageId": 1011,
-      "spanStart": 486,
-      "spanEnd": 499,
-      "rejectReasons": [
-        "no-personal-name-marker"
-      ],
-      "sourceUrl": "https://app.turath.io/book/1692?page=1011"
-    },
-    {
-      "source": "mizan",
       "candidateId": "mizan-4020-1010-3907",
       "entryNumber": 4020,
-      "nameSurface": "طلحة ، عن أبيه، عن جده في مسح الرأس",
-      "sourcePageId": 1011,
-      "spanStart": 684,
-      "spanEnd": 722,
-      "rejectReasons": [
-        "no-personal-name-marker"
-      ],
-      "sourceUrl": "https://app.turath.io/book/1692?page=1011"
-    },
-    {
-      "source": "mizan",
-      "candidateId": "mizan-4023-1010-3910",
-      "entryNumber": 4023,
       "nameSurface": "طلحة",
       "sourcePageId": 1011,
-      "spanStart": 1240,
-      "spanEnd": 1249,
+      "spanStart": 684,
+      "spanEnd": 694,
       "rejectReasons": [
         "no-personal-name-marker"
       ],
@@ -3415,7 +2942,6 @@
       "spanStart": 587,
       "spanEnd": 590,
       "rejectReasons": [
-        "name-head-too-short",
         "no-personal-name-marker"
       ],
       "sourceUrl": "https://app.turath.io/book/1692?page=1013"
@@ -3442,7 +2968,6 @@
       "spanStart": 263,
       "spanEnd": 266,
       "rejectReasons": [
-        "name-head-too-short",
         "no-personal-name-marker"
       ],
       "sourceUrl": "https://app.turath.io/book/1692?page=1016"
@@ -3485,19 +3010,6 @@
         "no-personal-name-marker"
       ],
       "sourceUrl": "https://app.turath.io/book/1692?page=1049"
-    },
-    {
-      "source": "mizan",
-      "candidateId": "mizan-4384-1111-4254",
-      "entryNumber": 4384,
-      "nameSurface": "عبد الله بن صالح بن مسلم العجلي الكوفي المقرئ، والد الحافظ أحمد ابن عبد الله العجلي، سكن بغداد، قرأ على حمزة بن حبيب، ور",
-      "sourcePageId": 1112,
-      "spanStart": 880,
-      "spanEnd": 1156,
-      "rejectReasons": [
-        "name-head-too-long"
-      ],
-      "sourceUrl": "https://app.turath.io/book/1692?page=1112"
     },
     {
       "source": "mizan",
@@ -3722,19 +3234,6 @@
     },
     {
       "source": "mizan",
-      "candidateId": "mizan-5287-1338-5131",
-      "entryNumber": 5287,
-      "nameSurface": "عبد الواحد بن زياد، أبو بشر العبدي البصري، أحد المشاهير، احتجا به الصحيحين، وتجنبا تلك المناكير التي نقمت عليه (٣ [فيحدث",
-      "sourcePageId": 1339,
-      "spanStart": 599,
-      "spanEnd": 838,
-      "rejectReasons": [
-        "name-head-too-long"
-      ],
-      "sourceUrl": "https://app.turath.io/book/1692?page=1339"
-    },
-    {
-      "source": "mizan",
       "candidateId": "mizan-5310-1344-5154",
       "entryNumber": 5310,
       "nameSurface": "عبد الوارث",
@@ -3826,19 +3325,6 @@
     },
     {
       "source": "mizan",
-      "candidateId": "mizan-5451-1374-5296",
-      "entryNumber": 5451,
-      "nameSurface": "عبيد",
-      "sourcePageId": 1375,
-      "spanStart": 967,
-      "spanEnd": 977,
-      "rejectReasons": [
-        "no-personal-name-marker"
-      ],
-      "sourceUrl": "https://app.turath.io/book/1692?page=1375"
-    },
-    {
-      "source": "mizan",
       "candidateId": "mizan-5454-1375-5299",
       "entryNumber": 5454,
       "nameSurface": "عبيد المكتب",
@@ -3854,7 +3340,7 @@
       "source": "mizan",
       "candidateId": "mizan-5460-1376-5304",
       "entryNumber": 5460,
-      "nameSurface": "عبيدة",
+      "nameSurface": "بالفتح",
       "sourcePageId": 1377,
       "spanStart": 363,
       "spanEnd": 392,
@@ -3867,7 +3353,7 @@
       "source": "mizan",
       "candidateId": "mizan-5462-1376-5306",
       "entryNumber": 5462,
-      "nameSurface": "عبيدة",
+      "nameSurface": "بالفتح",
       "sourcePageId": 1377,
       "spanStart": 793,
       "spanEnd": 820,
@@ -3880,10 +3366,10 @@
       "source": "mizan",
       "candidateId": "mizan-5468-1377-5312",
       "entryNumber": 5468,
-      "nameSurface": "عتاب / عن أنس / شيخ بصري",
+      "nameSurface": "عتاب",
       "sourcePageId": 1378,
       "spanStart": 1370,
-      "spanEnd": 1398,
+      "spanEnd": 1381,
       "rejectReasons": [
         "no-personal-name-marker"
       ],
@@ -3979,19 +3465,6 @@
         "no-personal-name-marker"
       ],
       "sourceUrl": "https://app.turath.io/book/1692?page=1420"
-    },
-    {
-      "source": "mizan",
-      "candidateId": "mizan-5658-1427-5498",
-      "entryNumber": 5658,
-      "nameSurface": "عطاء",
-      "sourcePageId": 1428,
-      "spanStart": 1213,
-      "spanEnd": 1222,
-      "rejectReasons": [
-        "no-personal-name-marker"
-      ],
-      "sourceUrl": "https://app.turath.io/book/1692?page=1428"
     },
     {
       "source": "mizan",
@@ -4093,7 +3566,6 @@
       "spanStart": 1004,
       "spanEnd": 1007,
       "rejectReasons": [
-        "name-head-too-short",
         "no-personal-name-marker"
       ],
       "sourceUrl": "https://app.turath.io/book/1692?page=1514"
@@ -4172,7 +3644,6 @@
       "spanStart": 538,
       "spanEnd": 541,
       "rejectReasons": [
-        "name-head-too-short",
         "no-personal-name-marker"
       ],
       "sourceUrl": "https://app.turath.io/book/1692?page=1584"
@@ -4189,19 +3660,6 @@
         "no-personal-name-marker"
       ],
       "sourceUrl": "https://app.turath.io/book/1692?page=1592"
-    },
-    {
-      "source": "mizan",
-      "candidateId": "mizan-6326-1595-6136",
-      "entryNumber": 6326,
-      "nameSurface": "عمران الخياط",
-      "sourcePageId": 1596,
-      "spanStart": 335,
-      "spanEnd": 352,
-      "rejectReasons": [
-        "no-personal-name-marker"
-      ],
-      "sourceUrl": "https://app.turath.io/book/1692?page=1596"
     },
     {
       "source": "mizan",
@@ -4337,10 +3795,10 @@
       "source": "mizan",
       "candidateId": "mizan-6670-1686-6460",
       "entryNumber": 6670,
-      "nameSurface": "غلام خليل، زاهد بغداد",
+      "nameSurface": "غلام خليل",
       "sourcePageId": 1687,
       "spanStart": 731,
-      "spanEnd": 752,
+      "spanEnd": 742,
       "rejectReasons": [
         "no-personal-name-marker"
       ],
@@ -4452,19 +3910,6 @@
     },
     {
       "source": "mizan",
-      "candidateId": "mizan-6954-1760-6733",
-      "entryNumber": 6954,
-      "nameSurface": "كثير",
-      "sourcePageId": 1761,
-      "spanStart": 814,
-      "spanEnd": 834,
-      "rejectReasons": [
-        "no-personal-name-marker"
-      ],
-      "sourceUrl": "https://app.turath.io/book/1692?page=1761"
-    },
-    {
-      "source": "mizan",
       "candidateId": "mizan-6958-1761-6737",
       "entryNumber": 6958,
       "nameSurface": "كريب الطيب",
@@ -4498,7 +3943,6 @@
       "spanStart": 580,
       "spanEnd": 591,
       "rejectReasons": [
-        "name-head-too-short",
         "no-personal-name-marker"
       ],
       "sourceUrl": "https://app.turath.io/book/1692?page=1763"
@@ -4512,7 +3956,6 @@
       "spanStart": 713,
       "spanEnd": 721,
       "rejectReasons": [
-        "name-head-too-short",
         "no-personal-name-marker"
       ],
       "sourceUrl": "https://app.turath.io/book/1692?page=1763"
@@ -4542,19 +3985,6 @@
         "no-personal-name-marker"
       ],
       "sourceUrl": "https://app.turath.io/book/1692?page=1794"
-    },
-    {
-      "source": "mizan",
-      "candidateId": "mizan-8064-2039-7813",
-      "entryNumber": 8064,
-      "nameSurface": "محمد بن فوز بن عبد الله بن مهدي، حدثنا معاذ بن عيسى، حدثنا عمر بن عبيد الطنافسى، عن سفيان، عن أبي الزناد عن الأعرج، عن أ",
-      "sourcePageId": 2040,
-      "spanStart": 659,
-      "spanEnd": 915,
-      "rejectReasons": [
-        "name-head-too-long"
-      ],
-      "sourceUrl": "https://app.turath.io/book/1692?page=2040"
     },
     {
       "source": "mizan",
@@ -4607,19 +4037,6 @@
         "no-personal-name-marker"
       ],
       "sourceUrl": "https://app.turath.io/book/1692?page=2107"
-    },
-    {
-      "source": "mizan",
-      "candidateId": "mizan-8373-2108-8092",
-      "entryNumber": 8373,
-      "nameSurface": "محمود",
-      "sourcePageId": 2109,
-      "spanStart": 505,
-      "spanEnd": 515,
-      "rejectReasons": [
-        "no-personal-name-marker"
-      ],
-      "sourceUrl": "https://app.turath.io/book/1692?page=2109"
     },
     {
       "source": "mizan",
@@ -4707,19 +4124,6 @@
       "sourcePageId": 2142,
       "spanStart": 806,
       "spanEnd": 811,
-      "rejectReasons": [
-        "no-personal-name-marker"
-      ],
-      "sourceUrl": "https://app.turath.io/book/1692?page=2142"
-    },
-    {
-      "source": "mizan",
-      "candidateId": "mizan-8531-2141-8245",
-      "entryNumber": 8531,
-      "nameSurface": "ومسلمة",
-      "sourcePageId": 2142,
-      "spanStart": 841,
-      "spanEnd": 849,
       "rejectReasons": [
         "no-personal-name-marker"
       ],
@@ -4833,23 +4237,10 @@
       "source": "mizan",
       "candidateId": "mizan-8691-2185-8403",
       "entryNumber": 8691,
-      "nameSurface": "معمر",
+      "nameSurface": "أو معمر",
       "sourcePageId": 2186,
       "spanStart": 43,
       "spanEnd": 67,
-      "rejectReasons": [
-        "no-personal-name-marker"
-      ],
-      "sourceUrl": "https://app.turath.io/book/1692?page=2186"
-    },
-    {
-      "source": "mizan",
-      "candidateId": "mizan-8692-2185-8404",
-      "entryNumber": 8692,
-      "nameSurface": "معمر",
-      "sourcePageId": 2186,
-      "spanStart": 806,
-      "spanEnd": 848,
       "rejectReasons": [
         "no-personal-name-marker"
       ],
@@ -5039,32 +4430,6 @@
     },
     {
       "source": "mizan",
-      "candidateId": "mizan-9056-2284-8755",
-      "entryNumber": 9056,
-      "nameSurface": "نصير",
-      "sourcePageId": 2285,
-      "spanStart": 96,
-      "spanEnd": 105,
-      "rejectReasons": [
-        "no-personal-name-marker"
-      ],
-      "sourceUrl": "https://app.turath.io/book/1692?page=2285"
-    },
-    {
-      "source": "mizan",
-      "candidateId": "mizan-9143-2308-8834",
-      "entryNumber": 9143,
-      "nameSurface": "نوح بن أبي مريم يزيد بن عبد الله، أبو عصمة المروزي، عالم أهل مرو، وهو نوح الجامع، لانه أخذ الفقه عن أبي حنيفة وابن أبي ل",
-      "sourcePageId": 2309,
-      "spanStart": 541,
-      "spanEnd": 774,
-      "rejectReasons": [
-        "name-head-too-long"
-      ],
-      "sourceUrl": "https://app.turath.io/book/1692?page=2309"
-    },
-    {
-      "source": "mizan",
       "candidateId": "mizan-9145-2309-8836",
       "entryNumber": 9145,
       "nameSurface": "نوح",
@@ -5072,7 +4437,6 @@
       "spanStart": 947,
       "spanEnd": 950,
       "rejectReasons": [
-        "name-head-too-short",
         "no-personal-name-marker"
       ],
       "sourceUrl": "https://app.turath.io/book/1692?page=2310"
@@ -5107,7 +4471,7 @@
       "source": "mizan",
       "candidateId": "mizan-9327-2359-9011",
       "entryNumber": 9327,
-      "nameSurface": "وافد",
+      "nameSurface": "بالفاء، أو",
       "sourcePageId": 2360,
       "spanStart": 143,
       "spanEnd": 165,
@@ -5300,32 +4664,6 @@
     },
     {
       "source": "taqrib",
-      "candidateId": "taqrib-278-20-277",
-      "entryNumber": 278,
-      "nameSurface": "إبراهيم",
-      "sourcePageId": 21,
-      "spanStart": 1470,
-      "spanEnd": 1478,
-      "rejectReasons": [
-        "no-personal-name-marker"
-      ],
-      "sourceUrl": "https://app.turath.io/book/8609?page=21"
-    },
-    {
-      "source": "taqrib",
-      "candidateId": "taqrib-279-20-278",
-      "entryNumber": 279,
-      "nameSurface": "إبراهيم",
-      "sourcePageId": 21,
-      "spanStart": 1533,
-      "spanEnd": 1541,
-      "rejectReasons": [
-        "no-personal-name-marker"
-      ],
-      "sourceUrl": "https://app.turath.io/book/8609?page=21"
-    },
-    {
-      "source": "taqrib",
       "candidateId": "taqrib-280-20-279",
       "entryNumber": 280,
       "nameSurface": "إبراهيم",
@@ -5336,97 +4674,6 @@
         "no-personal-name-marker"
       ],
       "sourceUrl": "https://app.turath.io/book/8609?page=21"
-    },
-    {
-      "source": "taqrib",
-      "candidateId": "taqrib-297-22-296",
-      "entryNumber": 297,
-      "nameSurface": "أربدة مكسورة",
-      "sourcePageId": 23,
-      "spanStart": 524,
-      "spanEnd": 561,
-      "rejectReasons": [
-        "no-personal-name-marker"
-      ],
-      "sourceUrl": "https://app.turath.io/book/8609?page=23"
-    },
-    {
-      "source": "taqrib",
-      "candidateId": "taqrib-300-22-299",
-      "entryNumber": 300,
-      "nameSurface": "أزداد",
-      "sourcePageId": 23,
-      "spanStart": 802,
-      "spanEnd": 808,
-      "rejectReasons": [
-        "no-personal-name-marker"
-      ],
-      "sourceUrl": "https://app.turath.io/book/8609?page=23"
-    },
-    {
-      "source": "taqrib",
-      "candidateId": "taqrib-397-29-396",
-      "entryNumber": 397,
-      "nameSurface": "إسحاق",
-      "sourcePageId": 30,
-      "spanStart": 128,
-      "spanEnd": 134,
-      "rejectReasons": [
-        "no-personal-name-marker"
-      ],
-      "sourceUrl": "https://app.turath.io/book/8609?page=30"
-    },
-    {
-      "source": "taqrib",
-      "candidateId": "taqrib-538-38-537",
-      "entryNumber": 538,
-      "nameSurface": "أصبغ",
-      "sourcePageId": 39,
-      "spanStart": 1779,
-      "spanEnd": 1784,
-      "rejectReasons": [
-        "no-personal-name-marker"
-      ],
-      "sourceUrl": "https://app.turath.io/book/8609?page=39"
-    },
-    {
-      "source": "taqrib",
-      "candidateId": "taqrib-549-39-548",
-      "entryNumber": 549,
-      "nameSurface": "أفلح",
-      "sourcePageId": 40,
-      "spanStart": 983,
-      "spanEnd": 988,
-      "rejectReasons": [
-        "no-personal-name-marker"
-      ],
-      "sourceUrl": "https://app.turath.io/book/8609?page=40"
-    },
-    {
-      "source": "taqrib",
-      "candidateId": "taqrib-561-40-560",
-      "entryNumber": 561,
-      "nameSurface": "أمية",
-      "sourcePageId": 41,
-      "spanStart": 353,
-      "spanEnd": 358,
-      "rejectReasons": [
-        "no-personal-name-marker"
-      ],
-      "sourceUrl": "https://app.turath.io/book/8609?page=41"
-    },
-    {
-      "source": "taqrib",
-      "candidateId": "taqrib-582-41-581",
-      "entryNumber": 582,
-      "nameSurface": "إياد بكسرأوله",
-      "sourcePageId": 42,
-      "spanStart": 940,
-      "spanEnd": 954,
-      "rejectReasons": [
-        "no-personal-name-marker"
-      ],
-      "sourceUrl": "https://app.turath.io/book/8609?page=42"
     },
     {
       "source": "taqrib",
@@ -5443,32 +4690,6 @@
     },
     {
       "source": "taqrib",
-      "candidateId": "taqrib-599-42-598",
-      "entryNumber": 599,
-      "nameSurface": "أيمن في السرقة قيل هو الذي قبله وقيل",
-      "sourcePageId": 43,
-      "spanStart": 815,
-      "spanEnd": 852,
-      "rejectReasons": [
-        "no-personal-name-marker"
-      ],
-      "sourceUrl": "https://app.turath.io/book/8609?page=43"
-    },
-    {
-      "source": "taqrib",
-      "candidateId": "taqrib-631-44-630",
-      "entryNumber": 631,
-      "nameSurface": "أيوب",
-      "sourcePageId": 45,
-      "spanStart": 787,
-      "spanEnd": 792,
-      "rejectReasons": [
-        "no-personal-name-marker"
-      ],
-      "sourceUrl": "https://app.turath.io/book/8609?page=45"
-    },
-    {
-      "source": "taqrib",
       "candidateId": "taqrib-632-44-631",
       "entryNumber": 632,
       "nameSurface": "أيوب",
@@ -5479,124 +4700,6 @@
         "no-personal-name-marker"
       ],
       "sourceUrl": "https://app.turath.io/book/8609?page=45"
-    },
-    {
-      "source": "taqrib",
-      "candidateId": "taqrib-634-45-633",
-      "entryNumber": 634,
-      "nameSurface": "باذام بالذال المعجمة",
-      "sourcePageId": 46,
-      "spanStart": 117,
-      "spanEnd": 138,
-      "rejectReasons": [
-        "no-personal-name-marker"
-      ],
-      "sourceUrl": "https://app.turath.io/book/8609?page=46"
-    },
-    {
-      "source": "taqrib",
-      "candidateId": "taqrib-710-49-709",
-      "entryNumber": 710,
-      "nameSurface": "بشر",
-      "sourcePageId": 50,
-      "spanStart": 1043,
-      "spanEnd": 1047,
-      "rejectReasons": [
-        "name-head-too-short",
-        "no-personal-name-marker"
-      ],
-      "sourceUrl": "https://app.turath.io/book/8609?page=50"
-    },
-    {
-      "source": "taqrib",
-      "candidateId": "taqrib-728-50-727",
-      "entryNumber": 728,
-      "nameSurface": "بشير",
-      "sourcePageId": 51,
-      "spanStart": 1395,
-      "spanEnd": 1400,
-      "rejectReasons": [
-        "no-personal-name-marker"
-      ],
-      "sourceUrl": "https://app.turath.io/book/8609?page=51"
-    },
-    {
-      "source": "taqrib",
-      "candidateId": "taqrib-788-54-787",
-      "entryNumber": 788,
-      "nameSurface": "بلال غير منسوب",
-      "sourcePageId": 55,
-      "spanStart": 1139,
-      "spanEnd": 1154,
-      "rejectReasons": [
-        "no-personal-name-marker"
-      ],
-      "sourceUrl": "https://app.turath.io/book/8609?page=55"
-    },
-    {
-      "source": "taqrib",
-      "candidateId": "taqrib-792-54-791",
-      "entryNumber": 792,
-      "nameSurface": "بيهس أوله",
-      "sourcePageId": 55,
-      "spanStart": 1465,
-      "spanEnd": 1480,
-      "rejectReasons": [
-        "no-personal-name-marker"
-      ],
-      "sourceUrl": "https://app.turath.io/book/8609?page=55"
-    },
-    {
-      "source": "taqrib",
-      "candidateId": "taqrib-793-55-792",
-      "entryNumber": 793,
-      "nameSurface": "تُبَيْع",
-      "sourcePageId": 56,
-      "spanStart": 64,
-      "spanEnd": 79,
-      "rejectReasons": [
-        "no-personal-name-marker"
-      ],
-      "sourceUrl": "https://app.turath.io/book/8609?page=56"
-    },
-    {
-      "source": "taqrib",
-      "candidateId": "taqrib-796-55-795",
-      "entryNumber": 796,
-      "nameSurface": "التلب",
-      "sourcePageId": 56,
-      "spanStart": 493,
-      "spanEnd": 504,
-      "rejectReasons": [
-        "no-personal-name-marker"
-      ],
-      "sourceUrl": "https://app.turath.io/book/8609?page=56"
-    },
-    {
-      "source": "taqrib",
-      "candidateId": "taqrib-797-55-796",
-      "entryNumber": 797,
-      "nameSurface": "تليد",
-      "sourcePageId": 56,
-      "spanStart": 604,
-      "spanEnd": 614,
-      "rejectReasons": [
-        "no-personal-name-marker"
-      ],
-      "sourceUrl": "https://app.turath.io/book/8609?page=56"
-    },
-    {
-      "source": "taqrib",
-      "candidateId": "taqrib-807-55-806",
-      "entryNumber": 807,
-      "nameSurface": "تميم",
-      "sourcePageId": 56,
-      "spanStart": 1652,
-      "spanEnd": 1657,
-      "rejectReasons": [
-        "no-personal-name-marker"
-      ],
-      "sourceUrl": "https://app.turath.io/book/8609?page=56"
     },
     {
       "source": "taqrib",
@@ -5613,150 +4716,6 @@
     },
     {
       "source": "taqrib",
-      "candidateId": "taqrib-890-62-889",
-      "entryNumber": 890,
-      "nameSurface": "جُبَارة بالضم",
-      "sourcePageId": 63,
-      "spanStart": 1200,
-      "spanEnd": 1214,
-      "rejectReasons": [
-        "no-personal-name-marker"
-      ],
-      "sourceUrl": "https://app.turath.io/book/8609?page=63"
-    },
-    {
-      "source": "taqrib",
-      "candidateId": "taqrib-891-62-890",
-      "entryNumber": 891,
-      "nameSurface": "جبر",
-      "sourcePageId": 63,
-      "spanStart": 1369,
-      "spanEnd": 1378,
-      "rejectReasons": [
-        "name-head-too-short",
-        "no-personal-name-marker"
-      ],
-      "sourceUrl": "https://app.turath.io/book/8609?page=63"
-    },
-    {
-      "source": "taqrib",
-      "candidateId": "taqrib-969-67-968",
-      "entryNumber": 969,
-      "nameSurface": "جُميع",
-      "sourcePageId": 68,
-      "spanStart": 428,
-      "spanEnd": 434,
-      "rejectReasons": [
-        "no-personal-name-marker"
-      ],
-      "sourceUrl": "https://app.turath.io/book/8609?page=68"
-    },
-    {
-      "source": "taqrib",
-      "candidateId": "taqrib-972-67-971",
-      "entryNumber": 972,
-      "nameSurface": "جميل غير منسوب",
-      "sourcePageId": 68,
-      "spanStart": 711,
-      "spanEnd": 726,
-      "rejectReasons": [
-        "no-personal-name-marker"
-      ],
-      "sourceUrl": "https://app.turath.io/book/8609?page=68"
-    },
-    {
-      "source": "taqrib",
-      "candidateId": "taqrib-973-67-972",
-      "entryNumber": 973,
-      "nameSurface": "جُنَادة أوله",
-      "sourcePageId": 68,
-      "spanStart": 769,
-      "spanEnd": 786,
-      "rejectReasons": [
-        "no-personal-name-marker"
-      ],
-      "sourceUrl": "https://app.turath.io/book/8609?page=68"
-    },
-    {
-      "source": "taqrib",
-      "candidateId": "taqrib-978-68-977",
-      "entryNumber": 978,
-      "nameSurface": "جندرة أوله",
-      "sourcePageId": 69,
-      "spanStart": 5,
-      "spanEnd": 21,
-      "rejectReasons": [
-        "no-personal-name-marker"
-      ],
-      "sourceUrl": "https://app.turath.io/book/8609?page=69"
-    },
-    {
-      "source": "taqrib",
-      "candidateId": "taqrib-981-68-980",
-      "entryNumber": 981,
-      "nameSurface": "جنيد",
-      "sourcePageId": 69,
-      "spanStart": 349,
-      "spanEnd": 354,
-      "rejectReasons": [
-        "no-personal-name-marker"
-      ],
-      "sourceUrl": "https://app.turath.io/book/8609?page=69"
-    },
-    {
-      "source": "taqrib",
-      "candidateId": "taqrib-985-68-984",
-      "entryNumber": 985,
-      "nameSurface": "جودان",
-      "sourcePageId": 69,
-      "spanStart": 675,
-      "spanEnd": 681,
-      "rejectReasons": [
-        "no-personal-name-marker"
-      ],
-      "sourceUrl": "https://app.turath.io/book/8609?page=69"
-    },
-    {
-      "source": "taqrib",
-      "candidateId": "taqrib-987-68-986",
-      "entryNumber": 987,
-      "nameSurface": "جويبر تصغير جابر",
-      "sourcePageId": 69,
-      "spanStart": 883,
-      "spanEnd": 900,
-      "rejectReasons": [
-        "no-personal-name-marker"
-      ],
-      "sourceUrl": "https://app.turath.io/book/8609?page=69"
-    },
-    {
-      "source": "taqrib",
-      "candidateId": "taqrib-1003-69-1002",
-      "entryNumber": 1003,
-      "nameSurface": "حاتم غير منسوب",
-      "sourcePageId": 70,
-      "spanStart": 1199,
-      "spanEnd": 1214,
-      "rejectReasons": [
-        "no-personal-name-marker"
-      ],
-      "sourceUrl": "https://app.turath.io/book/8609?page=70"
-    },
-    {
-      "source": "taqrib",
-      "candidateId": "taqrib-1060-73-1059",
-      "entryNumber": 1060,
-      "nameSurface": "الحارث [غير منسوب]",
-      "sourcePageId": 74,
-      "spanStart": 1447,
-      "spanEnd": 1466,
-      "rejectReasons": [
-        "no-personal-name-marker"
-      ],
-      "sourceUrl": "https://app.turath.io/book/8609?page=74"
-    },
-    {
-      "source": "taqrib",
       "candidateId": "taqrib-1061-73-1060",
       "entryNumber": 1061,
       "nameSurface": "الحارث",
@@ -5767,32 +4726,6 @@
         "no-personal-name-marker"
       ],
       "sourceUrl": "https://app.turath.io/book/8609?page=74"
-    },
-    {
-      "source": "taqrib",
-      "candidateId": "taqrib-1080-75-1078",
-      "entryNumber": 1080,
-      "nameSurface": "حبشي",
-      "sourcePageId": 76,
-      "spanStart": 300,
-      "spanEnd": 309,
-      "rejectReasons": [
-        "no-personal-name-marker"
-      ],
-      "sourceUrl": "https://app.turath.io/book/8609?page=76"
-    },
-    {
-      "source": "taqrib",
-      "candidateId": "taqrib-1081-75-1079",
-      "entryNumber": 1081,
-      "nameSurface": "حبة أوله",
-      "sourcePageId": 76,
-      "spanStart": 409,
-      "spanEnd": 423,
-      "rejectReasons": [
-        "no-personal-name-marker"
-      ],
-      "sourceUrl": "https://app.turath.io/book/8609?page=76"
     },
     {
       "source": "taqrib",
@@ -5809,90 +4742,12 @@
     },
     {
       "source": "taqrib",
-      "candidateId": "taqrib-1176-81-1174",
-      "entryNumber": 1176,
-      "nameSurface": "حرملة",
-      "sourcePageId": 82,
-      "spanStart": 344,
-      "spanEnd": 350,
-      "rejectReasons": [
-        "no-personal-name-marker"
-      ],
-      "sourceUrl": "https://app.turath.io/book/8609?page=82"
-    },
-    {
-      "source": "taqrib",
-      "candidateId": "taqrib-1183-81-1181",
-      "entryNumber": 1183,
-      "nameSurface": "حريث رجل من بني عذرة",
-      "sourcePageId": 82,
-      "spanStart": 1166,
-      "spanEnd": 1187,
-      "rejectReasons": [
-        "no-personal-name-marker"
-      ],
-      "sourceUrl": "https://app.turath.io/book/8609?page=82"
-    },
-    {
-      "source": "taqrib",
-      "candidateId": "taqrib-1185-82-1183",
-      "entryNumber": 1185,
-      "nameSurface": "حريز",
-      "sourcePageId": 83,
-      "spanStart": 6,
-      "spanEnd": 11,
-      "rejectReasons": [
-        "no-personal-name-marker"
-      ],
-      "sourceUrl": "https://app.turath.io/book/8609?page=83"
-    },
-    {
-      "source": "taqrib",
-      "candidateId": "taqrib-1189-82-1187",
-      "entryNumber": 1189,
-      "nameSurface": "حزام أوله",
-      "sourcePageId": 83,
-      "spanStart": 385,
-      "spanEnd": 400,
-      "rejectReasons": [
-        "no-personal-name-marker"
-      ],
-      "sourceUrl": "https://app.turath.io/book/8609?page=83"
-    },
-    {
-      "source": "taqrib",
-      "candidateId": "taqrib-1208-83-1206",
-      "entryNumber": 1208,
-      "nameSurface": "حسان",
-      "sourcePageId": 84,
-      "spanStart": 909,
-      "spanEnd": 914,
-      "rejectReasons": [
-        "no-personal-name-marker"
-      ],
-      "sourceUrl": "https://app.turath.io/book/8609?page=84"
-    },
-    {
-      "source": "taqrib",
       "candidateId": "taqrib-1232-85-1230",
       "entryNumber": 1232,
       "nameSurface": "الأول بجلي [تمييز]",
       "sourcePageId": 86,
       "spanStart": 865,
       "spanEnd": 883,
-      "rejectReasons": [
-        "no-personal-name-marker"
-      ],
-      "sourceUrl": "https://app.turath.io/book/8609?page=86"
-    },
-    {
-      "source": "taqrib",
-      "candidateId": "taqrib-1236-85-1234",
-      "entryNumber": 1236,
-      "nameSurface": "ولهم خامس",
-      "sourcePageId": 86,
-      "spanStart": 974,
-      "spanEnd": 984,
       "rejectReasons": [
         "no-personal-name-marker"
       ],
@@ -5915,52 +4770,12 @@
     },
     {
       "source": "taqrib",
-      "candidateId": "taqrib-1302-90-1300",
-      "entryNumber": 1302,
-      "nameSurface": "الحسن",
-      "sourcePageId": 91,
-      "spanStart": 172,
-      "spanEnd": 178,
-      "rejectReasons": [
-        "no-personal-name-marker"
-      ],
-      "sourceUrl": "https://app.turath.io/book/8609?page=91"
-    },
-    {
-      "source": "taqrib",
-      "candidateId": "taqrib-1362-94-1360",
-      "entryNumber": 1362,
-      "nameSurface": "حشرج",
-      "sourcePageId": 95,
-      "spanStart": 826,
-      "spanEnd": 836,
-      "rejectReasons": [
-        "no-personal-name-marker"
-      ],
-      "sourceUrl": "https://app.turath.io/book/8609?page=95"
-    },
-    {
-      "source": "taqrib",
-      "candidateId": "taqrib-1364-94-1362",
-      "entryNumber": 1364,
-      "nameSurface": "حصن",
-      "sourcePageId": 95,
-      "spanStart": 1036,
-      "spanEnd": 1045,
-      "rejectReasons": [
-        "name-head-too-short",
-        "no-personal-name-marker"
-      ],
-      "sourceUrl": "https://app.turath.io/book/8609?page=95"
-    },
-    {
-      "source": "taqrib",
       "candidateId": "taqrib-1394-96-1392",
       "entryNumber": 1394,
-      "nameSurface": "حصين",
+      "nameSurface": "حصين والد داود",
       "sourcePageId": 97,
       "spanStart": 948,
-      "spanEnd": 953,
+      "spanEnd": 963,
       "rejectReasons": [
         "no-personal-name-marker"
       ],
@@ -5968,129 +4783,12 @@
     },
     {
       "source": "taqrib",
-      "candidateId": "taqrib-1424-98-1422",
-      "entryNumber": 1424,
-      "nameSurface": "ولهم ثالث",
-      "sourcePageId": 99,
-      "spanStart": 885,
-      "spanEnd": 895,
-      "rejectReasons": [
-        "no-personal-name-marker"
-      ],
-      "sourceUrl": "https://app.turath.io/book/8609?page=99"
-    },
-    {
-      "source": "taqrib",
-      "candidateId": "taqrib-1511-104-1509",
-      "entryNumber": 1511,
-      "nameSurface": "حمان أوله",
-      "sourcePageId": 105,
-      "spanStart": 403,
-      "spanEnd": 418,
-      "rejectReasons": [
-        "no-personal-name-marker"
-      ],
-      "sourceUrl": "https://app.turath.io/book/8609?page=105"
-    },
-    {
-      "source": "taqrib",
-      "candidateId": "taqrib-1515-104-1513",
-      "entryNumber": 1515,
-      "nameSurface": "حمران",
-      "sourcePageId": 105,
-      "spanStart": 984,
-      "spanEnd": 990,
-      "rejectReasons": [
-        "no-personal-name-marker"
-      ],
-      "sourceUrl": "https://app.turath.io/book/8609?page=105"
-    },
-    {
-      "source": "taqrib",
-      "candidateId": "taqrib-1540-106-1538",
-      "entryNumber": 1540,
-      "nameSurface": "حمل بفتحتين",
-      "sourcePageId": 107,
-      "spanStart": 100,
-      "spanEnd": 112,
-      "rejectReasons": [
-        "no-personal-name-marker"
-      ],
-      "sourceUrl": "https://app.turath.io/book/8609?page=107"
-    },
-    {
-      "source": "taqrib",
-      "candidateId": "taqrib-1590-109-1588",
-      "entryNumber": 1590,
-      "nameSurface": "حنين",
-      "sourcePageId": 110,
-      "spanStart": 608,
-      "spanEnd": 613,
-      "rejectReasons": [
-        "no-personal-name-marker"
-      ],
-      "sourceUrl": "https://app.turath.io/book/8609?page=110"
-    },
-    {
-      "source": "taqrib",
-      "candidateId": "taqrib-1599-110-1597",
-      "entryNumber": 1599,
-      "nameSurface": "حيان",
-      "sourcePageId": 111,
-      "spanStart": 6,
-      "spanEnd": 11,
-      "rejectReasons": [
-        "no-personal-name-marker"
-      ],
-      "sourceUrl": "https://app.turath.io/book/8609?page=111"
-    },
-    {
-      "source": "taqrib",
-      "candidateId": "taqrib-1706-117-1704",
-      "entryNumber": 1706,
-      "nameSurface": "خديج آخره جيم بوزن كبير [كثير]",
-      "sourcePageId": 118,
-      "spanStart": 1675,
-      "spanEnd": 1706,
-      "rejectReasons": [
-        "no-personal-name-marker"
-      ],
-      "sourceUrl": "https://app.turath.io/book/8609?page=118"
-    },
-    {
-      "source": "taqrib",
-      "candidateId": "taqrib-1712-118-1710",
-      "entryNumber": 1712,
-      "nameSurface": "خزيمة",
-      "sourcePageId": 119,
-      "spanStart": 740,
-      "spanEnd": 746,
-      "rejectReasons": [
-        "no-personal-name-marker"
-      ],
-      "sourceUrl": "https://app.turath.io/book/8609?page=119"
-    },
-    {
-      "source": "taqrib",
-      "candidateId": "taqrib-1827-126-1825",
-      "entryNumber": 1827,
-      "nameSurface": "دفاع",
-      "sourcePageId": 127,
-      "spanStart": 604,
-      "spanEnd": 614,
-      "rejectReasons": [
-        "no-personal-name-marker"
-      ],
-      "sourceUrl": "https://app.turath.io/book/8609?page=127"
-    },
-    {
-      "source": "taqrib",
       "candidateId": "taqrib-1839-127-1837",
       "entryNumber": 1839,
-      "nameSurface": "دينار [صحابي] قيل هو",
+      "nameSurface": "دينار [صحابي]",
       "sourcePageId": 128,
       "spanStart": 252,
-      "spanEnd": 273,
+      "spanEnd": 266,
       "rejectReasons": [
         "no-personal-name-marker"
       ],
@@ -6111,204 +4809,6 @@
     },
     {
       "source": "taqrib",
-      "candidateId": "taqrib-1858-129-1856",
-      "entryNumber": 1858,
-      "nameSurface": "راشد",
-      "sourcePageId": 130,
-      "spanStart": 658,
-      "spanEnd": 663,
-      "rejectReasons": [
-        "no-personal-name-marker"
-      ],
-      "sourceUrl": "https://app.turath.io/book/8609?page=130"
-    },
-    {
-      "source": "taqrib",
-      "candidateId": "taqrib-1871-130-1869",
-      "entryNumber": 1871,
-      "nameSurface": "رافع",
-      "sourcePageId": 131,
-      "spanStart": 197,
-      "spanEnd": 202,
-      "rejectReasons": [
-        "no-personal-name-marker"
-      ],
-      "sourceUrl": "https://app.turath.io/book/8609?page=131"
-    },
-    {
-      "source": "taqrib",
-      "candidateId": "taqrib-1933-134-1931",
-      "entryNumber": 1933,
-      "nameSurface": "رزام أوله",
-      "sourcePageId": 135,
-      "spanStart": 181,
-      "spanEnd": 196,
-      "rejectReasons": [
-        "no-personal-name-marker"
-      ],
-      "sourceUrl": "https://app.turath.io/book/8609?page=135"
-    },
-    {
-      "source": "taqrib",
-      "candidateId": "taqrib-1972-136-1970",
-      "entryNumber": 1972,
-      "nameSurface": "رياح أوله",
-      "sourcePageId": 137,
-      "spanStart": 1486,
-      "spanEnd": 1501,
-      "rejectReasons": [
-        "no-personal-name-marker"
-      ],
-      "sourceUrl": "https://app.turath.io/book/8609?page=137"
-    },
-    {
-      "source": "taqrib",
-      "candidateId": "taqrib-1984-138-1982",
-      "entryNumber": 1984,
-      "nameSurface": "زبان أوله وتشديد الموحدة [ابن سليمان]",
-      "sourcePageId": 139,
-      "spanStart": 799,
-      "spanEnd": 842,
-      "rejectReasons": [
-        "no-personal-name-marker"
-      ],
-      "sourceUrl": "https://app.turath.io/book/8609?page=139"
-    },
-    {
-      "source": "taqrib",
-      "candidateId": "taqrib-2013-140-2011",
-      "entryNumber": 2013,
-      "nameSurface": "زربي أوله وسكون الراء",
-      "sourcePageId": 141,
-      "spanStart": 797,
-      "spanEnd": 836,
-      "rejectReasons": [
-        "no-personal-name-marker"
-      ],
-      "sourceUrl": "https://app.turath.io/book/8609?page=141"
-    },
-    {
-      "source": "taqrib",
-      "candidateId": "taqrib-2041-142-2039",
-      "entryNumber": 2041,
-      "nameSurface": "زهرة",
-      "sourcePageId": 143,
-      "spanStart": 602,
-      "spanEnd": 607,
-      "rejectReasons": [
-        "no-personal-name-marker"
-      ],
-      "sourceUrl": "https://app.turath.io/book/8609?page=143"
-    },
-    {
-      "source": "taqrib",
-      "candidateId": "taqrib-2054-143-2052",
-      "entryNumber": 2054,
-      "nameSurface": "زياد",
-      "sourcePageId": 144,
-      "spanStart": 447,
-      "spanEnd": 452,
-      "rejectReasons": [
-        "no-personal-name-marker"
-      ],
-      "sourceUrl": "https://app.turath.io/book/8609?page=144"
-    },
-    {
-      "source": "taqrib",
-      "candidateId": "taqrib-2059-143-2057",
-      "entryNumber": 2059,
-      "nameSurface": "زياد",
-      "sourcePageId": 144,
-      "spanStart": 918,
-      "spanEnd": 923,
-      "rejectReasons": [
-        "no-personal-name-marker"
-      ],
-      "sourceUrl": "https://app.turath.io/book/8609?page=144"
-    },
-    {
-      "source": "taqrib",
-      "candidateId": "taqrib-2079-144-2077",
-      "entryNumber": 2079,
-      "nameSurface": "زياد",
-      "sourcePageId": 145,
-      "spanStart": 1051,
-      "spanEnd": 1056,
-      "rejectReasons": [
-        "no-personal-name-marker"
-      ],
-      "sourceUrl": "https://app.turath.io/book/8609?page=145"
-    },
-    {
-      "source": "taqrib",
-      "candidateId": "taqrib-2110-146-2108",
-      "entryNumber": 2110,
-      "nameSurface": "زياد",
-      "sourcePageId": 147,
-      "spanStart": 1021,
-      "spanEnd": 1026,
-      "rejectReasons": [
-        "no-personal-name-marker"
-      ],
-      "sourceUrl": "https://app.turath.io/book/8609?page=147"
-    },
-    {
-      "source": "taqrib",
-      "candidateId": "taqrib-2112-146-2110",
-      "entryNumber": 2112,
-      "nameSurface": "زياد",
-      "sourcePageId": 147,
-      "spanStart": 1190,
-      "spanEnd": 1195,
-      "rejectReasons": [
-        "no-personal-name-marker"
-      ],
-      "sourceUrl": "https://app.turath.io/book/8609?page=147"
-    },
-    {
-      "source": "taqrib",
-      "candidateId": "taqrib-2165-150-2163",
-      "entryNumber": 2165,
-      "nameSurface": "زيد",
-      "sourcePageId": 151,
-      "spanStart": 798,
-      "spanEnd": 802,
-      "rejectReasons": [
-        "name-head-too-short",
-        "no-personal-name-marker"
-      ],
-      "sourceUrl": "https://app.turath.io/book/8609?page=151"
-    },
-    {
-      "source": "taqrib",
-      "candidateId": "taqrib-2166-150-2164",
-      "entryNumber": 2166,
-      "nameSurface": "زيد",
-      "sourcePageId": 151,
-      "spanStart": 906,
-      "spanEnd": 910,
-      "rejectReasons": [
-        "name-head-too-short",
-        "no-personal-name-marker"
-      ],
-      "sourceUrl": "https://app.turath.io/book/8609?page=151"
-    },
-    {
-      "source": "taqrib",
-      "candidateId": "taqrib-2167-150-2165",
-      "entryNumber": 2167,
-      "nameSurface": "زيد",
-      "sourcePageId": 151,
-      "spanStart": 968,
-      "spanEnd": 972,
-      "rejectReasons": [
-        "name-head-too-short",
-        "no-personal-name-marker"
-      ],
-      "sourceUrl": "https://app.turath.io/book/8609?page=151"
-    },
-    {
-      "source": "taqrib",
       "candidateId": "taqrib-2188-152-2186",
       "entryNumber": 2188,
       "nameSurface": "سالم الفراء",
@@ -6322,131 +4822,12 @@
     },
     {
       "source": "taqrib",
-      "candidateId": "taqrib-2191-152-2189",
-      "entryNumber": 2191,
-      "nameSurface": "سالم",
-      "sourcePageId": 153,
-      "spanStart": 1279,
-      "spanEnd": 1284,
-      "rejectReasons": [
-        "no-personal-name-marker"
-      ],
-      "sourceUrl": "https://app.turath.io/book/8609?page=153"
-    },
-    {
-      "source": "taqrib",
-      "candidateId": "taqrib-2192-152-2190",
-      "entryNumber": 2192,
-      "nameSurface": "سالم",
-      "sourcePageId": 153,
-      "spanStart": 1382,
-      "spanEnd": 1387,
-      "rejectReasons": [
-        "no-personal-name-marker"
-      ],
-      "sourceUrl": "https://app.turath.io/book/8609?page=153"
-    },
-    {
-      "source": "taqrib",
-      "candidateId": "taqrib-2205-153-2203",
-      "entryNumber": 2205,
-      "nameSurface": "سباع أوله",
-      "sourcePageId": 154,
-      "spanStart": 1363,
-      "spanEnd": 1378,
-      "rejectReasons": [
-        "no-personal-name-marker"
-      ],
-      "sourceUrl": "https://app.turath.io/book/8609?page=154"
-    },
-    {
-      "source": "taqrib",
-      "candidateId": "taqrib-2213-154-2211",
-      "entryNumber": 2213,
-      "nameSurface": "سخبرة أوله وسكون المعجمة وفتح الموحدة",
-      "sourcePageId": 155,
-      "spanStart": 718,
-      "spanEnd": 761,
-      "rejectReasons": [
-        "no-personal-name-marker"
-      ],
-      "sourceUrl": "https://app.turath.io/book/8609?page=155"
-    },
-    {
-      "source": "taqrib",
-      "candidateId": "taqrib-2260-157-2258",
-      "entryNumber": 2260,
-      "nameSurface": "سعد",
-      "sourcePageId": 158,
-      "spanStart": 1239,
-      "spanEnd": 1243,
-      "rejectReasons": [
-        "name-head-too-short",
-        "no-personal-name-marker"
-      ],
-      "sourceUrl": "https://app.turath.io/book/8609?page=158"
-    },
-    {
-      "source": "taqrib",
-      "candidateId": "taqrib-2261-157-2259",
-      "entryNumber": 2261,
-      "nameSurface": "سعد",
-      "sourcePageId": 158,
-      "spanStart": 1332,
-      "spanEnd": 1336,
-      "rejectReasons": [
-        "name-head-too-short",
-        "no-personal-name-marker"
-      ],
-      "sourceUrl": "https://app.turath.io/book/8609?page=158"
-    },
-    {
-      "source": "taqrib",
-      "candidateId": "taqrib-2263-157-2261",
-      "entryNumber": 2263,
-      "nameSurface": "سعد أو سعيد",
-      "sourcePageId": 158,
-      "spanStart": 1441,
-      "spanEnd": 1453,
-      "rejectReasons": [
-        "no-personal-name-marker"
-      ],
-      "sourceUrl": "https://app.turath.io/book/8609?page=158"
-    },
-    {
-      "source": "taqrib",
       "candidateId": "taqrib-2427-168-2425",
       "entryNumber": 2427,
       "nameSurface": "سعيد الصراف مدني",
       "sourcePageId": 169,
       "spanStart": 591,
       "spanEnd": 608,
-      "rejectReasons": [
-        "no-personal-name-marker"
-      ],
-      "sourceUrl": "https://app.turath.io/book/8609?page=169"
-    },
-    {
-      "source": "taqrib",
-      "candidateId": "taqrib-2430-168-2428",
-      "entryNumber": 2430,
-      "nameSurface": "سعيد",
-      "sourcePageId": 169,
-      "spanStart": 759,
-      "spanEnd": 764,
-      "rejectReasons": [
-        "no-personal-name-marker"
-      ],
-      "sourceUrl": "https://app.turath.io/book/8609?page=169"
-    },
-    {
-      "source": "taqrib",
-      "candidateId": "taqrib-2431-168-2429",
-      "entryNumber": 2431,
-      "nameSurface": "سعيد غير منسوب",
-      "sourcePageId": 169,
-      "spanStart": 809,
-      "spanEnd": 824,
       "rejectReasons": [
         "no-personal-name-marker"
       ],
@@ -6469,23 +4850,10 @@
       "source": "taqrib",
       "candidateId": "taqrib-2457-170-2455",
       "entryNumber": 2457,
-      "nameSurface": "سفيان",
+      "nameSurface": "سفيان والد عمرو",
       "sourcePageId": 171,
       "spanStart": 759,
-      "spanEnd": 765,
-      "rejectReasons": [
-        "no-personal-name-marker"
-      ],
-      "sourceUrl": "https://app.turath.io/book/8609?page=171"
-    },
-    {
-      "source": "taqrib",
-      "candidateId": "taqrib-2458-170-2456",
-      "entryNumber": 2458,
-      "nameSurface": "سفينة",
-      "sourcePageId": 171,
-      "spanStart": 801,
-      "spanEnd": 807,
+      "spanEnd": 775,
       "rejectReasons": [
         "no-personal-name-marker"
       ],
@@ -6506,85 +4874,6 @@
     },
     {
       "source": "taqrib",
-      "candidateId": "taqrib-2635-181-2634",
-      "entryNumber": 2635,
-      "nameSurface": "سمي",
-      "sourcePageId": 182,
-      "spanStart": 557,
-      "spanEnd": 561,
-      "rejectReasons": [
-        "name-head-too-short",
-        "no-personal-name-marker"
-      ],
-      "sourceUrl": "https://app.turath.io/book/8609?page=182"
-    },
-    {
-      "source": "taqrib",
-      "candidateId": "taqrib-2646-182-2645",
-      "entryNumber": 2646,
-      "nameSurface": "سنيد",
-      "sourcePageId": 183,
-      "spanStart": 130,
-      "spanEnd": 140,
-      "rejectReasons": [
-        "no-personal-name-marker"
-      ],
-      "sourceUrl": "https://app.turath.io/book/8609?page=183"
-    },
-    {
-      "source": "taqrib",
-      "candidateId": "taqrib-2721-187-2720",
-      "entryNumber": 2721,
-      "nameSurface": "سيدان أوله",
-      "sourcePageId": 188,
-      "spanStart": 412,
-      "spanEnd": 428,
-      "rejectReasons": [
-        "no-personal-name-marker"
-      ],
-      "sourceUrl": "https://app.turath.io/book/8609?page=188"
-    },
-    {
-      "source": "taqrib",
-      "candidateId": "taqrib-2734-188-2733",
-      "entryNumber": 2734,
-      "nameSurface": "شباك أوله",
-      "sourcePageId": 189,
-      "spanStart": 608,
-      "spanEnd": 623,
-      "rejectReasons": [
-        "no-personal-name-marker"
-      ],
-      "sourceUrl": "https://app.turath.io/book/8609?page=189"
-    },
-    {
-      "source": "taqrib",
-      "candidateId": "taqrib-2735-188-2734",
-      "entryNumber": 2735,
-      "nameSurface": "شبث أوله والموحدة",
-      "sourcePageId": 189,
-      "spanStart": 722,
-      "spanEnd": 745,
-      "rejectReasons": [
-        "no-personal-name-marker"
-      ],
-      "sourceUrl": "https://app.turath.io/book/8609?page=189"
-    },
-    {
-      "source": "taqrib",
-      "candidateId": "taqrib-2760-189-2759",
-      "entryNumber": 2760,
-      "nameSurface": "شداد",
-      "sourcePageId": 190,
-      "spanStart": 1457,
-      "spanEnd": 1462,
-      "rejectReasons": [
-        "no-personal-name-marker"
-      ],
-      "sourceUrl": "https://app.turath.io/book/8609?page=190"
-    },
-    {
-      "source": "taqrib",
       "candidateId": "taqrib-2772-190-2771",
       "entryNumber": 2772,
       "nameSurface": "شرقي أوله والراء",
@@ -6595,19 +4884,6 @@
         "no-personal-name-marker"
       ],
       "sourceUrl": "https://app.turath.io/book/8609?page=191"
-    },
-    {
-      "source": "taqrib",
-      "candidateId": "taqrib-2782-191-2781",
-      "entryNumber": 2782,
-      "nameSurface": "شريح",
-      "sourcePageId": 192,
-      "spanStart": 350,
-      "spanEnd": 355,
-      "rejectReasons": [
-        "no-personal-name-marker"
-      ],
-      "sourceUrl": "https://app.turath.io/book/8609?page=192"
     },
     {
       "source": "taqrib",
@@ -6624,32 +4900,6 @@
     },
     {
       "source": "taqrib",
-      "candidateId": "taqrib-2814-193-2813",
-      "entryNumber": 2814,
-      "nameSurface": "شقران أوله وسكون القاف",
-      "sourcePageId": 194,
-      "spanStart": 442,
-      "spanEnd": 469,
-      "rejectReasons": [
-        "no-personal-name-marker"
-      ],
-      "sourceUrl": "https://app.turath.io/book/8609?page=194"
-    },
-    {
-      "source": "taqrib",
-      "candidateId": "taqrib-2824-194-2823",
-      "entryNumber": 2824,
-      "nameSurface": "شنتم أوله",
-      "sourcePageId": 195,
-      "spanStart": 6,
-      "spanEnd": 21,
-      "rejectReasons": [
-        "no-personal-name-marker"
-      ],
-      "sourceUrl": "https://app.turath.io/book/8609?page=195"
-    },
-    {
-      "source": "taqrib",
       "candidateId": "taqrib-2895-199-2894",
       "entryNumber": 2895,
       "nameSurface": "صالح بياع الأكسية",
@@ -6663,146 +4913,16 @@
     },
     {
       "source": "taqrib",
-      "candidateId": "taqrib-2900-199-2899",
-      "entryNumber": 2900,
-      "nameSurface": "صبيح",
-      "sourcePageId": 200,
-      "spanStart": 1318,
-      "spanEnd": 1328,
-      "rejectReasons": [
-        "no-personal-name-marker"
-      ],
-      "sourceUrl": "https://app.turath.io/book/8609?page=200"
-    },
-    {
-      "source": "taqrib",
-      "candidateId": "taqrib-2953-203-2952",
-      "entryNumber": 2953,
-      "nameSurface": "الصنابح أوله",
-      "sourcePageId": 204,
-      "spanStart": 172,
-      "spanEnd": 189,
-      "rejectReasons": [
-        "no-personal-name-marker"
-      ],
-      "sourceUrl": "https://app.turath.io/book/8609?page=204"
-    },
-    {
-      "source": "taqrib",
-      "candidateId": "taqrib-2955-203-2954",
-      "entryNumber": 2955,
-      "nameSurface": "صهيب",
-      "sourcePageId": 204,
-      "spanStart": 453,
-      "spanEnd": 458,
-      "rejectReasons": [
-        "no-personal-name-marker"
-      ],
-      "sourceUrl": "https://app.turath.io/book/8609?page=204"
-    },
-    {
-      "source": "taqrib",
-      "candidateId": "taqrib-2958-203-2957",
-      "entryNumber": 2958,
-      "nameSurface": "صهيب",
-      "sourcePageId": 204,
-      "spanStart": 655,
-      "spanEnd": 660,
-      "rejectReasons": [
-        "no-personal-name-marker"
-      ],
-      "sourceUrl": "https://app.turath.io/book/8609?page=204"
-    },
-    {
-      "source": "taqrib",
-      "candidateId": "taqrib-2962-204-2961",
-      "entryNumber": 2962,
-      "nameSurface": "ضبارة أوله",
-      "sourcePageId": 205,
-      "spanStart": 65,
-      "spanEnd": 80,
-      "rejectReasons": [
-        "no-personal-name-marker"
-      ],
-      "sourceUrl": "https://app.turath.io/book/8609?page=205"
-    },
-    {
-      "source": "taqrib",
-      "candidateId": "taqrib-3010-206-3009",
-      "entryNumber": 3010,
-      "nameSurface": "طخفة أوله وسكون الخاء المعجمة",
-      "sourcePageId": 207,
-      "spanStart": 1409,
-      "spanEnd": 1444,
-      "rejectReasons": [
-        "no-personal-name-marker"
-      ],
-      "sourceUrl": "https://app.turath.io/book/8609?page=207"
-    },
-    {
-      "source": "taqrib",
-      "candidateId": "taqrib-3039-208-3038",
-      "entryNumber": 3039,
-      "nameSurface": "طلحة",
-      "sourcePageId": 209,
-      "spanStart": 994,
-      "spanEnd": 999,
-      "rejectReasons": [
-        "no-personal-name-marker"
-      ],
-      "sourceUrl": "https://app.turath.io/book/8609?page=209"
-    },
-    {
-      "source": "taqrib",
-      "candidateId": "taqrib-3052-210-3051",
-      "entryNumber": 3052,
-      "nameSurface": "عابس مكسورة",
-      "sourcePageId": 211,
-      "spanStart": 57,
-      "spanEnd": 76,
-      "rejectReasons": [
-        "no-personal-name-marker"
-      ],
-      "sourceUrl": "https://app.turath.io/book/8609?page=211"
-    },
-    {
-      "source": "taqrib",
-      "candidateId": "taqrib-3156-216-3155",
-      "entryNumber": 3156,
-      "nameSurface": "عباد السماك",
-      "sourcePageId": 217,
-      "spanStart": 1486,
-      "spanEnd": 1498,
-      "rejectReasons": [
-        "no-personal-name-marker"
-      ],
-      "sourceUrl": "https://app.turath.io/book/8609?page=217"
-    },
-    {
-      "source": "taqrib",
       "candidateId": "taqrib-3728-256-3727",
       "entryNumber": 3728,
-      "nameSurface": "عبد الله",
+      "nameSurface": "عبد الله والد حمزة",
       "sourcePageId": 257,
       "spanStart": 331,
-      "spanEnd": 340,
+      "spanEnd": 350,
       "rejectReasons": [
         "no-personal-name-marker"
       ],
       "sourceUrl": "https://app.turath.io/book/8609?page=257"
-    },
-    {
-      "source": "taqrib",
-      "candidateId": "taqrib-3777-259-3776",
-      "entryNumber": 3777,
-      "nameSurface": "عبد الحميد",
-      "sourcePageId": 260,
-      "spanStart": 1336,
-      "spanEnd": 1347,
-      "rejectReasons": [
-        "no-personal-name-marker"
-      ],
-      "sourceUrl": "https://app.turath.io/book/8609?page=260"
     },
     {
       "source": "taqrib",
@@ -6819,110 +4939,6 @@
     },
     {
       "source": "taqrib",
-      "candidateId": "taqrib-4053-279-4052",
-      "entryNumber": 4053,
-      "nameSurface": "عبد الرحمن",
-      "sourcePageId": 280,
-      "spanStart": 6,
-      "spanEnd": 17,
-      "rejectReasons": [
-        "no-personal-name-marker"
-      ],
-      "sourceUrl": "https://app.turath.io/book/8609?page=280"
-    },
-    {
-      "source": "taqrib",
-      "candidateId": "taqrib-4134-285-4133",
-      "entryNumber": 4134,
-      "nameSurface": "عبد العزيز",
-      "sourcePageId": 286,
-      "spanStart": 6,
-      "spanEnd": 17,
-      "rejectReasons": [
-        "no-personal-name-marker"
-      ],
-      "sourceUrl": "https://app.turath.io/book/8609?page=286"
-    },
-    {
-      "source": "taqrib",
-      "candidateId": "taqrib-4250-292-4249",
-      "entryNumber": 4250,
-      "nameSurface": "عبد الوارث",
-      "sourcePageId": 293,
-      "spanStart": 1143,
-      "spanEnd": 1154,
-      "rejectReasons": [
-        "no-personal-name-marker"
-      ],
-      "sourceUrl": "https://app.turath.io/book/8609?page=293"
-    },
-    {
-      "source": "taqrib",
-      "candidateId": "taqrib-4355-300-4354",
-      "entryNumber": 4355,
-      "nameSurface": "عبيد الله",
-      "sourcePageId": 301,
-      "spanStart": 1191,
-      "spanEnd": 1201,
-      "rejectReasons": [
-        "no-personal-name-marker"
-      ],
-      "sourceUrl": "https://app.turath.io/book/8609?page=301"
-    },
-    {
-      "source": "taqrib",
-      "candidateId": "taqrib-4356-300-4355",
-      "entryNumber": 4356,
-      "nameSurface": "عبيد الله",
-      "sourcePageId": 301,
-      "spanStart": 1266,
-      "spanEnd": 1276,
-      "rejectReasons": [
-        "no-personal-name-marker"
-      ],
-      "sourceUrl": "https://app.turath.io/book/8609?page=301"
-    },
-    {
-      "source": "taqrib",
-      "candidateId": "taqrib-4404-304-4404",
-      "entryNumber": 4404,
-      "nameSurface": "عبيد سنوطا",
-      "sourcePageId": 305,
-      "spanStart": 6,
-      "spanEnd": 40,
-      "rejectReasons": [
-        "no-personal-name-marker"
-      ],
-      "sourceUrl": "https://app.turath.io/book/8609?page=305"
-    },
-    {
-      "source": "taqrib",
-      "candidateId": "taqrib-4406-304-4406",
-      "entryNumber": 4406,
-      "nameSurface": "عبيد",
-      "sourcePageId": 305,
-      "spanStart": 150,
-      "spanEnd": 155,
-      "rejectReasons": [
-        "no-personal-name-marker"
-      ],
-      "sourceUrl": "https://app.turath.io/book/8609?page=305"
-    },
-    {
-      "source": "taqrib",
-      "candidateId": "taqrib-4424-305-4424",
-      "entryNumber": 4424,
-      "nameSurface": "عتاب",
-      "sourcePageId": 306,
-      "spanStart": 692,
-      "spanEnd": 697,
-      "rejectReasons": [
-        "no-personal-name-marker"
-      ],
-      "sourceUrl": "https://app.turath.io/book/8609?page=306"
-    },
-    {
-      "source": "taqrib",
       "candidateId": "taqrib-4446-306-4446",
       "entryNumber": 4446,
       "nameSurface": "عتيبة بصري",
@@ -6933,19 +4949,6 @@
         "no-personal-name-marker"
       ],
       "sourceUrl": "https://app.turath.io/book/8609?page=307"
-    },
-    {
-      "source": "taqrib",
-      "candidateId": "taqrib-4534-312-4534",
-      "entryNumber": 4534,
-      "nameSurface": "عجلان",
-      "sourcePageId": 313,
-      "spanStart": 1312,
-      "spanEnd": 1318,
-      "rejectReasons": [
-        "no-personal-name-marker"
-      ],
-      "sourceUrl": "https://app.turath.io/book/8609?page=313"
     },
     {
       "source": "taqrib",
@@ -6962,264 +4965,16 @@
     },
     {
       "source": "taqrib",
-      "candidateId": "taqrib-4553-314-4553",
-      "entryNumber": 4553,
-      "nameSurface": "عرعرة مفتوحتين بينهما راء ساكنة وآخره راء",
-      "sourcePageId": 315,
-      "spanStart": 169,
-      "spanEnd": 220,
-      "rejectReasons": [
-        "no-personal-name-marker"
-      ],
-      "sourceUrl": "https://app.turath.io/book/8609?page=315"
-    },
-    {
-      "source": "taqrib",
-      "candidateId": "taqrib-4562-314-4562",
-      "entryNumber": 4562,
-      "nameSurface": "عروة",
-      "sourcePageId": 315,
-      "spanStart": 1179,
-      "spanEnd": 1184,
-      "rejectReasons": [
-        "no-personal-name-marker"
-      ],
-      "sourceUrl": "https://app.turath.io/book/8609?page=315"
-    },
-    {
-      "source": "taqrib",
-      "candidateId": "taqrib-4573-315-4573",
-      "entryNumber": 4573,
-      "nameSurface": "عريب أوله وكسر الراء",
-      "sourcePageId": 316,
-      "spanStart": 505,
-      "spanEnd": 545,
-      "rejectReasons": [
-        "no-personal-name-marker"
-      ],
-      "sourceUrl": "https://app.turath.io/book/8609?page=316"
-    },
-    {
-      "source": "taqrib",
-      "candidateId": "taqrib-4607-317-4607",
-      "entryNumber": 4607,
-      "nameSurface": "عطاء",
-      "sourcePageId": 318,
-      "spanStart": 1308,
-      "spanEnd": 1313,
-      "rejectReasons": [
-        "no-personal-name-marker"
-      ],
-      "sourceUrl": "https://app.turath.io/book/8609?page=318"
-    },
-    {
-      "source": "taqrib",
-      "candidateId": "taqrib-5178-356-5178",
-      "entryNumber": 5178,
-      "nameSurface": "عمران القصير آخر",
-      "sourcePageId": 357,
-      "spanStart": 78,
-      "spanEnd": 95,
-      "rejectReasons": [
-        "no-personal-name-marker"
-      ],
-      "sourceUrl": "https://app.turath.io/book/8609?page=357"
-    },
-    {
-      "source": "taqrib",
-      "candidateId": "taqrib-5191-357-5191",
-      "entryNumber": 5191,
-      "nameSurface": "عمير",
-      "sourcePageId": 358,
-      "spanStart": 131,
-      "spanEnd": 136,
-      "rejectReasons": [
-        "no-personal-name-marker"
-      ],
-      "sourceUrl": "https://app.turath.io/book/8609?page=358"
-    },
-    {
-      "source": "taqrib",
-      "candidateId": "taqrib-5192-357-5192",
-      "entryNumber": 5192,
-      "nameSurface": "عمير",
-      "sourcePageId": 358,
-      "spanStart": 205,
-      "spanEnd": 210,
-      "rejectReasons": [
-        "no-personal-name-marker"
-      ],
-      "sourceUrl": "https://app.turath.io/book/8609?page=358"
-    },
-    {
-      "source": "taqrib",
-      "candidateId": "taqrib-5193-357-5193",
-      "entryNumber": 5193,
-      "nameSurface": "عمير",
-      "sourcePageId": 358,
-      "spanStart": 250,
-      "spanEnd": 255,
-      "rejectReasons": [
-        "no-personal-name-marker"
-      ],
-      "sourceUrl": "https://app.turath.io/book/8609?page=358"
-    },
-    {
-      "source": "taqrib",
-      "candidateId": "taqrib-5197-357-5197",
-      "entryNumber": 5197,
-      "nameSurface": "عنبسة أوله",
-      "sourcePageId": 358,
-      "spanStart": 593,
-      "spanEnd": 609,
-      "rejectReasons": [
-        "no-personal-name-marker"
-      ],
-      "sourceUrl": "https://app.turath.io/book/8609?page=358"
-    },
-    {
-      "source": "taqrib",
-      "candidateId": "taqrib-5263-361-5263",
-      "entryNumber": 5263,
-      "nameSurface": "العلاء الخزاز",
-      "sourcePageId": 362,
-      "spanStart": 940,
-      "spanEnd": 962,
-      "rejectReasons": [
-        "no-personal-name-marker"
-      ],
-      "sourceUrl": "https://app.turath.io/book/8609?page=362"
-    },
-    {
-      "source": "taqrib",
-      "candidateId": "taqrib-5361-368-5361",
-      "entryNumber": 5361,
-      "nameSurface": "غضيف بالضاد المعجمة",
-      "sourcePageId": 369,
-      "spanStart": 6,
-      "spanEnd": 31,
-      "rejectReasons": [
-        "no-personal-name-marker"
-      ],
-      "sourceUrl": "https://app.turath.io/book/8609?page=369"
-    },
-    {
-      "source": "taqrib",
-      "candidateId": "taqrib-5375-369-5375",
-      "entryNumber": 5375,
-      "nameSurface": "فائد",
-      "sourcePageId": 370,
-      "spanStart": 428,
-      "spanEnd": 433,
-      "rejectReasons": [
-        "no-personal-name-marker"
-      ],
-      "sourceUrl": "https://app.turath.io/book/8609?page=370"
-    },
-    {
-      "source": "taqrib",
-      "candidateId": "taqrib-5386-369-5386",
-      "entryNumber": 5386,
-      "nameSurface": "فروخ",
-      "sourcePageId": 370,
-      "spanStart": 1508,
-      "spanEnd": 1513,
-      "rejectReasons": [
-        "no-personal-name-marker"
-      ],
-      "sourceUrl": "https://app.turath.io/book/8609?page=370"
-    },
-    {
-      "source": "taqrib",
-      "candidateId": "taqrib-5507-378-5507",
-      "entryNumber": 5507,
-      "nameSurface": "قباث",
-      "sourcePageId": 379,
-      "spanStart": 74,
-      "spanEnd": 92,
-      "rejectReasons": [
-        "no-personal-name-marker"
-      ],
-      "sourceUrl": "https://app.turath.io/book/8609?page=379"
-    },
-    {
-      "source": "taqrib",
       "candidateId": "taqrib-5535-379-5535",
       "entryNumber": 5535,
-      "nameSurface": "قرظة",
+      "nameSurface": "قرظة شيخ لإسرائيل لا",
       "sourcePageId": 380,
       "spanStart": 1645,
-      "spanEnd": 1650,
+      "spanEnd": 1666,
       "rejectReasons": [
         "no-personal-name-marker"
       ],
       "sourceUrl": "https://app.turath.io/book/8609?page=380"
-    },
-    {
-      "source": "taqrib",
-      "candidateId": "taqrib-5669-387-5669",
-      "entryNumber": 5669,
-      "nameSurface": "كنانة",
-      "sourcePageId": 388,
-      "spanStart": 1431,
-      "spanEnd": 1437,
-      "rejectReasons": [
-        "no-personal-name-marker"
-      ],
-      "sourceUrl": "https://app.turath.io/book/8609?page=388"
-    },
-    {
-      "source": "taqrib",
-      "candidateId": "taqrib-6259-429-6259",
-      "entryNumber": 6259,
-      "nameSurface": "محمد أيضا",
-      "sourcePageId": 430,
-      "spanStart": 997,
-      "spanEnd": 1007,
-      "rejectReasons": [
-        "no-personal-name-marker"
-      ],
-      "sourceUrl": "https://app.turath.io/book/8609?page=430"
-    },
-    {
-      "source": "taqrib",
-      "candidateId": "taqrib-6491-446-6491",
-      "entryNumber": 6491,
-      "nameSurface": "مجيبة أوله وكسر الجيم",
-      "sourcePageId": 447,
-      "spanStart": 6,
-      "spanEnd": 46,
-      "rejectReasons": [
-        "no-personal-name-marker"
-      ],
-      "sourceUrl": "https://app.turath.io/book/8609?page=447"
-    },
-    {
-      "source": "taqrib",
-      "candidateId": "taqrib-6519-448-6520",
-      "entryNumber": 6519,
-      "nameSurface": "محيصة وتشديد التحتانية",
-      "sourcePageId": 449,
-      "spanStart": 6,
-      "spanEnd": 52,
-      "rejectReasons": [
-        "no-personal-name-marker"
-      ],
-      "sourceUrl": "https://app.turath.io/book/8609?page=449"
-    },
-    {
-      "source": "taqrib",
-      "candidateId": "taqrib-6565-450-6566",
-      "entryNumber": 6565,
-      "nameSurface": "مرة",
-      "sourcePageId": 451,
-      "spanStart": 1272,
-      "spanEnd": 1276,
-      "rejectReasons": [
-        "name-head-too-short",
-        "no-personal-name-marker"
-      ],
-      "sourceUrl": "https://app.turath.io/book/8609?page=451"
     },
     {
       "source": "taqrib",
@@ -7233,45 +4988,6 @@
         "no-personal-name-marker"
       ],
       "sourceUrl": "https://app.turath.io/book/8609?page=453"
-    },
-    {
-      "source": "taqrib",
-      "candidateId": "taqrib-6589-452-6590",
-      "entryNumber": 6589,
-      "nameSurface": "مساور غير منسوب",
-      "sourcePageId": 453,
-      "spanStart": 661,
-      "spanEnd": 677,
-      "rejectReasons": [
-        "no-personal-name-marker"
-      ],
-      "sourceUrl": "https://app.turath.io/book/8609?page=453"
-    },
-    {
-      "source": "taqrib",
-      "candidateId": "taqrib-6597-452-6598",
-      "entryNumber": 6597,
-      "nameSurface": "مسحاج أوله وسكون ثانيه",
-      "sourcePageId": 453,
-      "spanStart": 1382,
-      "spanEnd": 1410,
-      "rejectReasons": [
-        "no-personal-name-marker"
-      ],
-      "sourceUrl": "https://app.turath.io/book/8609?page=453"
-    },
-    {
-      "source": "taqrib",
-      "candidateId": "taqrib-6600-453-6601",
-      "entryNumber": 6600,
-      "nameSurface": "مسروح المؤذن",
-      "sourcePageId": 454,
-      "spanStart": 302,
-      "spanEnd": 315,
-      "rejectReasons": [
-        "no-personal-name-marker"
-      ],
-      "sourceUrl": "https://app.turath.io/book/8609?page=454"
     },
     {
       "source": "taqrib",
@@ -7301,45 +5017,6 @@
     },
     {
       "source": "taqrib",
-      "candidateId": "taqrib-6697-458-6698",
-      "entryNumber": 6697,
-      "nameSurface": "مصبح بتشديد الموحدة",
-      "sourcePageId": 459,
-      "spanStart": 1535,
-      "spanEnd": 1555,
-      "rejectReasons": [
-        "no-personal-name-marker"
-      ],
-      "sourceUrl": "https://app.turath.io/book/8609?page=459"
-    },
-    {
-      "source": "taqrib",
-      "candidateId": "taqrib-6704-459-6705",
-      "entryNumber": 6704,
-      "nameSurface": "مطرح أوله وتشديد ثانيه مفتوحا وكسر ثالثه",
-      "sourcePageId": 460,
-      "spanStart": 770,
-      "spanEnd": 815,
-      "rejectReasons": [
-        "no-personal-name-marker"
-      ],
-      "sourceUrl": "https://app.turath.io/book/8609?page=460"
-    },
-    {
-      "source": "taqrib",
-      "candidateId": "taqrib-6714-460-6715",
-      "entryNumber": 6714,
-      "nameSurface": "المطوس بتشديد الواو المكسورة",
-      "sourcePageId": 461,
-      "spanStart": 290,
-      "spanEnd": 319,
-      "rejectReasons": [
-        "no-personal-name-marker"
-      ],
-      "sourceUrl": "https://app.turath.io/book/8609?page=461"
-    },
-    {
-      "source": "taqrib",
       "candidateId": "taqrib-6828-467-6829",
       "entryNumber": 6828,
       "nameSurface": "مغيث غير منسوب",
@@ -7350,71 +5027,6 @@
         "no-personal-name-marker"
       ],
       "sourceUrl": "https://app.turath.io/book/8609?page=468"
-    },
-    {
-      "source": "taqrib",
-      "candidateId": "taqrib-6878-470-6879",
-      "entryNumber": 6878,
-      "nameSurface": "ملقام أوله وسكون اللام",
-      "sourcePageId": 471,
-      "spanStart": 1352,
-      "spanEnd": 1380,
-      "rejectReasons": [
-        "no-personal-name-marker"
-      ],
-      "sourceUrl": "https://app.turath.io/book/8609?page=471"
-    },
-    {
-      "source": "taqrib",
-      "candidateId": "taqrib-6882-470-6883",
-      "entryNumber": 6882,
-      "nameSurface": "منجاب أوله وسكون ثانيه",
-      "sourcePageId": 471,
-      "spanStart": 1733,
-      "spanEnd": 1761,
-      "rejectReasons": [
-        "no-personal-name-marker"
-      ],
-      "sourceUrl": "https://app.turath.io/book/8609?page=471"
-    },
-    {
-      "source": "taqrib",
-      "candidateId": "taqrib-6931-473-6932",
-      "entryNumber": 6931,
-      "nameSurface": "مهدي",
-      "sourcePageId": 474,
-      "spanStart": 1291,
-      "spanEnd": 1296,
-      "rejectReasons": [
-        "no-personal-name-marker"
-      ],
-      "sourceUrl": "https://app.turath.io/book/8609?page=474"
-    },
-    {
-      "source": "taqrib",
-      "candidateId": "taqrib-7028-480-7029",
-      "entryNumber": 7028,
-      "nameSurface": "موسى غير منسوب",
-      "sourcePageId": 481,
-      "spanStart": 6,
-      "spanEnd": 21,
-      "rejectReasons": [
-        "no-personal-name-marker"
-      ],
-      "sourceUrl": "https://app.turath.io/book/8609?page=481"
-    },
-    {
-      "source": "taqrib",
-      "candidateId": "taqrib-7041-480-7042",
-      "entryNumber": 7041,
-      "nameSurface": "ميسرة",
-      "sourcePageId": 481,
-      "spanStart": 1489,
-      "spanEnd": 1495,
-      "rejectReasons": [
-        "no-personal-name-marker"
-      ],
-      "sourceUrl": "https://app.turath.io/book/8609?page=481"
     },
     {
       "source": "taqrib",
@@ -7431,81 +5043,16 @@
     },
     {
       "source": "taqrib",
-      "candidateId": "taqrib-7059-481-7060",
-      "entryNumber": 7059,
-      "nameSurface": "مينا التحتانية",
-      "sourcePageId": 482,
-      "spanStart": 1523,
-      "spanEnd": 1555,
-      "rejectReasons": [
-        "no-personal-name-marker"
-      ],
-      "sourceUrl": "https://app.turath.io/book/8609?page=482"
-    },
-    {
-      "source": "taqrib",
       "candidateId": "taqrib-7060-482-7061",
       "entryNumber": 7060,
-      "nameSurface": "نابل",
+      "nameSurface": "نابل صاحب العباء والأكسية والشمال",
       "sourcePageId": 483,
       "spanStart": 57,
-      "spanEnd": 62,
+      "spanEnd": 104,
       "rejectReasons": [
         "no-personal-name-marker"
       ],
       "sourceUrl": "https://app.turath.io/book/8609?page=483"
-    },
-    {
-      "source": "taqrib",
-      "candidateId": "taqrib-7085-484-7086",
-      "entryNumber": 7085,
-      "nameSurface": "نافع",
-      "sourcePageId": 485,
-      "spanStart": 156,
-      "spanEnd": 161,
-      "rejectReasons": [
-        "no-personal-name-marker"
-      ],
-      "sourceUrl": "https://app.turath.io/book/8609?page=485"
-    },
-    {
-      "source": "taqrib",
-      "candidateId": "taqrib-7087-484-7088",
-      "entryNumber": 7087,
-      "nameSurface": "نافع",
-      "sourcePageId": 485,
-      "spanStart": 309,
-      "spanEnd": 314,
-      "rejectReasons": [
-        "no-personal-name-marker"
-      ],
-      "sourceUrl": "https://app.turath.io/book/8609?page=485"
-    },
-    {
-      "source": "taqrib",
-      "candidateId": "taqrib-7088-484-7089",
-      "entryNumber": 7088,
-      "nameSurface": "نافع",
-      "sourcePageId": 485,
-      "spanStart": 357,
-      "spanEnd": 362,
-      "rejectReasons": [
-        "no-personal-name-marker"
-      ],
-      "sourceUrl": "https://app.turath.io/book/8609?page=485"
-    },
-    {
-      "source": "taqrib",
-      "candidateId": "taqrib-7090-484-7091",
-      "entryNumber": 7090,
-      "nameSurface": "نباتة أوله وقيل بفتحة",
-      "sourcePageId": 485,
-      "spanStart": 553,
-      "spanEnd": 579,
-      "rejectReasons": [
-        "no-personal-name-marker"
-      ],
-      "sourceUrl": "https://app.turath.io/book/8609?page=485"
     },
     {
       "source": "taqrib",
@@ -7535,372 +5082,6 @@
     },
     {
       "source": "taqrib",
-      "candidateId": "taqrib-7129-486-7129",
-      "entryNumber": 7129,
-      "nameSurface": "نصير",
-      "sourcePageId": 487,
-      "spanStart": 1203,
-      "spanEnd": 1208,
-      "rejectReasons": [
-        "no-personal-name-marker"
-      ],
-      "sourceUrl": "https://app.turath.io/book/8609?page=487"
-    },
-    {
-      "source": "taqrib",
-      "candidateId": "taqrib-7167-490-7167",
-      "entryNumber": 7167,
-      "nameSurface": "نعيم",
-      "sourcePageId": 491,
-      "spanStart": 6,
-      "spanEnd": 11,
-      "rejectReasons": [
-        "no-personal-name-marker"
-      ],
-      "sourceUrl": "https://app.turath.io/book/8609?page=491"
-    },
-    {
-      "source": "taqrib",
-      "candidateId": "taqrib-7197-491-7197",
-      "entryNumber": 7197,
-      "nameSurface": "النهاس بتشديد الهاء",
-      "sourcePageId": 492,
-      "spanStart": 1096,
-      "spanEnd": 1116,
-      "rejectReasons": [
-        "no-personal-name-marker"
-      ],
-      "sourceUrl": "https://app.turath.io/book/8609?page=492"
-    },
-    {
-      "source": "taqrib",
-      "candidateId": "taqrib-7201-491-7201",
-      "entryNumber": 7201,
-      "nameSurface": "النواس بتشديد الواو",
-      "sourcePageId": 492,
-      "spanStart": 1444,
-      "spanEnd": 1464,
-      "rejectReasons": [
-        "no-personal-name-marker"
-      ],
-      "sourceUrl": "https://app.turath.io/book/8609?page=492"
-    },
-    {
-      "source": "taqrib",
-      "candidateId": "taqrib-7267-495-7267",
-      "entryNumber": 7267,
-      "nameSurface": "هانئ",
-      "sourcePageId": 496,
-      "spanStart": 1413,
-      "spanEnd": 1418,
-      "rejectReasons": [
-        "no-personal-name-marker"
-      ],
-      "sourceUrl": "https://app.turath.io/book/8609?page=496"
-    },
-    {
-      "source": "taqrib",
-      "candidateId": "taqrib-7275-496-7275",
-      "entryNumber": 7275,
-      "nameSurface": "الهرمزان أوله وثالثه وسكون الراء",
-      "sourcePageId": 497,
-      "spanStart": 947,
-      "spanEnd": 984,
-      "rejectReasons": [
-        "no-personal-name-marker"
-      ],
-      "sourceUrl": "https://app.turath.io/book/8609?page=497"
-    },
-    {
-      "source": "taqrib",
-      "candidateId": "taqrib-7314-499-7314",
-      "entryNumber": 7314,
-      "nameSurface": "هقل بكسرأوله وسكون القاف",
-      "sourcePageId": 500,
-      "spanStart": 480,
-      "spanEnd": 505,
-      "rejectReasons": [
-        "no-personal-name-marker"
-      ],
-      "sourceUrl": "https://app.turath.io/book/8609?page=500"
-    },
-    {
-      "source": "taqrib",
-      "candidateId": "taqrib-7315-499-7315",
-      "entryNumber": 7315,
-      "nameSurface": "هلب أوله وسكون اللام",
-      "sourcePageId": 500,
-      "spanStart": 698,
-      "spanEnd": 723,
-      "rejectReasons": [
-        "no-personal-name-marker"
-      ],
-      "sourceUrl": "https://app.turath.io/book/8609?page=500"
-    },
-    {
-      "source": "taqrib",
-      "candidateId": "taqrib-7325-500-7325",
-      "entryNumber": 7325,
-      "nameSurface": "هني",
-      "sourcePageId": 501,
-      "spanStart": 120,
-      "spanEnd": 124,
-      "rejectReasons": [
-        "name-head-too-short",
-        "no-personal-name-marker"
-      ],
-      "sourceUrl": "https://app.turath.io/book/8609?page=501"
-    },
-    {
-      "source": "taqrib",
-      "candidateId": "taqrib-7353-501-7353",
-      "entryNumber": 7353,
-      "nameSurface": "هلال",
-      "sourcePageId": 502,
-      "spanStart": 1201,
-      "spanEnd": 1206,
-      "rejectReasons": [
-        "no-personal-name-marker"
-      ],
-      "sourceUrl": "https://app.turath.io/book/8609?page=502"
-    },
-    {
-      "source": "taqrib",
-      "candidateId": "taqrib-7354-501-7354",
-      "entryNumber": 7354,
-      "nameSurface": "هياج أوله والتحتانية المشددة",
-      "sourcePageId": 502,
-      "spanStart": 1243,
-      "spanEnd": 1277,
-      "rejectReasons": [
-        "no-personal-name-marker"
-      ],
-      "sourceUrl": "https://app.turath.io/book/8609?page=502"
-    },
-    {
-      "source": "taqrib",
-      "candidateId": "taqrib-7378-504-7378",
-      "entryNumber": 7378,
-      "nameSurface": "وابصة",
-      "sourcePageId": 505,
-      "spanStart": 57,
-      "spanEnd": 76,
-      "rejectReasons": [
-        "no-personal-name-marker"
-      ],
-      "sourceUrl": "https://app.turath.io/book/8609?page=505"
-    },
-    {
-      "source": "taqrib",
-      "candidateId": "taqrib-7386-504-7386",
-      "entryNumber": 7386,
-      "nameSurface": "واصل",
-      "sourcePageId": 505,
-      "spanStart": 952,
-      "spanEnd": 957,
-      "rejectReasons": [
-        "no-personal-name-marker"
-      ],
-      "sourceUrl": "https://app.turath.io/book/8609?page=505"
-    },
-    {
-      "source": "taqrib",
-      "candidateId": "taqrib-7399-505-7399",
-      "entryNumber": 7399,
-      "nameSurface": "وحشي أوله وسكون المهملة",
-      "sourcePageId": 506,
-      "spanStart": 791,
-      "spanEnd": 820,
-      "rejectReasons": [
-        "no-personal-name-marker"
-      ],
-      "sourceUrl": "https://app.turath.io/book/8609?page=506"
-    },
-    {
-      "source": "taqrib",
-      "candidateId": "taqrib-7406-505-7406",
-      "entryNumber": 7406,
-      "nameSurface": "وساج بتشديد المهملة",
-      "sourcePageId": 506,
-      "spanStart": 1400,
-      "spanEnd": 1420,
-      "rejectReasons": [
-        "no-personal-name-marker"
-      ],
-      "sourceUrl": "https://app.turath.io/book/8609?page=506"
-    },
-    {
-      "source": "taqrib",
-      "candidateId": "taqrib-7407-505-7407",
-      "entryNumber": 7407,
-      "nameSurface": "وضاح بتشديد المعجمة",
-      "sourcePageId": 506,
-      "spanStart": 1477,
-      "spanEnd": 1497,
-      "rejectReasons": [
-        "no-personal-name-marker"
-      ],
-      "sourceUrl": "https://app.turath.io/book/8609?page=506"
-    },
-    {
-      "source": "taqrib",
-      "candidateId": "taqrib-7408-506-7408",
-      "entryNumber": 7408,
-      "nameSurface": "الوضين أوله وكسر المعجمة",
-      "sourcePageId": 507,
-      "spanStart": 6,
-      "spanEnd": 56,
-      "rejectReasons": [
-        "no-personal-name-marker"
-      ],
-      "sourceUrl": "https://app.turath.io/book/8609?page=507"
-    },
-    {
-      "source": "taqrib",
-      "candidateId": "taqrib-7486-510-7486",
-      "entryNumber": 7486,
-      "nameSurface": "وهب",
-      "sourcePageId": 511,
-      "spanStart": 1548,
-      "spanEnd": 1552,
-      "rejectReasons": [
-        "name-head-too-short",
-        "no-personal-name-marker"
-      ],
-      "sourceUrl": "https://app.turath.io/book/8609?page=511"
-    },
-    {
-      "source": "taqrib",
-      "candidateId": "taqrib-7493-512-7493",
-      "entryNumber": 7493,
-      "nameSurface": "يحنس أوله وفتح المهملة وتشديد النون المفتوحة",
-      "sourcePageId": 513,
-      "spanStart": 368,
-      "spanEnd": 417,
-      "rejectReasons": [
-        "no-personal-name-marker"
-      ],
-      "sourceUrl": "https://app.turath.io/book/8609?page=513"
-    },
-    {
-      "source": "taqrib",
-      "candidateId": "taqrib-7682-524-7682",
-      "entryNumber": 7682,
-      "nameSurface": "يحيى",
-      "sourcePageId": 525,
-      "spanStart": 324,
-      "spanEnd": 329,
-      "rejectReasons": [
-        "no-personal-name-marker"
-      ],
-      "sourceUrl": "https://app.turath.io/book/8609?page=525"
-    },
-    {
-      "source": "taqrib",
-      "candidateId": "taqrib-7798-531-7798",
-      "entryNumber": 7798,
-      "nameSurface": "يزيد",
-      "sourcePageId": 532,
-      "spanStart": 1192,
-      "spanEnd": 1197,
-      "rejectReasons": [
-        "no-personal-name-marker"
-      ],
-      "sourceUrl": "https://app.turath.io/book/8609?page=532"
-    },
-    {
-      "source": "taqrib",
-      "candidateId": "taqrib-8166-572-8166",
-      "entryNumber": 8166,
-      "nameSurface": "أبو",
-      "sourcePageId": 573,
-      "spanStart": 1484,
-      "spanEnd": 1488,
-      "rejectReasons": [
-        "name-head-too-short"
-      ],
-      "sourceUrl": "https://app.turath.io/book/8609?page=573"
-    },
-    {
-      "source": "taqrib",
-      "candidateId": "taqrib-8507-655-8507",
-      "entryNumber": 8507,
-      "nameSurface": "خالد",
-      "sourcePageId": 656,
-      "spanStart": 1734,
-      "spanEnd": 1739,
-      "rejectReasons": [
-        "no-personal-name-marker"
-      ],
-      "sourceUrl": "https://app.turath.io/book/8609?page=656"
-    },
-    {
-      "source": "taqrib",
-      "candidateId": "taqrib-8519-661-8519",
-      "entryNumber": 8519,
-      "nameSurface": "مطير",
-      "sourcePageId": 662,
-      "spanStart": 702,
-      "spanEnd": 707,
-      "rejectReasons": [
-        "no-personal-name-marker"
-      ],
-      "sourceUrl": "https://app.turath.io/book/8609?page=662"
-    },
-    {
-      "source": "taqrib",
-      "candidateId": "taqrib-8541-666-8541",
-      "entryNumber": 8541,
-      "nameSurface": "أنيسة",
-      "sourcePageId": 667,
-      "spanStart": 282,
-      "spanEnd": 297,
-      "rejectReasons": [
-        "no-personal-name-marker"
-      ],
-      "sourceUrl": "https://app.turath.io/book/8609?page=667"
-    },
-    {
-      "source": "taqrib",
-      "candidateId": "taqrib-8542-666-8542",
-      "entryNumber": 8542,
-      "nameSurface": "أنيسة",
-      "sourcePageId": 667,
-      "spanStart": 362,
-      "spanEnd": 368,
-      "rejectReasons": [
-        "no-personal-name-marker"
-      ],
-      "sourceUrl": "https://app.turath.io/book/8609?page=667"
-    },
-    {
-      "source": "taqrib",
-      "candidateId": "taqrib-8543-666-8543",
-      "entryNumber": 8543,
-      "nameSurface": "بريرة",
-      "sourcePageId": 667,
-      "spanStart": 548,
-      "spanEnd": 554,
-      "rejectReasons": [
-        "no-personal-name-marker"
-      ],
-      "sourceUrl": "https://app.turath.io/book/8609?page=667"
-    },
-    {
-      "source": "taqrib",
-      "candidateId": "taqrib-8546-666-8546",
-      "entryNumber": 8546,
-      "nameSurface": "بنانة",
-      "sourcePageId": 667,
-      "spanStart": 825,
-      "spanEnd": 831,
-      "rejectReasons": [
-        "no-personal-name-marker"
-      ],
-      "sourceUrl": "https://app.turath.io/book/8609?page=667"
-    },
-    {
-      "source": "taqrib",
       "candidateId": "taqrib-8547-666-8547",
       "entryNumber": 8547,
       "nameSurface": "بهيسة بالمهملة مصغرة الفزارية لا تعرف",
@@ -7911,32 +5092,6 @@
         "no-personal-name-marker"
       ],
       "sourceUrl": "https://app.turath.io/book/8609?page=667"
-    },
-    {
-      "source": "taqrib",
-      "candidateId": "taqrib-8548-666-8548",
-      "entryNumber": 8548,
-      "nameSurface": "بهية",
-      "sourcePageId": 667,
-      "spanStart": 975,
-      "spanEnd": 989,
-      "rejectReasons": [
-        "no-personal-name-marker"
-      ],
-      "sourceUrl": "https://app.turath.io/book/8609?page=667"
-    },
-    {
-      "source": "taqrib",
-      "candidateId": "taqrib-8569-668-8569",
-      "entryNumber": 8569,
-      "nameSurface": "حميدة",
-      "sourcePageId": 669,
-      "spanStart": 128,
-      "spanEnd": 134,
-      "rejectReasons": [
-        "no-personal-name-marker"
-      ],
-      "sourceUrl": "https://app.turath.io/book/8609?page=669"
     },
     {
       "source": "taqrib",
@@ -7953,19 +5108,6 @@
     },
     {
       "source": "taqrib",
-      "candidateId": "taqrib-8586-669-8586",
-      "entryNumber": 8586,
-      "nameSurface": "رفيدة بالفاء مصغرة",
-      "sourcePageId": 670,
-      "spanStart": 511,
-      "spanEnd": 530,
-      "rejectReasons": [
-        "no-personal-name-marker"
-      ],
-      "sourceUrl": "https://app.turath.io/book/8609?page=670"
-    },
-    {
-      "source": "taqrib",
       "candidateId": "taqrib-8591-669-8591",
       "entryNumber": 8591,
       "nameSurface": "رميثة أخرى",
@@ -7976,19 +5118,6 @@
         "no-personal-name-marker"
       ],
       "sourceUrl": "https://app.turath.io/book/8609?page=670"
-    },
-    {
-      "source": "taqrib",
-      "candidateId": "taqrib-8603-670-8603",
-      "entryNumber": 8603,
-      "nameSurface": "سائبة",
-      "sourcePageId": 671,
-      "spanStart": 527,
-      "spanEnd": 533,
-      "rejectReasons": [
-        "no-personal-name-marker"
-      ],
-      "sourceUrl": "https://app.turath.io/book/8609?page=671"
     },
     {
       "source": "taqrib",
@@ -8033,10 +5162,10 @@
       "source": "taqrib",
       "candidateId": "taqrib-8628-671-8628",
       "entryNumber": 8628,
-      "nameSurface": "صميتة الليثية وقيل الدارية صحابية لها حديث في فضل المدينة س",
+      "nameSurface": "صميتة الليثية",
       "sourcePageId": 672,
       "spanStart": 1134,
-      "spanEnd": 1202,
+      "spanEnd": 1157,
       "rejectReasons": [
         "no-personal-name-marker"
       ],
@@ -8046,101 +5175,23 @@
       "source": "taqrib",
       "candidateId": "taqrib-8663-674-8663",
       "entryNumber": 8663,
-      "nameSurface": "قرصافة الذهلية",
+      "nameSurface": "قرصافة الذهلية لا",
       "sourcePageId": 675,
       "spanStart": 579,
-      "spanEnd": 594,
+      "spanEnd": 597,
       "rejectReasons": [
         "no-personal-name-marker"
       ],
       "sourceUrl": "https://app.turath.io/book/8609?page=675"
-    },
-    {
-      "source": "taqrib",
-      "candidateId": "taqrib-8668-674-8668",
-      "entryNumber": 8668,
-      "nameSurface": "كبشة",
-      "sourcePageId": 675,
-      "spanStart": 967,
-      "spanEnd": 972,
-      "rejectReasons": [
-        "no-personal-name-marker"
-      ],
-      "sourceUrl": "https://app.turath.io/book/8609?page=675"
-    },
-    {
-      "source": "taqrib",
-      "candidateId": "taqrib-8674-674-8674",
-      "entryNumber": 8674,
-      "nameSurface": "كلثم",
-      "sourcePageId": 675,
-      "spanStart": 1405,
-      "spanEnd": 1410,
-      "rejectReasons": [
-        "no-personal-name-marker"
-      ],
-      "sourceUrl": "https://app.turath.io/book/8609?page=675"
-    },
-    {
-      "source": "taqrib",
-      "candidateId": "taqrib-8675-674-8675",
-      "entryNumber": 8675,
-      "nameSurface": "كيسة بتحتانية",
-      "sourcePageId": 675,
-      "spanStart": 1470,
-      "spanEnd": 1484,
-      "rejectReasons": [
-        "no-personal-name-marker"
-      ],
-      "sourceUrl": "https://app.turath.io/book/8609?page=675"
-    },
-    {
-      "source": "taqrib",
-      "candidateId": "taqrib-8677-675-8677",
-      "entryNumber": 8677,
-      "nameSurface": "لؤلؤة",
-      "sourcePageId": 676,
-      "spanStart": 211,
-      "spanEnd": 217,
-      "rejectReasons": [
-        "no-personal-name-marker"
-      ],
-      "sourceUrl": "https://app.turath.io/book/8609?page=676"
-    },
-    {
-      "source": "taqrib",
-      "candidateId": "taqrib-8679-675-8679",
-      "entryNumber": 8679,
-      "nameSurface": "ليلى",
-      "sourcePageId": 676,
-      "spanStart": 463,
-      "spanEnd": 468,
-      "rejectReasons": [
-        "no-personal-name-marker"
-      ],
-      "sourceUrl": "https://app.turath.io/book/8609?page=676"
     },
     {
       "source": "taqrib",
       "candidateId": "taqrib-8683-675-8683",
       "entryNumber": 8683,
-      "nameSurface": "مسيكة المكية",
+      "nameSurface": "مسيكة المكية لا",
       "sourcePageId": 676,
       "spanStart": 854,
-      "spanEnd": 876,
-      "rejectReasons": [
-        "no-personal-name-marker"
-      ],
-      "sourceUrl": "https://app.turath.io/book/8609?page=676"
-    },
-    {
-      "source": "taqrib",
-      "candidateId": "taqrib-8687-675-8687",
-      "entryNumber": 8687,
-      "nameSurface": "منية",
-      "sourcePageId": 676,
-      "spanStart": 1158,
-      "spanEnd": 1189,
+      "spanEnd": 879,
       "rejectReasons": [
         "no-personal-name-marker"
       ],
@@ -8161,19 +5212,6 @@
     },
     {
       "source": "taqrib",
-      "candidateId": "taqrib-8693-676-8693",
-      "entryNumber": 8693,
-      "nameSurface": "نسيبة",
-      "sourcePageId": 677,
-      "spanStart": 337,
-      "spanEnd": 352,
-      "rejectReasons": [
-        "no-personal-name-marker"
-      ],
-      "sourceUrl": "https://app.turath.io/book/8609?page=677"
-    },
-    {
-      "source": "taqrib",
       "candidateId": "taqrib-8698-676-8698",
       "entryNumber": 8698,
       "nameSurface": "هنيدة مقبولة",
@@ -8184,32 +5222,6 @@
         "no-personal-name-marker"
       ],
       "sourceUrl": "https://app.turath.io/book/8609?page=677"
-    },
-    {
-      "source": "taqrib",
-      "candidateId": "taqrib-8699-676-8699",
-      "entryNumber": 8699,
-      "nameSurface": "يسيرة",
-      "sourcePageId": 677,
-      "spanStart": 1130,
-      "spanEnd": 1145,
-      "rejectReasons": [
-        "no-personal-name-marker"
-      ],
-      "sourceUrl": "https://app.turath.io/book/8609?page=677"
-    },
-    {
-      "source": "taqrib",
-      "candidateId": "taqrib-8799-684-8799",
-      "entryNumber": 8799,
-      "nameSurface": "عبد الحميد",
-      "sourcePageId": 685,
-      "spanStart": 693,
-      "spanEnd": 704,
-      "rejectReasons": [
-        "no-personal-name-marker"
-      ],
-      "sourceUrl": "https://app.turath.io/book/8609?page=685"
     },
     {
       "source": "taqrib",
@@ -8225,71 +5237,6 @@
       "sourceUrl": "https://app.turath.io/book/8609?page=685"
     },
     {
-      "source": "taqrib",
-      "candidateId": "taqrib-8806-684-8806",
-      "entryNumber": 8806,
-      "nameSurface": "عروة أيضا",
-      "sourcePageId": 685,
-      "spanStart": 1402,
-      "spanEnd": 1412,
-      "rejectReasons": [
-        "no-personal-name-marker"
-      ],
-      "sourceUrl": "https://app.turath.io/book/8609?page=685"
-    },
-    {
-      "source": "taqrib",
-      "candidateId": "taqrib-8807-685-8807",
-      "entryNumber": 8807,
-      "nameSurface": "عكرمة",
-      "sourcePageId": 686,
-      "spanStart": 6,
-      "spanEnd": 12,
-      "rejectReasons": [
-        "no-personal-name-marker"
-      ],
-      "sourceUrl": "https://app.turath.io/book/8609?page=686"
-    },
-    {
-      "source": "kashif",
-      "candidateId": "kashif-228-220-232",
-      "entryNumber": 228,
-      "nameSurface": "إبراهيم",
-      "sourcePageId": 221,
-      "spanStart": 254,
-      "spanEnd": 262,
-      "rejectReasons": [
-        "no-personal-name-marker"
-      ],
-      "sourceUrl": "https://app.turath.io/book/2171?page=221"
-    },
-    {
-      "source": "kashif",
-      "candidateId": "kashif-247-222-257",
-      "entryNumber": 247,
-      "nameSurface": "أربدة وقيل أربد",
-      "sourcePageId": 223,
-      "spanStart": 687,
-      "spanEnd": 703,
-      "rejectReasons": [
-        "no-personal-name-marker"
-      ],
-      "sourceUrl": "https://app.turath.io/book/2171?page=223"
-    },
-    {
-      "source": "kashif",
-      "candidateId": "kashif-287-226-297",
-      "entryNumber": 287,
-      "nameSurface": "إسحاق بنأسيد",
-      "sourcePageId": 227,
-      "spanStart": 760,
-      "spanEnd": 773,
-      "rejectReasons": [
-        "no-personal-name-marker"
-      ],
-      "sourceUrl": "https://app.turath.io/book/2171?page=227"
-    },
-    {
       "source": "kashif",
       "candidateId": "kashif-332-232-342",
       "entryNumber": 332,
@@ -8301,123 +5248,6 @@
         "no-personal-name-marker"
       ],
       "sourceUrl": "https://app.turath.io/book/2171?page=233"
-    },
-    {
-      "source": "kashif",
-      "candidateId": "kashif-333-232-343",
-      "entryNumber": 333,
-      "nameSurface": "إسحاق",
-      "sourcePageId": 233,
-      "spanStart": 286,
-      "spanEnd": 292,
-      "rejectReasons": [
-        "no-personal-name-marker"
-      ],
-      "sourceUrl": "https://app.turath.io/book/2171?page=233"
-    },
-    {
-      "source": "kashif",
-      "candidateId": "kashif-0-232-345",
-      "entryNumber": 0,
-      "nameSurface": "إسحاق",
-      "sourcePageId": 233,
-      "spanStart": 419,
-      "spanEnd": 425,
-      "rejectReasons": [
-        "no-personal-name-marker"
-      ],
-      "sourceUrl": "https://app.turath.io/book/2171?page=233"
-    },
-    {
-      "source": "kashif",
-      "candidateId": "kashif-340-234-353",
-      "entryNumber": 340,
-      "nameSurface": "أسلم",
-      "sourcePageId": 235,
-      "spanStart": 221,
-      "spanEnd": 226,
-      "rejectReasons": [
-        "no-personal-name-marker"
-      ],
-      "sourceUrl": "https://app.turath.io/book/2171?page=235"
-    },
-    {
-      "source": "kashif",
-      "candidateId": "kashif-341-234-354",
-      "entryNumber": 341,
-      "nameSurface": "أسلم",
-      "sourcePageId": 235,
-      "spanStart": 299,
-      "spanEnd": 304,
-      "rejectReasons": [
-        "no-personal-name-marker"
-      ],
-      "sourceUrl": "https://app.turath.io/book/2171?page=235"
-    },
-    {
-      "source": "kashif",
-      "candidateId": "kashif-381-238-395",
-      "entryNumber": 381,
-      "nameSurface": "إسماعيل بنسليمان الكحال",
-      "sourcePageId": 239,
-      "spanStart": 562,
-      "spanEnd": 586,
-      "rejectReasons": [
-        "no-personal-name-marker"
-      ],
-      "sourceUrl": "https://app.turath.io/book/2171?page=239"
-    },
-    {
-      "source": "kashif",
-      "candidateId": "kashif-420-243-434",
-      "entryNumber": 420,
-      "nameSurface": "الاسود بنسعيد",
-      "sourcePageId": 244,
-      "spanStart": 5,
-      "spanEnd": 19,
-      "rejectReasons": [
-        "no-personal-name-marker"
-      ],
-      "sourceUrl": "https://app.turath.io/book/2171?page=244"
-    },
-    {
-      "source": "kashif",
-      "candidateId": "kashif-438-244-452",
-      "entryNumber": 438,
-      "nameSurface": "أشعث بنثرملة",
-      "sourcePageId": 245,
-      "spanStart": 680,
-      "spanEnd": 693,
-      "rejectReasons": [
-        "no-personal-name-marker"
-      ],
-      "sourceUrl": "https://app.turath.io/book/2171?page=245"
-    },
-    {
-      "source": "kashif",
-      "candidateId": "kashif-453-246-467",
-      "entryNumber": 453,
-      "nameSurface": "أصبغ بننباتة",
-      "sourcePageId": 247,
-      "spanStart": 470,
-      "spanEnd": 483,
-      "rejectReasons": [
-        "no-personal-name-marker"
-      ],
-      "sourceUrl": "https://app.turath.io/book/2171?page=247"
-    },
-    {
-      "source": "kashif",
-      "candidateId": "kashif-454-246-468",
-      "entryNumber": 454,
-      "nameSurface": "أصبغ",
-      "sourcePageId": 247,
-      "spanStart": 534,
-      "spanEnd": 539,
-      "rejectReasons": [
-        "no-personal-name-marker"
-      ],
-      "sourceUrl": "https://app.turath.io/book/2171?page=247"
     },
     {
       "source": "kashif",
@@ -8447,514 +5277,6 @@
     },
     {
       "source": "kashif",
-      "candidateId": "kashif-464-247-478",
-      "entryNumber": 464,
-      "nameSurface": "أفلح",
-      "sourcePageId": 248,
-      "spanStart": 382,
-      "spanEnd": 387,
-      "rejectReasons": [
-        "no-personal-name-marker"
-      ],
-      "sourceUrl": "https://app.turath.io/book/2171?page=248"
-    },
-    {
-      "source": "kashif",
-      "candidateId": "kashif-465-247-480",
-      "entryNumber": 465,
-      "nameSurface": "أقرع مؤذن عمر",
-      "sourcePageId": 248,
-      "spanStart": 513,
-      "spanEnd": 527,
-      "rejectReasons": [
-        "no-personal-name-marker"
-      ],
-      "sourceUrl": "https://app.turath.io/book/2171?page=248"
-    },
-    {
-      "source": "kashif",
-      "candidateId": "kashif-473-248-489",
-      "entryNumber": 473,
-      "nameSurface": "أمية",
-      "sourcePageId": 249,
-      "spanStart": 172,
-      "spanEnd": 177,
-      "rejectReasons": [
-        "no-personal-name-marker"
-      ],
-      "sourceUrl": "https://app.turath.io/book/2171?page=249"
-    },
-    {
-      "source": "kashif",
-      "candidateId": "kashif-503-251-522",
-      "entryNumber": 503,
-      "nameSurface": "أيفع",
-      "sourcePageId": 252,
-      "spanStart": 81,
-      "spanEnd": 86,
-      "rejectReasons": [
-        "no-personal-name-marker"
-      ],
-      "sourceUrl": "https://app.turath.io/book/2171?page=252"
-    },
-    {
-      "source": "kashif",
-      "candidateId": "kashif-507-251-526",
-      "entryNumber": 507,
-      "nameSurface": "أيمن",
-      "sourcePageId": 252,
-      "spanStart": 418,
-      "spanEnd": 423,
-      "rejectReasons": [
-        "no-personal-name-marker"
-      ],
-      "sourceUrl": "https://app.turath.io/book/2171?page=252"
-    },
-    {
-      "source": "kashif",
-      "candidateId": "kashif-508-252-527",
-      "entryNumber": 508,
-      "nameSurface": "أيمن",
-      "sourcePageId": 253,
-      "spanStart": 5,
-      "spanEnd": 10,
-      "rejectReasons": [
-        "no-personal-name-marker"
-      ],
-      "sourceUrl": "https://app.turath.io/book/2171?page=253"
-    },
-    {
-      "source": "kashif",
-      "candidateId": "kashif-532-254-553",
-      "entryNumber": 532,
-      "nameSurface": "أيوب",
-      "sourcePageId": 255,
-      "spanStart": 1049,
-      "spanEnd": 1054,
-      "rejectReasons": [
-        "no-personal-name-marker"
-      ],
-      "sourceUrl": "https://app.turath.io/book/2171?page=255"
-    },
-    {
-      "source": "kashif",
-      "candidateId": "kashif-534-255-555",
-      "entryNumber": 534,
-      "nameSurface": "باذامأبوصالح",
-      "sourcePageId": 256,
-      "spanStart": 117,
-      "spanEnd": 130,
-      "rejectReasons": [
-        "no-personal-name-marker"
-      ],
-      "sourceUrl": "https://app.turath.io/book/2171?page=256"
-    },
-    {
-      "source": "kashif",
-      "candidateId": "kashif-550-257-570",
-      "entryNumber": 550,
-      "nameSurface": "برد بنسنان",
-      "sourcePageId": 258,
-      "spanStart": 5,
-      "spanEnd": 16,
-      "rejectReasons": [
-        "no-personal-name-marker"
-      ],
-      "sourceUrl": "https://app.turath.io/book/2171?page=258"
-    },
-    {
-      "source": "kashif",
-      "candidateId": "kashif-600-262-620",
-      "entryNumber": 600,
-      "nameSurface": "بشر",
-      "sourcePageId": 263,
-      "spanStart": 596,
-      "spanEnd": 600,
-      "rejectReasons": [
-        "name-head-too-short",
-        "no-personal-name-marker"
-      ],
-      "sourceUrl": "https://app.turath.io/book/2171?page=263"
-    },
-    {
-      "source": "kashif",
-      "candidateId": "kashif-666-269-685",
-      "entryNumber": 666,
-      "nameSurface": "بيهس",
-      "sourcePageId": 270,
-      "spanStart": 943,
-      "spanEnd": 948,
-      "rejectReasons": [
-        "no-personal-name-marker"
-      ],
-      "sourceUrl": "https://app.turath.io/book/2171?page=270"
-    },
-    {
-      "source": "kashif",
-      "candidateId": "kashif-678-272-697",
-      "entryNumber": 678,
-      "nameSurface": "تميم",
-      "sourcePageId": 273,
-      "spanStart": 5,
-      "spanEnd": 10,
-      "rejectReasons": [
-        "no-personal-name-marker"
-      ],
-      "sourceUrl": "https://app.turath.io/book/2171?page=273"
-    },
-    {
-      "source": "kashif",
-      "candidateId": "kashif-721-277-740",
-      "entryNumber": 721,
-      "nameSurface": "ثوبان",
-      "sourcePageId": 278,
-      "spanStart": 692,
-      "spanEnd": 698,
-      "rejectReasons": [
-        "no-personal-name-marker"
-      ],
-      "sourceUrl": "https://app.turath.io/book/2171?page=278"
-    },
-    {
-      "source": "kashif",
-      "candidateId": "kashif-726-279-745",
-      "entryNumber": 726,
-      "nameSurface": "جابان",
-      "sourcePageId": 280,
-      "spanStart": 56,
-      "spanEnd": 62,
-      "rejectReasons": [
-        "no-personal-name-marker"
-      ],
-      "sourceUrl": "https://app.turath.io/book/2171?page=280"
-    },
-    {
-      "source": "kashif",
-      "candidateId": "kashif-809-288-828",
-      "entryNumber": 809,
-      "nameSurface": "جمهان",
-      "sourcePageId": 289,
-      "spanStart": 714,
-      "spanEnd": 720,
-      "rejectReasons": [
-        "no-personal-name-marker"
-      ],
-      "sourceUrl": "https://app.turath.io/book/2171?page=289"
-    },
-    {
-      "source": "kashif",
-      "candidateId": "kashif-814-289-833",
-      "entryNumber": 814,
-      "nameSurface": "جميل",
-      "sourcePageId": 290,
-      "spanStart": 206,
-      "spanEnd": 211,
-      "rejectReasons": [
-        "no-personal-name-marker"
-      ],
-      "sourceUrl": "https://app.turath.io/book/2171?page=290"
-    },
-    {
-      "source": "kashif",
-      "candidateId": "kashif-820-290-839",
-      "entryNumber": 820,
-      "nameSurface": "جنيد الحجام",
-      "sourcePageId": 291,
-      "spanStart": 277,
-      "spanEnd": 289,
-      "rejectReasons": [
-        "no-personal-name-marker"
-      ],
-      "sourceUrl": "https://app.turath.io/book/2171?page=291"
-    },
-    {
-      "source": "kashif",
-      "candidateId": "kashif-821-290-840",
-      "entryNumber": 821,
-      "nameSurface": "جنيد",
-      "sourcePageId": 291,
-      "spanStart": 348,
-      "spanEnd": 353,
-      "rejectReasons": [
-        "no-personal-name-marker"
-      ],
-      "sourceUrl": "https://app.turath.io/book/2171?page=291"
-    },
-    {
-      "source": "kashif",
-      "candidateId": "kashif-824-290-843",
-      "entryNumber": 824,
-      "nameSurface": "جودان",
-      "sourcePageId": 291,
-      "spanStart": 593,
-      "spanEnd": 599,
-      "rejectReasons": [
-        "no-personal-name-marker"
-      ],
-      "sourceUrl": "https://app.turath.io/book/2171?page=291"
-    },
-    {
-      "source": "kashif",
-      "candidateId": "kashif-884-297-903",
-      "entryNumber": 884,
-      "nameSurface": "الحارث قيل",
-      "sourcePageId": 298,
-      "spanStart": 1146,
-      "spanEnd": 1157,
-      "rejectReasons": [
-        "no-personal-name-marker"
-      ],
-      "sourceUrl": "https://app.turath.io/book/2171?page=298"
-    },
-    {
-      "source": "kashif",
-      "candidateId": "kashif-922-302-941",
-      "entryNumber": 922,
-      "nameSurface": "حبيب الاعور",
-      "sourcePageId": 303,
-      "spanStart": 166,
-      "spanEnd": 178,
-      "rejectReasons": [
-        "no-personal-name-marker"
-      ],
-      "sourceUrl": "https://app.turath.io/book/2171?page=303"
-    },
-    {
-      "source": "kashif",
-      "candidateId": "kashif-923-302-942",
-      "entryNumber": 923,
-      "nameSurface": "حبيب",
-      "sourcePageId": 303,
-      "spanStart": 251,
-      "spanEnd": 256,
-      "rejectReasons": [
-        "no-personal-name-marker"
-      ],
-      "sourceUrl": "https://app.turath.io/book/2171?page=303"
-    },
-    {
-      "source": "kashif",
-      "candidateId": "kashif-947-306-966",
-      "entryNumber": 947,
-      "nameSurface": "حجاج عامل الربذة",
-      "sourcePageId": 307,
-      "spanStart": 5,
-      "spanEnd": 22,
-      "rejectReasons": [
-        "no-personal-name-marker"
-      ],
-      "sourceUrl": "https://app.turath.io/book/2171?page=307"
-    },
-    {
-      "source": "kashif",
-      "candidateId": "kashif-948-306-967",
-      "entryNumber": 948,
-      "nameSurface": "حجاج الضرير",
-      "sourcePageId": 307,
-      "spanStart": 75,
-      "spanEnd": 87,
-      "rejectReasons": [
-        "no-personal-name-marker"
-      ],
-      "sourceUrl": "https://app.turath.io/book/2171?page=307"
-    },
-    {
-      "source": "kashif",
-      "candidateId": "kashif-978-309-997",
-      "entryNumber": 978,
-      "nameSurface": "حرملة",
-      "sourcePageId": 310,
-      "spanStart": 783,
-      "spanEnd": 789,
-      "rejectReasons": [
-        "no-personal-name-marker"
-      ],
-      "sourceUrl": "https://app.turath.io/book/2171?page=310"
-    },
-    {
-      "source": "kashif",
-      "candidateId": "kashif-987-311-1006",
-      "entryNumber": 987,
-      "nameSurface": "حريز",
-      "sourcePageId": 312,
-      "spanStart": 255,
-      "spanEnd": 260,
-      "rejectReasons": [
-        "no-personal-name-marker"
-      ],
-      "sourceUrl": "https://app.turath.io/book/2171?page=312"
-    },
-    {
-      "source": "kashif",
-      "candidateId": "kashif-1007-313-1026",
-      "entryNumber": 1007,
-      "nameSurface": "حسان",
-      "sourcePageId": 314,
-      "spanStart": 168,
-      "spanEnd": 173,
-      "rejectReasons": [
-        "no-personal-name-marker"
-      ],
-      "sourceUrl": "https://app.turath.io/book/2171?page=314"
-    },
-    {
-      "source": "kashif",
-      "candidateId": "kashif-1097-325-1117",
-      "entryNumber": 1097,
-      "nameSurface": "الحسين الشهيد",
-      "sourcePageId": 326,
-      "spanStart": 376,
-      "spanEnd": 390,
-      "rejectReasons": [
-        "no-personal-name-marker"
-      ],
-      "sourceUrl": "https://app.turath.io/book/2171?page=326"
-    },
-    {
-      "source": "kashif",
-      "candidateId": "kashif-1228-341-1245",
-      "entryNumber": 1228,
-      "nameSurface": "حمان",
-      "sourcePageId": 342,
-      "spanStart": 656,
-      "spanEnd": 661,
-      "rejectReasons": [
-        "no-personal-name-marker"
-      ],
-      "sourceUrl": "https://app.turath.io/book/2171?page=342"
-    },
-    {
-      "source": "kashif",
-      "candidateId": "kashif-1267-347-1284",
-      "entryNumber": 1267,
-      "nameSurface": "حميد",
-      "sourcePageId": 348,
-      "spanStart": 545,
-      "spanEnd": 550,
-      "rejectReasons": [
-        "no-personal-name-marker"
-      ],
-      "sourceUrl": "https://app.turath.io/book/2171?page=348"
-    },
-    {
-      "source": "kashif",
-      "candidateId": "kashif-1282-350-1299",
-      "entryNumber": 1282,
-      "nameSurface": "حنين",
-      "sourcePageId": 351,
-      "spanStart": 80,
-      "spanEnd": 85,
-      "rejectReasons": [
-        "no-personal-name-marker"
-      ],
-      "sourceUrl": "https://app.turath.io/book/2171?page=351"
-    },
-    {
-      "source": "kashif",
-      "candidateId": "kashif-1290-350-1307",
-      "entryNumber": 1290,
-      "nameSurface": "حيان الاعرج",
-      "sourcePageId": 351,
-      "spanStart": 790,
-      "spanEnd": 802,
-      "rejectReasons": [
-        "no-personal-name-marker"
-      ],
-      "sourceUrl": "https://app.turath.io/book/2171?page=351"
-    },
-    {
-      "source": "kashif",
-      "candidateId": "kashif-1374-362-1391",
-      "entryNumber": 1374,
-      "nameSurface": "خباب",
-      "sourcePageId": 363,
-      "spanStart": 511,
-      "spanEnd": 516,
-      "rejectReasons": [
-        "no-personal-name-marker"
-      ],
-      "sourceUrl": "https://app.turath.io/book/2171?page=363"
-    },
-    {
-      "source": "kashif",
-      "candidateId": "kashif-1385-363-1402",
-      "entryNumber": 1385,
-      "nameSurface": "خزيمة",
-      "sourcePageId": 364,
-      "spanStart": 499,
-      "spanEnd": 505,
-      "rejectReasons": [
-        "no-personal-name-marker"
-      ],
-      "sourceUrl": "https://app.turath.io/book/2171?page=364"
-    },
-    {
-      "source": "kashif",
-      "candidateId": "kashif-1411-366-1428",
-      "entryNumber": 1411,
-      "nameSurface": "خليفة",
-      "sourcePageId": 367,
-      "spanStart": 578,
-      "spanEnd": 584,
-      "rejectReasons": [
-        "no-personal-name-marker"
-      ],
-      "sourceUrl": "https://app.turath.io/book/2171?page=367"
-    },
-    {
-      "source": "kashif",
-      "candidateId": "kashif-1430-369-1447",
-      "entryNumber": 1430,
-      "nameSurface": "دارم",
-      "sourcePageId": 370,
-      "spanStart": 57,
-      "spanEnd": 62,
-      "rejectReasons": [
-        "no-personal-name-marker"
-      ],
-      "sourceUrl": "https://app.turath.io/book/2171?page=370"
-    },
-    {
-      "source": "kashif",
-      "candidateId": "kashif-1468-374-1485",
-      "entryNumber": 1468,
-      "nameSurface": "داود السراج",
-      "sourcePageId": 375,
-      "spanStart": 228,
-      "spanEnd": 240,
-      "rejectReasons": [
-        "no-personal-name-marker"
-      ],
-      "sourceUrl": "https://app.turath.io/book/2171?page=375"
-    },
-    {
-      "source": "kashif",
-      "candidateId": "kashif-1469-374-1486",
-      "entryNumber": 1469,
-      "nameSurface": "داود الوراق بصري",
-      "sourcePageId": 375,
-      "spanStart": 275,
-      "spanEnd": 292,
-      "rejectReasons": [
-        "no-personal-name-marker"
-      ],
-      "sourceUrl": "https://app.turath.io/book/2171?page=375"
-    },
-    {
-      "source": "kashif",
-      "candidateId": "kashif-1487-376-1504",
-      "entryNumber": 1487,
-      "nameSurface": "دينار",
-      "sourcePageId": 377,
-      "spanStart": 442,
-      "spanEnd": 448,
-      "rejectReasons": [
-        "no-personal-name-marker"
-      ],
-      "sourceUrl": "https://app.turath.io/book/2171?page=377"
-    },
-    {
-      "source": "kashif",
       "candidateId": "kashif-1495-378-1512",
       "entryNumber": 1495,
       "nameSurface": "ذو الزوائد",
@@ -8965,244 +5287,6 @@
         "no-personal-name-marker"
       ],
       "sourceUrl": "https://app.turath.io/book/2171?page=379"
-    },
-    {
-      "source": "kashif",
-      "candidateId": "kashif-1502-379-1519",
-      "entryNumber": 1502,
-      "nameSurface": "راشد",
-      "sourcePageId": 380,
-      "spanStart": 522,
-      "spanEnd": 527,
-      "rejectReasons": [
-        "no-personal-name-marker"
-      ],
-      "sourceUrl": "https://app.turath.io/book/2171?page=380"
-    },
-    {
-      "source": "kashif",
-      "candidateId": "kashif-1513-380-1530",
-      "entryNumber": 1513,
-      "nameSurface": "رافع بواب مروان",
-      "sourcePageId": 381,
-      "spanStart": 781,
-      "spanEnd": 797,
-      "rejectReasons": [
-        "no-personal-name-marker"
-      ],
-      "sourceUrl": "https://app.turath.io/book/2171?page=381"
-    },
-    {
-      "source": "kashif",
-      "candidateId": "kashif-1583-388-1600",
-      "entryNumber": 1583,
-      "nameSurface": "رفاعة",
-      "sourcePageId": 389,
-      "spanStart": 715,
-      "spanEnd": 721,
-      "rejectReasons": [
-        "no-personal-name-marker"
-      ],
-      "sourceUrl": "https://app.turath.io/book/2171?page=389"
-    },
-    {
-      "source": "kashif",
-      "candidateId": "kashif-1659-398-1676",
-      "entryNumber": 1659,
-      "nameSurface": "زهرة",
-      "sourcePageId": 399,
-      "spanStart": 132,
-      "spanEnd": 137,
-      "rejectReasons": [
-        "no-personal-name-marker"
-      ],
-      "sourceUrl": "https://app.turath.io/book/2171?page=399"
-    },
-    {
-      "source": "kashif",
-      "candidateId": "kashif-1692-401-1708",
-      "entryNumber": 1692,
-      "nameSurface": "زياد الاعجم",
-      "sourcePageId": 402,
-      "spanStart": 722,
-      "spanEnd": 734,
-      "rejectReasons": [
-        "no-personal-name-marker"
-      ],
-      "sourceUrl": "https://app.turath.io/book/2171?page=402"
-    },
-    {
-      "source": "kashif",
-      "candidateId": "kashif-1716-405-1732",
-      "entryNumber": 1716,
-      "nameSurface": "زياد",
-      "sourcePageId": 406,
-      "spanStart": 6,
-      "spanEnd": 11,
-      "rejectReasons": [
-        "no-personal-name-marker"
-      ],
-      "sourceUrl": "https://app.turath.io/book/2171?page=406"
-    },
-    {
-      "source": "kashif",
-      "candidateId": "kashif-1764-411-1780",
-      "entryNumber": 1764,
-      "nameSurface": "زيد",
-      "sourcePageId": 412,
-      "spanStart": 130,
-      "spanEnd": 134,
-      "rejectReasons": [
-        "name-head-too-short",
-        "no-personal-name-marker"
-      ],
-      "sourceUrl": "https://app.turath.io/book/2171?page=412"
-    },
-    {
-      "source": "kashif",
-      "candidateId": "kashif-1783-415-1799",
-      "entryNumber": 1783,
-      "nameSurface": "سالم البراد كوفي",
-      "sourcePageId": 416,
-      "spanStart": 146,
-      "spanEnd": 163,
-      "rejectReasons": [
-        "no-personal-name-marker"
-      ],
-      "sourceUrl": "https://app.turath.io/book/2171?page=416"
-    },
-    {
-      "source": "kashif",
-      "candidateId": "kashif-1784-415-1800",
-      "entryNumber": 1784,
-      "nameSurface": "سالم الفراء",
-      "sourcePageId": 416,
-      "spanStart": 249,
-      "spanEnd": 261,
-      "rejectReasons": [
-        "no-personal-name-marker"
-      ],
-      "sourceUrl": "https://app.turath.io/book/2171?page=416"
-    },
-    {
-      "source": "kashif",
-      "candidateId": "kashif-1785-415-1801",
-      "entryNumber": 1785,
-      "nameSurface": "سالم مكي",
-      "sourcePageId": 416,
-      "spanStart": 316,
-      "spanEnd": 325,
-      "rejectReasons": [
-        "no-personal-name-marker"
-      ],
-      "sourceUrl": "https://app.turath.io/book/2171?page=416"
-    },
-    {
-      "source": "kashif",
-      "candidateId": "kashif-1787-415-1803",
-      "entryNumber": 1787,
-      "nameSurface": "سالم",
-      "sourcePageId": 416,
-      "spanStart": 456,
-      "spanEnd": 461,
-      "rejectReasons": [
-        "no-personal-name-marker"
-      ],
-      "sourceUrl": "https://app.turath.io/book/2171?page=416"
-    },
-    {
-      "source": "kashif",
-      "candidateId": "kashif-1796-416-1812",
-      "entryNumber": 1796,
-      "nameSurface": "السائب",
-      "sourcePageId": 417,
-      "spanStart": 631,
-      "spanEnd": 638,
-      "rejectReasons": [
-        "no-personal-name-marker"
-      ],
-      "sourceUrl": "https://app.turath.io/book/2171?page=417"
-    },
-    {
-      "source": "kashif",
-      "candidateId": "kashif-1803-417-1819",
-      "entryNumber": 1803,
-      "nameSurface": "سحيم",
-      "sourcePageId": 418,
-      "spanStart": 195,
-      "spanEnd": 200,
-      "rejectReasons": [
-        "no-personal-name-marker"
-      ],
-      "sourceUrl": "https://app.turath.io/book/2171?page=418"
-    },
-    {
-      "source": "kashif",
-      "candidateId": "kashif-1846-421-1862",
-      "entryNumber": 1846,
-      "nameSurface": "سعد",
-      "sourcePageId": 422,
-      "spanStart": 689,
-      "spanEnd": 693,
-      "rejectReasons": [
-        "name-head-too-short",
-        "no-personal-name-marker"
-      ],
-      "sourceUrl": "https://app.turath.io/book/2171?page=422"
-    },
-    {
-      "source": "kashif",
-      "candidateId": "kashif-1848-422-1864",
-      "entryNumber": 1848,
-      "nameSurface": "سعد",
-      "sourcePageId": 423,
-      "spanStart": 90,
-      "spanEnd": 94,
-      "rejectReasons": [
-        "name-head-too-short",
-        "no-personal-name-marker"
-      ],
-      "sourceUrl": "https://app.turath.io/book/2171?page=423"
-    },
-    {
-      "source": "kashif",
-      "candidateId": "kashif-1851-422-1867",
-      "entryNumber": 1851,
-      "nameSurface": "سعر مخضرم",
-      "sourcePageId": 423,
-      "spanStart": 420,
-      "spanEnd": 430,
-      "rejectReasons": [
-        "no-personal-name-marker"
-      ],
-      "sourceUrl": "https://app.turath.io/book/2171?page=423"
-    },
-    {
-      "source": "kashif",
-      "candidateId": "kashif-1985-438-2001",
-      "entryNumber": 1985,
-      "nameSurface": "سعيد",
-      "sourcePageId": 439,
-      "spanStart": 682,
-      "spanEnd": 687,
-      "rejectReasons": [
-        "no-personal-name-marker"
-      ],
-      "sourceUrl": "https://app.turath.io/book/2171?page=439"
-    },
-    {
-      "source": "kashif",
-      "candidateId": "kashif-2151-458-2167",
-      "entryNumber": 2151,
-      "nameSurface": "سمي",
-      "sourcePageId": 459,
-      "spanStart": 144,
-      "spanEnd": 148,
-      "rejectReasons": [
-        "name-head-too-short",
-        "no-personal-name-marker"
-      ],
-      "sourceUrl": "https://app.turath.io/book/2171?page=459"
     },
     {
       "source": "kashif",
@@ -9219,373 +5303,6 @@
     },
     {
       "source": "kashif",
-      "candidateId": "kashif-2220-466-2234",
-      "entryNumber": 2220,
-      "nameSurface": "سيار",
-      "sourcePageId": 467,
-      "spanStart": 585,
-      "spanEnd": 590,
-      "rejectReasons": [
-        "no-personal-name-marker"
-      ],
-      "sourceUrl": "https://app.turath.io/book/2171?page=467"
-    },
-    {
-      "source": "kashif",
-      "candidateId": "kashif-2227-467-2241",
-      "entryNumber": 2227,
-      "nameSurface": "سيف",
-      "sourcePageId": 468,
-      "spanStart": 529,
-      "spanEnd": 533,
-      "rejectReasons": [
-        "name-head-too-short",
-        "no-personal-name-marker"
-      ],
-      "sourceUrl": "https://app.turath.io/book/2171?page=468"
-    },
-    {
-      "source": "kashif",
-      "candidateId": "kashif-2232-469-2246",
-      "entryNumber": 2232,
-      "nameSurface": "شبل",
-      "sourcePageId": 470,
-      "spanStart": 6,
-      "spanEnd": 10,
-      "rejectReasons": [
-        "name-head-too-short",
-        "no-personal-name-marker"
-      ],
-      "sourceUrl": "https://app.turath.io/book/2171?page=470"
-    },
-    {
-      "source": "kashif",
-      "candidateId": "kashif-2253-473-2267",
-      "entryNumber": 2253,
-      "nameSurface": "شداد",
-      "sourcePageId": 474,
-      "spanStart": 45,
-      "spanEnd": 50,
-      "rejectReasons": [
-        "no-personal-name-marker"
-      ],
-      "sourceUrl": "https://app.turath.io/book/2171?page=474"
-    },
-    {
-      "source": "kashif",
-      "candidateId": "kashif-2301-480-2315",
-      "entryNumber": 2301,
-      "nameSurface": "شقران",
-      "sourcePageId": 481,
-      "spanStart": 193,
-      "spanEnd": 199,
-      "rejectReasons": [
-        "no-personal-name-marker"
-      ],
-      "sourceUrl": "https://app.turath.io/book/2171?page=481"
-    },
-    {
-      "source": "kashif",
-      "candidateId": "kashif-2306-480-2320",
-      "entryNumber": 2306,
-      "nameSurface": "شقيق",
-      "sourcePageId": 481,
-      "spanStart": 654,
-      "spanEnd": 659,
-      "rejectReasons": [
-        "no-personal-name-marker"
-      ],
-      "sourceUrl": "https://app.turath.io/book/2171?page=481"
-    },
-    {
-      "source": "kashif",
-      "candidateId": "kashif-2313-481-2327",
-      "entryNumber": 2313,
-      "nameSurface": "شهاب",
-      "sourcePageId": 482,
-      "spanStart": 554,
-      "spanEnd": 559,
-      "rejectReasons": [
-        "no-personal-name-marker"
-      ],
-      "sourceUrl": "https://app.turath.io/book/2171?page=482"
-    },
-    {
-      "source": "kashif",
-      "candidateId": "kashif-2371-491-2385",
-      "entryNumber": 2371,
-      "nameSurface": "صبيح بالضم",
-      "sourcePageId": 492,
-      "spanStart": 178,
-      "spanEnd": 189,
-      "rejectReasons": [
-        "no-personal-name-marker"
-      ],
-      "sourceUrl": "https://app.turath.io/book/2171?page=492"
-    },
-    {
-      "source": "kashif",
-      "candidateId": "kashif-2485-506-2499",
-      "entryNumber": 2485,
-      "nameSurface": "طلحة",
-      "sourcePageId": 507,
-      "spanStart": 524,
-      "spanEnd": 529,
-      "rejectReasons": [
-        "no-personal-name-marker"
-      ],
-      "sourceUrl": "https://app.turath.io/book/2171?page=507"
-    },
-    {
-      "source": "kashif",
-      "candidateId": "kashif-2551-518-2563",
-      "entryNumber": 2551,
-      "nameSurface": "عامر الرام",
-      "sourcePageId": 519,
-      "spanStart": 6,
-      "spanEnd": 17,
-      "rejectReasons": [
-        "no-personal-name-marker"
-      ],
-      "sourceUrl": "https://app.turath.io/book/2171?page=519"
-    },
-    {
-      "source": "kashif",
-      "candidateId": "kashif-2583-523-2595",
-      "entryNumber": 2583,
-      "nameSurface": "عباد السماك",
-      "sourcePageId": 524,
-      "spanStart": 222,
-      "spanEnd": 234,
-      "rejectReasons": [
-        "no-personal-name-marker"
-      ],
-      "sourceUrl": "https://app.turath.io/book/2171?page=524"
-    },
-    {
-      "source": "kashif",
-      "candidateId": "kashif-3072-600-3083",
-      "entryNumber": 3072,
-      "nameSurface": "عبد الله",
-      "sourcePageId": 601,
-      "spanStart": 362,
-      "spanEnd": 371,
-      "rejectReasons": [
-        "no-personal-name-marker"
-      ],
-      "sourceUrl": "https://app.turath.io/book/2171?page=601"
-    },
-    {
-      "source": "kashif",
-      "candidateId": "kashif-3119-608-3130",
-      "entryNumber": 3119,
-      "nameSurface": "عبد الحميد",
-      "sourcePageId": 609,
-      "spanStart": 437,
-      "spanEnd": 448,
-      "rejectReasons": [
-        "no-personal-name-marker"
-      ],
-      "sourceUrl": "https://app.turath.io/book/2171?page=609"
-    },
-    {
-      "source": "kashif",
-      "candidateId": "kashif-3121-608-3132",
-      "entryNumber": 3121,
-      "nameSurface": "عبد الخالق",
-      "sourcePageId": 609,
-      "spanStart": 581,
-      "spanEnd": 592,
-      "rejectReasons": [
-        "no-personal-name-marker"
-      ],
-      "sourceUrl": "https://app.turath.io/book/2171?page=609"
-    },
-    {
-      "source": "kashif",
-      "candidateId": "kashif-3129-609-3140",
-      "entryNumber": 3129,
-      "nameSurface": "عبد ربه",
-      "sourcePageId": 610,
-      "spanStart": 679,
-      "spanEnd": 687,
-      "rejectReasons": [
-        "no-personal-name-marker"
-      ],
-      "sourceUrl": "https://app.turath.io/book/2171?page=610"
-    },
-    {
-      "source": "kashif",
-      "candidateId": "kashif-3353-640-3364",
-      "entryNumber": 3353,
-      "nameSurface": "عبد الرحمن",
-      "sourcePageId": 641,
-      "spanStart": 70,
-      "spanEnd": 81,
-      "rejectReasons": [
-        "no-personal-name-marker"
-      ],
-      "sourceUrl": "https://app.turath.io/book/2171?page=641"
-    },
-    {
-      "source": "kashif",
-      "candidateId": "kashif-3416-649-3427",
-      "entryNumber": 3416,
-      "nameSurface": "عبد العزيز",
-      "sourcePageId": 650,
-      "spanStart": 345,
-      "spanEnd": 356,
-      "rejectReasons": [
-        "no-personal-name-marker"
-      ],
-      "sourceUrl": "https://app.turath.io/book/2171?page=650"
-    },
-    {
-      "source": "kashif",
-      "candidateId": "kashif-3525-666-3536",
-      "entryNumber": 3525,
-      "nameSurface": "عبد",
-      "sourcePageId": 667,
-      "spanStart": 464,
-      "spanEnd": 468,
-      "rejectReasons": [
-        "name-head-too-short",
-        "no-personal-name-marker"
-      ],
-      "sourceUrl": "https://app.turath.io/book/2171?page=667"
-    },
-    {
-      "source": "kashif",
-      "candidateId": "kashif-3603-678-3613",
-      "entryNumber": 3603,
-      "nameSurface": "عبيد الله",
-      "sourcePageId": 679,
-      "spanStart": 567,
-      "spanEnd": 577,
-      "rejectReasons": [
-        "no-personal-name-marker"
-      ],
-      "sourceUrl": "https://app.turath.io/book/2171?page=679"
-    },
-    {
-      "source": "kashif",
-      "candidateId": "kashif-3641-683-3651",
-      "entryNumber": 3641,
-      "nameSurface": "عبيد سنوطا",
-      "sourcePageId": 684,
-      "spanStart": 448,
-      "spanEnd": 459,
-      "rejectReasons": [
-        "no-personal-name-marker"
-      ],
-      "sourceUrl": "https://app.turath.io/book/2171?page=684"
-    },
-    {
-      "source": "kashif",
-      "candidateId": "kashif-3642-683-3652",
-      "entryNumber": 3642,
-      "nameSurface": "عبيد",
-      "sourcePageId": 684,
-      "spanStart": 513,
-      "spanEnd": 518,
-      "rejectReasons": [
-        "no-personal-name-marker"
-      ],
-      "sourceUrl": "https://app.turath.io/book/2171?page=684"
-    },
-    {
-      "source": "kashif",
-      "candidateId": "kashif-3649-684-3659",
-      "entryNumber": 3649,
-      "nameSurface": "عبيدة أبوخداش",
-      "sourcePageId": 685,
-      "spanStart": 651,
-      "spanEnd": 665,
-      "rejectReasons": [
-        "no-personal-name-marker"
-      ],
-      "sourceUrl": "https://app.turath.io/book/2171?page=685"
-    },
-    {
-      "source": "kashif",
-      "candidateId": "kashif-3659-685-3669",
-      "entryNumber": 3659,
-      "nameSurface": "عتاب",
-      "sourcePageId": 686,
-      "spanStart": 744,
-      "spanEnd": 749,
-      "rejectReasons": [
-        "no-personal-name-marker"
-      ],
-      "sourceUrl": "https://app.turath.io/book/2171?page=686"
-    },
-    {
-      "source": "kashif",
-      "candidateId": "kashif-3754-702-3769",
-      "entryNumber": 3754,
-      "nameSurface": "عجلان",
-      "sourcePageId": 703,
-      "spanStart": 311,
-      "spanEnd": 317,
-      "rejectReasons": [
-        "no-personal-name-marker"
-      ],
-      "sourceUrl": "https://app.turath.io/book/2171?page=703"
-    },
-    {
-      "source": "kashif",
-      "candidateId": "kashif-3755-702-3770",
-      "entryNumber": 3755,
-      "nameSurface": "عجلان",
-      "sourcePageId": 703,
-      "spanStart": 374,
-      "spanEnd": 380,
-      "rejectReasons": [
-        "no-personal-name-marker"
-      ],
-      "sourceUrl": "https://app.turath.io/book/2171?page=703"
-    },
-    {
-      "source": "kashif",
-      "candidateId": "kashif-3776-706-3790",
-      "entryNumber": 3776,
-      "nameSurface": "عروة",
-      "sourcePageId": 707,
-      "spanStart": 6,
-      "spanEnd": 11,
-      "rejectReasons": [
-        "no-personal-name-marker"
-      ],
-      "sourceUrl": "https://app.turath.io/book/2171?page=707"
-    },
-    {
-      "source": "kashif",
-      "candidateId": "kashif-3812-712-3825",
-      "entryNumber": 3812,
-      "nameSurface": "عطاء",
-      "sourcePageId": 713,
-      "spanStart": 482,
-      "spanEnd": 487,
-      "rejectReasons": [
-        "no-personal-name-marker"
-      ],
-      "sourceUrl": "https://app.turath.io/book/2171?page=713"
-    },
-    {
-      "source": "kashif",
-      "candidateId": "kashif-3852-717-3865",
-      "entryNumber": 3852,
-      "nameSurface": "عقبة",
-      "sourcePageId": 718,
-      "spanStart": 812,
-      "spanEnd": 817,
-      "rejectReasons": [
-        "no-personal-name-marker"
-      ],
-      "sourceUrl": "https://app.turath.io/book/2171?page=718"
-    },
-    {
-      "source": "kashif",
       "candidateId": "kashif-3853-717-3866",
       "entryNumber": 3853,
       "nameSurface": "عقبة",
@@ -9596,125 +5313,6 @@
         "no-personal-name-marker"
       ],
       "sourceUrl": "https://app.turath.io/book/2171?page=718"
-    },
-    {
-      "source": "kashif",
-      "candidateId": "kashif-3985-737-3997",
-      "entryNumber": 3985,
-      "nameSurface": "علي",
-      "sourcePageId": 738,
-      "spanStart": 6,
-      "spanEnd": 10,
-      "rejectReasons": [
-        "name-head-too-short",
-        "no-personal-name-marker"
-      ],
-      "sourceUrl": "https://app.turath.io/book/2171?page=738"
-    },
-    {
-      "source": "kashif",
-      "candidateId": "kashif-4057-748-4068",
-      "entryNumber": 4057,
-      "nameSurface": "عمر",
-      "sourcePageId": 749,
-      "spanStart": 249,
-      "spanEnd": 253,
-      "rejectReasons": [
-        "name-head-too-short",
-        "no-personal-name-marker"
-      ],
-      "sourceUrl": "https://app.turath.io/book/2171?page=749"
-    },
-    {
-      "source": "kashif",
-      "candidateId": "kashif-4291-785-4294",
-      "entryNumber": 4291,
-      "nameSurface": "عمير",
-      "sourcePageId": 786,
-      "spanStart": 388,
-      "spanEnd": 393,
-      "rejectReasons": [
-        "no-personal-name-marker"
-      ],
-      "sourceUrl": "https://app.turath.io/book/2171?page=786"
-    },
-    {
-      "source": "kashif",
-      "candidateId": "kashif-4292-785-4295",
-      "entryNumber": 4292,
-      "nameSurface": "عمير",
-      "sourcePageId": 786,
-      "spanStart": 476,
-      "spanEnd": 481,
-      "rejectReasons": [
-        "no-personal-name-marker"
-      ],
-      "sourceUrl": "https://app.turath.io/book/2171?page=786"
-    },
-    {
-      "source": "kashif",
-      "candidateId": "kashif-4293-785-4296",
-      "entryNumber": 4293,
-      "nameSurface": "عمير",
-      "sourcePageId": 786,
-      "spanStart": 545,
-      "spanEnd": 550,
-      "rejectReasons": [
-        "no-personal-name-marker"
-      ],
-      "sourceUrl": "https://app.turath.io/book/2171?page=786"
-    },
-    {
-      "source": "kashif",
-      "candidateId": "kashif-4308-788-4311",
-      "entryNumber": 4308,
-      "nameSurface": "عوسجة",
-      "sourcePageId": 789,
-      "spanStart": 6,
-      "spanEnd": 12,
-      "rejectReasons": [
-        "no-personal-name-marker"
-      ],
-      "sourceUrl": "https://app.turath.io/book/2171?page=789"
-    },
-    {
-      "source": "kashif",
-      "candidateId": "kashif-4347-793-4349",
-      "entryNumber": 4347,
-      "nameSurface": "العلاء",
-      "sourcePageId": 794,
-      "spanStart": 633,
-      "spanEnd": 640,
-      "rejectReasons": [
-        "no-personal-name-marker"
-      ],
-      "sourceUrl": "https://app.turath.io/book/2171?page=794"
-    },
-    {
-      "source": "kashif",
-      "candidateId": "kashif-4402-800-4401",
-      "entryNumber": 4402,
-      "nameSurface": "عيسى",
-      "sourcePageId": 801,
-      "spanStart": 372,
-      "spanEnd": 377,
-      "rejectReasons": [
-        "no-personal-name-marker"
-      ],
-      "sourceUrl": "https://app.turath.io/book/2171?page=801"
-    },
-    {
-      "source": "kashif",
-      "candidateId": "kashif-4414-802-4413",
-      "entryNumber": 4414,
-      "nameSurface": "الله ﷿ غالب القطان",
-      "sourcePageId": 803,
-      "spanStart": 217,
-      "spanEnd": 236,
-      "rejectReasons": [
-        "no-personal-name-marker"
-      ],
-      "sourceUrl": "https://app.turath.io/book/2171?page=803"
     },
     {
       "source": "kashif",
@@ -9731,45 +5329,6 @@
     },
     {
       "source": "kashif",
-      "candidateId": "kashif-4440-806-4438",
-      "entryNumber": 4440,
-      "nameSurface": "فائد",
-      "sourcePageId": 807,
-      "spanStart": 424,
-      "spanEnd": 429,
-      "rejectReasons": [
-        "no-personal-name-marker"
-      ],
-      "sourceUrl": "https://app.turath.io/book/2171?page=807"
-    },
-    {
-      "source": "kashif",
-      "candidateId": "kashif-4443-806-4440",
-      "entryNumber": 4443,
-      "nameSurface": "فرات القزاز",
-      "sourcePageId": 807,
-      "spanStart": 630,
-      "spanEnd": 642,
-      "rejectReasons": [
-        "no-personal-name-marker"
-      ],
-      "sourceUrl": "https://app.turath.io/book/2171?page=807"
-    },
-    {
-      "source": "kashif",
-      "candidateId": "kashif-4449-807-4446",
-      "entryNumber": 4449,
-      "nameSurface": "فروخ",
-      "sourcePageId": 808,
-      "spanStart": 456,
-      "spanEnd": 461,
-      "rejectReasons": [
-        "no-personal-name-marker"
-      ],
-      "sourceUrl": "https://app.turath.io/book/2171?page=808"
-    },
-    {
-      "source": "kashif",
       "candidateId": "kashif-4566-823-4561",
       "entryNumber": 4566,
       "nameSurface": "قرظة",
@@ -9780,60 +5339,6 @@
         "no-personal-name-marker"
       ],
       "sourceUrl": "https://app.turath.io/book/2171?page=824"
-    },
-    {
-      "source": "kashif",
-      "candidateId": "kashif-4623-829-4617",
-      "entryNumber": 4623,
-      "nameSurface": "قيس",
-      "sourcePageId": 830,
-      "spanStart": 277,
-      "spanEnd": 281,
-      "rejectReasons": [
-        "name-head-too-short",
-        "no-personal-name-marker"
-      ],
-      "sourceUrl": "https://app.turath.io/book/2171?page=830"
-    },
-    {
-      "source": "kashif",
-      "candidateId": "kashif-4653-834-4647",
-      "entryNumber": 4653,
-      "nameSurface": "كريب أبورشدين",
-      "sourcePageId": 835,
-      "spanStart": 592,
-      "spanEnd": 606,
-      "rejectReasons": [
-        "no-personal-name-marker"
-      ],
-      "sourceUrl": "https://app.turath.io/book/2171?page=835"
-    },
-    {
-      "source": "kashif",
-      "candidateId": "kashif-4656-835-4650",
-      "entryNumber": 4656,
-      "nameSurface": "كعب",
-      "sourcePageId": 836,
-      "spanStart": 67,
-      "spanEnd": 71,
-      "rejectReasons": [
-        "name-head-too-short",
-        "no-personal-name-marker"
-      ],
-      "sourceUrl": "https://app.turath.io/book/2171?page=836"
-    },
-    {
-      "source": "kashif",
-      "candidateId": "kashif-4679-837-4673",
-      "entryNumber": 4679,
-      "nameSurface": "كنانة",
-      "sourcePageId": 838,
-      "spanStart": 185,
-      "spanEnd": 191,
-      "rejectReasons": [
-        "no-personal-name-marker"
-      ],
-      "sourceUrl": "https://app.turath.io/book/2171?page=838"
     },
     {
       "source": "kashif",
@@ -9850,456 +5355,12 @@
     },
     {
       "source": "kashif",
-      "candidateId": "kashif-5371-940-5353",
-      "entryNumber": 5371,
-      "nameSurface": "مروان الاصفر مصري",
-      "sourcePageId": 941,
-      "spanStart": 372,
-      "spanEnd": 390,
-      "rejectReasons": [
-        "no-personal-name-marker"
-      ],
-      "sourceUrl": "https://app.turath.io/book/2171?page=941"
-    },
-    {
-      "source": "kashif",
-      "candidateId": "kashif-5380-941-5361",
-      "entryNumber": 5380,
-      "nameSurface": "مساور الوراق",
-      "sourcePageId": 942,
-      "spanStart": 56,
-      "spanEnd": 69,
-      "rejectReasons": [
-        "no-personal-name-marker"
-      ],
-      "sourceUrl": "https://app.turath.io/book/2171?page=942"
-    },
-    {
-      "source": "kashif",
-      "candidateId": "kashif-5390-942-5371",
-      "entryNumber": 5390,
-      "nameSurface": "مسروح",
-      "sourcePageId": 943,
-      "spanStart": 245,
-      "spanEnd": 251,
-      "rejectReasons": [
-        "no-personal-name-marker"
-      ],
-      "sourceUrl": "https://app.turath.io/book/2171?page=943"
-    },
-    {
-      "source": "kashif",
-      "candidateId": "kashif-5470-954-5449",
-      "entryNumber": 5470,
-      "nameSurface": "مضارب",
-      "sourcePageId": 955,
-      "spanStart": 443,
-      "spanEnd": 449,
-      "rejectReasons": [
-        "no-personal-name-marker"
-      ],
-      "sourceUrl": "https://app.turath.io/book/2171?page=955"
-    },
-    {
-      "source": "kashif",
-      "candidateId": "kashif-5487-957-5466",
-      "entryNumber": 5487,
-      "nameSurface": "المطوس",
-      "sourcePageId": 958,
-      "spanStart": 296,
-      "spanEnd": 303,
-      "rejectReasons": [
-        "no-personal-name-marker"
-      ],
-      "sourceUrl": "https://app.turath.io/book/2171?page=958"
-    },
-    {
-      "source": "kashif",
-      "candidateId": "kashif-5620-977-5596",
-      "entryNumber": 5620,
-      "nameSurface": "مكحول فقيه الشام",
-      "sourcePageId": 978,
-      "spanStart": 63,
-      "spanEnd": 80,
-      "rejectReasons": [
-        "no-personal-name-marker"
-      ],
-      "sourceUrl": "https://app.turath.io/book/2171?page=978"
-    },
-    {
-      "source": "kashif",
-      "candidateId": "kashif-5625-980-5601",
-      "entryNumber": 5625,
-      "nameSurface": "منبوذ",
-      "sourcePageId": 981,
-      "spanStart": 6,
-      "spanEnd": 12,
-      "rejectReasons": [
-        "no-personal-name-marker"
-      ],
-      "sourceUrl": "https://app.turath.io/book/2171?page=981"
-    },
-    {
-      "source": "kashif",
-      "candidateId": "kashif-5636-982-5612",
-      "entryNumber": 5636,
-      "nameSurface": "منذر",
-      "sourcePageId": 983,
-      "spanStart": 106,
-      "spanEnd": 111,
-      "rejectReasons": [
-        "no-personal-name-marker"
-      ],
-      "sourceUrl": "https://app.turath.io/book/2171?page=983"
-    },
-    {
-      "source": "kashif",
-      "candidateId": "kashif-5665-986-5640",
-      "entryNumber": 5665,
-      "nameSurface": "مهدي",
-      "sourcePageId": 987,
-      "spanStart": 6,
-      "spanEnd": 11,
-      "rejectReasons": [
-        "no-personal-name-marker"
-      ],
-      "sourceUrl": "https://app.turath.io/book/2171?page=987"
-    },
-    {
-      "source": "kashif",
-      "candidateId": "kashif-5746-995-5719",
-      "entryNumber": 5746,
-      "nameSurface": "موسى",
-      "sourcePageId": 996,
-      "spanStart": 794,
-      "spanEnd": 799,
-      "rejectReasons": [
-        "no-personal-name-marker"
-      ],
-      "sourceUrl": "https://app.turath.io/book/2171?page=996"
-    },
-    {
-      "source": "kashif",
-      "candidateId": "kashif-5768-998-5740",
-      "entryNumber": 5768,
-      "nameSurface": "ميمون القناد بصري",
-      "sourcePageId": 999,
-      "spanStart": 418,
-      "spanEnd": 436,
-      "rejectReasons": [
-        "no-personal-name-marker"
-      ],
-      "sourceUrl": "https://app.turath.io/book/2171?page=999"
-    },
-    {
-      "source": "kashif",
-      "candidateId": "kashif-5770-998-5742",
-      "entryNumber": 5770,
-      "nameSurface": "ميناء",
-      "sourcePageId": 999,
-      "spanStart": 581,
-      "spanEnd": 587,
-      "rejectReasons": [
-        "no-personal-name-marker"
-      ],
-      "sourceUrl": "https://app.turath.io/book/2171?page=999"
-    },
-    {
-      "source": "kashif",
-      "candidateId": "kashif-5771-999-5743",
-      "entryNumber": 5771,
-      "nameSurface": "نابل",
-      "sourcePageId": 1000,
-      "spanStart": 57,
-      "spanEnd": 62,
-      "rejectReasons": [
-        "no-personal-name-marker"
-      ],
-      "sourceUrl": "https://app.turath.io/book/2171?page=1000"
-    },
-    {
-      "source": "kashif",
-      "candidateId": "kashif-5781-1000-5753",
-      "entryNumber": 5781,
-      "nameSurface": "نافع",
-      "sourcePageId": 1001,
-      "spanStart": 544,
-      "spanEnd": 549,
-      "rejectReasons": [
-        "no-personal-name-marker"
-      ],
-      "sourceUrl": "https://app.turath.io/book/2171?page=1001"
-    },
-    {
-      "source": "kashif",
-      "candidateId": "kashif-5790-1001-5762",
-      "entryNumber": 5790,
-      "nameSurface": "نافع",
-      "sourcePageId": 1002,
-      "spanStart": 554,
-      "spanEnd": 559,
-      "rejectReasons": [
-        "no-personal-name-marker"
-      ],
-      "sourceUrl": "https://app.turath.io/book/2171?page=1002"
-    },
-    {
-      "source": "kashif",
-      "candidateId": "kashif-5792-1002-5764",
-      "entryNumber": 5792,
-      "nameSurface": "نافع",
-      "sourcePageId": 1003,
-      "spanStart": 6,
-      "spanEnd": 11,
-      "rejectReasons": [
-        "no-personal-name-marker"
-      ],
-      "sourceUrl": "https://app.turath.io/book/2171?page=1003"
-    },
-    {
-      "source": "kashif",
-      "candidateId": "kashif-5799-1003-5770",
-      "entryNumber": 5799,
-      "nameSurface": "نبيط",
-      "sourcePageId": 1004,
-      "spanStart": 147,
-      "spanEnd": 152,
-      "rejectReasons": [
-        "no-personal-name-marker"
-      ],
-      "sourceUrl": "https://app.turath.io/book/2171?page=1004"
-    },
-    {
-      "source": "kashif",
-      "candidateId": "kashif-5873-1012-5843",
-      "entryNumber": 5873,
-      "nameSurface": "نقيب أو نقيد",
-      "sourcePageId": 1013,
-      "spanStart": 91,
-      "spanEnd": 104,
-      "rejectReasons": [
-        "no-personal-name-marker"
-      ],
-      "sourceUrl": "https://app.turath.io/book/2171?page=1013"
-    },
-    {
-      "source": "kashif",
-      "candidateId": "kashif-5994-1026-5962",
-      "entryNumber": 5994,
-      "nameSurface": "هلال الوزان",
-      "sourcePageId": 1027,
-      "spanStart": 434,
-      "spanEnd": 446,
-      "rejectReasons": [
-        "no-personal-name-marker"
-      ],
-      "sourceUrl": "https://app.turath.io/book/2171?page=1027"
-    },
-    {
-      "source": "kashif",
-      "candidateId": "kashif-6011-1029-5979",
-      "entryNumber": 6011,
-      "nameSurface": "هلال",
-      "sourcePageId": 1030,
-      "spanStart": 190,
-      "spanEnd": 195,
-      "rejectReasons": [
-        "no-personal-name-marker"
-      ],
-      "sourceUrl": "https://app.turath.io/book/2171?page=1030"
-    },
-    {
-      "source": "kashif",
-      "candidateId": "kashif-6031-1032-5999",
-      "entryNumber": 6031,
-      "nameSurface": "واصل",
-      "sourcePageId": 1033,
-      "spanStart": 766,
-      "spanEnd": 771,
-      "rejectReasons": [
-        "no-personal-name-marker"
-      ],
-      "sourceUrl": "https://app.turath.io/book/2171?page=1033"
-    },
-    {
-      "source": "kashif",
-      "candidateId": "kashif-6045-1034-6013",
-      "entryNumber": 6045,
-      "nameSurface": "وراد كاتب المغيرة ومولاه",
-      "sourcePageId": 1035,
-      "spanStart": 579,
-      "spanEnd": 604,
-      "rejectReasons": [
-        "no-personal-name-marker"
-      ],
-      "sourceUrl": "https://app.turath.io/book/2171?page=1035"
-    },
-    {
-      "source": "kashif",
-      "candidateId": "kashif-6117-1044-6085",
-      "entryNumber": 6117,
-      "nameSurface": "وهب",
-      "sourcePageId": 1045,
-      "spanStart": 135,
-      "spanEnd": 139,
-      "rejectReasons": [
-        "name-head-too-short",
-        "no-personal-name-marker"
-      ],
-      "sourceUrl": "https://app.turath.io/book/2171?page=1045"
-    },
-    {
-      "source": "kashif",
-      "candidateId": "kashif-6247-1062-6212",
-      "entryNumber": 6247,
-      "nameSurface": "يحيى البكاء بصري",
-      "sourcePageId": 1063,
-      "spanStart": 241,
-      "spanEnd": 258,
-      "rejectReasons": [
-        "no-personal-name-marker"
-      ],
-      "sourceUrl": "https://app.turath.io/book/2171?page=1063"
-    },
-    {
-      "source": "kashif",
-      "candidateId": "kashif-6373-1078-6336",
-      "entryNumber": 6373,
-      "nameSurface": "يزيد",
-      "sourcePageId": 1079,
-      "spanStart": 106,
-      "spanEnd": 111,
-      "rejectReasons": [
-        "no-personal-name-marker"
-      ],
-      "sourceUrl": "https://app.turath.io/book/2171?page=1079"
-    },
-    {
-      "source": "kashif",
-      "candidateId": "kashif-6377-1078-6340",
-      "entryNumber": 6377,
-      "nameSurface": "يسار",
-      "sourcePageId": 1079,
-      "spanStart": 383,
-      "spanEnd": 388,
-      "rejectReasons": [
-        "no-personal-name-marker"
-      ],
-      "sourceUrl": "https://app.turath.io/book/2171?page=1079"
-    },
-    {
-      "source": "kashif",
-      "candidateId": "kashif-6409-1082-6371",
-      "entryNumber": 6409,
-      "nameSurface": "يعقوب",
-      "sourcePageId": 1083,
-      "spanStart": 568,
-      "spanEnd": 574,
-      "rejectReasons": [
-        "no-personal-name-marker"
-      ],
-      "sourceUrl": "https://app.turath.io/book/2171?page=1083"
-    },
-    {
-      "source": "kashif",
-      "candidateId": "kashif-6591-1106-6549",
-      "entryNumber": 6591,
-      "nameSurface": "أبوحلبس",
-      "sourcePageId": 1107,
-      "spanStart": 1016,
-      "spanEnd": 1024,
-      "rejectReasons": [
-        "no-personal-name-marker"
-      ],
-      "sourceUrl": "https://app.turath.io/book/2171?page=1107"
-    },
-    {
-      "source": "kashif",
-      "candidateId": "kashif-6676-1120-6634",
-      "entryNumber": 6676,
-      "nameSurface": "شعبة",
-      "sourcePageId": 1121,
-      "spanStart": 136,
-      "spanEnd": 141,
-      "rejectReasons": [
-        "no-personal-name-marker"
-      ],
-      "sourceUrl": "https://app.turath.io/book/2171?page=1121"
-    },
-    {
-      "source": "kashif",
-      "candidateId": "kashif-6680-1120-6638",
-      "entryNumber": 6680,
-      "nameSurface": "شهم",
-      "sourcePageId": 1121,
-      "spanStart": 705,
-      "spanEnd": 709,
-      "rejectReasons": [
-        "name-head-too-short",
-        "no-personal-name-marker"
-      ],
-      "sourceUrl": "https://app.turath.io/book/2171?page=1121"
-    },
-    {
-      "source": "kashif",
-      "candidateId": "kashif-6682-1120-6640",
-      "entryNumber": 6682,
-      "nameSurface": "أبو",
-      "sourcePageId": 1121,
-      "spanStart": 1167,
-      "spanEnd": 1171,
-      "rejectReasons": [
-        "name-head-too-short"
-      ],
-      "sourceUrl": "https://app.turath.io/book/2171?page=1121"
-    },
-    {
-      "source": "kashif",
-      "candidateId": "kashif-6695-1123-6653",
-      "entryNumber": 6695,
-      "nameSurface": "طعمة القاص",
-      "sourcePageId": 1124,
-      "spanStart": 6,
-      "spanEnd": 17,
-      "rejectReasons": [
-        "no-personal-name-marker"
-      ],
-      "sourceUrl": "https://app.turath.io/book/2171?page=1124"
-    },
-    {
-      "source": "kashif",
-      "candidateId": "kashif-6894-1157-6850",
-      "entryNumber": 6894,
-      "nameSurface": "أبولاس",
-      "sourcePageId": 1158,
-      "spanStart": 784,
-      "spanEnd": 791,
-      "rejectReasons": [
-        "no-personal-name-marker"
-      ],
-      "sourceUrl": "https://app.turath.io/book/2171?page=1158"
-    },
-    {
-      "source": "kashif",
-      "candidateId": "kashif-6898-1158-6854",
-      "entryNumber": 6898,
-      "nameSurface": "أبويحيى",
-      "sourcePageId": 1159,
-      "spanStart": 145,
-      "spanEnd": 153,
-      "rejectReasons": [
-        "no-personal-name-marker"
-      ],
-      "sourceUrl": "https://app.turath.io/book/2171?page=1159"
-    },
-    {
-      "source": "kashif",
       "candidateId": "kashif-0-1187-6899",
       "entryNumber": 0,
-      "nameSurface": "وحذفت أكثر رجال هذا الفصل فكثير منهم إنما هو احتمال أو تحكم",
+      "nameSurface": "وحذفت أكثر رجال هذا الفصل فكثير منهم إنما",
       "sourcePageId": 1188,
       "spanStart": 1372,
-      "spanEnd": 1431,
+      "spanEnd": 1414,
       "rejectReasons": [
         "no-personal-name-marker"
       ],
@@ -10309,209 +5370,27 @@
       "source": "kashif",
       "candidateId": "kashif-6953-1189-6910",
       "entryNumber": 6953,
-      "nameSurface": "أمينة",
+      "nameSurface": "أمينة ابنة أنس حكى عنها أبوها كم عدة",
       "sourcePageId": 1190,
       "spanStart": 110,
-      "spanEnd": 116,
+      "spanEnd": 150,
       "rejectReasons": [
         "no-personal-name-marker"
       ],
       "sourceUrl": "https://app.turath.io/book/2171?page=1190"
-    },
-    {
-      "source": "kashif",
-      "candidateId": "kashif-6957-1189-6914",
-      "entryNumber": 6957,
-      "nameSurface": "بريرة",
-      "sourcePageId": 1190,
-      "spanStart": 421,
-      "spanEnd": 427,
-      "rejectReasons": [
-        "no-personal-name-marker"
-      ],
-      "sourceUrl": "https://app.turath.io/book/2171?page=1190"
-    },
-    {
-      "source": "kashif",
-      "candidateId": "kashif-6959-1190-6916",
-      "entryNumber": 6959,
-      "nameSurface": "بنانة",
-      "sourcePageId": 1191,
-      "spanStart": 6,
-      "spanEnd": 12,
-      "rejectReasons": [
-        "no-personal-name-marker"
-      ],
-      "sourceUrl": "https://app.turath.io/book/2171?page=1191"
     },
     {
       "source": "kashif",
       "candidateId": "kashif-6960-1190-6917",
       "entryNumber": 6960,
-      "nameSurface": "بنانة",
+      "nameSurface": "بنانة ويقال تبالة العبشمية تابعية عنها عاصم الاحول ق",
       "sourcePageId": 1191,
       "spanStart": 43,
-      "spanEnd": 49,
+      "spanEnd": 95,
       "rejectReasons": [
         "no-personal-name-marker"
       ],
       "sourceUrl": "https://app.turath.io/book/2171?page=1191"
-    },
-    {
-      "source": "kashif",
-      "candidateId": "kashif-6961-1190-6918",
-      "entryNumber": 6961,
-      "nameSurface": "بهيسة الفزارية",
-      "sourcePageId": 1191,
-      "spanStart": 102,
-      "spanEnd": 117,
-      "rejectReasons": [
-        "no-personal-name-marker"
-      ],
-      "sourceUrl": "https://app.turath.io/book/2171?page=1191"
-    },
-    {
-      "source": "kashif",
-      "candidateId": "kashif-6962-1190-6919",
-      "entryNumber": 6962,
-      "nameSurface": "بهية",
-      "sourcePageId": 1191,
-      "spanStart": 156,
-      "spanEnd": 161,
-      "rejectReasons": [
-        "no-personal-name-marker"
-      ],
-      "sourceUrl": "https://app.turath.io/book/2171?page=1191"
-    },
-    {
-      "source": "kashif",
-      "candidateId": "kashif-6966-1191-6923",
-      "entryNumber": 6966,
-      "nameSurface": "جميلة",
-      "sourcePageId": 1192,
-      "spanStart": 56,
-      "spanEnd": 62,
-      "rejectReasons": [
-        "no-personal-name-marker"
-      ],
-      "sourceUrl": "https://app.turath.io/book/2171?page=1192"
-    },
-    {
-      "source": "kashif",
-      "candidateId": "kashif-6978-1192-6935",
-      "entryNumber": 6978,
-      "nameSurface": "حكيمة",
-      "sourcePageId": 1193,
-      "spanStart": 6,
-      "spanEnd": 12,
-      "rejectReasons": [
-        "no-personal-name-marker"
-      ],
-      "sourceUrl": "https://app.turath.io/book/2171?page=1193"
-    },
-    {
-      "source": "kashif",
-      "candidateId": "kashif-6988-1193-6945",
-      "entryNumber": 6988,
-      "nameSurface": "خيرة",
-      "sourcePageId": 1194,
-      "spanStart": 111,
-      "spanEnd": 116,
-      "rejectReasons": [
-        "no-personal-name-marker"
-      ],
-      "sourceUrl": "https://app.turath.io/book/2171?page=1194"
-    },
-    {
-      "source": "kashif",
-      "candidateId": "kashif-6993-1194-6950",
-      "entryNumber": 6993,
-      "nameSurface": "الرباب",
-      "sourcePageId": 1195,
-      "spanStart": 6,
-      "spanEnd": 13,
-      "rejectReasons": [
-        "no-personal-name-marker"
-      ],
-      "sourceUrl": "https://app.turath.io/book/2171?page=1195"
-    },
-    {
-      "source": "kashif",
-      "candidateId": "kashif-6998-1194-6955",
-      "entryNumber": 6998,
-      "nameSurface": "رميثة",
-      "sourcePageId": 1195,
-      "spanStart": 481,
-      "spanEnd": 487,
-      "rejectReasons": [
-        "no-personal-name-marker"
-      ],
-      "sourceUrl": "https://app.turath.io/book/2171?page=1195"
-    },
-    {
-      "source": "kashif",
-      "candidateId": "kashif-6999-1194-6956",
-      "entryNumber": 6999,
-      "nameSurface": "رميثة صحابية ولها",
-      "sourcePageId": 1195,
-      "spanStart": 524,
-      "spanEnd": 542,
-      "rejectReasons": [
-        "no-personal-name-marker"
-      ],
-      "sourceUrl": "https://app.turath.io/book/2171?page=1195"
-    },
-    {
-      "source": "kashif",
-      "candidateId": "kashif-7007-1195-6964",
-      "entryNumber": 7007,
-      "nameSurface": "زينب السهمية",
-      "sourcePageId": 1196,
-      "spanStart": 215,
-      "spanEnd": 228,
-      "rejectReasons": [
-        "no-personal-name-marker"
-      ],
-      "sourceUrl": "https://app.turath.io/book/2171?page=1196"
-    },
-    {
-      "source": "kashif",
-      "candidateId": "kashif-7008-1195-6965",
-      "entryNumber": 7008,
-      "nameSurface": "زينب",
-      "sourcePageId": 1196,
-      "spanStart": 273,
-      "spanEnd": 278,
-      "rejectReasons": [
-        "no-personal-name-marker"
-      ],
-      "sourceUrl": "https://app.turath.io/book/2171?page=1196"
-    },
-    {
-      "source": "kashif",
-      "candidateId": "kashif-7010-1195-6967",
-      "entryNumber": 7010,
-      "nameSurface": "سائبة",
-      "sourcePageId": 1196,
-      "spanStart": 449,
-      "spanEnd": 455,
-      "rejectReasons": [
-        "no-personal-name-marker"
-      ],
-      "sourceUrl": "https://app.turath.io/book/2171?page=1196"
-    },
-    {
-      "source": "kashif",
-      "candidateId": "kashif-7014-1196-6971",
-      "entryNumber": 7014,
-      "nameSurface": "سلمى البكرية",
-      "sourcePageId": 1197,
-      "spanStart": 88,
-      "spanEnd": 101,
-      "rejectReasons": [
-        "no-personal-name-marker"
-      ],
-      "sourceUrl": "https://app.turath.io/book/2171?page=1197"
     },
     {
       "source": "kashif",
@@ -10528,211 +5407,16 @@
     },
     {
       "source": "kashif",
-      "candidateId": "kashif-7045-1200-7001",
-      "entryNumber": 7045,
-      "nameSurface": "عقيلة",
-      "sourcePageId": 1201,
-      "spanStart": 158,
-      "spanEnd": 164,
-      "rejectReasons": [
-        "no-personal-name-marker"
-      ],
-      "sourceUrl": "https://app.turath.io/book/2171?page=1201"
-    },
-    {
-      "source": "kashif",
-      "candidateId": "kashif-7047-1200-7003",
-      "entryNumber": 7047,
-      "nameSurface": "عمرة",
-      "sourcePageId": 1201,
-      "spanStart": 371,
-      "spanEnd": 376,
-      "rejectReasons": [
-        "no-personal-name-marker"
-      ],
-      "sourceUrl": "https://app.turath.io/book/2171?page=1201"
-    },
-    {
-      "source": "kashif",
-      "candidateId": "kashif-7048-1200-7004",
-      "entryNumber": 7048,
-      "nameSurface": "غبطة المجاشعية",
-      "sourcePageId": 1201,
-      "spanStart": 469,
-      "spanEnd": 484,
-      "rejectReasons": [
-        "no-personal-name-marker"
-      ],
-      "sourceUrl": "https://app.turath.io/book/2171?page=1201"
-    },
-    {
-      "source": "kashif",
-      "candidateId": "kashif-7049-1200-7005",
-      "entryNumber": 7049,
-      "nameSurface": "فاطمة",
-      "sourcePageId": 1201,
-      "spanStart": 592,
-      "spanEnd": 598,
-      "rejectReasons": [
-        "no-personal-name-marker"
-      ],
-      "sourceUrl": "https://app.turath.io/book/2171?page=1201"
-    },
-    {
-      "source": "kashif",
-      "candidateId": "kashif-7059-1201-7015",
-      "entryNumber": 7059,
-      "nameSurface": "قرصافة",
-      "sourcePageId": 1202,
-      "spanStart": 862,
-      "spanEnd": 869,
-      "rejectReasons": [
-        "no-personal-name-marker"
-      ],
-      "sourceUrl": "https://app.turath.io/book/2171?page=1202"
-    },
-    {
-      "source": "kashif",
-      "candidateId": "kashif-7064-1202-7020",
-      "entryNumber": 7064,
-      "nameSurface": "كبشة",
-      "sourcePageId": 1203,
-      "spanStart": 261,
-      "spanEnd": 266,
-      "rejectReasons": [
-        "no-personal-name-marker"
-      ],
-      "sourceUrl": "https://app.turath.io/book/2171?page=1203"
-    },
-    {
-      "source": "kashif",
-      "candidateId": "kashif-7069-1202-7025",
-      "entryNumber": 7069,
-      "nameSurface": "كلثم",
-      "sourcePageId": 1203,
-      "spanStart": 643,
-      "spanEnd": 648,
-      "rejectReasons": [
-        "no-personal-name-marker"
-      ],
-      "sourceUrl": "https://app.turath.io/book/2171?page=1203"
-    },
-    {
-      "source": "kashif",
-      "candidateId": "kashif-7072-1203-7028",
-      "entryNumber": 7072,
-      "nameSurface": "لؤلؤة",
-      "sourcePageId": 1204,
-      "spanStart": 6,
-      "spanEnd": 12,
-      "rejectReasons": [
-        "no-personal-name-marker"
-      ],
-      "sourceUrl": "https://app.turath.io/book/2171?page=1204"
-    },
-    {
-      "source": "kashif",
-      "candidateId": "kashif-7074-1203-7030",
-      "entryNumber": 7074,
-      "nameSurface": "ليلى",
-      "sourcePageId": 1204,
-      "spanStart": 150,
-      "spanEnd": 155,
-      "rejectReasons": [
-        "no-personal-name-marker"
-      ],
-      "sourceUrl": "https://app.turath.io/book/2171?page=1204"
-    },
-    {
-      "source": "kashif",
-      "candidateId": "kashif-7077-1203-7032",
-      "entryNumber": 7077,
-      "nameSurface": "مسة الازدية",
-      "sourcePageId": 1204,
-      "spanStart": 403,
-      "spanEnd": 415,
-      "rejectReasons": [
-        "no-personal-name-marker"
-      ],
-      "sourceUrl": "https://app.turath.io/book/2171?page=1204"
-    },
-    {
-      "source": "kashif",
-      "candidateId": "kashif-7078-1203-7033",
-      "entryNumber": 7078,
-      "nameSurface": "مسيكة",
-      "sourcePageId": 1204,
-      "spanStart": 457,
-      "spanEnd": 463,
-      "rejectReasons": [
-        "no-personal-name-marker"
-      ],
-      "sourceUrl": "https://app.turath.io/book/2171?page=1204"
-    },
-    {
-      "source": "kashif",
       "candidateId": "kashif-7085-1204-7040",
       "entryNumber": 7085,
-      "nameSurface": "الله عز وجلندبة وقيل بدية وقيل بدنة",
+      "nameSurface": "الله عز وجلندبة",
       "sourcePageId": 1205,
       "spanStart": 458,
-      "spanEnd": 494,
+      "spanEnd": 474,
       "rejectReasons": [
         "no-personal-name-marker"
       ],
       "sourceUrl": "https://app.turath.io/book/2171?page=1205"
-    },
-    {
-      "source": "kashif",
-      "candidateId": "kashif-7086-1204-7041",
-      "entryNumber": 7086,
-      "nameSurface": "نسيبة",
-      "sourcePageId": 1205,
-      "spanStart": 543,
-      "spanEnd": 549,
-      "rejectReasons": [
-        "no-personal-name-marker"
-      ],
-      "sourceUrl": "https://app.turath.io/book/2171?page=1205"
-    },
-    {
-      "source": "kashif",
-      "candidateId": "kashif-7090-1205-7045",
-      "entryNumber": 7090,
-      "nameSurface": "هنيدة",
-      "sourcePageId": 1206,
-      "spanStart": 299,
-      "spanEnd": 305,
-      "rejectReasons": [
-        "no-personal-name-marker"
-      ],
-      "sourceUrl": "https://app.turath.io/book/2171?page=1206"
-    },
-    {
-      "source": "kashif",
-      "candidateId": "kashif-7115-1209-7068",
-      "entryNumber": 7115,
-      "nameSurface": "الله عز وجلام حميد",
-      "sourcePageId": 1210,
-      "spanStart": 467,
-      "spanEnd": 486,
-      "rejectReasons": [
-        "no-personal-name-marker"
-      ],
-      "sourceUrl": "https://app.turath.io/book/2171?page=1210"
-    },
-    {
-      "source": "kashif",
-      "candidateId": "kashif-7175-1216-7128",
-      "entryNumber": 7175,
-      "nameSurface": "أمية",
-      "sourcePageId": 1217,
-      "spanStart": 810,
-      "spanEnd": 815,
-      "rejectReasons": [
-        "no-personal-name-marker"
-      ],
-      "sourceUrl": "https://app.turath.io/book/2171?page=1217"
     },
     {
       "source": "kashif",
@@ -10751,10 +5435,10 @@
   "rijalEntriesWithoutDate": {
     "note": "Nur Zählung — die Einträge selbst stehen vollständig in den abgeleiteten Dateien.",
     "counts": {
-      "tahdhib": 6478,
-      "mizan": 8423,
-      "taqrib": 6055,
-      "kashif": 5044
+      "tahdhib": 6355,
+      "mizan": 8386,
+      "taqrib": 5952,
+      "kashif": 5182
     }
   },
   "contaminatedSpans": [
@@ -12346,7 +7030,7 @@
   "dataVersion": "turath-5aa44bb55b758d6d9f0d",
   "totals": {
     "hadithParserErrors": 0,
-    "rijalRejectedCandidates": 823,
+    "rijalRejectedCandidates": 417,
     "contaminatedSpans": 176
   }
 }

@@ -267,9 +267,11 @@ function toAsciiDigits(value) {
 // Die Lexika stehen in normalisierter Form (ة→ه, ى→ي, ئ→ي, أ→ا), weil sie gegen die
 // Suchform geprüft werden. "مائة" normalisiert zu "مايه", "مئة" zu "ميه".
 const YEAR_UNITS = new Map(Object.entries({
-  "واحد": 1, "واحده": 1, "احدي": 1, "احد": 1, "اثنتين": 2, "اثنين": 2, "ثنتين": 2, "اثنتي": 2, "اثني": 2, "ثنتي": 2,
-  "ثلاث": 3, "ثلاثه": 3, "اربع": 4, "اربعه": 4, "اربعا": 4, "خمس": 5, "خمسه": 5, "ست": 6, "سته": 6,
-  "سبع": 7, "سبعه": 7, "ثمان": 8, "ثمانيه": 8, "ثماني": 8, "ثمانه": 8, "تسع": 9, "تسعه": 9,
+  "واحد": 1, "واحده": 1, "احدي": 1, "احد": 1, "احدا": 1, "اثنتين": 2, "اثنين": 2, "ثنتين": 2, "اثنتي": 2,
+  "اثني": 2, "ثنتي": 2, "اثنتان": 2, "اثنان": 2,
+  "ثلاث": 3, "ثلاثه": 3, "ثلاثا": 3, "اربع": 4, "اربعه": 4, "اربعا": 4, "خمس": 5, "خمسه": 5, "خمسا": 5,
+  "ست": 6, "سته": 6, "ستا": 6, "سبع": 7, "سبعه": 7, "سبعا": 7, "ثمان": 8, "ثمانيه": 8, "ثماني": 8,
+  "ثمانه": 8, "ثمانيا": 8, "تسع": 9, "تسعه": 9, "تسعا": 9,
 }));
 const YEAR_TENS = new Map(Object.entries({
   "عشر": 10, "عشره": 10, "عشرين": 20, "عشرون": 20, "ثلاثين": 30, "ثلاثون": 30, "اربعين": 40, "اربعون": 40,
@@ -283,7 +285,15 @@ const YEAR_HUNDREDS = new Map(Object.entries({
   "ستمايه": 600, "ستميه": 600, "سبعمايه": 700, "سبعميه": 700, "ثمانمايه": 800, "ثمانميه": 800,
   "ثمانيمايه": 800, "ثمانيميه": 800, "تسعمايه": 900, "تسعميه": 900,
 }));
-const YEAR_APPROX = new Set(["بضع", "بضعه", "نيف", "نيفا"]);
+const YEAR_APPROX = new Set(["بضع", "بضعه", "نيف", "نيفا", "كسر", "وكسر"]);
+// Zeitangaben stehen in Tahdhīb häufig mit Artikel: «مات بعد الأربعين ومائتين». Der Artikel
+// gehört zur Formulierung, nicht zur Zahl; die Lexika bleiben deshalb artikelfrei und die
+// Suche entfernt ihn bei Bedarf.
+function yearWord(map, token) {
+  const direct = map.get(token);
+  if (direct !== undefined) return direct;
+  return token.startsWith("ال") ? map.get(token.slice(2)) : undefined;
+}
 
 /**
  * Liest eine arabisch ausgeschriebene Jahresangabe.
@@ -307,32 +317,32 @@ function parseYearWords(tokens) {
       if (index === used) used = index + 1;
       continue;
     }
-    if (YEAR_APPROX.has(token)) {
+    if (YEAR_APPROX.has(token) || (token.startsWith("ال") && YEAR_APPROX.has(token.slice(2)))) {
       approximate = true;
       sawAny = true;
       used = index + 1;
       continue;
     }
-    if (YEAR_HUNDREDS.has(token)) {
-      hundreds += YEAR_HUNDREDS.get(token);
+    if (yearWord(YEAR_HUNDREDS, token) !== undefined) {
+      hundreds += yearWord(YEAR_HUNDREDS, token);
       sawHundreds = true;
       sawAny = true;
       used = index + 1;
       continue;
     }
-    if (YEAR_UNITS.has(token)) {
+    if (yearWord(YEAR_UNITS, token) !== undefined) {
       const rawNext = tokens[index + 1];
       const next = rawNext ? rawNext.replace(/^و/, "") : "";
-      if (next === "عشر" || next === "عشره") {
+      if (next === "عشر" || next === "عشره" || next === "العشر") {
         tens = 10;
-        unit = YEAR_UNITS.get(token);
+        unit = yearWord(YEAR_UNITS, token);
         sawAny = true;
         used = index + 2;
         index += 1;
         continue;
       }
-      if (rawNext && !rawNext.startsWith("و") && YEAR_HUNDREDS.get(next) === 100 && YEAR_UNITS.get(token) >= 3) {
-        hundreds += YEAR_UNITS.get(token) * 100;
+      if (rawNext && !rawNext.startsWith("و") && yearWord(YEAR_HUNDREDS, next) === 100 && yearWord(YEAR_UNITS, token) >= 3) {
+        hundreds += yearWord(YEAR_UNITS, token) * 100;
         sawHundreds = true;
         sawAny = true;
         used = index + 2;
@@ -340,14 +350,14 @@ function parseYearWords(tokens) {
         continue;
       }
       if (unit) break;
-      unit = YEAR_UNITS.get(token);
+      unit = yearWord(YEAR_UNITS, token);
       sawAny = true;
       used = index + 1;
       continue;
     }
-    if (YEAR_TENS.has(token)) {
+    if (yearWord(YEAR_TENS, token) !== undefined) {
       if (tens && tens !== 10) break;
-      tens = YEAR_TENS.get(token);
+      tens = yearWord(YEAR_TENS, token);
       sawAny = true;
       used = index + 1;
       continue;
@@ -362,17 +372,39 @@ function parseYearWords(tokens) {
 }
 
 const DATE_VERBS = [
-  ["ماتت", "death"], ["مات", "death"], ["توفيت", "death"], ["توفي", "death"], ["وفاته", "death"], ["وفاتها", "death"],
-  ["استشهد", "death"], ["قتلته", "death"], ["قتله", "death"], ["قتلت", "death"], ["قتلوه", "death"], ["قتل", "death"],
-  ["هلك", "death"], ["ولدت", "birth"], ["ولد", "birth"], ["مولده", "birth"], ["مولدها", "birth"], ["مولد", "birth"],
-  ["كان حيا", "alive_in"], ["بقي الي", "alive_in"], ["عاش الي", "alive_in"], ["دفن", "burial"],
+  ["ماتت", "death"], ["ماتا", "death"], ["مات", "death"], ["توفيت", "death"], ["توفيا", "death"], ["توفي", "death"],
+  ["توفاه الله", "death"], ["وفاته", "death"], ["وفاتها", "death"], ["وفاتهما", "death"], ["الوفاه", "death"],
+  ["موته", "death"], ["موتها", "death"], ["مقتله", "death"], ["المتوفي", "death"],
+  ["استشهد", "death"], ["استشهدت", "death"], ["قتلته", "death"], ["قتله", "death"], ["قتلت", "death"],
+  ["قتلوه", "death"], ["قتل", "death"], ["هلك", "death"], ["هلكت", "death"],
+  ["ولدت", "birth"], ["ولد", "birth"], ["مولده", "birth"], ["مولدها", "birth"], ["مولد", "birth"],
+  ["كان حيا", "alive_in"], ["بقي الي", "alive_in"], ["بقي", "alive_in"], ["عاش الي", "alive_in"], ["دفن", "burial"],
 ];
 const DATE_TRIGGER = new RegExp(
-  `(?:^|[\\s،؛:.()\\[\\]«»"])و?(${DATE_VERBS.map(([word]) => word).join("|")})(?![ء-ي])`,
+  `(?:^|[\\s،؛:.()\\[\\]«»"])و?(${DATE_VERBS.map(([word]) => word).slice().sort((a, b) => b.length - a.length).join("|")})(?![ء-ي])`,
   "g",
 );
-const DATE_QUALIFIER = /(?:^|\s)(بعد|قبل|نحو|حدود|قريبا من|في اول|في اخر|اول|اخر)(?:\s|$)/;
+const DATE_QUALIFIER = /(?:^|\s)(بعد|قبل|قبيل|بعيد|نحو|حدود|قريبا من|في اول|في اخر|اول|اخر)(?:\s|$)/;
+/**
+ * Grenz- und Näherungsangaben. Ein «مات بعد سنة ثلاثين ومائتين» nennt KEIN Todesjahr,
+ * sondern eine untere Schranke. Solche Aussagen bleiben vollständig erhalten, füllen aber
+ * nicht `deathYearCandidate` — sonst würde aus einer Schranke eine Behauptung.
+ */
+const BOUNDING_QUALIFIERS = new Set([
+  "بعد", "قبل", "قبيل", "بعيد", "نحو", "حدود", "قريبا من", "الي", "نيف", "بضع", "بضعه",
+  "range", "reported-variant",
+]);
 const YEAR_ANCHOR = /(?:^|[\s،؛:[\]])(?:في\s+)?(?:سنه|عام)\s*\(?\s*/g;
+// Ohne «سنة» steht das Jahr hinter einem Näherungswort: «مات بعد الأربعين ومائتين»,
+// «توفي في حدود المئتين», «مات قبل المائتين», «مات في نيف وسبعين ومائة».
+const YEAR_BOUND_ANCHOR = /(?:^|[\s،؛:])(?:في\s+)?(بعد|قبل|قبيل|بعيد|نحو|حدود|قريبا من|نيف|بضع|بضعه|الي)\s+(?:و?سنه\s+)?/g;
+// Bereichsangaben aus Ibn Ḥibbāns Kapiteleinteilung: «في فصل من مات من الأربعين إلى
+// الخمسين ومائة». Das ist KEIN Todesjahr, sondern ein Intervall.
+const YEAR_RANGE_ANCHOR = /(?:^|[\s،؛:])(?:ما\s+)?(?:بين|من)\s+/g;
+const YEAR_RANGE_LINK = /^[\s،؛]*(?:الي|و|ثم)\s+(?:سنه\s+)?/;
+// Eine Zahl VOR «سنة/سنين» ist ein Lebensalter oder eine Dauer, kein Jahr
+// («خلط قبل موته بعشر سنين», «وله ثمانون سنة»).
+const DURATION_UNIT = /^\s*(?:سنه|سنين|سنوات|اشهر|شهرا|شهر|يوما|يوم|ليله)(?![ء-ي])/;
 const DATE_WINDOW = 140;
 const AGE_AT_DEATH = /(?:^|\s)(?:وله|وهو ابن|بلغ|عاش|وعاش|وقد بلغ)\s+([^\s]{2,14}(?:\s+و[^\s]{2,14})?)\s+سنه(?:\s|$|[.،؛])/;
 
@@ -380,19 +412,92 @@ function readYear(tail) {
   const digits = tail.match(/^([٠-٩0-9]{2,4})(?![٠-٩0-9])/);
   if (digits) {
     const value = Number(toAsciiDigits(digits[1]));
-    if (value >= 1 && value <= 1100) {
+    if (value >= 1 && value <= 1100 && !DURATION_UNIT.test(tail.slice(digits[1].length))) {
       return { value, centuryExplicit: value >= 100, approximate: false, rawPhrase: digits[1] };
     }
   }
   const tokens = tail.split(/[\s،؛:.()"«»[\]]+/).slice(0, 8).filter(Boolean);
   const parsed = parseYearWords(tokens);
   if (!parsed) return null;
+  const rawPhrase = tokens.slice(0, parsed.tokensUsed).join(" ");
+  const consumed = tail.indexOf(tokens[parsed.tokensUsed - 1]) + (tokens[parsed.tokensUsed - 1]?.length ?? 0);
+  if (consumed > 0 && DURATION_UNIT.test(tail.slice(consumed))) return null;
   return {
     value: parsed.value,
     centuryExplicit: parsed.centuryExplicit,
     approximate: Boolean(parsed.approximate),
-    rawPhrase: tokens.slice(0, parsed.tokensUsed).join(" "),
+    rawPhrase,
   };
+}
+
+/**
+ * Übernimmt NUR die Hunderterangabe der einen Bereichsgrenze für die andere.
+ * «من الأربعين إلى الخمسين ومائة» nennt das Jahrhundert einmal für beide Grenzen; ein
+ * Bereich, der danach nicht aufsteigend und höchstens 100 Jahre breit ist, wird verworfen.
+ */
+function shareHundreds(target, donor) {
+  if (!donor?.centuryExplicit || target.centuryExplicit || target.value >= 100) return target;
+  const hundreds = Math.floor(donor.value / 100) * 100;
+  if (!hundreds) return target;
+  return { ...target, value: target.value + hundreds, centuryShared: true, centurySharedFrom: donor.rawPhrase };
+}
+
+/**
+ * Vervollständigt die ERSTE von zwei mit «أو» verbundenen Lesungen aus der zweiten.
+ *
+ * «مات سنة إحدى أو اثنتين وتسعين ومائة» nennt «وتسعين ومائة» einmal und meint es für beide
+ * Lesungen: 191 oder 192. Das ist Syntax, keine Schätzung — trotzdem gilt sie nur unter
+ * engen Bedingungen, weil ein falsch ergänztes Jahrhundert ein erfundenes Jahr wäre:
+ *
+ *   1. Verbindung ist ausdrücklich «أو». «وقيل» und «ويقال» führen eine EIGENE,
+ *      unabhängige Aussage ein und teilen nichts («سنة ثلاث وتسعين، وقيل: سنة اثنتين
+ *      ومائتين» sind 93 und 202, nicht 293).
+ *   2. Ist die erste Lesung eine blanke Einerzahl («إحدى»), werden Zehner UND Hunderter
+ *      der zweiten übernommen.
+ *   3. Hat die erste Lesung eigene Zehner, müssen die Zehner beider Lesungen
+ *      übereinstimmen; nur dann kommt die Hunderterangabe hinzu.
+ *   4. Sonst wird nichts übernommen.
+ */
+function shareYearTail(target, donor) {
+  if (!donor?.centuryExplicit || target.centuryExplicit || target.value >= 100 || target.approximate) return target;
+  const donorTens = (donor.value % 100) - (donor.value % 10);
+  const donorHundreds = donor.value - (donor.value % 100);
+  const targetTens = target.value - (target.value % 10);
+  let value = null;
+  if (target.value < 10 && donor.value >= 10) value = target.value + donorTens + donorHundreds;
+  else if (donorHundreds && donorTens === targetTens) value = target.value + donorHundreds;
+  if (value === null || value < 1 || value > 1100) return target;
+  return { ...target, value, centuryShared: true, centurySharedFrom: donor.rawPhrase };
+}
+
+/**
+ * Liest eine Bereichsangabe «من الأربعين إلى الخمسين ومائة» bzw. «بين السبعين إلى الثمانين».
+ * Fehlt einer Grenze die Hunderterangabe, wird sie aus der anderen Grenze desselben
+ * Bereichs übernommen — der Bereich muss aufsteigend sein, sonst wird er verworfen.
+ */
+function readYearRange(window) {
+  YEAR_RANGE_ANCHOR.lastIndex = 0;
+  let anchor;
+  while ((anchor = YEAR_RANGE_ANCHOR.exec(window))) {
+    const at = anchor.index + anchor[0].length;
+    const rawFrom = readYear(window.slice(at));
+    if (rawFrom) {
+      const after = window.slice(at + rawFrom.rawPhrase.length);
+      const link = after.match(YEAR_RANGE_LINK);
+      if (link) {
+        const rawTo = readYear(after.slice(link[0].length));
+        if (rawTo) {
+          const from = shareHundreds(rawFrom, rawTo);
+          const to = shareHundreds(rawTo, rawFrom);
+          if (to.value > from.value && to.value - from.value <= 100) {
+            return { from, to, rawPhrase: window.slice(at, at + rawFrom.rawPhrase.length + link[0].length + rawTo.rawPhrase.length).trim() };
+          }
+        }
+      }
+    }
+    YEAR_RANGE_ANCHOR.lastIndex = at;
+  }
+  return null;
 }
 
 /**
@@ -444,27 +549,81 @@ function extractDateAssertions(normalizedText) {
         yearEnd = window.indexOf(direct.rawPhrase) + direct.rawPhrase.length;
       }
     }
+    // Bereichsangabe zuerst prüfen — sie enthält zwei Jahreswörter und darf nicht als
+    // Einzeljahr gelesen werden. Sie wird als Intervall geführt und speist NIE ein
+    // `deathYearCandidate`.
+    if (!parsed) {
+      const range = readYearRange(window);
+      if (range) {
+        assertions.push({
+          kind: hit.kind,
+          verb: hit.verb,
+          qualifier: "range",
+          valueAh: range.from.value,
+          rangeEndAh: range.to.value,
+          rangeEndCenturyExplicit: range.to.centuryExplicit,
+          centuryExplicit: range.from.centuryExplicit,
+          centuryShared: Boolean(range.from.centuryShared),
+          centurySharedFrom: range.from.centurySharedFrom ?? null,
+          approximate: true,
+          rawPhrase: range.rawPhrase,
+          textOffset: hit.start,
+          evidenceClass: "rijal_statement",
+          confidence: 0.6,
+          confidenceBand: confidenceBand(0.6),
+          reviewStatus: "unreviewed",
+        });
+        continue;
+      }
+    }
+    // Jahr hinter einem Näherungs- oder Schrankenwort ohne «سنة»: «مات بعد الأربعين
+    // ومائتين», «في فصل من مات إلى عشر ومائة».
+    let boundRelation = null;
+    if (!parsed) {
+      YEAR_BOUND_ANCHOR.lastIndex = 0;
+      let bound;
+      while ((bound = YEAR_BOUND_ANCHOR.exec(window))) {
+        const at = bound.index + bound[0].length;
+        const candidate = readYear(window.slice(at));
+        if (candidate) {
+          parsed = candidate;
+          boundRelation = bound[1];
+          gap = window.slice(0, at);
+          yearEnd = at + candidate.rawPhrase.length;
+          break;
+        }
+        YEAR_BOUND_ANCHOR.lastIndex = at;
+      }
+    }
     if (!parsed) continue;
+    // Die Variante wird VOR der Hauptaussage gelesen, weil die Hunderterangabe häufig nur
+    // hinter der Variante steht und für beide Lesungen gilt.
+    const after = window.slice(yearEnd);
+    const variant = after.match(/^[\s،؛]*(او|وقيل|ويقال)\s*(?:(في\s+)?(سنه|عام))?\s*/);
+    const rawAlternative = variant ? readYear(after.slice(variant[0].length)) : null;
+    // Nur «أو» ohne wiederholtes «سنة» verbindet zwei Lesungen EINER Angabe.
+    const sharesTail = Boolean(rawAlternative) && variant[1] === "او" && !variant[3];
+    const primary = sharesTail ? shareYearTail(parsed, rawAlternative) : parsed;
+    const alternative = rawAlternative ?? null;
     const qualifierMatch = DATE_QUALIFIER.exec(gap.length <= 40 ? gap : gap.slice(-40));
-    const confidence = parsed.centuryExplicit ? (parsed.approximate ? 0.68 : 0.85) : 0.65;
+    const primaryCertain = primary.centuryExplicit || primary.centuryShared;
+    const confidence = primaryCertain ? (primary.approximate ? 0.68 : 0.85) : 0.65;
     assertions.push({
       kind: hit.kind,
       verb: hit.verb,
-      qualifier: qualifierMatch ? qualifierMatch[1] : parsed.approximate ? "نحو" : null,
-      valueAh: parsed.value,
-      centuryExplicit: parsed.centuryExplicit,
-      approximate: parsed.approximate,
-      rawPhrase: parsed.rawPhrase,
+      qualifier: qualifierMatch ? qualifierMatch[1] : boundRelation ?? (primary.approximate ? "نحو" : null),
+      valueAh: primary.value,
+      centuryExplicit: primary.centuryExplicit,
+      centuryShared: Boolean(primary.centuryShared),
+      centurySharedFrom: primary.centurySharedFrom ?? null,
+      approximate: primary.approximate,
+      rawPhrase: primary.rawPhrase,
       textOffset: hit.start,
       evidenceClass: "rijal_statement",
       confidence,
       confidenceBand: confidenceBand(confidence),
       reviewStatus: "unreviewed",
     });
-    const after = window.slice(yearEnd);
-    const variant = after.match(/^\s*(?:او|وقيل|ويقال)\s*(?:في\s+)?(?:سنه|عام)?\s*/);
-    if (!variant) continue;
-    const alternative = readYear(after.slice(variant[0].length));
     if (!alternative) continue;
     assertions.push({
       kind: hit.kind,
@@ -472,6 +631,8 @@ function extractDateAssertions(normalizedText) {
       qualifier: "reported-variant",
       valueAh: alternative.value,
       centuryExplicit: alternative.centuryExplicit,
+      centuryShared: Boolean(alternative.centuryShared),
+      centurySharedFrom: alternative.centurySharedFrom ?? null,
       approximate: alternative.approximate,
       rawPhrase: alternative.rawPhrase,
       textOffset: hit.start,
@@ -488,30 +649,61 @@ function extractDateAssertions(normalizedText) {
  * 4. Rijāl-Namenskopf, Kunya, Nisba, Ṭabaqa, Region
  * ════════════════════════════════════════════════════════════════════════════ */
 
-const HEAD_CUT_TOKENS = [
+/**
+ * Zwei Stufen von Kopfgrenzen.
+ *
+ * `HEAD_CUT_HARD_TOKENS` können NIE Teil eines Namens sein: Überlieferungsformeln,
+ * Bewertungen, Redeverben, Datumsverben.
+ *
+ * `HEAD_CUT_SOFT_TOKENS` sind Zuschreibungen — Klientel, Verwandtschaft, Amt, Wohnort.
+ * Sie gehören nicht zum Namen, sind aber bei einnamigen Einträgen das einzige
+ * Unterscheidungsmerkmal («كعب مولى سعيد بن العاص», «زيد جد الربيع بن أنس»). Deshalb wird
+ * an ihnen nur geschnitten, wenn danach noch ein tragfähiger Kopf übrig bleibt.
+ */
+const HEAD_CUT_HARD_TOKENS = [
   "عن", "روي عن", "سمع", "سمع من", "حدث عن", "اخذ عن", "يروي عن", "وعنه", "عنه", "روي عنه", "حدث عنه",
   "يروي عنه", "رواه عنه", "قال", "قالت", "وقال", "قلت", "وقلت", "ثقه", "صدوق", "ضعيف", "ضعفوه", "مجهول",
-  "متروك", "مستور", "مقبول", "لين", "هالك", "كذاب", "واه", "صحابي", "له صحبه", "لا يعرف", "لا يعتمد",
-  "لا باس به", "فيه نظر", "وثقه", "وثق", "ثم", "مات", "ماتت", "توفي", "توفيت", "روي له", "اخرج له", "ذكره",
-  "وذكره", "انظر", "تقدم", "يايي", "تمييز", "مبتدع", "زاهد", "مشهور", "محله الصدق", "صالح الحديث",
-  "منكر الحديث", "حسن الحديث", "اسمه", "واسمه", "يقال", "ويقال", "وهو", "وهي", "وقد", "وكان", "كان",
-  "صاحب", "احد", "من الطبقه", "بخ", "خت", "وزعم", "زعم", "اختلف", "يعرف", "لقبه", "ولقبه", "سكن", "نزيل",
-  "مولي", "مولاه", "مولاهم", "حليف", "والد", "ابنه", "اخو", "اخوه", "جد", "حفيد", "قاضي", "امام", "حافظ",
-  "شيخ", "ثبت", "له", "وله", "خلط", "سماعه",
+  "متروك", "مستور", "مقبول", "لين", "هالك", "كذاب", "واه", "صحابي", "صحابيه", "تابعي", "له صحبه",
+  "لا يعرف", "لا يعتمد", "لا يدري", "لا يصح", "لا شي", "لا يتابع", "تركوه", "متهم", "وضاع",
+  "لا باس به", "فيه نظر", "فيه جهاله", "وثقه", "وثقوه", "وثق", "ضعفه", "ثم", "مات", "ماتت", "توفي",
+  "توفيت", "استشهد", "قتل", "هلك", "المتوفي", "دفن", "بلغ", "عاش", "روي له", "له في", "اخرج له", "اخرج",
+  "ذكره", "وذكره", "ذكر", "انظر", "تقدم", "يايي", "تمييز", "مبتدع", "زاهد", "مشهور", "محله الصدق",
+  "صالح الحديث", "منكر الحديث", "حسن الحديث", "منكر", "اسمه", "واسمه", "يقال", "ويقال",
+  "وقد", "وكان", "كان", "من الطبقه", "من كبار", "من صغار", "بخ", "خت", "وزعم", "زعم", "اختلف", "وهم",
+  "يعرف", "لقبه", "ولقبه", "خلط", "سماعه", "ثبت", "له", "وله", "كذا", "نسبه", "وفي",
+  "الذي", "التي", "انه", "انها", "وانه", "متاخر", "مقدم",
+  "صلي الله عليه وسلم", "رضي الله عنه", "رضي الله عنها", "عليه السلام",
 ];
+const HEAD_CUT_SOFT_TOKENS = [
+  "مولي", "مولاه", "مولاهم", "حليف", "والد", "ابنه", "اخو", "اخوه", "اخت", "جد", "جده", "حفيد",
+  "عم", "عمه", "ابن عم", "بنت عم", "ابن اخي", "ابن اخت", "ابن بنت", "زوج", "زوجه",
+  "قاضي", "امام", "حافظ", "شيخ", "صاحب", "احد", "سكن", "نزيل", "اصله", "الاصل",
+  "امراه", "امرايه", "والده", "والدته", "جدته", "اخته", "بنته", "ابن اخيه", "ابن عمه",
+];
+const HEAD_CUT_TOKENS = [...HEAD_CUT_HARD_TOKENS, ...HEAD_CUT_SOFT_TOKENS];
 const TABAQA_ORDINALS = [
   "الاولي", "الثانيه", "الثالثه", "الرابعه", "الخامسه", "السادسه", "السابعه", "الثامنه", "التاسعه",
   "العاشره", "الحاديه عشره", "الثانيه عشره",
 ];
-const HEAD_CUT = new RegExp(
-  "(?:^|[\\s،؛])(?:" +
-    [...HEAD_CUT_TOKENS, ...TABAQA_ORDINALS.map((ordinal) => `من (?:كبار |صغار |اواسط |اوساط )?${ordinal}`)].join("|") +
-    ")(?=[\\s،؛.:]|$)",
-);
+const headCutPattern = (tokens) =>
+  new RegExp(
+    "(?:^|[\\s،؛])(?:" +
+      [...tokens, ...TABAQA_ORDINALS.map((ordinal) => `من (?:كبار |صغار |اواسط |اوساط )?${ordinal}`)]
+        .slice()
+        .sort((a, b) => b.length - a.length)
+        .join("|") +
+      ")(?=[\\s،؛.:]|$)",
+  );
+const HEAD_CUT = headCutPattern(HEAD_CUT_TOKENS);
+const HEAD_CUT_HARD = headCutPattern(HEAD_CUT_HARD_TOKENS);
 const TABAQA_PATTERN = new RegExp(`من\\s+(كبار|صغار|اواسط|اوساط)?\\s*(${TABAQA_ORDINALS.join("|")})`);
 const TABAQA_ORDINAL_INDEX = new Map(TABAQA_ORDINALS.map((ordinal, index) => [ordinal, index + 1]));
 const FOOTNOTE_MARK = /\(\s*\^?\s*[٠-٩0-9]{1,3}\s*\)/g;
 const SIGLA_LEAD = /^\s*(?:[([]\s*(?:[ء-ي٤]{1,3}\s*[،,]?\s*){1,8}[)\]]|[([]\s*تمييز\s*[)\]])\s*/;
+// Die Sigel müssen durch Leerzeichen oder Komma getrennt sein, sonst zerlegt die Regel
+// einen Namen in Dreibuchstabengruppen («يحيى بن حوشب الأسدي]»).
+const SIGLA_TOKENS = "(?:[ء-ي٤]{1,3}(?:\\s+|\\s*[،,]\\s*)){0,7}[ء-ي٤]{1,3}";
+const SIGLA_LEAD_UNBALANCED = new RegExp(`^\\s*(?:[([]\\s*${SIGLA_TOKENS}\\s*[»«"]|${SIGLA_TOKENS}\\s*[)\\]])\\s*`);
 const GLOSS_TOKENS = new Set([
   "بضم", "بفتح", "بكسر", "بسكون", "باسكان", "وسكون", "وفتح", "وضم", "وكسر", "واسكان", "وبفتحها",
   "وبكسرها", "وبضمها", "بعدها", "بعده", "بعدهما", "ثم", "واخره", "واخرها", "اخره", "مهمله", "معجمه",
@@ -552,11 +744,32 @@ const NISBA_REGION = new Map(Object.entries({
 }));
 const RESIDENCE_PATTERN = /(?:^|\s)نزيل\s+([^\s،؛.]{3,20})/;
 
+/**
+ * Entfernt ein hängengebliebenes Bindewort am Ende eines Kopfes («… عاصم الأحول، من»).
+ * Die Prüfung läuft auf der Suchform, weil der Rohtext Diakritika trägt.
+ */
+// `علي` fehlt absichtlich: die Suchform des Namens «عليّ» ist identisch mit der Präposition
+// «على». Ein Abschneiden würde «حجاج بن علي» zu «حجاج بن» verstümmeln.
+const DANGLING_TAIL = /(?:^|[\s،؛])(?:من|في|الي|عن|ثم|و|بن|ابن|ابو|ابي|ابا|ام|ال|هو|هي|له|لها|بني)$/;
+function dropDanglingTail(value) {
+  let text = value;
+  for (let guard = 0; guard < 4; guard += 1) {
+    const trimmed = text.replace(/[\s،؛:.\-•/]+$/, "");
+    const normalized = normalizeSearchText(trimmed);
+    const at = normalized.search(DANGLING_TAIL);
+    if (at < 0) return trimmed;
+    if (at === 0) return "";
+    text = trimmed.slice(0, rawIndexOfNormalized(trimmed, at));
+  }
+  return text.replace(/[\s،؛:.\-•/]+$/, "");
+}
+
 /** Entfernt Fußnotenmarken und führende Quellensigel aus einem Namenskopf. */
 function cleanHead(value) {
   let head = value
     .replace(FOOTNOTE_MARK, " ")
     .replace(/⦗[^⦘]*⦘/g, " ")
+    .replace(/\(\s*\^?\s*[٠-٩0-9]{1,3}\s*[»«"]/g, " ")
     // Rest einer Fußnotenmarke, deren öffnende Klammer außerhalb der Spanne lag.
     .replace(/^\s*\^?\s*[٠-٩0-9]{0,3}\s*[)\]]\s*/, "")
     .replace(/\s+/g, " ")
@@ -568,6 +781,20 @@ function cleanHead(value) {
     sigla.push(match[0].trim());
     head = head.slice(match[0].length);
     guard += 1;
+  }
+  // Quellensigel mit gesprengter Klammer — die Fußnotenmarke stand mitten im Sigel, deshalb
+  // fehlt die öffnende oder die schließende Klammer («(د س ق (^٢» شباك», «م) محمد بن …»).
+  while ((match = SIGLA_LEAD_UNBALANCED.exec(head)) && guard < 6) {
+    sigla.push(match[0].trim());
+    head = head.slice(match[0].length);
+    guard += 1;
+  }
+  // «د ت - القاسم بن سلام البغدادي»: vor dem Gedankenstrich stehen Quellensigel, nicht der
+  // Name. Ohne diese Ausnahme würde die Gedankenstrich-Regel den Namen selbst verwerfen.
+  const siglaDash = head.match(/^([^-]{0,14}?)\s+-\s+([\s\S]+)$/);
+  if (siglaDash && normalizeSearchText(siglaDash[1]).replace(/[\s،؛]+/g, "").length <= 6 && /^[ء-ي\s،؛()[\]]*$/.test(siglaDash[1])) {
+    sigla.push(siglaDash[1].trim());
+    head = siglaDash[2];
   }
   head = head
     .replace(/\s+-\s+[\s\S]*$/, "")
@@ -582,22 +809,166 @@ function cleanHead(value) {
     sigla.push(group);
     return " ";
   }).replace(/\s+/g, " ").replace(/^[\s،؛:.\-/]+|[\s،؛:.\-•/]+$/g, "").trim();
-  return { head, sigla };
+  return { head: dropDanglingTail(head), sigla };
 }
 
-/** Schneidet einen Kandidatentext beim ersten Bewertungs-, Beziehungs- oder Datumswort ab. */
-function cutAtBoundary(value) {
-  const normalized = normalizeSearchText(value);
-  const at = normalized.search(HEAD_CUT);
-  if (at <= 0) return { text: value, cut: at === 0 };
+/**
+ * Übersetzt einen Index der Suchform zurück in einen Index des Ausgangstexts.
+ * Die Normalisierung ist längenmonoton, deshalb genügt eine Binärsuche über Präfixe.
+ */
+function rawIndexOfNormalized(value, normalizedIndex) {
   let low = 0;
   let high = value.length;
   while (low < high) {
     const mid = (low + high) >> 1;
-    if (normalizeSearchText(value.slice(0, mid + 1)).length > at) high = mid;
+    if (normalizeSearchText(value.slice(0, mid + 1)).length > normalizedIndex) high = mid;
     else low = mid + 1;
   }
-  return { text: value.slice(0, low), cut: true };
+  return low;
+}
+
+/** Schneidet einen Kandidatentext beim ersten Bewertungs-, Beziehungs- oder Datumswort ab. */
+function cutAtBoundary(value, pattern = HEAD_CUT) {
+  const normalized = normalizeSearchText(value);
+  const at = normalized.search(pattern);
+  if (at <= 0) return { text: value, cut: at === 0, tail: at === 0 ? value : "" };
+  const low = rawIndexOfNormalized(value, at);
+  return { text: value.slice(0, low), cut: true, tail: value.slice(low) };
+}
+
+/**
+ * Trennt alternative Namensformen vom kanonischen Kopf ab.
+ *
+ * Tahdhīb schreibt Namensvarianten in denselben Titelkopf: «القاسم بن رشدين بن عمير،
+ * ويقال: ابن رشدين بن القاسم بن عمير». Der kanonische Kopf ist die erste Form; die
+ * übrigen bleiben als eigene Formen erhalten — es wird nichts weggeworfen, sondern
+ * getrennt geführt. Ohne diese Trennung ist der «Namenskopf» eine Aufzählung mehrerer
+ * Namen und für den Vergleich exakter Namensgleichheit unbrauchbar.
+ */
+const ALTERNATE_NAME_CUES = [
+  "ويقال له", "ويقال لها", "يقال له", "يقال لها", "وقيل له", "قيل له", "ويقال", "يقال", "وقيل", "قيل",
+  "ويسمي", "يسمي", "واسمه", "اسمه", "واسمها", "اسمها", "واسم ابيه", "واسم امه",
+  "ولقبه", "لقبه", "ويلقب", "يلقب", "ويعرف ب", "يعرف ب", "ويعرف", "يعرف", "المعروف ب", "المعروف",
+  "وكنيته", "كنيته", "ويكني", "يكني", "وقد ينسب", "وينسب", "ينسب", "وكان يقال", "واسم", "اسم", "او",
+  "وهو", "هو", "وهي", "هي",
+];
+const ALTERNATE_NAME_CUE = new RegExp(
+  `(?:^|[\\s،؛])(?:${ALTERNATE_NAME_CUES.slice().sort((a, b) => b.length - a.length).join("|")})(?=[\\s،؛:.]|$)[\\s،؛:.]*`,
+  "g",
+);
+
+/**
+ * Zerlegt einen Kandidatenkopf in Zeichenbereiche: die erste Namensform und die weiteren.
+ * Alle Bereiche sind Offsets IM Kandidatentext, damit die Rohspanne des Kopfes exakt bleibt.
+ */
+function splitNameForms(candidate) {
+  const normalized = normalizeSearchText(candidate);
+  ALTERNATE_NAME_CUE.lastIndex = 0;
+  const cues = [];
+  let match;
+  while ((match = ALTERNATE_NAME_CUE.exec(normalized))) {
+    const leading = /^[\s،؛]/.test(match[0]) ? 1 : 0;
+    if (match.index + leading > 0) cues.push({ at: match.index + leading, resume: match.index + match[0].length });
+    ALTERNATE_NAME_CUE.lastIndex = match.index + match[0].length;
+  }
+  if (!cues.length) return { primary: { start: 0, end: candidate.length }, alternates: [] };
+  const alternates = [];
+  for (let index = 0; index < cues.length; index += 1) {
+    const cueStart = rawIndexOfNormalized(candidate, cues[index].at);
+    const start = rawIndexOfNormalized(candidate, cues[index].resume);
+    const end = index + 1 < cues.length ? rawIndexOfNormalized(candidate, cues[index + 1].at) : candidate.length;
+    if (end > start) alternates.push({ cueStart, start, end });
+  }
+  return { primary: { start: 0, end: rawIndexOfNormalized(candidate, cues[0].at) }, alternates };
+}
+
+// Für den Rückfall „Namensform-Trennung hat den Kopf zerstört" darf gerade NICHT an den
+// Formel­wörtern geschnitten werden, die selbst eine Namensform einleiten — sonst hebt der
+// Rückfall sich selbst auf («مسروح ويقال مسعود، مولى عمر»).
+const HEAD_CUT_HARD_KEEP_FORMS = headCutPattern(
+  HEAD_CUT_HARD_TOKENS.filter((token) => !ALTERNATE_NAME_CUES.includes(token)),
+);
+
+const NAME_MARKER_PATTERN = /(?:^|\s)(?:ابن|بن|ابو|ابي|ابا|ام|بنت|مولي|مولاه|مولاهم)(?:\s|$)/;
+
+/**
+ * Ein Kopf ist tragfähig, wenn er nach Bereinigung mindestens zwei Namensbestandteile trägt.
+ * Die Bereinigung muss VOR der Prüfung laufen: «سعد (^١)» sieht sonst wie zwei Bestandteile
+ * aus, verliert die Fußnotenmarke aber und bleibt als «سعد» allein zurück.
+ */
+function refinedHead(text) {
+  return stripGloss(cleanHead(text).head).head;
+}
+
+/**
+ * Zählt Namensbestandteile. Zusammengesetzte Namen sind EIN Bestandteil — «عبد الرحمن» ist
+ * ein Name, nicht zwei. `بن`/`ابن` sind Bindeglieder und zählen nicht mit.
+ */
+function nameComponentCount(normalized) {
+  const tokens = normalized.split(/[\s،؛]+/).filter(Boolean);
+  let count = 0;
+  for (let index = 0; index < tokens.length; index += 1) {
+    if (/^(?:بن|ابن)$/.test(tokens[index])) continue;
+    if (/^(?:عبد|عبيد|ابو|ابي|ابا|ام|امه|ذو|ذي|ال)$/.test(tokens[index])) index += 1;
+    count += 1;
+  }
+  return count;
+}
+
+function headHasSubstance(text) {
+  const normalized = normalizeSearchText(refinedHead(text));
+  return normalized.length >= 8 && nameComponentCount(normalized) >= 2;
+}
+
+/**
+ * Wählt den kanonischen Namenskopf aus dem Kandidatenbereich und liefert seine Offsets im
+ * Kandidatentext.
+ *
+ * Ein HARTER Schnitt gilt immer — hinter «عن», «قال» oder «ثقة» steht nie ein Name. Ein
+ * WEICHER Schnitt und die Trennung der Namensformen dürfen dagegen keinen tragfähigen Kopf
+ * zerstören: bei einnamigen Einträgen ist die Zuschreibung das einzige Unterscheidungsmerkmal
+ * («كعب مولى سعيد بن العاص», «بسر وقيل بشر بن جحاش»).
+ */
+function selectNameHead(candidate) {
+  const split = splitNameForms(candidate);
+  const primaryText = candidate.slice(split.primary.start, split.primary.end);
+  const full = cutAtBoundary(primaryText, HEAD_CUT);
+  const hard = cutAtBoundary(primaryText, HEAD_CUT_HARD);
+  let end = full.text.length;
+  let alternates = split.alternates;
+  let rule = "name-form-and-boundary";
+  if (!headHasSubstance(full.text) && hard.text.length > full.text.length) {
+    end = hard.text.length;
+    rule = "name-form-and-hard-boundary";
+  }
+  if (!headHasSubstance(candidate.slice(0, end)) && alternates.length) {
+    const whole = cutAtBoundary(candidate, HEAD_CUT_HARD_KEEP_FORMS);
+    if (whole.text.length > end) {
+      end = whole.text.length;
+      alternates = [];
+      rule = "hard-boundary";
+    }
+  }
+  let chosen = { start: 0, end, alternates, cut: end < candidate.length, rule };
+  // Sammelverweise tragen den Namen erst in der zweiten Form («ولهم شيخ آخر مكي، يقال له:
+  // أحمد بن صالح السواق»). Dann wird diese Form der Kopf, der Verweis wird Beschreibung.
+  if (!NAME_MARKER_PATTERN.test(normalizeSearchText(refinedHead(candidate.slice(chosen.start, chosen.end))))) {
+    const promoted = chosen.alternates.find((range) =>
+      NAME_MARKER_PATTERN.test(normalizeSearchText(refinedHead(cutAtBoundary(candidate.slice(range.start, range.end), HEAD_CUT).text))),
+    );
+    if (promoted) {
+      const trimmed = cutAtBoundary(candidate.slice(promoted.start, promoted.end), HEAD_CUT);
+      chosen = {
+        start: promoted.start,
+        end: promoted.start + trimmed.text.length,
+        alternates: chosen.alternates.filter((range) => range !== promoted),
+        cut: true,
+        rule: "promoted-name-form",
+      };
+    }
+  }
+  const nextAlternate = chosen.alternates.find((range) => range.cueStart >= chosen.end);
+  return { ...chosen, tailStart: chosen.end, tailEnd: nextAlternate ? nextAlternate.cueStart : candidate.length };
 }
 
 // Eine Glosse MUSS mit einem einleitenden Wort beginnen. Sonst würde ein Lexikoneintrag wie
@@ -1200,42 +1571,67 @@ function extractRijalEntries(bookJson, source) {
     const localMarkerAt = markerAt - home.documentStart;
     const localHeadStart = headStart - home.documentStart;
 
-    // Namenskopf: in Tahdhīb und Mīzān steht er in einem `data-type="title"`-Span, in
-    // Taqrīb und al-Kāshif endet er beim ersten Bewertungs-, Beziehungs- oder Datumswort.
+    // Namenskopf in drei Schritten:
+    //   (a) Kandidatenbereich — in Tahdhīb und Mīzān der `data-type="title"`-Span, sonst ein
+    //       Fenster bis zum Zeilenende.
+    //   (b) erste Namensform vom Rest trennen. Tahdhīb setzt Namensvarianten in denselben
+    //       Titelkopf («… ويقال: ابن رشدين بن القاسم»); ein Kopf mit mehreren Namen ist für
+    //       den Vergleich exakter Namensgleichheit unbrauchbar. Die weiteren Formen bleiben
+    //       als `alternateNameForms` erhalten.
+    //   (c) beim ersten Bewertungs-, Beziehungs-, Wohnort- oder Datumswort abschneiden. Der
+    //       Rest bleibt als `headDescriptors` erhalten, damit nichts verloren geht.
+    // Die Zeichengrenze wirkt nur als Plausibilitätsschranke des Kandidatenbereichs, nicht
+    // als Kürzung des Namens.
     const titleSpan = home.titleSpans.find((span) => localMarkerAt >= span.start - 3 && localMarkerAt < span.end);
-    let headRange = null;
-    let headMethod = null;
-    let headConfidence = 0;
-    if (titleSpan && titleSpan.end > localHeadStart && titleSpan.end - localHeadStart < 420) {
-      headRange = { start: localHeadStart, end: titleSpan.end };
-      headMethod = "title-span";
-      headConfidence = 0.9;
-    }
-    if (!headRange) {
-      const window = home.body.slice(localHeadStart, Math.min(home.body.length, localHeadStart + 280)).split("\n")[0];
-      const cut = cutAtBoundary(window);
-      headRange = { start: localHeadStart, end: localHeadStart + cut.text.length };
-      headMethod = cut.cut ? "boundary-cut" : "window-fallback";
-      headConfidence = cut.cut ? 0.72 : 0.55;
-    }
+    const useTitleSpan = Boolean(titleSpan && titleSpan.end > localHeadStart && titleSpan.end - localHeadStart < 700);
+    const candidate = useTitleSpan
+      ? home.body.slice(localHeadStart, titleSpan.end)
+      : home.body.slice(localHeadStart, Math.min(home.body.length, localHeadStart + 280)).split("\n")[0];
+    const selected = selectNameHead(candidate);
+    const headMethod = useTitleSpan
+      ? selected.cut ? "title-span-cut" : "title-span"
+      : selected.cut ? "boundary-cut" : "window-fallback";
+    const headConfidence = useTitleSpan ? (selected.cut ? 0.88 : 0.9) : selected.cut ? 0.72 : 0.55;
+    const headRange = { start: localHeadStart + selected.start, end: localHeadStart + selected.end };
     const headSpan = home.prepared.rawSpanFromStripped(headRange.start, headRange.end);
     const headRaw = headSpan ? home.prepared.raw.slice(headSpan.spanStart, headSpan.spanEnd) : home.body.slice(headRange.start, headRange.end);
     const cleaned = cleanHead(headRaw);
     const glossed = stripGloss(cleaned.head);
     const nameSurface = glossed.head;
     const nameNormalized = normalizeSearchText(nameSurface);
-    const fields = fieldsFromHead(nameSurface);
+    // Kunya, Nisba, Region und Wohnort werden aus dem VOLLEN Kandidatenkopf gelesen — sie
+    // stehen fachlich häufig genau in dem Teil, der aus dem Namen herausgeschnitten wurde
+    // («… أبو زيد، وقيل: أبو ذر», «… نزيل مصر»).
+    const fullHead = stripGloss(cleanHead(candidate).head).head;
+    const fields = fieldsFromHead(fullHead);
+    const alternateNameForms = [];
+    for (const range of selected.alternates) {
+      const trimmed = stripGloss(cleanHead(cutAtBoundary(candidate.slice(range.start, range.end)).text).head).head;
+      if (trimmed.length < 2 || !/[ء-ي]/.test(trimmed)) continue;
+      if (normalizeSearchText(trimmed) === nameNormalized) continue;
+      if (!alternateNameForms.includes(trimmed)) alternateNameForms.push(trimmed);
+      if (alternateNameForms.length >= 6) break;
+    }
+    const headDescriptors =
+      cleanHead(candidate.slice(selected.tailStart, selected.tailEnd)).head.replace(/^[\s،؛:.\-]+/, "").slice(0, 240).trim() || null;
 
     const rejectReasons = [];
     if (!Number.isFinite(entryNumber)) rejectReasons.push("entry-number-unreadable");
     if (normalizedText.length < 12) rejectReasons.push("segment-too-short");
     if (normalizedText.length > 24000) rejectReasons.push("segment-too-long");
-    if (nameNormalized.length < 4) rejectReasons.push("name-head-too-short");
+    // Drei Buchstaben sind im Arabischen ein vollständiger Name (حفص، زيد، كعب، نوح). Die
+    // frühere Grenze von vier Zeichen hat solche Einträge in die Review-Queue verschoben.
+    if (nameNormalized.length < 3) rejectReasons.push("name-head-too-short");
     if (nameNormalized.length > 220) rejectReasons.push("name-head-too-long");
     if (!/[ء-ي]/.test(nameNormalized)) rejectReasons.push("name-head-not-arabic");
     // Namensprobe: Nasab-Marker ODER Nisba ODER Kunya. Ein einzelner Name wie
     // «شفعة السمعي» wird damit nicht mehr stillschweigend verworfen.
-    const hasNameMarker = /(?:^|\s)(?:ابن|بن|ابو|ابي|ابا|ام|بنت|مولي)(?:\s|$)/.test(nameNormalized)
+    // Geprüft wird der GESAMTE Kopf einschließlich der abgeschnittenen Zuschreibung — die
+    // Frage ist, ob der Abschnitt eine Person beschreibt, nicht ob der gekürzte Name allein
+    // den Marker trägt («عبد الرحمن مولى قيس» beschreibt eine Person, «عبد الرحمن» allein
+    // sähe markerlos aus).
+    const nameEvidence = normalizeSearchText([nameSurface, ...alternateNameForms, headDescriptors ?? ""].join(" "));
+    const hasNameMarker = /(?:^|\s)(?:ابن|بن|ابو|ابي|ابا|ام|بنت|مولي|مولاه|مولاهم)(?:\s|$)/.test(nameEvidence)
       || fields.nisbas.length > 0
       || Boolean(fields.kunya);
     if (!hasNameMarker) rejectReasons.push("no-personal-name-marker");
@@ -1251,8 +1647,13 @@ function extractRijalEntries(bookJson, source) {
     // `deathYearCandidate` bleibt der bestehende Feldname, führt aber ausschließlich Jahre
     // mit ausdrücklicher Hunderterangabe. Ein «مات سنة ست وثلاثين» ohne Jahrhundert wird
     // NICHT zu 236 ergänzt; es steht vollständig und unverändert in `dateAssertions`.
-    const fullySpecifiedDeath = deathAssertions.find((item) => item.centuryExplicit && !item.approximate)
-      ?? deathAssertions.find((item) => item.centuryExplicit);
+    const fullySpecifiedDeath = deathAssertions.find(
+      (item) => (item.centuryExplicit || item.centuryShared) && !item.approximate && !BOUNDING_QUALIFIERS.has(item.qualifier ?? ""),
+    );
+    // Schranken und Näherungen sind eigene Aussagen, keine Todesjahre.
+    const boundedDeath = deathAssertions.find(
+      (item) => (item.centuryExplicit || item.centuryShared) && BOUNDING_QUALIFIERS.has(item.qualifier ?? ""),
+    );
     const entryConfidence = Number(
       (0.35 + 0.3 * headConfidence + (fullySpecifiedDeath ? 0.1 : 0) + (tabaqa ? 0.07 : 0) + (relations.teacherPhrase ? 0.05 : 0)).toFixed(3),
     );
@@ -1272,6 +1673,11 @@ function extractRijalEntries(bookJson, source) {
             integrity: spanIntegrity(home.prepared.raw, headSpan.spanStart, headSpan.spanEnd),
           }
         : null,
+      // Nichts geht verloren: die weiteren Namensformen und der abgeschnittene
+      // beschreibende Rest des Kopfes bleiben als eigene Felder erhalten.
+      alternateNameForms,
+      alternateNameFormsNormalized: alternateNameForms.map((form) => normalizeSearchText(form)),
+      headDescriptors,
       nameChain: fields.nameChain,
       nameChainTokens: fields.nameChainTokens,
       kunya: fields.kunya,
@@ -1282,7 +1688,16 @@ function extractRijalEntries(bookJson, source) {
       orthographyNotes: glossed.notes,
       tabaqa,
       deathYearCandidate: fullySpecifiedDeath ? fullySpecifiedDeath.valueAh : null,
-      birthYearCandidate: birthAssertions.find((item) => item.centuryExplicit)?.valueAh ?? null,
+      // «مات بعد الأربعين ومائتين» → { relation: "بعد", valueAh: 240 }. Nie ein Todesjahr.
+      deathYearBound: boundedDeath
+        ? {
+            relation: boundedDeath.qualifier,
+            valueAh: boundedDeath.valueAh,
+            rangeEndAh: boundedDeath.rangeEndAh ?? null,
+            rawPhrase: boundedDeath.rawPhrase,
+          }
+        : null,
+      birthYearCandidate: birthAssertions.find((item) => item.centuryExplicit || item.centuryShared)?.valueAh ?? null,
       ageAtDeath: ageParsed && ageParsed.value >= 15 && ageParsed.value <= 130 ? ageParsed.value : null,
       dateAssertions,
       teacherPhrase: relations.teacherPhrase,
