@@ -1,9 +1,24 @@
-name: Deploy Sanad Atlas to GitHub Pages
+name: Deploy Sanad Atlas (Pages + Worker/D1)
+
+# Ein Release ist das PAAR aus Datenversion und Indexversion (P3.4). Beide
+# entstehen in EINEM Job aus denselben Eingaben und werden zusammen
+# veroeffentlicht: die statische Seite tragt den Release-Zeiger als
+# out/atlas-release.json, D1 traegt ihn in `atlas_release`. Zurueckrollen ist
+# deshalb ein einzelner Schritt (Job "rollback" unten) -- er schaltet den Zeiger
+# in D1 um, ohne Neubau, ohne Worker-Deploy, ohne neuen Pages-Build.
+#
+# atlas.db (rund 434 MB) entsteht IM Job und wird nie ins Repository und nie in
+# ein Artefakt geschrieben -- Begruendung am Schritt "atlas.db bauen".
 
 on:
   push:
     branches: [main]
   workflow_dispatch:
+    inputs:
+      rollback_to:
+        description: "releaseId, auf den zurueckgerollt werden soll (leer = normaler Bau und Deploy)"
+        required: false
+        default: ""
 
 permissions:
   contents: read
@@ -11,12 +26,69 @@ permissions:
   id-token: write
 
 concurrency:
-  group: pages
-  cancel-in-progress: true
+  group: sanad-atlas-release
+  # ABSICHTLICH false (vorher: true). Ein laufendes Release oder ein laufender
+  # Rollback darf nicht von einem nachfolgenden Push abgebrochen werden, sonst
+  # kann D1 mit einem halb umgeschalteten Zeiger stehenbleiben.
+  cancel-in-progress: false
 
 jobs:
-  build:
+  # ---------------------------------------------------------------------------
+  # Rollback in EINEM Schritt. Laeuft nur mit uebergebener releaseId und
+  # beruehrt weder Korpusimport noch Bau noch Pages.
+  # ---------------------------------------------------------------------------
+  rollback:
+    if: github.event_name == 'workflow_dispatch' && inputs.rollback_to != ''
     runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v6
+      - uses: actions/setup-node@v6
+        with:
+          node-version: 22
+
+      - name: Umschalt-SQL fuer die Zielversion erzeugen
+        run: |
+          node worker/tools/atlas-release.mjs activate '${{ inputs.rollback_to }}' --sql-only > rollback.sql
+          echo "--- rollback.sql ---"
+          cat rollback.sql
+
+      - name: Zeiger in D1 umschalten
+        if: ${{ secrets.CLOUDFLARE_API_TOKEN != '' }}
+        env:
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+        run: npx --yes wrangler@4 d1 execute sanad-atlas --remote --file=rollback.sql
+
+      - name: Wirksamkeit pruefen
+        if: ${{ secrets.CLOUDFLARE_API_TOKEN != '' }}
+        env:
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+        run: |
+          # Der Nachweis kommt aus der Datenbank, nicht aus dem Exit-Code des
+          # vorigen Schrittes: die aktive Zeile muss die gewuenschte sein.
+          npx --yes wrangler@4 d1 execute sanad-atlas --remote --json \
+            --command "SELECT release_id, data_version, index_version, activated_at FROM atlas_release WHERE is_active = 1" | tee active.json
+          grep -q '${{ inputs.rollback_to }}' active.json
+
+      - name: Ohne Zugangsdaten nur Trockenlauf
+        if: ${{ secrets.CLOUDFLARE_API_TOKEN == '' }}
+        run: |
+          echo "::warning::CLOUDFLARE_API_TOKEN ist nicht gesetzt -- das Umschalt-SQL wurde erzeugt, aber nicht ausgefuehrt."
+          npm run atlas:rollback:dryrun
+
+  # ---------------------------------------------------------------------------
+  # Normaler Weg: Korpus ableiten, atlas.db bauen, Release vorbereiten, pruefen,
+  # statische Seite bauen. Datenversion und Indexversion entstehen gemeinsam und
+  # verlassen den Job nur gemeinsam.
+  # ---------------------------------------------------------------------------
+  build:
+    if: github.event_name != 'workflow_dispatch' || inputs.rollback_to == ''
+    runs-on: ubuntu-latest
+    outputs:
+      releaseId: ${{ steps.release.outputs.releaseId }}
+      dataVersion: ${{ steps.release.outputs.dataVersion }}
+      indexVersion: ${{ steps.release.outputs.indexVersion }}
     steps:
       - name: Checkout
         uses: actions/checkout@v6
@@ -29,18 +101,135 @@ jobs:
         uses: actions/configure-pages@v5
       - name: Install dependencies
         run: npm ci
+
+      # Die abgeleiteten Korpusdaten (~155 MB) liegen nicht im Repository. Der
+      # Cache-Schluessel haengt am Importer UND an der registrierten Quellenliste:
+      # aendert sich eines von beiden, wird neu abgeleitet, sonst nicht. Das ist
+      # der langsamste Schritt des Jobs (Netzabruf bei Turath) und der einzige,
+      # der ohne Cache in Richtung mehrerer Minuten laeuft.
+      - name: Abgeleitete Korpusdaten aus dem Cache
+        id: corpus-cache
+        uses: actions/cache@v4
+        with:
+          path: .cache/turath-derived
+          key: turath-derived-${{ hashFiles('scripts/import-turath-corpus.mjs', 'data/sources/turath-manifest.json') }}
+      - name: Korpus ableiten (nur bei Cache-Fehltreffer)
+        if: steps.corpus-cache.outputs.cache-hit != 'true'
+        run: npm run import:turath
+
       - name: Validate import fixture
         run: npm run import:test
       - name: Run tests
         run: npm run test
       - name: Run corpus API repository tests
         run: npm run test:backend
+
+      # atlas.db entsteht hier und bleibt hier: 434 MB gehoeren weder ins
+      # Repository (.gitignore: worker/*.db) noch in ein Actions-Artefakt --
+      # Artefakte zaehlen gegen das Speicherkontingent des Kontos, und die Datei
+      # ist aus denselben Eingaben jederzeit deterministisch reproduzierbar
+      # (Abnahme P3.1: zwei Laeufe, bitgleiche Pruefsumme). Der einzige Schritt,
+      # der sie braucht -- der D1-Ladevorgang -- laeuft deshalb in DIESEM Job.
+      - name: atlas.db bauen
+        run: npm run atlas:build
+
+      - name: Schema-, ID- und Determinismus-Pruefungen
+        run: npm run test:atlas
+      - name: Contract-Test gegen die FastAPI-Referenz
+        run: npm run test:worker
+      - name: Zeilen-Lesebudget und Traversierungsgrenzen pruefen
+        run: npm run atlas:audit
+      - name: Rollback-Trockenlauf (Versionsumschaltung ohne Cloudflare)
+        run: npm run atlas:rollback:dryrun
+
+      - name: Release vorbereiten (Datenversion + Indexversion als ein Paar)
+        id: release
+        run: |
+          npm run atlas:release -- prepare --db worker/atlas.db --out worker/release
+          # atlas-release.mjs schreibt die Werte zusaetzlich in Shell-Form, damit
+          # hier kein eingebettetes node -e mit Anfuehrungszeichen-Fallen steht.
+          cat worker/release/latest.env >> "$GITHUB_OUTPUT"
+
       - name: Build static site
         run: npm run build
+      # Derselbe Release-Zeiger, den D1 bekommt, wird mit der Seite
+      # veroeffentlicht. Damit ist von aussen pruefbar, ob Seite und Laufzeit
+      # dieselbe Version bedienen, und ein Rollback ist an genau zwei Stellen
+      # sichtbar: hier und unter /health am Worker.
+      - name: Release-Zeiger mit der Seite veroeffentlichen
+        run: cp worker/release/latest.json out/atlas-release.json
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v4
         with:
           path: ./out
+
+      # Klein (ein JSON, zwei SQL-Dateien): der Beleg, welches Release gebaut
+      # wurde, und die Dateien, mit denen ein Operator die Umschaltung von Hand
+      # wiederholen oder zurueckdrehen kann.
+      - name: Release-Artefakte aufbewahren
+        uses: actions/upload-artifact@v4
+        with:
+          name: atlas-release-${{ steps.release.outputs.dataVersion }}
+          path: worker/release/
+          retention-days: 14
+          if-no-files-found: error
+
+      # -----------------------------------------------------------------------
+      # Ab hier braucht es Cloudflare-Zugangsdaten. Ohne sie laeuft der Job
+      # vollstaendig durch und ueberspringt nur diese Schritte -- kein
+      # Fehlschlag, aber eine sichtbare Warnung, damit "ist deployt" nicht
+      # stillschweigend "ist nicht deployt" heisst.
+      # -----------------------------------------------------------------------
+      - name: Hinweis, wenn keine Cloudflare-Zugangsdaten gesetzt sind
+        if: ${{ secrets.CLOUDFLARE_API_TOKEN == '' }}
+        run: echo "::warning::CLOUDFLARE_API_TOKEN / CLOUDFLARE_ACCOUNT_ID / ATLAS_D1_DATABASE_ID nicht gesetzt -- Worker und D1 wurden NICHT aktualisiert. Siehe docs/12-LAUFZEIT.md."
+
+      - name: wrangler.toml aus Secrets fuellen
+        if: ${{ secrets.CLOUDFLARE_API_TOKEN != '' }}
+        env:
+          ATLAS_D1_DATABASE_ID: ${{ secrets.ATLAS_D1_DATABASE_ID }}
+        run: |
+          # Nur im Arbeitsbaum des Runners, nie zurueck ins Repository.
+          node -e "
+            const fs = require('fs');
+            const p = 'worker/wrangler.toml';
+            const id = process.env.ATLAS_D1_DATABASE_ID;
+            if (!id) { console.error('ATLAS_D1_DATABASE_ID fehlt'); process.exit(1); }
+            fs.writeFileSync(p, fs.readFileSync(p, 'utf8').replace('PLACEHOLDER_D1_DATABASE_ID', id));
+          "
+
+      - name: atlas.db nach D1 laden
+        if: ${{ secrets.CLOUDFLARE_API_TOKEN != '' }}
+        env:
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+        working-directory: worker
+        run: |
+          # SQLite-Abbild -> SQL-Dump -> D1-Massenimport. `wrangler d1 import`
+          # ist der dafuer vorgesehene Weg (es zerlegt die Datei selbst und
+          # laedt sie ueber die D1-Import-API); `d1 execute --file` ist fuer
+          # einzelne Anweisungen gedacht, nicht fuer diese Groesse.
+          sqlite3 atlas.db .dump > atlas-dump.sql
+          ls -l atlas-dump.sql
+          npx --yes wrangler@4 d1 import sanad-atlas --remote --file=atlas-dump.sql
+
+      - name: Release in D1 registrieren und aktivieren
+        if: ${{ secrets.CLOUDFLARE_API_TOKEN != '' }}
+        env:
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+        run: |
+          set -a; . worker/release/latest.env; set +a
+          npx --yes wrangler@4 d1 execute sanad-atlas --remote --file="$releaseDir/register.sql"
+          npx --yes wrangler@4 d1 execute sanad-atlas --remote --file="$releaseDir/activate.sql"
+
+      - name: Worker ausrollen
+        if: ${{ secrets.CLOUDFLARE_API_TOKEN != '' }}
+        env:
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+        working-directory: worker
+        run: npx --yes wrangler@4 deploy
 
   deploy:
     environment:

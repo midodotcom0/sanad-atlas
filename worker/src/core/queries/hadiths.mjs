@@ -217,11 +217,15 @@ export async function getClusterMatnVariants(db, gate, dataVersion, clusterId) {
 
   const families = new Map();
   for (const record of records) {
-    // Innerhalb eines Clusters teilen sich per Definition alle Datensaetze
-    // denselben Fingerabdruck (normalisierter Matn-Hash); eine einzelne
-    // Familie pro Cluster ist der aktuell erreichte Stand, bis eine
-    // redaktionell bestaetigte Unterclusterung existiert (P5.8).
-    const familyKey = fingerprint;
+    // Der Familienschluessel ist NICHT der Cluster-Fingerabdruck: die
+    // FastAPI-Referenz (repository.py:611-612) gruppiert innerhalb eines
+    // Clusters nach sha1(normalize_arabic(matn))[:12] -- ein anderer Hash mit
+    // einer anderen Normalisierung als der Importer-Fingerabdruck, der den
+    // Cluster selbst bildet. Beide Werte koennen darum auseinanderfallen, und
+    // ein Cluster kann mehr als eine Familie enthalten. Der Schluessel wird
+    // beim Bau materialisiert (hadith_record.matn_family_key, siehe
+    // scripts/atlas-build-lib.mjs), nicht hier je Anfrage neu gehasht.
+    const familyKey = record.matn_family_key;
     const textCleared = gate.fullTextCleared(record.collection) && gate.allowedDerivedFields(record.collection).has("matn");
     if (!families.has(familyKey)) {
       families.set(familyKey, {

@@ -23,6 +23,29 @@ import { sourceReferenceForHadithRow } from "./hadiths.mjs";
 
 const RELATIVE_ID_PREFIX = "UNC-REL-";
 
+/**
+ * Laedt hadith_record_ref-Zeilen zu einer Menge von IDs und gibt sie als Map
+ * zurueck -- das SQL-Pendant zu backend/app/repository.py's
+ * `_hadith_index()["by_id"]`.
+ *
+ * WICHTIG fuer die Feldgleichheit (P3.2): die Referenz baut ihre
+ * `sourceReferences` NICHT aus dieser Map-Iteration, sondern durch Nachschlagen
+ * je Ergebniszeile -- also in der Reihenfolge der Fachzeilen und MIT
+ * Wiederholungen, wenn zwei Zeilen denselben Hadith belegen (repository.py:
+ * `window_records.append(record)` je Nachbar, `[... for m in meeting_evidence]`).
+ * Ein `SELECT ... WHERE id IN (...)` liefert stattdessen jede Zeile genau
+ * einmal und in Tabellenreihenfolge. Deshalb wird hier nur nachgeschlagen; die
+ * Reihenfolge macht immer der jeweilige Aufrufer.
+ * @returns {Promise<Map<string, any>>}
+ */
+async function fetchHadithRefsById(db, ids) {
+  const unique = [...new Set(ids)];
+  if (unique.length === 0) return new Map();
+  const placeholders = unique.map(() => "?").join(",");
+  const rows = await db.all(`SELECT * FROM hadith_record_ref WHERE id IN (${placeholders})`, ...unique);
+  return new Map(rows.map((row) => [row.id, row]));
+}
+
 async function fetchOccurrencesForNode(db, nodeId) {
   return db.all(
     `SELECT o.raw_surface_form, o.normalized_surface_form, o.position, o.span_start, o.span_end,
@@ -79,9 +102,14 @@ export async function getNarratorProfile(db, gate, dataVersion, narratorId) {
     note,
   };
 
-  const hadithIds = [...new Set(occurrences.map((o) => o.hadith_record_id))];
-  const placeholders = hadithIds.map(() => "?").join(",");
-  const records = hadithIds.length ? await db.all(`SELECT * FROM hadith_record_ref WHERE id IN (${placeholders})`, ...hadithIds) : [];
+  // repository.py:717-718: `hadith_ids = sorted({...})`, dann `[by_id[hid] for
+  // hid in hadith_ids if hid in by_id]` -- lexikografisch nach ID sortiert und
+  // dedupliziert, NICHT in Tabellenreihenfolge (die bei den heutigen IDs
+  // abweicht: "bukhari-10-..." steht lexikografisch vor "bukhari-2-...",
+  // in der Tabelle aber dahinter).
+  const hadithIds = [...new Set(occurrences.map((o) => o.hadith_record_id))].sort();
+  const byId = await fetchHadithRefsById(db, hadithIds);
+  const records = hadithIds.filter((hid) => byId.has(hid)).map((hid) => byId.get(hid));
   const references = cited(records.map(sourceReferenceForHadithRow), "Keine Hadith-Quellenbelege für dieses Namenscluster auflösbar.");
   return envelope(data, references, { confidenceLevel: "unresolved", confidenceScore: null, origin: "machine", dataVersion });
 }
@@ -118,20 +146,23 @@ export async function getNarratorRelations(db, gate, dataVersion, narratorId, { 
     relationshipType: row.relationship_type,
     evidenceKind: "isnad_occurrence",
     chainId: `${row.hadith_record_id}#${row.chain_order}`,
-    // Python's neighbor "position" ist der Index des Kettenpaars (die
-    // Position des NAEHER-am-Kompilator stehenden Elements), unabhaengig
-    // davon, ob dieser Knoten in der Quell- oder Zielrolle steht -- siehe
-    // Moduldoc. Fuer 'transmitted_from' ist das source_position, fuer
-    // 'transmitted_to' target_position.
-    position: row.relationship_type === "transmitted_from" ? row.source_position : row.target_position,
+    position: neighborPosition(row),
     spanStart: null,
     spanEnd: null,
     hadithId: row.hadith_record_id,
   }));
 
-  const hadithIds = [...new Set(window.map((row) => row.hadith_record_id))];
-  const placeholders = hadithIds.map(() => "?").join(",");
-  const windowRecords = hadithIds.length ? await db.all(`SELECT * FROM hadith_record_ref WHERE id IN (${placeholders})`, ...hadithIds) : [];
+  // repository.py:765-779 fuehrt `window_records` je NACHBAR, nicht je Hadith:
+  // belegt ein Datensatz zwei Nachbarschaftskanten desselben Knotens (in der
+  // Praxis der Regelfall -- Vorgaenger und Nachfolger in derselben Kette, oder
+  // mehrere Ketten eines Datensatzes), erscheint seine Quellenangabe genau so
+  // oft in `sourceReferences`, und zwar in Nachbar-Reihenfolge. Ein
+  // deduplizierendes `WHERE id IN (...)` lieferte hier sowohl zu wenige
+  // Einträge als auch die falsche Reihenfolge (Tabellen- statt Kantenfolge) --
+  // das war die Ursache der abweichenden hadithNumber/page-Werte im
+  // Contract-Test, nicht ein kosmetischer Unterschied.
+  const byId = await fetchHadithRefsById(db, window.map((row) => row.hadith_record_id));
+  const windowRecords = window.map((row) => byId.get(row.hadith_record_id)).filter((row) => row !== undefined);
   const [level, score] = aggregateMachineConfidence(windowRecords.map((r) => JSON.parse(r.parser_json ?? "{}")?.confidence ?? null));
 
   const isRelative = narratorId.startsWith(RELATIVE_ID_PREFIX);
@@ -172,9 +203,20 @@ export async function getNarratorTimeline(db, gate, dataVersion, narratorId) {
   if (occurrences.length === 0) return null;
   const { assertions, references, scores } = await dateAssertionsFor(db, narratorId, occurrences[0].normalized_surface_form);
   const [level, score] = aggregateMachineConfidence(scores);
+  // Wortgleich zur Referenz (repository.py:832-836). Der Text ist fachlich
+  // fragwuerdig -- er nennt eine feste Zahl ("27.105 Einträge") und eine
+  // absolute Aussage ("gar nicht extrahiert"), beides in einer Antwort
+  // hartcodiert statt aus der Datenbasis abgeleitet, und beides veraltet, seit
+  // die Rijal-Basis auf 34.045 Eintraege gewachsen ist und Geburtsjahre
+  // vereinzelt extrahiert werden (rijal_entry.birth_year_ah). Trotzdem steht
+  // hier die Referenzfassung: P3.2 verlangt Feldgleichheit, und der Worker darf
+  // die Referenz nicht einseitig korrigieren. Die Korrektur gehoert in
+  // backend/app/repository.py (Eigentuemer: Agent Vertrag/Backend); danach ist
+  // dieser String hier mitzuziehen. Siehe docs/12-LAUFZEIT.md, "Offene
+  // Abweichung zur Referenz".
   const note = assertions.length
     ? null
-    : "Keine Todes- oder Geburtsjahresangabe für dieses Namenscluster in den importierten Rijāl-Werken gefunden (aktuell nur ein kleiner Bruchteil der Einträge mit erkanntem Todesjahr, Geburtsjahr wird derzeit nur selten extrahiert -- siehe Umsetzungsplan P1.1).";
+    : "Keine Todes- oder Geburtsjahresangabe für dieses Namenscluster in den importierten Rijāl-Werken gefunden (aktuell nur ein kleiner Bruchteil der 27.105 Einträge mit erkanntem Todesjahr, Geburtsjahr wird derzeit gar nicht extrahiert -- siehe Umsetzungsplan P1.1).";
   return envelope({ narratorId, dateAssertions: assertions, note }, cited(references, note ?? "Keine Datierungsangaben gefunden."), {
     confidenceLevel: level,
     confidenceScore: score,
@@ -213,15 +255,37 @@ async function chronologyVerdict(db, aId, bId) {
 }
 
 async function meetingEvidence(db, aId, bId) {
-  return db.all("SELECT * FROM edge_projection WHERE source_node_id = ? AND target_node_id = ?", aId, bId);
+  // ORDER BY id (= rowid) explizit: repository.py's _meeting_evidence()
+  // filtert die in Korpusreihenfolge aufgebaute neighbors-Liste, behaelt deren
+  // Reihenfolge also bei. edge_projection ist in genau dieser Reihenfolge
+  // befuellt (scripts/atlas-build-lib.mjs, ORDER BY h.rowid, chain_order,
+  // position), aber ohne ORDER BY darf SQLite die Zeilen in Indexreihenfolge
+  // liefern -- hier steht die Sortierung deshalb ausdruecklich im SQL.
+  return db.all("SELECT * FROM edge_projection WHERE source_node_id = ? AND target_node_id = ? ORDER BY id", aId, bId);
+}
+
+/**
+ * Bildet die Nachbarschaftszeile auf das Feldbild von repository.py's
+ * neighbors-Eintrag ab (_narrator_occurrence_index():380-389). Wird von
+ * meetingEvidence-Konsumenten UND getNarratorRelations() gebraucht, damit
+ * beide dieselbe Ableitung benutzen.
+ *
+ * `position` ist in der Referenz der Index des KETTENPAARS, nicht die Position
+ * dieses Knotens: fuer 'transmitted_from' (dieser Knoten ist das
+ * kompilatornaehere Glied) ist das source_position, fuer 'transmitted_to'
+ * target_position.
+ */
+function neighborPosition(row) {
+  return row.relationship_type === "transmitted_from" ? row.source_position : row.target_position;
 }
 
 export async function compareNarrators(db, gate, dataVersion, a, b) {
   const [chronology, reason] = await chronologyVerdict(db, a, b);
   const evidence = await meetingEvidence(db, a, b);
-  const hadithIds = [...new Set(evidence.map((e) => e.hadith_record_id))];
-  const placeholders = hadithIds.map(() => "?").join(",");
-  const records = hadithIds.length ? await db.all(`SELECT * FROM hadith_record_ref WHERE id IN (${placeholders})`, ...hadithIds) : [];
+  // Eine Quellenangabe JE BELEG in Belegreihenfolge, mit Wiederholungen --
+  // repository.py:890 `[... for m in meeting_evidence if m["hadithId"] in by_id]`.
+  const byId = await fetchHadithRefsById(db, evidence.map((e) => e.hadith_record_id));
+  const records = evidence.map((e) => byId.get(e.hadith_record_id)).filter((row) => row !== undefined);
   const references = cited(records.map(sourceReferenceForHadithRow), reason);
   const data = {
     narratorA: a,
@@ -229,7 +293,19 @@ export async function compareNarrators(db, gate, dataVersion, a, b) {
     chronology,
     chronologyReason: reason,
     meeting: evidence.length ? "asserted_isnad" : "not_asserted",
-    meetingEvidence: evidence.map((e) => ({ relatedNarratorId: e.target_node_id, relationshipType: e.relationship_type, hadithId: e.hadith_record_id, chainId: e.chain_id })),
+    // Feldbild wie der neighbors-Eintrag der Referenz: relatedNarratorId,
+    // relationshipType, hadithId, collection, chainId, position. `chainId` ist
+    // der BERECHNETE Kurzstring f"{hadithId}#{chainOrder}", nicht
+    // isnad_chain.id (das den Importer-Suffix "#c<n>" traegt) -- siehe
+    // Moduldoc oben und edge_projection.chain_order in atlas-build-lib.mjs.
+    meetingEvidence: evidence.map((e) => ({
+      relatedNarratorId: e.target_node_id,
+      relationshipType: e.relationship_type,
+      hadithId: e.hadith_record_id,
+      collection: e.collection,
+      chainId: `${e.hadith_record_id}#${e.chain_order}`,
+      position: neighborPosition(e),
+    })),
   };
   const level = chronology !== "insufficient" || evidence.length ? "high" : "unresolved";
   return envelope(data, references, { confidenceLevel: level, confidenceScore: null, origin: "machine", dataVersion });
@@ -238,9 +314,8 @@ export async function compareNarrators(db, gate, dataVersion, a, b) {
 export async function compareChronology(db, gate, dataVersion, a, b) {
   const [result, reason] = await chronologyVerdict(db, a, b);
   const evidence = await meetingEvidence(db, a, b);
-  const hadithIds = [...new Set(evidence.map((e) => e.hadith_record_id))];
-  const placeholders = hadithIds.map(() => "?").join(",");
-  const records = hadithIds.length ? await db.all(`SELECT * FROM hadith_record_ref WHERE id IN (${placeholders})`, ...hadithIds) : [];
+  const byId = await fetchHadithRefsById(db, evidence.map((e) => e.hadith_record_id));
+  const records = evidence.map((e) => byId.get(e.hadith_record_id)).filter((row) => row !== undefined);
   const references = cited(records.map(sourceReferenceForHadithRow), reason);
   const data = { narratorA: a, narratorB: b, result, reason, meetingIsProven: evidence.length > 0 };
   const level = result === "insufficient" ? "unresolved" : "high";

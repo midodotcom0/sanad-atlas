@@ -1,0 +1,6 @@
+# Release-Artefakte (manifest.json, register.sql, activate.sql, latest.json)
+# entstehen im Build durch worker/tools/atlas-release.mjs und gehoeren nicht
+# ins Repository: die Release-HISTORIE liegt in D1 in `atlas_release`, nicht
+# hier. Dieses Verzeichnis existiert nur, damit der Build ein festes Ziel hat.
+*
+!.gitignore

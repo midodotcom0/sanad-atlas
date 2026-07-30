@@ -87,6 +87,24 @@ if (!existsSync(dbPath)) {
     .prepare(`SELECT node_id FROM narrator_occurrence WHERE node_id NOT LIKE 'UNC-REL-%' AND node_id <> ? GROUP BY node_id ORDER BY count(*) DESC LIMIT 1 OFFSET 3`)
     .get(namedNarrator.node_id);
   const relativeNarrator = rawDb.prepare("SELECT node_id FROM narrator_occurrence WHERE node_id LIKE 'UNC-REL-%' LIMIT 1").get();
+  // Fuer /timeline braucht es einen Knoten, dessen Namensform einen Rijal-
+  // Eintrag MIT Datierungsangabe trifft -- `namedNarrator` oben tut das
+  // nachweislich nicht (der haeufigste Namenstreffer im Korpus hat weder
+  // Todes- noch Geburtsjahr), weshalb der Testfall sonst nur den leeren Pfad
+  // prueft und die eigentliche Zusammenfuehrung von Vorkommenscluster und
+  // Datierung ungetestet bliebe. Beide Pfade werden unten getrennt geprueft.
+  const datedNarrator = rawDb
+    .prepare(
+      `SELECT o.node_id FROM narrator_occurrence o
+       WHERE o.node_id NOT LIKE 'UNC-REL-%'
+         AND o.normalized_surface_form IN (
+           SELECT name_head_normalized FROM rijal_entry
+           WHERE name_head_normalized <> ''
+             AND source_work_id IN ('source:tahdhib', 'source:mizan', 'source:taqrib')
+             AND (death_year_ah IS NOT NULL OR birth_year_ah IS NOT NULL))
+       GROUP BY o.node_id ORDER BY count(*) DESC, o.node_id LIMIT 1`,
+    )
+    .get();
 
   test("GET /api/v1/hadiths (ohne Suche)", async () => {
     const py = pyCall("hadiths", { collection: null, query: "", cursor: null, limit: 5 });
@@ -188,11 +206,22 @@ if (!existsSync(dbPath)) {
     assert.deepStrictEqual(w.body, py);
   });
 
-  test("GET /api/v1/narrators/{id}/timeline (mit Datierungsangaben)", async () => {
+  test("GET /api/v1/narrators/{id}/timeline (mit Datierungsangaben)", { skip: !datedNarrator && "kein Vorkommenscluster mit datiertem Rijal-Treffer in dieser Datenbasis" }, async () => {
+    const py = pyCall("narrator_timeline", {}, [datedNarrator.node_id]);
+    const w = await workerCall(`/api/v1/narrators/${datedNarrator.node_id}/timeline`);
+    assert.deepStrictEqual(w.body, py);
+    assert.ok(py.data.dateAssertions.length > 0, "Testfall sollte tatsaechlich Datierungsangaben pruefen");
+  });
+
+  // Der leere Pfad ist eigenstaendig zu pruefen: er liefert nicht nur eine
+  // leere Liste, sondern zusaetzlich einen erklaerenden `note`-Text, der
+  // feldgleich zur Referenz sein muss (siehe worker/src/core/queries/
+  // narrators.mjs, Kommentar an dieser Zeichenkette).
+  test("GET /api/v1/narrators/{id}/timeline (ohne Datierungsangaben -> note)", async () => {
     const py = pyCall("narrator_timeline", {}, [namedNarrator.node_id]);
     const w = await workerCall(`/api/v1/narrators/${namedNarrator.node_id}/timeline`);
     assert.deepStrictEqual(w.body, py);
-    assert.ok(py.data.dateAssertions.length > 0, "Testfall sollte tatsaechlich Datierungsangaben pruefen");
+    assert.strictEqual(py.data.dateAssertions.length, 0, "Testfall sollte tatsaechlich den leeren Pfad pruefen");
   });
 
   test("GET /api/v1/narrators/compare", async () => {

@@ -1,0 +1,58 @@
+# Cloudflare-Konfiguration des Sanad-Atlas-Workers (P3.2 / P3.4).
+#
+# ES STEHEN KEINE ZUGANGSDATEN IN DIESER DATEI und es darf auch nie welche
+# geben: `account_id`, API-Token und die echte `database_id` sind betreiber-
+# spezifisch. Was der Betreiber selbst setzt, steht in docs/12-LAUFZEIT.md,
+# Abschnitt "Was der Betreiber selbst setzt".
+#
+#   CLOUDFLARE_API_TOKEN   -- GitHub-Secret, nur fuer den Deploy-Schritt
+#   CLOUDFLARE_ACCOUNT_ID  -- GitHub-Secret (wrangler liest es aus der Umgebung)
+#   ATLAS_D1_DATABASE_ID   -- GitHub-Secret, ersetzt den Platzhalter unten
+#
+# Der Deploy-Workflow ersetzt den Platzhalter zur Laufzeit
+# (.github/workflows/deploy-pages.yml, Schritt "wrangler.toml aus Secrets
+# fuellen") und schreibt das Ergebnis NIE zurueck ins Repository.
+
+name = "sanad-atlas-api"
+main = "src/index.mjs"
+compatibility_date = "2026-07-01"
+
+# Kein workers.dev-Subdomain-Endpunkt: die Seite laeuft auf GitHub Pages und
+# spricht den Worker unter der eigenen Route an. Ein zusaetzlicher offener
+# Endpunkt waere nur eine weitere Adresse, an der das Lizenz-Gate haelt --
+# und ein weiterer Weg, das Tageskontingent zu verbrauchen.
+workers_dev = false
+
+# Rueckwaerts-Kompatibilitaet des statischen Frontends: die Route wird beim
+# Deploy aus dem Secret ATLAS_API_ROUTE eingesetzt (Beispiel:
+# "api.example.org/*"). Ohne eigene Domain bleibt der Abschnitt leer und der
+# Worker ist nur ueber eine manuell im Dashboard gesetzte Route erreichbar --
+# beides kostenfrei.
+# [[routes]]
+# pattern = "api.example.org/*"
+# custom_domain = true
+
+[[d1_databases]]
+binding = "DB"                       # env.DB in worker/src/index.mjs
+database_name = "sanad-atlas"
+database_id = "PLACEHOLDER_D1_DATABASE_ID"
+
+[observability]
+enabled = true
+# 100 % Sampling waere bei 100.000 Anfragen/Tag im Gratis-Kontingent
+# unnoetig teuer an Logspeicher; 10 % genuegen, um Fehlerbilder zu erkennen.
+head_sampling_rate = 0.1
+
+[placement]
+# Der Worker liest ausschliesslich D1. "smart" platziert die Ausfuehrung nahe
+# an der Datenbank statt nahe am Nutzer und spart damit Roundtrips im
+# 10-ms-CPU-Budget je Aufruf.
+mode = "smart"
+
+[limits]
+# Harte Obergrenze je Aufruf. Die Endpunkte sind so gebaut, dass sie deutlich
+# darunter bleiben (indexgebundene Abfragen, Traversierung auf <= 500 Kanten
+# begrenzt -- worker/src/core/graph-traversal.mjs); dieses Limit ist die
+# Notbremse, damit eine pathologische Anfrage nicht das Tageskontingent
+# aufbraucht.
+cpu_ms = 50

@@ -3,15 +3,14 @@
  * @app.get(...)-Tabelle 1:1 nach (dieselben Pfade, Defaults, Grenzen), ruft
  * aber ausschliesslich die db.all()/db.get()-Abstraktion auf -- kein
  * Cloudflare-spezifischer Code hier (kein `env.DB`, kein `caches`). Der
- * Cloudflare-Adapter (worker/src/index.ts) ist ein duenner Wrapper, der nur
- * env.DB an den D1-Adapter bindet und `route()` aufruft; er ist im Sandbox
- * nicht ausfuehrbar (kein wrangler) -- diese Datei ist die geprueft
- * lauffaehige Kernlogik (tests/worker-router.check.mjs, node --test gegen
- * den node:sqlite-Adapter).
+ * Cloudflare-Adapter (worker/src/index.mjs) ist ein duenner Wrapper, der nur
+ * env.DB an den D1-Adapter bindet und `route()` aufruft; er ist ohne wrangler
+ * nicht ausfuehrbar -- diese Datei ist die geprueft lauffaehige Kernlogik
+ * (tests/worker-contract.check.mjs, node --test gegen den node:sqlite-Adapter).
  *
  * Nutzt ausschliesslich Web-Standard Request/Response/URL (global in Node
- * >=18 und in Cloudflare Workers) -- kein Hono: im Sandbox ist kein
- * `npm install` moeglich, siehe worker/README fuer die Abwaegung.
+ * >=18 und in Cloudflare Workers) -- kein Hono, Abwaegung in
+ * docs/12-LAUFZEIT.md.
  */
 
 import * as hadithsQ from "./queries/hadiths.mjs";
@@ -71,7 +70,7 @@ export async function route(request, deps) {
     return new Response(null, { status: 204, headers: cors });
   }
 
-  const { db, gate, registry, dataVersion } = deps;
+  const { db, gate, registry, dataVersion, release = null } = deps;
   let url;
   try {
     url = new URL(request.url);
@@ -83,7 +82,25 @@ export async function route(request, deps) {
   const segs = path.split("/").filter(Boolean);
 
   try {
-    if (path === "/health") return json({ status: "ok", dataVersion }, 200, cors);
+    if (path === "/health") {
+      // Daten- UND Indexversion, damit von aussen pruefbar ist, welches
+      // Release gerade bedient wird (P3.4) -- das ist der Nachweis, dass ein
+      // Rollback gegriffen hat. `release` ist optional: der Contract-Test ruft
+      // route() ohne Release-Zeiger auf, weil die 14 Fachendpunkte ihn nicht
+      // brauchen.
+      return json(
+        {
+          status: "ok",
+          dataVersion,
+          indexVersion: release?.indexVersion ?? null,
+          releaseId: release?.releaseId ?? null,
+          releaseActivatedAt: release?.activatedAt ?? null,
+          releasePointer: release?.source ?? null,
+        },
+        200,
+        cors,
+      );
+    }
     if (request.method !== "GET") return notFound("Not Found", cors);
     if (segs[0] !== "api" || segs[1] !== "v1") return notFound("Not Found", cors);
     const rest = segs.slice(2);

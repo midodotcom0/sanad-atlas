@@ -43,6 +43,15 @@ export async function traverseFromNode(db, startNodeId, options = {}) {
   const direction = options.direction === "transmitted_to" ? "transmitted_to" : "transmitted_from";
   const maxDepth = Math.max(1, Math.min(Number(options.maxDepth) || MAX_DEPTH_HARD_LIMIT, MAX_DEPTH_HARD_LIMIT));
 
+  // Gemessene Voraussetzung (nicht optional): der rekursive Zweig unten
+  // verbindet ueber (e.source_node_id = w.target_node_id AND
+  // e.relationship_type = ?). Nur `edge_projection_source_rel_idx`
+  // (scripts/atlas-build-lib.mjs) deckt beide Gleichheiten ab; fehlt er, baut
+  // SQLite bei JEDER Anfrage einen Wegwerfindex ueber die ganze Projektion und
+  // die Abfrage dauert 2.929 statt 7 ms (gemessen: Startknoten mit 438 direkten
+  // Kanten, maxDepth 8). worker/tools/query-plan-audit.mjs prueft genau das und
+  // schlaegt fehl, sobald ein "AUTOMATIC ... INDEX" im Plan auftaucht.
+  //
   // Zyklenschutz: SQLite erkennt Zyklen in WITH RECURSIVE nicht von selbst
   // (Pflicht laut SQLite-Dokumentation: "the recursive part ... must not
   // itself be a compound query" -- Endlosschleifen muessen manuell

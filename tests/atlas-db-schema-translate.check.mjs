@@ -12,6 +12,7 @@
  */
 
 import { readFileSync } from "node:fs";
+import { spawnSync } from "node:child_process";
 import { dirname, resolve } from "node:path";
 import { fileURLToPath } from "node:url";
 import { strict as assert } from "node:assert";
@@ -121,7 +122,6 @@ test("die uebersetzte DDL laedt fehlerfrei in einer echten SQLite-Datenbank (nod
 });
 
 test("Fallback-Nachweis ohne node:sqlite: python3 sqlite3 ist als Ausweichweg fuer die Verifikation verfuegbar", { skip: !!DatabaseSync }, () => {
-  const { spawnSync } = require("node:child_process");
   const probe = spawnSync("python3", ["-c", "import sqlite3; print(sqlite3.sqlite_version)"]);
   assert.equal(probe.status, 0, "weder node:sqlite noch python3 sqlite3 verfuegbar -- DDL kann in dieser Umgebung nicht verifiziert werden");
 });

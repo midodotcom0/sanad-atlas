@@ -21,7 +21,7 @@
  * tests/atlas-db-build.check.mjs fuer den automatisierten Nachweis.
  */
 
-import { existsSync, mkdirSync, readFileSync, writeFileSync, statSync } from "node:fs";
+import { existsSync, mkdirSync, readFileSync, writeFileSync } from "node:fs";
 import { createHash } from "node:crypto";
 import { dirname, resolve } from "node:path";
 import { fileURLToPath } from "node:url";
@@ -86,7 +86,7 @@ async function main() {
   }
 
   const startedAt = Date.now();
-  const { db, stats, dataVersion } = buildAtlasDatabase(paths, DatabaseSync, args.out);
+  const { db, stats, dataVersion, indexVersion, releaseId } = buildAtlasDatabase(paths, DatabaseSync, args.out);
   db.close();
   const durationMs = Date.now() - startedAt;
 
@@ -99,6 +99,8 @@ async function main() {
   const report = {
     outPath: args.out,
     dataVersion,
+    indexVersion,
+    releaseId,
     sizeBytes: bytes.length,
     sizeMb: Number(sizeMb.toFixed(2)),
     percentOfD1FreeTier: Number(percentOfD1FreeTier),
@@ -115,6 +117,8 @@ async function main() {
     console.log(`  sha256: ${sha256}`);
     console.log(`  Dauer: ${durationMs} ms`);
     console.log(`  dataVersion: ${dataVersion}`);
+    console.log(`  indexVersion: ${indexVersion}`);
+    console.log(`  releaseId: ${releaseId}  (Datenversion und Indexversion werden nur gemeinsam ausgeliefert -- P3.4)`);
     console.log(`  Zeilen: ${JSON.stringify(stats)}`);
   } else {
     console.log(sha256);

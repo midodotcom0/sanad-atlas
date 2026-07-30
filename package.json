@@ -11,7 +11,13 @@
     "test:backend": "PYTHONPATH=backend python3 -m unittest discover -s backend/tests -v",
     "test:watch": "vitest",
     "import:test": "node scripts/validate-test-import.mjs",
-    "import:turath": "node scripts/import-turath-corpus.mjs --fetch"
+    "import:turath": "node scripts/import-turath-corpus.mjs --fetch",
+    "atlas:build": "node --experimental-sqlite scripts/build-atlas-db.mjs",
+    "atlas:release": "node worker/tools/atlas-release.mjs",
+    "atlas:audit": "node worker/tools/query-plan-audit.mjs",
+    "atlas:rollback:dryrun": "node worker/tools/release-dryrun.mjs",
+    "test:atlas": "node --experimental-sqlite --test tests/atlas-db-schema-translate.check.mjs tests/atlas-db-id-scheme.check.mjs tests/atlas-db-normalize-parity.check.mjs tests/atlas-db-build.check.mjs",
+    "test:worker": "node --experimental-sqlite --test tests/worker-contract.check.mjs"
   },
   "dependencies": {
     "@fontsource/ibm-plex-sans-arabic": "^5.3.0",
