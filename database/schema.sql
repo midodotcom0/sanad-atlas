@@ -1364,6 +1364,57 @@ CREATE INDEX rijal_entry_number_idx ON rijal_entry (source_work_id, entry_number
 CREATE INDEX rijal_entry_name_head_idx ON rijal_entry (name_head_normalized);
 CREATE INDEX rijal_entry_death_idx ON rijal_entry (death_year_ah);
 CREATE INDEX rijal_entry_narrator_idx ON rijal_entry (resolved_narrator_id);
+
+-- Strukturierte Profilfelder aus einem Rijal-Gesamtregister (derzeit:
+-- S1.db der offiziellen Shamela-Ausgabe). Sie gehoeren weiterhin zum
+-- Quelleneintrag, nicht zu einer kanonischen Person: erst eine redaktionell
+-- bestaetigte Identitaetsentscheidung darf sie an narrator binden.
+CREATE TABLE rijal_source_profile (
+  rijal_entry_id uuid PRIMARY KEY REFERENCES rijal_entry(id) ON DELETE CASCADE,
+  long_name text,
+  metadata_text text NOT NULL,
+  metadata_json jsonb NOT NULL DEFAULT '{}'::jsonb,
+  ibn_hajar_grade text,
+  al_dhahabi_grade text,
+  residence_places jsonb NOT NULL DEFAULT '[]'::jsonb,
+  travel_places jsonb NOT NULL DEFAULT '[]'::jsonb,
+  relation_notes text,
+  creed_note text,
+  source_url text NOT NULL,
+  data_version text NOT NULL,
+  created_at timestamptz NOT NULL DEFAULT now()
+);
+
+-- Einzelne, quellengebundene Aussagen aus der Rijal-Biografie. Der Kritiker
+-- bleibt als Rohname erhalten, solange seine Identitaet nicht redaktionell an
+-- scholar aufgeloest wurde. Damit wird kein gleichlautender Name automatisch
+-- mit einer Person verschmolzen.
+CREATE TABLE rijal_criticism (
+  id uuid PRIMARY KEY DEFAULT gen_random_uuid(),
+  rijal_entry_id uuid NOT NULL REFERENCES rijal_entry(id) ON DELETE CASCADE,
+  scholar_id uuid REFERENCES scholar(id),
+  critic_name_raw text NOT NULL,
+  critic_name_normalized text NOT NULL,
+  section_kind text NOT NULL DEFAULT 'critic'
+    CHECK (section_kind IN ('critic', 'hearing_evidence', 'disconnection', 'comparison', 'other')),
+  original_phrase text NOT NULL,
+  cited_work text NOT NULL,
+  cited_volume text,
+  cited_page text,
+  source_page_id integer,
+  sequence_no integer NOT NULL CHECK (sequence_no >= 0),
+  extraction_method extraction_method NOT NULL DEFAULT 'parser',
+  parser_version text NOT NULL,
+  origin assertion_origin NOT NULL DEFAULT 'machine',
+  confidence_level confidence_level NOT NULL DEFAULT 'high',
+  review_status review_status NOT NULL DEFAULT 'machine_unreviewed',
+  data_version text NOT NULL,
+  created_at timestamptz NOT NULL DEFAULT now(),
+  UNIQUE (rijal_entry_id, sequence_no)
+);
+
+CREATE INDEX rijal_criticism_entry_idx ON rijal_criticism (rijal_entry_id, sequence_no);
+CREATE INDEX rijal_criticism_critic_idx ON rijal_criticism (critic_name_normalized);
 CREATE INDEX identity_candidate_occurrence_idx ON identity_candidate (occurrence_id, confidence_score DESC);
 CREATE INDEX identity_decision_occurrence_idx ON identity_decision (occurrence_id, created_at DESC);
 CREATE INDEX relationship_subject_idx ON relationship_assertion (subject_narrator_id, evidence_kind);

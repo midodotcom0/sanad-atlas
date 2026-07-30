@@ -25,7 +25,11 @@ if (!Number.isInteger(port) || port < 1 || port > 65_535) {
 const rawDb = new DatabaseSync(databasePath, { readOnly: process.env.ATLAS_DEV_READ_WRITE !== "1" });
 const db = createNodeSqliteAdapter(rawDb);
 const registry = JSON.parse(readFileSync(registryPath, "utf8"));
-const gate = createLicenseGate(registry);
+// The local research workstation may inspect the source text it imported from
+// the official Shamela distribution. The deployed Worker does not receive
+// this exception and continues to withhold long quotations until rights are
+// explicitly cleared in the registry.
+const gate = createLicenseGate(registry, { localFullTextSources: ["shamela"] });
 const release = await readActiveRelease(db);
 
 async function requestBody(request) {
@@ -76,4 +80,3 @@ function close() {
 
 process.once("SIGINT", close);
 process.once("SIGTERM", close);
-

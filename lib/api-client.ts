@@ -8,16 +8,16 @@ import type { ConfidenceLevel, ResponseEnvelope } from "./types";
  * `reviewStatus` kommen ausschliesslich aus `lib/types.ts`.
  */
 
-/** Die vier registrierten Rijāl-Werke aus `data/sources/turath-manifest.json`. */
-export type RijalSourceKey = "tahdhib" | "mizan" | "taqrib" | "kashif";
+/** Official Shamela narrator registry plus legacy source keys for old databases. */
+export type RijalSourceKey = "shamela" | "tahdhib" | "mizan" | "taqrib" | "kashif";
 
 /**
- * Arabische Werktitel der Rijāl-Quellen. Einzige Beschriftungsquelle fuer
- * Bibliothek, Kandidatenliste und Einzelnachweis -- vorher gab es je Ansicht
- * eine eigene Karte, weshalb die vierte Quelle (al-Kāshif, 6.942 Eintraege)
- * nach ihrer Registrierung nirgends benannt war.
+ * Arabic labels shared by the library, identity candidates and source record.
+ * New narrator search uses `shamela`; the remaining labels preserve backward
+ * compatibility with previously built Atlas databases.
  */
 export const RIJAL_SOURCE_NAMES_AR: Record<RijalSourceKey, string> = {
+  shamela: "دليل رواة المكتبة الشاملة",
   tahdhib: "تهذيب التهذيب",
   mizan: "ميزان الاعتدال",
   taqrib: "تقريب التهذيب",
@@ -57,6 +57,8 @@ export type ApiRijalEntry = {
   entryNumber: number;
   /** Namenskopf der Uebersetzung, seit dem Rijāl-Reparse kein Textanfang mehr. */
   nameSurface: string;
+  /** Full lineage/name exactly as decoded from the Shamela source record. */
+  longName?: string | null;
   /** Reine Namenskette ohne Kunya und Nisba, Grundlage des Blocking-Index. */
   nameChain?: string | null;
   kunya?: string | null;
@@ -64,6 +66,17 @@ export type ApiRijalEntry = {
   region?: string | null;
   /** Generation, sofern die Quelle sie ausdruecklich nennt. */
   tabaqa?: string | null;
+  /** Source metadata remains keyed by the Arabic field labels. */
+  metadata?: Record<string, string[]>;
+  residencePlaces?: string[];
+  travelPlaces?: string[];
+  relationNotes?: string | null;
+  creedNote?: string | null;
+  /** Separate source summaries; never collapsed into a single Atlas grade. */
+  ibnHajarGrade?: string | null;
+  alDhahabiGrade?: string | null;
+  criticisms?: ApiRijalCriticism[];
+  criticismsWithheld?: boolean;
   deathYearCandidate: number | null;
   /**
    * Alle Datierungsangaben der Uebersetzung, jede mit Verb, Rohphrase und
@@ -89,6 +102,18 @@ export type ApiRijalEntry = {
    */
   identityStatus: ConfidenceLevel;
   parser: { confidence: number; reviewStatus: string };
+};
+
+export type ApiRijalCriticism = {
+  criticName: string;
+  sectionKind: "critic" | "hearing_evidence" | "disconnection" | "comparison" | "other";
+  phrase: string | null;
+  citedWork: string;
+  citedVolume: string | null;
+  citedPage: string | null;
+  sourcePageId: number | null;
+  sequenceNo: number;
+  textWithheld?: boolean;
 };
 
 export type ApiRijalDateAssertion = {

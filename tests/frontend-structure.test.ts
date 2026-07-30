@@ -20,6 +20,7 @@ import { join, resolve } from "node:path";
 const ROOT = resolve(process.cwd());
 const COMPONENTS = join(ROOT, "components");
 const shell = readFileSync(join(COMPONENTS, "atlas-shell.tsx"), "utf8");
+const occurrencePanel = readFileSync(join(COMPONENTS, "panels", "occurrence-panel.tsx"), "utf8");
 
 function componentFiles(): string[] {
   const files: string[] = [];
@@ -34,6 +35,14 @@ function componentFiles(): string[] {
 }
 
 describe("frontend structure", () => {
+  it("opens the full narrator card inside the isnad workspace", () => {
+    for (const tab of ["البطاقة", "أقوال العلماء", "الشيوخ والتلاميذ", "المصادر"]) {
+      expect(occurrencePanel).toContain(tab);
+    }
+    expect(occurrencePanel).toContain("searchRijalCandidates(occurrence.rawSurfaceForm");
+    expect(occurrencePanel).not.toContain("/narrators/lookup");
+  });
+
   it("keeps the shell down to routing, state and chrome", () => {
     // Vor der Aufteilung: 608 Zeilen mit sechs Views und drei Panels.
     expect(shell.split("\n").length).toBeLessThan(220);

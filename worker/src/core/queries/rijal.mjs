@@ -1,16 +1,8 @@
 /**
- * Rijal-Endpunkte. Port von `backend/app/repository.py`
- * (`rijal_entries`, `rijal_entry`, `rijal_candidates`, `_rank_rijal`).
- *
- * WICHTIG fuer Vertragstreue: `backend/app/main.py` beschraenkt `source` auf
- * `^(tahdhib|mizan|taqrib)$` -- al-Kashif (von Agent 1 vierte registrierte
- * Quelle, Umsetzungsplan P1.5) ist in der AKTUELLEN FastAPI-Referenz noch
- * NICHT freigeschaltet. Damit Worker- und FastAPI-Antworten feldgleich
- * bleiben (P3.2-Abnahme), bedient dieser Worker `/rijal` und
- * `/identity-candidates` bewusst mit DENSELBEN drei Quellen; al-Kashif liegt
- * bereits vollstaendig in atlas.db (rijal_entry.source_work_id = 'source:kashif')
- * und kann freigeschaltet werden, sobald main.py es tut -- keine zweite
- * Migration noetig.
+ * Rijal endpoints. The official Shamela S1 narrator registry is the primary
+ * source used by the interactive isnad card. Legacy Turath-derived rows remain
+ * readable only for databases that have not installed S1.db yet, which keeps
+ * deterministic corpus rebuilds and the older API contract tests usable.
  */
 
 import { encodeCursor, decodeCursor } from "../cursor.mjs";
@@ -18,7 +10,18 @@ import { envelope, cited, aggregateMachineConfidence, levelFromScore } from "../
 import { escapeFtsPhrase, normalizeSearchText } from "../search-text.mjs";
 import { numOrNull } from "../util.mjs";
 
-export const RIJAL_API_SOURCES = ["tahdhib", "mizan", "taqrib"];
+const LEGACY_RIJAL_API_SOURCES = ["tahdhib", "mizan", "taqrib"];
+export const RIJAL_API_SOURCES = ["shamela", ...LEGACY_RIJAL_API_SOURCES];
+
+/**
+ * The official Shamela narrator registry replaces the Turath-derived Rijal
+ * search as soon as it is installed. Test/legacy databases without S1.db keep
+ * the previous sources so that rebuilding the hadith corpus remains possible.
+ */
+async function identitySearchSources(db) {
+  const shamela = await db.get("SELECT 1 AS available FROM rijal_entry_ref WHERE source_key = 'shamela' LIMIT 1");
+  return shamela ? ["shamela"] : LEGACY_RIJAL_API_SOURCES;
+}
 
 /** @param {Record<string, any>} row Zeile aus rijal_entry_ref */
 export function sourceReferenceForRijalRow(row) {
@@ -41,7 +44,11 @@ function withParser(row) {
 }
 
 export async function listRijalEntries(db, gate, dataVersion, { source = "tahdhib", query, cursor, limit }) {
-  if (!RIJAL_API_SOURCES.includes(source)) source = "tahdhib";
+  if (!RIJAL_API_SOURCES.includes(source)) source = "shamela";
+  if (source === "shamela") {
+    const available = await db.get("SELECT 1 AS available FROM rijal_entry_ref WHERE source_key = 'shamela' LIMIT 1");
+    if (!available) source = "tahdhib";
+  }
   const offset = decodeCursor(cursor);
   const wanted = normalizeSearchText(query ?? "");
 
@@ -80,7 +87,31 @@ export async function getRijalEntry(db, gate, dataVersion, entryId) {
   const source = entryId.split("-", 1)[0];
   const row = await db.get("SELECT * FROM rijal_entry_ref WHERE id = ?", entryId);
   if (!row) return null;
-  const full = withParser(row);
+  let full = withParser(row);
+  if (source === "shamela") {
+    const profile = await db.get("SELECT * FROM rijal_source_profile WHERE rijal_entry_id = ?", entryId);
+    const criticisms = await db.all(
+      `SELECT critic_name_raw AS criticName, section_kind AS sectionKind,
+              original_phrase AS phrase, cited_work AS citedWork,
+              cited_volume AS citedVolume, cited_page AS citedPage,
+              source_page_id AS sourcePageId, sequence_no AS sequenceNo
+       FROM rijal_criticism WHERE rijal_entry_id = ? ORDER BY sequence_no`,
+      entryId,
+    );
+    full = {
+      ...full,
+      long_name: profile?.long_name ?? null,
+      metadata_text: profile?.metadata_text ?? null,
+      metadata: JSON.parse(profile?.metadata_json ?? "{}"),
+      ibn_hajar_grade: profile?.ibn_hajar_grade ?? null,
+      al_dhahabi_grade: profile?.al_dhahabi_grade ?? null,
+      residence_places: JSON.parse(profile?.residence_places ?? "[]"),
+      travel_places: JSON.parse(profile?.travel_places ?? "[]"),
+      relation_notes: profile?.relation_notes ?? null,
+      creed_note: profile?.creed_note ?? null,
+      criticisms,
+    };
+  }
   const confidence = full.parser?.confidence ?? null;
   return envelope(gate.publicRijalFields(full, source), [sourceReferenceForRijalRow(full)], {
     confidenceLevel: levelFromScore(confidence),
@@ -102,7 +133,8 @@ export async function rankRijalCandidates(db, wantedNormalized, limit) {
   if (!wantedNormalized) return [];
   const results = [];
   const seen = new Set();
-  const placeholders = RIJAL_API_SOURCES.map(() => "?").join(",");
+  const sources = await identitySearchSources(db);
+  const placeholders = sources.map(() => "?").join(",");
 
   async function addTier(rows, matchKind, rank) {
     for (const row of rows) {
@@ -113,13 +145,13 @@ export async function rankRijalCandidates(db, wantedNormalized, limit) {
   }
 
   if (results.length < limit) {
-    const exact = await db.all(`SELECT * FROM rijal_entry_ref WHERE source_key IN (${placeholders}) AND name_head_normalized = ? ORDER BY length(name_head_normalized), entry_number_int`, ...RIJAL_API_SOURCES, wantedNormalized);
+    const exact = await db.all(`SELECT * FROM rijal_entry_ref WHERE source_key IN (${placeholders}) AND name_head_normalized = ? ORDER BY length(name_head_normalized), entry_number_int`, ...sources, wantedNormalized);
     await addTier(exact, "exact_name", 0);
   }
   if (results.length < limit) {
     const prefix = await db.all(
       `SELECT * FROM rijal_entry_ref WHERE source_key IN (${placeholders}) AND (name_head_normalized LIKE ? OR ? LIKE (name_head_normalized || '%')) AND name_head_normalized <> ? ORDER BY length(name_head_normalized), entry_number_int`,
-      ...RIJAL_API_SOURCES,
+      ...sources,
       `${escapeLike(wantedNormalized)}%`,
       wantedNormalized,
       wantedNormalized,
@@ -129,7 +161,7 @@ export async function rankRijalCandidates(db, wantedNormalized, limit) {
   if (results.length < limit) {
     const contains = await db.all(
       `SELECT * FROM rijal_entry_ref WHERE source_key IN (${placeholders}) AND name_head_normalized LIKE ? ORDER BY length(name_head_normalized), entry_number_int`,
-      ...RIJAL_API_SOURCES,
+      ...sources,
       `%${escapeLike(wantedNormalized)}%`,
     );
     await addTier(contains, "name_contains", 2);
@@ -142,7 +174,7 @@ export async function rankRijalCandidates(db, wantedNormalized, limit) {
        JOIN rijal_fts f ON f.rowid = d.id
        WHERE r.source_key IN (${placeholders}) AND rijal_fts MATCH ?
        ORDER BY length(r.name_head_normalized), r.entry_number_int`,
-      ...RIJAL_API_SOURCES,
+      ...sources,
       phrase,
     );
     await addTier(mentions, "biography_mention", 3);

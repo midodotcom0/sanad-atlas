@@ -16,16 +16,11 @@ import { normalizeSearchText } from "@/lib/search";
 import type { ResponseEnvelope, SourceReference } from "@/lib/types";
 import { confidenceLabel, originLabel, reviewStatusLabel, TextWithheldNotice } from "./atlas-primitives";
 
-/**
- * Werktitel der Rijāl-Quellen. Bezieht die Beschriftung aus `lib/api-client.ts`,
- * damit die am 30. Juli 2026 registrierte vierte Quelle (al-Kāshif, Turath 2171,
- * 6.942 Eintraege) ueberall benannt ist -- vorher endete diese Karte bei drei
- * Werken und ein Kāshif-Treffer waere ohne Quellenangabe erschienen.
- */
+/** Shared source labels; identity lookup is restricted to the Shamela registry. */
 const sourceNames = RIJAL_SOURCE_NAMES_AR;
 
-/** Reihenfolge der Quellenabschnitte: Primaerwerke zuerst, Ergaenzungen danach. */
-const sourceOrder: RijalSourceKey[] = ["tahdhib", "mizan", "taqrib", "kashif"];
+/** Primary identity search uses the official Shamela registry behind Asfar. */
+const sourceOrder: RijalSourceKey[] = ["shamela"];
 
 const matchNames: Record<ApiRijalCandidate["matchKind"], string> = {
   exact_name: "مطابقة الاسم",
@@ -117,7 +112,7 @@ export function NarratorLookup() {
       <div className="record-container">
         <div className="record-breadcrumb"><Link href={hadithId ? `/hadith?record=${encodeURIComponent(hadithId)}` : "/library"}>العودة إلى {hadithId ? "السند" : "المكتبة"}</Link><span>←</span><strong>مرشحو الهوية</strong></div>
         <header className="record-hero">
-          <span className="eyebrow">موضع راوٍ · بحث في أربعة كتب رجال</span>
+          <span className="eyebrow">موضع راوٍ · دليل رواة المكتبة الشاملة</span>
           <h1>{name || "لم يحدد اسم الراوي"}</h1>
           <p>هذه نتائج بحث مصدرية، وليست حكما بأن التراجم المعروضة هي الشخص نفسه. لا تنشأ هوية موحدة إلا بقرار تحقيقي موثق.</p>
           {hadithId ? <div className="occurrence-context"><span>الحديث <b>{hadithId}</b></span><span>السلسلة <b>{Number(chain ?? 0) + 1}</b></span><span>الموضع <b>{Number(position ?? 0) + 1}</b></span></div> : null}

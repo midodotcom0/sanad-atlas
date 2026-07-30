@@ -59,11 +59,11 @@ test("36 CREATE TYPE-Werte werden auf 9 ENUMs abgebildet und liefern die dokumen
   assert.deepEqual(enumTypes.get("chronology_result"), ["possible", "impossible", "insufficient"]);
 });
 
-test("40 Tabellen und 4 Sichten werden erkannt (inklusive P5.8-Redaktionspersistenz)", () => {
+test("42 Tabellen und 4 Sichten werden erkannt (inklusive Rijal-Quellenprofilen)", () => {
   const { tableNames, viewNames } = translateSchemaToSqlite(schemaText);
-  assert.equal(tableNames.length, 40, tableNames.join(", "));
+  assert.equal(tableNames.length, 42, tableNames.join(", "));
   assert.equal(viewNames.length, 4, viewNames.join(", "));
-  for (const expected of ["rijal_entry", "scholar", "place", "narrator", "narrator_public_alias", "editor", "role", "editor_api_credential", "editorial_proposal", "edge_projection" /* wird separat ergaenzt, nicht hier */]) {
+  for (const expected of ["rijal_entry", "rijal_source_profile", "rijal_criticism", "scholar", "place", "narrator", "narrator_public_alias", "editor", "role", "editor_api_credential", "editorial_proposal", "edge_projection" /* wird separat ergaenzt, nicht hier */]) {
     if (expected === "edge_projection") continue;
     assert.ok(tableNames.includes(expected), `Tabelle ${expected} fehlt in der Uebersetzung`);
   }

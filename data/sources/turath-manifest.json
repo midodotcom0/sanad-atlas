@@ -83,6 +83,22 @@
       "registrationReason": "Die Datei .cache/turath/2171.json lag ohne Registry-Eintrag im Cache, zusammen mit einer verwaisten Ableitung .cache/turath-derived/kashif.json. Da Anbieter, Zugriffsweg und Rechtelage identisch zu den vier bereits registrierten Turath-Werken sind und al-Kāshif ein vierter Rijāl-Zeuge mit ausdrücklichen Lehrer-, Schüler- und Todesjahresangaben ist, wird die Quelle registriert statt entfernt. Damit existiert kein Datenbestand ohne Registry-Eintrag.",
       "editionNote": "Digitalisat ohne ausgewiesenen Editionsherausgeber in der Turath-Datei. Vor jeder öffentlichen Weitergabe von Volltext ist die Editionsebene wie bei den übrigen vier Werken einzeln zu prüfen.",
       "publicDerivedFields": ["entry_number", "name_surface", "date_assertions", "teacher_student_phrases", "source_pointer"]
+    },
+    {
+      "key": "shamela",
+      "title": "دليل رواة المكتبة الشاملة",
+      "author": null,
+      "kind": "rijal_registry",
+      "provider": "shamela",
+      "providerDatabase": "database/service/S1.db",
+      "canonicalUrl": "https://shamela.ws/narrator/3",
+      "officialDownloadUrl": "https://archive.org/download/shamela_download/shamela-linux-1447.11.tar.xz",
+      "rightsStatus": "public-access-license-unspecified",
+      "priority": "primary",
+      "registeredAt": "2026-07-30",
+      "registrationReason": "المصدر الأصلي الذي تعتمد عليه موسوعة أسفار؛ النسخة الرسمية للشاملة تتضمن 18,989 بطاقة راوٍ وأقوال النقاد مع إحالات الكتب.",
+      "editionNote": "الوصول العام لا يساوي ترخيص إعادة نشر. تعرض بيئة التطوير المحلية النص المصدري، بينما يحجب النشر العام العبارات الطويلة حتى تعتمد مراجعة الحقوق.",
+      "publicDerivedFields": ["entry_number", "name_surface", "date_assertions", "teacher_student_phrases", "source_pointer", "biographical_fields", "critic_ranks", "criticism_references"]
     }
   ],
   "externalDatasets": [

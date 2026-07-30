@@ -189,7 +189,7 @@ export async function route(request, deps) {
     }
 
     if (rest.length === 1 && rest[0] === "rijal") {
-      const source = enumOrNull(q.get("source"), rijalQ.RIJAL_API_SOURCES) ?? "tahdhib";
+      const source = enumOrNull(q.get("source"), rijalQ.RIJAL_API_SOURCES) ?? "shamela";
       const query = (q.get("q") ?? "").slice(0, 240);
       const limit = clampInt(q.get("limit"), { def: 40, min: 1, max: 100 });
       return json(await rijalQ.listRijalEntries(db, gate, dataVersion, { source, query, cursor: q.get("cursor"), limit }), 200, cors);

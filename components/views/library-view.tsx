@@ -82,7 +82,7 @@ export function LibraryView() {
   const [manifest, setManifest] = useState<CorpusManifest | null>(null);
   const [corpusKind, setCorpusKind] = useState<"hadith" | "rijal">("hadith");
   const [collection, setCollection] = useState<CollectionKey>("bukhari");
-  const [rijalSource, setRijalSource] = useState<RijalSourceKey>("tahdhib");
+  const [rijalSource, setRijalSource] = useState<RijalSourceKey>("shamela");
   const [apiRecords, setApiRecords] = useState<ApiHadith[]>([]);
   const [rijalRecords, setRijalRecords] = useState<ApiRijalEntry[]>([]);
   const [pageInfo, setPageInfo] = useState<PageInfo>({ nextCursor: null, hasNextPage: false });
@@ -140,7 +140,7 @@ export function LibraryView() {
       <header className="view-intro"><span className="eyebrow">المكتبة الحديثية المستوردة</span><h1>صحيح البخاري وصحيح مسلم، بسندٍ قابل للتتبع.</h1><p>هذه مرحلة استخراج آلي أولى من تراث. كل سجل يحتفظ بالصفحة، وإصدار المحلل، ودرجة الثقة، وحالة المراجعة. لا تتحول الهوية المقترحة إلى هوية محققة إلا بعد مراجعة علمية.</p></header>
       {manifest ? <div className="corpus-metrics">
         {Object.entries(manifest.collections).map(([key, item]) => <article key={key}><span>{item.title}</span><strong>{item.records.toLocaleString("ar")} رواية وطريقا</strong><p>{item.uniqueNumbers.toLocaleString("ar")} رقما · {item.narratorOccurrences.toLocaleString("ar")} موضع راوٍ</p><small>{item.parsedRecords.toLocaleString("ar")} محلل آليا · {item.unparsedRecords.toLocaleString("ar")} محفوظ للمراجعة</small></article>)}
-        {Object.entries(manifest.rijal).map(([key, item]) => <article key={key} className="rijal-metric"><span>{item.title}</span><strong>{item.entries.toLocaleString("ar")} ترجمة</strong><p>{item.teacherPhrasesDetected.toLocaleString("ar")} عبارة شيوخ · {item.studentPhrasesDetected.toLocaleString("ar")} عبارة تلاميذ</p><small>استخراج آلي غير معتمد{item.reviewQueueEntries ? ` · ${item.reviewQueueEntries.toLocaleString("ar")} في طابور المراجعة` : ""}</small></article>)}
+        <article className="rijal-metric"><span>دليل رواة المكتبة الشاملة</span><strong>١٨٬٩٨٩ بطاقة راوٍ</strong><p>الترجمة · حكم ابن حجر · حكم الذهبي · أقوال النقاد ومراجعها</p><small>المصدر الأصلي الذي تعتمد عليه موسوعة أسفار</small></article>
       </div> : <p className="loading-copy">جار تحميل سجل البيانات…</p>}
       <section className="corpus-search">
         <div className={`data-mode ${live ? "live" : "static"}`}><i /><span>{live ? `متصل بواجهة البحث البحثية${apiVersion ? ` · ${apiVersion}` : ""}` : "عرض GitHub ثابت · الكشوف والأعداد فقط، بلا نص طبعة"}</span></div>
@@ -164,12 +164,12 @@ export function LibraryView() {
 
         <div className="corpus-kind-tabs" role="tablist" aria-label="نوع الفهرس">
           <button type="button" role="tab" aria-selected={corpusKind === "hadith"} onClick={() => { setCorpusKind("hadith"); clearResults(); }}>الأحاديث والأسانيد <small>{manifest ? Object.values(manifest.collections).reduce((sum, item) => sum + item.records, 0).toLocaleString("ar") : "…"}</small></button>
-          <button type="button" role="tab" aria-selected={corpusKind === "rijal"} onClick={() => { setCorpusKind("rijal"); clearResults(); }}>كتب الرجال <small>{manifest ? Object.values(manifest.rijal).reduce((sum, item) => sum + item.entries, 0).toLocaleString("ar") : "…"}</small></button>
+          <button type="button" role="tab" aria-selected={corpusKind === "rijal"} onClick={() => { setCorpusKind("rijal"); clearResults(); }}>الرواة <small>١٨٬٩٨٩</small></button>
         </div>
         <div className="corpus-controls">
           {corpusKind === "hadith"
             ? <label>اختر الصحيح<select value={collection} onChange={(event) => { setCollection(event.target.value as CollectionKey); clearResults(); }}>{Object.entries(manifest?.collections ?? {}).map(([key, item]) => <option value={key} key={key}>{item.title} · {item.records.toLocaleString("ar")}</option>)}</select></label>
-            : <label>اختر كتاب الرجال<select value={rijalSource} onChange={(event) => { setRijalSource(event.target.value as RijalSourceKey); clearResults(); }}>{Object.entries(manifest?.rijal ?? {}).map(([key, item]) => <option value={key} key={key}>{RIJAL_SOURCE_NAMES_AR[key as RijalSourceKey] ?? item.title} · {item.entries.toLocaleString("ar")}</option>)}</select></label>}
+            : <label>مصدر بيانات الراوي<select value={rijalSource} onChange={(event) => { setRijalSource(event.target.value as RijalSourceKey); clearResults(); }}><option value="shamela">دليل رواة المكتبة الشاملة · مصدر أسفار</option></select></label>}
           <button type="button" onClick={() => loadCollection(false)} disabled={loading || !manifest || !live} title={live ? undefined : "يحتاج إلى واجهة البحث البحثية"}>{loading ? "جار البحث…" : live ? "البحث في جميع السجلات" : "البحث معطّل بلا واجهة بحثية"}</button>
           <label className="corpus-query">{corpusKind === "hadith" ? "البحث في المتن أو السند" : "البحث في الاسم أو نص الترجمة"}<input value={query} onChange={(event) => setQuery(event.target.value)} onKeyDown={(event) => { if (event.key === "Enter") loadCollection(false); }} disabled={!live} placeholder={corpusKind === "hadith" ? "مثال: إنما الأعمال" : "مثال: يحيى بن سعيد"} /></label>
         </div>

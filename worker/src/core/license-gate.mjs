@@ -24,8 +24,9 @@ import { numOrNull } from "./util.mjs";
 const TEXT_RIGHTS_CLEARED_STATUSES = new Set(["cleared", "public-domain", "editorially-cleared"]);
 
 /** @param {any} registry geparster Inhalt von data/sources/turath-manifest.json */
-export function createLicenseGate(registry) {
+export function createLicenseGate(registry, options = {}) {
   const bySourceKey = new Map((registry.sources ?? []).map((source) => [source.key, source]));
+  const localFullTextSources = new Set(options.localFullTextSources ?? []);
 
   function sourceEntry(sourceKey) {
     return bySourceKey.get(sourceKey) ?? null;
@@ -41,7 +42,7 @@ export function createLicenseGate(registry) {
   }
 
   function fullTextCleared(sourceKey) {
-    return TEXT_RIGHTS_CLEARED_STATUSES.has(rightsStatusFor(sourceKey));
+    return localFullTextSources.has(sourceKey) || TEXT_RIGHTS_CLEARED_STATUSES.has(rightsStatusFor(sourceKey));
   }
 
   /**
@@ -102,6 +103,11 @@ export function createLicenseGate(registry) {
   function publicRijalFields(row, source) {
     const allowed = allowedDerivedFields(source);
     const includeTeacherStudent = fullTextCleared(source) && allowed.has("teacher_student_phrases");
+    const includeBiography = allowed.has("biographical_fields");
+    const includeCriticRanks = allowed.has("critic_ranks");
+    const includeCriticismReferences = allowed.has("criticism_references");
+    const includeCriticismText = fullTextCleared(source) && includeCriticismReferences;
+    const criticisms = Array.isArray(row.criticisms) ? row.criticisms : [];
     return {
       id: row.id,
       source,
@@ -111,10 +117,28 @@ export function createLicenseGate(registry) {
       // Agent 2) vs. entry.get("entryNumber") in repository.py (immer int).
       entryNumber: allowed.has("entry_number") ? row.entry_number_int : null,
       nameSurface: allowed.has("name_surface") ? row.name_head_raw : null,
+      longName: includeBiography ? row.long_name ?? row.full_nasab ?? null : null,
+      kunya: includeBiography ? row.kunya ?? null : null,
+      nisbas: includeBiography && row.nisba ? [row.nisba] : [],
+      region: includeBiography ? row.primary_region ?? null : null,
+      tabaqa: includeBiography ? row.tabaqa ?? null : null,
+      metadata: includeBiography ? row.metadata ?? {} : {},
+      residencePlaces: includeBiography ? row.residence_places ?? [] : [],
+      travelPlaces: includeBiography ? row.travel_places ?? [] : [],
+      relationNotes: includeBiography ? row.relation_notes ?? null : null,
+      creedNote: includeBiography ? row.creed_note ?? null : null,
+      ibnHajarGrade: includeCriticRanks ? row.ibn_hajar_grade ?? null : null,
+      alDhahabiGrade: includeCriticRanks ? row.al_dhahabi_grade ?? null : null,
       deathYearCandidate: allowed.has("date_assertions") ? row.death_year_ah : null,
       teacherPhrase: includeTeacherStudent ? row.teacher_phrase : null,
       studentPhrase: includeTeacherStudent ? row.student_phrase : null,
       textWithheld: !includeTeacherStudent,
+      criticisms: includeCriticismReferences ? criticisms.map((item) => ({
+        ...item,
+        phrase: includeCriticismText ? item.phrase : null,
+        textWithheld: !includeCriticismText,
+      })) : [],
+      criticismsWithheld: includeCriticismReferences && !includeCriticismText,
       volume: allowed.has("source_pointer") ? row.volume : null,
       page: allowed.has("source_pointer") ? numOrNull(row.printed_page) : null,
       parser: row.parser,
