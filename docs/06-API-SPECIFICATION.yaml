@@ -1,59 +1,263 @@
 openapi: 3.1.0
 info:
   title: Sanad Atlas API
-  version: 0.1.0
-  description: Research-MVP. Fachliche Datenantworten enthalten Provenance- und Review-Metadaten.
+  version: 1.0.0
+  description: >-
+    Quellengebundene Forschungs-API. Jede erfolgreiche Fachantwort enthält
+    sourceReferences, confidenceLevel, confidenceScore, origin, reviewStatus,
+    dataVersion und lastReviewedAt (Envelope-Schema unten; Umsetzungsplan
+    P2.2). confidenceLevel und reviewStatus teilen sich ein sechsstufiges
+    Vokabular (verified|high|medium|low|unresolved|conflict; Schwellen:
+    high >= 0.90, medium 0.70-0.89, low < 0.70). Maschinelle Verarbeitung
+    (origin=machine) setzt niemals confidenceLevel=verified.
 servers:
-  - url: /api
+  - url: /api/v1
+    description: >-
+      FastAPI-Forschungs-API (backend/app/main.py), lokale
+      Referenzimplementierung. Zielarchitektur: Cloudflare Worker
+      (Umsetzungsplan P3.2), Pfade unverändert.
+  - url: /
+    description: >-
+      Next.js-Statischer Export (GitHub Pages, next.config.ts:
+      output=export). Die unten separat gekennzeichneten Next.js-Prototyp-
+      Routen laufen HIER, nicht unter /api/v1, und sind vollständige Pfade
+      ab Site-Root.
 paths:
-  /narrators/search:
+  /hadiths:
     get:
-      summary: Überlieferer suchen
+      summary: Hadith-Vorkommen suchen und cursorpaginiert auflisten
       parameters:
-        - { name: q, in: query, schema: { type: string } }
-        - { name: limit, in: query, schema: { type: integer, maximum: 50, default: 20 } }
+        - { name: collection, in: query, schema: { type: string, enum: [bukhari, muslim] } }
+        - { name: q, in: query, schema: { type: string, maxLength: 240 } }
+        - { name: cursor, in: query, schema: { type: string } }
+        - { name: limit, in: query, schema: { type: integer, minimum: 1, maximum: 100, default: 20 } }
       responses:
-        "200": { description: Gruppierbare Treffer, content: { application/json: { schema: { $ref: "#/components/schemas/Envelope" } } } }
+        "200": { $ref: "#/components/responses/ResearchResponse" }
+  /hadiths/{id}:
+    get:
+      summary: Einzelnes editionsgebundenes Hadith-Vorkommen
+      parameters: [{ $ref: "#/components/parameters/Id" }]
+      responses:
+        "200": { $ref: "#/components/responses/ResearchResponse" }
+        "404": { $ref: "#/components/responses/NotFound" }
+  /hadiths/{id}/chains:
+    get:
+      summary: Jede separat geparste Kette mit positionsgenauen NarratorOccurrences
+      parameters: [{ $ref: "#/components/parameters/Id" }]
+      responses:
+        "200": { $ref: "#/components/responses/ResearchResponse" }
+        "404": { $ref: "#/components/responses/NotFound" }
+  /clusters/{id}/routes:
+    get:
+      summary: Begrenzter, progressiv erweiterbarer Routengraph eines Clusters
+      parameters:
+        - { $ref: "#/components/parameters/Id" }
+        - { name: collection, in: query, schema: { type: string, enum: [bukhari, muslim] } }
+        - { name: limit, in: query, schema: { type: integer, minimum: 1, maximum: 1000, default: 250 } }
+      responses:
+        "200": { $ref: "#/components/responses/ResearchResponse" }
+        "404": { $ref: "#/components/responses/NotFound" }
+  /clusters/{id}/matn-variants:
+    get:
+      summary: Matn-Familien und stabile Farbtokens eines Clusters
+      parameters: [{ $ref: "#/components/parameters/Id" }]
+      responses:
+        "200": { $ref: "#/components/responses/ResearchResponse" }
+        "404": { $ref: "#/components/responses/NotFound" }
+  /rijal:
+    get:
+      summary: Quellengebundene Einträge aus den registrierten Rijāl-Werken durchsuchen
+      parameters:
+        - { name: source, in: query, schema: { type: string, enum: [tahdhib, mizan, taqrib], default: tahdhib } }
+        - { name: q, in: query, schema: { type: string, maxLength: 240 } }
+        - { name: cursor, in: query, schema: { type: string } }
+        - { name: limit, in: query, schema: { type: integer, minimum: 1, maximum: 100, default: 40 } }
+      responses:
+        "200": { $ref: "#/components/responses/ResearchResponse" }
+  /rijal/{id}:
+    get:
+      summary: Einzelner Rijāl-Quelleneintrag ohne vorzeitige kanonische Identität
+      parameters: [{ $ref: "#/components/parameters/Id" }]
+      responses:
+        "200": { $ref: "#/components/responses/ResearchResponse" }
+        "404": { $ref: "#/components/responses/NotFound" }
+  /identity-candidates:
+    get:
+      summary: Nach Titelpassung gerankte Rijāl-Quelleneinträge ohne automatische Personenverschmelzung
+      parameters:
+        - { name: q, in: query, required: true, schema: { type: string, minLength: 1, maxLength: 240 } }
+        - { name: limit, in: query, schema: { type: integer, minimum: 1, maximum: 100, default: 24 } }
+      responses:
+        "200": { $ref: "#/components/responses/ResearchResponse" }
+  /narrators/compare:
+    get:
+      summary: Quellengebundener Personenvergleich
+      parameters:
+        - { name: a, in: query, required: true, schema: { type: string } }
+        - { name: b, in: query, required: true, schema: { type: string } }
+      responses:
+        "200": { $ref: "#/components/responses/ResearchResponse" }
   /narrators/{id}:
     get:
-      summary: Kanonisches Personenprofil mit Assertions
-      parameters:
-        - { name: id, in: path, required: true, schema: { type: string } }
+      summary: Kanonisches Personenprofil; ungeklärte Vorkommen liefern kein Scheinprofil
+      parameters: [{ $ref: "#/components/parameters/Id" }]
       responses:
-        "200": { description: Personenprofil, content: { application/json: { schema: { $ref: "#/components/schemas/Envelope" } } } }
-        "404": { description: Nicht gefunden }
-  /hadith-clusters/{id}/routes:
+        "200": { $ref: "#/components/responses/ResearchResponse" }
+        "404": { $ref: "#/components/responses/NotFound" }
+  /narrators/{id}/relations:
     get:
-      summary: Begrenzter Gesamtgraph eines Hadith-Clusters
+      summary: Lehrer- und Schüleraussagen, getrennt nach Evidenzklasse
       parameters:
-        - { name: id, in: path, required: true, schema: { type: string } }
-        - { name: collection, in: query, schema: { type: string } }
+        - { $ref: "#/components/parameters/Id" }
+        - { name: cursor, in: query, schema: { type: string } }
+        - { name: limit, in: query, schema: { type: integer, minimum: 1, maximum: 500, default: 100 } }
       responses:
-        "200": { description: Teilgraph, content: { application/json: { schema: { $ref: "#/components/schemas/Envelope" } } } }
-  /graph/subgraph:
+        "200": { $ref: "#/components/responses/ResearchResponse" }
+  /narrators/{id}/timeline:
     get:
-      summary: Ego-Graph einer Person
+      summary: Sämtliche Datierungsassertions ohne Mittelwertbildung
+      parameters: [{ $ref: "#/components/parameters/Id" }]
+      responses:
+        "200": { $ref: "#/components/responses/ResearchResponse" }
+  /chronology/compare:
+    get:
+      summary: Ausschließlich zeitliche Möglichkeit, Unmöglichkeit oder unzureichende Daten
       parameters:
-        - { name: narratorId, in: query, required: true, schema: { type: string } }
+        - { name: a, in: query, required: true, schema: { type: string } }
+        - { name: b, in: query, required: true, schema: { type: string } }
+      responses:
+        "200": { $ref: "#/components/responses/ResearchResponse" }
+  /sources:
+    get:
+      summary: Source Registry und Data-Rights-Register
+      responses:
+        "200": { $ref: "#/components/responses/ResearchResponse" }
+  /sources/{id}:
+    get:
+      summary: Quelle, Edition, Rechte und stabile Verweise
+      parameters: [{ $ref: "#/components/parameters/Id" }]
+      responses:
+        "200": { $ref: "#/components/responses/ResearchResponse" }
+        "404": { $ref: "#/components/responses/NotFound" }
+
+  # ---------------------------------------------------------------------
+  # Next.js-Prototyp-Routen (app/api/**, server: "/", NICHT /api/v1).
+  #
+  # Übergangsattrappen (Umsetzungsplan P2.2/P3.3): statisch vorgerendert
+  # (next.config.ts output=export, jeweils dynamic="force-static"), liefern
+  # Demodaten aus lib/mock-data.ts statt echter Forschungsdaten. Jede Antwort
+  # ist eindeutig mit confidenceLevel=unresolved, origin=machine,
+  # reviewStatus=unresolved markiert (app/api/_contract.ts). Die künftige
+  # Worker-API (P3.2) ersetzt sie; bis dahin ist dies der bewusst gehaltene
+  # Ist-Stand, nicht die Zielarchitektur.
+  # ---------------------------------------------------------------------
+  /api/narrators/search:
+    servers: [{ url: / }]
+    get:
+      summary: >-
+        [Next.js-Übergangsattrappe] Namens-/Transliterationssuche über
+        lib/mock-data.ts. Vor dieser Änderung gar nicht spezifiziert.
+      parameters:
+        - { name: q, in: query, schema: { type: string } }
+        - { name: limit, in: query, schema: { type: integer, minimum: 1, maximum: 50, default: 20 } }
+      responses:
+        "200": { $ref: "#/components/responses/PrototypeMockResponse" }
+  /api/narrators/{id}:
+    servers: [{ url: / }]
+    get:
+      summary: >-
+        [Next.js-Übergangsattrappe] Einzelner Mock-Narrator aus
+        lib/mock-data.ts. Nicht zu verwechseln mit dem echten,
+        quellengebundenen /api/v1/narrators/{id}.
+      parameters: [{ $ref: "#/components/parameters/Id" }]
+      responses:
+        "200": { $ref: "#/components/responses/PrototypeMockResponse" }
+        "404": { description: Narrator nicht im Mock-Datensatz vorhanden }
+  /api/graph/subgraph:
+    servers: [{ url: / }]
+    get:
+      summary: >-
+        [Next.js-Übergangsattrappe] Ein einzelnes festverdrahtetes
+        Demonstrationsnetzwerk ("yahya") aus lib/mock-data.ts. Vor dieser
+        Änderung gar nicht spezifiziert; kein Gegenstück in Abschnitt 12 der
+        Projektbeschreibung. Die produktive Entsprechung für Teilgraphen ist
+        /api/v1/clusters/{id}/routes.
+      parameters:
+        - { name: narratorId, in: query, schema: { type: string, default: yahya } }
         - { name: depth, in: query, schema: { type: integer, minimum: 1, maximum: 2, default: 1 } }
       responses:
-        "200": { description: Begrenzter Teilgraph, content: { application/json: { schema: { $ref: "#/components/schemas/Envelope" } } } }
+        "200": { $ref: "#/components/responses/PrototypeMockResponse" }
+        "404": { description: Nur "yahya" ist im Mock-Subgraph vorhanden }
+  /api/hadith-clusters/{id}/routes:
+    servers: [{ url: / }]
+    get:
+      summary: >-
+        [Next.js-Übergangsattrappe] Ein einzelnes festverdrahtetes
+        Demonstrationscluster ("HCL-0001") aus lib/mock-data.ts. Pfad UND
+        Hülle wichen vor dieser Änderung von /api/v1/clusters/{id}/routes ab
+        (anderer Pfadsegmentname "hadith-clusters" statt "clusters", ein
+        zusätzliches Pfadsegment ".../routes", meta/sources statt der
+        Envelope). Die produktive, quellengebundene, indexierte
+        Implementierung ist /api/v1/clusters/{id}/routes.
+      parameters:
+        - { $ref: "#/components/parameters/Id" }
+        - { name: collection, in: query, schema: { type: string, enum: [bukhari, muslim] } }
+      responses:
+        "200": { $ref: "#/components/responses/PrototypeMockResponse" }
+        "404": { description: Nur "HCL-0001" ist im Mock-Cluster vorhanden }
+
 components:
+  parameters:
+    Id: { name: id, in: path, required: true, schema: { type: string } }
+  responses:
+    ResearchResponse:
+      description: Quellengebundene Antwort der FastAPI-Forschungs-API
+      content:
+        application/json:
+          schema: { $ref: "#/components/schemas/Envelope" }
+    PrototypeMockResponse:
+      description: >-
+        Übergangsattrappe einer Next.js-Prototyp-Route (siehe Abschnitt oben).
+        Erfüllt dieselbe Envelope-Struktur, aber confidenceLevel,
+        reviewStatus und origin sind fest auf unresolved/unresolved/machine
+        gesetzt -- das Ergebnis ist eine Demonstration, keine geprüfte
+        Forschungsaussage.
+      content:
+        application/json:
+          schema: { $ref: "#/components/schemas/Envelope" }
+    NotFound:
+      description: Nicht gefunden oder noch nicht als kanonische Entität freigegeben
   schemas:
     Envelope:
       type: object
-      required: [data, meta, sources]
+      description: >-
+        Verbindliche Antwort-Hülle für jede fachliche Antwort
+        (Sanad-Atlas-Projektbeschreibung.txt Abschnitt 12; Umsetzungsplan
+        P2.2). confidenceLevel und reviewStatus teilen sich EIN
+        sechsstufiges Vokabular. confidenceScore ist ausschließlich für
+        origin=machine gesetzt (sonst null). Maschinelle Verarbeitung setzt
+        niemals confidenceLevel=verified.
+      required: [data, sourceReferences, confidenceLevel, confidenceScore, origin, reviewStatus, dataVersion, lastReviewedAt]
       properties:
         data: {}
-        meta:
-          type: object
-          required: [dataVersion, editorialStatus, confidence]
-          properties:
-            dataVersion: { type: string }
-            editorialStatus: { type: string }
-            confidence: { type: string }
-            lastReviewedAt: { type: [string, "null"], format: date-time }
-            truncated: { type: boolean }
-        sources:
+        sourceReferences:
           type: array
+          minItems: 1
+          description: Nie leer bei einer fachlichen Aussage; ein Platzhalter-Hinweis dokumentiert explizit fehlende Belege.
           items: { type: object, additionalProperties: true }
+        confidenceLevel:
+          type: string
+          enum: [verified, high, medium, low, unresolved, conflict]
+        confidenceScore:
+          type: [number, "null"]
+          minimum: 0
+          maximum: 1
+          description: Nur gesetzt bei origin=machine (0.90 <= high, 0.70-0.89 medium, < 0.70 low); sonst null.
+        origin:
+          type: string
+          enum: [machine, editorial, registry]
+        reviewStatus:
+          type: string
+          enum: [verified, high, medium, low, unresolved, conflict]
+        dataVersion: { type: string }
+        lastReviewedAt: { type: [string, "null"], format: date-time }

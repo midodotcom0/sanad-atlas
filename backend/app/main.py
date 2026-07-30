@@ -3,7 +3,7 @@ from __future__ import annotations
 from fastapi import FastAPI, HTTPException, Query
 from fastapi.middleware.cors import CORSMiddleware
 
-from .repository import DATA_VERSION, envelope, repository
+from .repository import DATA_VERSION, repository
 
 
 app = FastAPI(
@@ -94,29 +94,39 @@ def get_rijal_entry(entry_id: str) -> dict:
 
 @app.get("/api/v1/narrators/compare")
 def compare_narrators(a: str, b: str) -> dict:
-    return envelope({"narratorA": a, "narratorB": b, "chronology": "insufficient", "meeting": "not_asserted"}, [], confidence="insufficient")
+    return repository.compare_narrators(a, b)
 
 
 @app.get("/api/v1/narrators/{narrator_id}")
 def get_narrator(narrator_id: str) -> dict:
-    # Canonical identities are intentionally unavailable until an identity
-    # decision has been accepted. Occurrence candidates remain visible in chains.
-    raise HTTPException(404, "No reviewed canonical narrator with this identifier")
+    # A canonical, editorially-confirmed person profile requires an accepted
+    # identity decision (docs/05-ENTITY-RESOLUTION.md, Umsetzungsplan P4.5)
+    # that this pipeline does not produce yet. This still resolves real,
+    # source-bound occurrence clusters (CorpusRepository.narrator_profile /
+    # bucket_id) so the click path from a graph node keeps working; only an
+    # id with zero occurrences in the corpus 404s.
+    result = repository.narrator_profile(narrator_id)
+    if result is None:
+        raise HTTPException(404, "No occurrence cluster found for this identifier")
+    return result
 
 
 @app.get("/api/v1/narrators/{narrator_id}/relations")
 def get_relations(narrator_id: str, cursor: str | None = None, limit: int = Query(default=100, ge=1, le=500)) -> dict:
-    return envelope({"narratorId": narrator_id, "items": [], "pageInfo": {"nextCursor": None, "hasNextPage": False}}, [], confidence="insufficient")
+    return repository.narrator_relations(narrator_id, cursor=cursor, limit=limit)
 
 
 @app.get("/api/v1/narrators/{narrator_id}/timeline")
 def get_timeline(narrator_id: str) -> dict:
-    return envelope({"narratorId": narrator_id, "dateAssertions": [], "chronology": "insufficient"}, [], confidence="insufficient")
+    result = repository.narrator_timeline(narrator_id)
+    if result is None:
+        raise HTTPException(404, "No occurrence cluster found for this identifier")
+    return result
 
 
 @app.get("/api/v1/chronology/compare")
 def compare_chronology(a: str, b: str) -> dict:
-    return envelope({"narratorA": a, "narratorB": b, "result": "insufficient", "meetingIsProven": False}, [], confidence="insufficient")
+    return repository.compare_chronology(a, b)
 
 
 @app.get("/api/v1/sources")
