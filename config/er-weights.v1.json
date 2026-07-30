@@ -1,0 +1,95 @@
+{
+  "weightProfileVersion": "er-weights-v1",
+  "resolverVersion": "sanad-resolver-1.0.0",
+  "specification": "docs/05-ENTITY-RESOLUTION.md, Abschnitt 3 (Tabelle Signal/Richtung/Beispielgewicht)",
+  "documentation": "docs/13-RESOLVER.md",
+  "calibration": "unkalibriert - wortgetreue Uebernahme der Tabelle aus docs/05. Die Gewichte sind keine fachlichen Wahrheiten; eine Kalibrierung erzeugt eine NEUE Datei config/er-weights.v2.json und laesst diese unveraendert, damit jeder bereits gespeicherte Score seinem Profil zugeordnet bleibt (identity_candidate.weight_profile_version).",
+  "thresholdSource": "lib/types.ts (CONFIDENCE_THRESHOLDS) bzw. database/schema.sql (CHECK *_level_threshold). Absichtlich NICHT hier gespiegelt: es gibt genau eine Schwellendefinition.",
+  "signals": {
+    "canonicalNameSimilarity": {
+      "weight": 0.22,
+      "direction": "positive",
+      "specLabel": "kanonische Namensaehnlichkeit",
+      "graded": true,
+      "minSimilarity": 0.34,
+      "note": "Anteilig: exakte Gleichheit der normalisierten Form = 1,0; sonst Anteil der gemeinsamen Kopftoken an den Tokens der Oberflaechenform. Unterhalb minSimilarity feuert das Signal nicht."
+    },
+    "knownNameVariant": {
+      "weight": 0.18,
+      "direction": "positive",
+      "specLabel": "bekannte Namensvariante",
+      "note": "Treffer ueber eine hinterlegte Variante statt ueber den Hauptnamen: Kunya, Nisba, Laqab, Alias, abweichende Namenskette."
+    },
+    "teacherStudentNeighbourhood": {
+      "weight": 0.22,
+      "direction": "positive",
+      "specLabel": "Lehrer-/Schuelernachbarschaft",
+      "graded": true,
+      "perNeighbour": 0.11,
+      "note": "0,11 je belegter Nachbarschaft (vorheriger Erzaehler in den Lehrern, naechster Erzaehler in den Schuelern), gedeckelt auf das Gesamtgewicht."
+    },
+    "chronologyPlausible": {
+      "weight": 0.14,
+      "direction": "positive",
+      "specLabel": "Chronologie plausibel",
+      "note": "Ausschliesslich aus compareChronology() in lib/chronology.ts gegen einen Kettennachbarn. Ergebnis 'insufficient' feuert nicht und bestraft nicht."
+    },
+    "regionTravelPlausible": {
+      "weight": 0.08,
+      "direction": "positive",
+      "specLabel": "Region/Reise plausibel",
+      "note": "Region oder Wohnort/Reisestation des Kandidaten stimmt mit der Region der Ueberlieferung ueberein."
+    },
+    "bookAuthorPattern": {
+      "weight": 0.06,
+      "direction": "positive",
+      "specLabel": "Buch-/Autor-Muster",
+      "note": "Der Rijal-Eintrag ordnet die Person der Sammlung zu, in der die Position steht: Sigel der Sammlung oder der Sammler unter den Schuelern."
+    },
+    "contradictoryDeathYear": {
+      "weight": -0.25,
+      "direction": "negative",
+      "specLabel": "widersprüchliches Todesjahr",
+      "note": "Einmal angerechnet, auch wenn beide Teilbefunde zutreffen: (a) die Ueberlieferung ist spaeter datiert als das belegte Todesjahr des Kandidaten, (b) die fuer diese Position belegten Todesjahre und die des Kandidaten sind disjunkt."
+    },
+    "impossibleChronology": {
+      "weight": 0,
+      "direction": "hard-block",
+      "effect": "reject-auto-merge",
+      "specLabel": "unmögliche Chronologie",
+      "note": "Harte Regel 1. Kein Gewicht: der Kandidat wird nicht abgewertet, sondern als conflict gefuehrt."
+    },
+    "explicitSourceConflict": {
+      "weight": 0,
+      "direction": "hard-block",
+      "effect": "conflict",
+      "specLabel": "expliziter Quellenkonflikt",
+      "note": "Harte Regel 2. Eine Quelle sagt ausdruecklich, dass es nicht dieselbe Person ist."
+    }
+  },
+  "observations": {
+    "regionMismatch": {
+      "weight": 0,
+      "direction": "neutral",
+      "note": "Abweichende Region wird als Gegenbefund PROTOKOLLIERT, aber nicht abgewertet: docs/05 kennt kein negatives Regionsgewicht, und Reisen sind in diesem Korpus die Regel. Der Vorzustand zog hier 0,04 ab, ohne Deckung in der Spezifikation. Wer kalibriert, setzt hier einen Wert und erzeugt v2."
+    }
+  },
+  "hardRules": {
+    "competingStrongCandidates": {
+      "minScore": 0.8,
+      "maxGap": 0.05,
+      "effect": "conflict",
+      "specLabel": "konkurrierende starke Kandidaten",
+      "note": "Harte Regel 3 (Umsetzungsplan P4.3): zwei Kandidaten ab 0,80 mit einem Abstand unter 0,05 sind nicht unterscheidbar. Beide bleiben sichtbar, keiner wird vorgeschlagen."
+    }
+  },
+  "blocking": {
+    "candidateBudget": 1500,
+    "maxRankedCandidates": 8,
+    "note": "candidateBudget begrenzt die Postingliste je Namensform: Token werden nach Seltenheit aufgenommen, das seltenste immer. Gemessene Wirkung in docs/13-RESOLVER.md. null schaltet die Begrenzung ab (vollstaendige Vereinigung)."
+  },
+  "machineCeiling": {
+    "maximumPositiveScore": 0.9,
+    "note": "Die Summe aller sechs positiven Gewichte ist exakt 0,90 - die Schwelle fuer 'high'. Maschinell entsteht 'high' also nur, wenn ALLE sechs positiven Signale feuern; 'verified' entsteht nie (docs/05, Abschnitt 4)."
+  }
+}
