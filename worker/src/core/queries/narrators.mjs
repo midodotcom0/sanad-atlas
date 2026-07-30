@@ -18,6 +18,7 @@
 
 import { encodeCursor, decodeCursor } from "../cursor.mjs";
 import { envelope, cited, aggregateMachineConfidence } from "../envelope.mjs";
+import { resolveNarratorRef } from "../identity.mjs";
 import { rankRijalCandidates, sourceReferenceForRijalRow, RIJAL_API_SOURCES } from "./rijal.mjs";
 import { sourceReferenceForHadithRow } from "./hadiths.mjs";
 
@@ -46,16 +47,24 @@ async function fetchHadithRefsById(db, ids) {
   return new Map(rows.map((row) => [row.id, row]));
 }
 
-async function fetchOccurrencesForNode(db, nodeId) {
+async function occurrenceNodeIds(db, narratorId) {
+  const resolved = await resolveNarratorRef(db, narratorId);
+  return resolved.clusterIds.length ? resolved.clusterIds : (resolved.clusterId ? [resolved.clusterId] : []);
+}
+
+async function fetchOccurrencesForNode(db, narratorId) {
+  const nodeIds = await occurrenceNodeIds(db, narratorId);
+  if (nodeIds.length === 0) return [];
+  const placeholders = nodeIds.map(() => "?").join(",");
   return db.all(
     `SELECT o.raw_surface_form, o.normalized_surface_form, o.position, o.span_start, o.span_end,
             c.id AS chain_id, c.chain_order, c.hadith_record_id, h.collection
      FROM narrator_occurrence o
      JOIN isnad_chain c ON c.id = o.chain_id
      JOIN hadith_record h ON h.id = c.hadith_record_id
-     WHERE o.node_id = ?
+     WHERE o.node_id IN (${placeholders})
      ORDER BY h.rowid, c.chain_order, o.position`,
-    nodeId,
+    ...nodeIds,
   );
 }
 
@@ -131,10 +140,12 @@ export async function getNarratorRelations(db, gate, dataVersion, narratorId, { 
   }
 
   const offset = decodeCursor(cursor);
+  const nodeIds = await occurrenceNodeIds(db, narratorId);
+  const nodePlaceholders = nodeIds.map(() => "?").join(",");
   const rows = await db.all(
     `SELECT target_node_id, relationship_type, hadith_record_id, chain_order, source_position, target_position, collection
-     FROM edge_projection WHERE source_node_id = ? ORDER BY rowid LIMIT ? OFFSET ?`,
-    narratorId,
+     FROM edge_projection WHERE source_node_id IN (${nodePlaceholders}) ORDER BY rowid LIMIT ? OFFSET ?`,
+    ...nodeIds,
     limit + 1,
     offset,
   );
@@ -179,10 +190,17 @@ export async function getNarratorRelations(db, gate, dataVersion, narratorId, { 
   );
 }
 
-async function dateAssertionsFor(db, narratorId, normalizedSurfaceForm) {
+async function dateAssertionsFor(db, narratorId, normalizedSurfaceForms) {
   if (narratorId.startsWith(RELATIVE_ID_PREFIX)) return { assertions: [], references: [], scores: [] };
-  const placeholders = RIJAL_API_SOURCES.map(() => "?").join(",");
-  const rows = await db.all(`SELECT * FROM rijal_entry_ref WHERE source_key IN (${placeholders}) AND name_head_normalized = ?`, ...RIJAL_API_SOURCES, normalizedSurfaceForm);
+  const sourcePlaceholders = RIJAL_API_SOURCES.map(() => "?").join(",");
+  const namePlaceholders = normalizedSurfaceForms.map(() => "?").join(",");
+  const rows = await db.all(
+    `SELECT * FROM rijal_entry_ref
+     WHERE source_key IN (${sourcePlaceholders})
+       AND name_head_normalized IN (${namePlaceholders})`,
+    ...RIJAL_API_SOURCES,
+    ...normalizedSurfaceForms,
+  );
   const assertions = [];
   const references = [];
   const scores = [];
@@ -201,7 +219,8 @@ async function dateAssertionsFor(db, narratorId, normalizedSurfaceForm) {
 export async function getNarratorTimeline(db, gate, dataVersion, narratorId) {
   const occurrences = await fetchOccurrencesForNode(db, narratorId);
   if (occurrences.length === 0) return null;
-  const { assertions, references, scores } = await dateAssertionsFor(db, narratorId, occurrences[0].normalized_surface_form);
+  const normalizedSurfaceForms = [...new Set(occurrences.map((row) => row.normalized_surface_form))];
+  const { assertions, references, scores } = await dateAssertionsFor(db, narratorId, normalizedSurfaceForms);
   const [level, score] = aggregateMachineConfidence(scores);
   // Wortgleich zur Referenz (backend/app/repository.py). Die frueher hier
   // stehende Bestandszahl ("27.105 Einträge") ist auf beiden Seiten entfernt:
@@ -223,8 +242,16 @@ async function lifespanBounds(db, narratorId) {
   if (narratorId.startsWith(RELATIVE_ID_PREFIX)) return null;
   const occurrences = await fetchOccurrencesForNode(db, narratorId);
   if (occurrences.length === 0) return null;
-  const placeholders = RIJAL_API_SOURCES.map(() => "?").join(",");
-  const rows = await db.all(`SELECT death_year_ah, birth_year_ah FROM rijal_entry_ref WHERE source_key IN (${placeholders}) AND name_head_normalized = ?`, ...RIJAL_API_SOURCES, occurrences[0].normalized_surface_form);
+  const normalizedSurfaceForms = [...new Set(occurrences.map((row) => row.normalized_surface_form))];
+  const sourcePlaceholders = RIJAL_API_SOURCES.map(() => "?").join(",");
+  const namePlaceholders = normalizedSurfaceForms.map(() => "?").join(",");
+  const rows = await db.all(
+    `SELECT death_year_ah, birth_year_ah FROM rijal_entry_ref
+     WHERE source_key IN (${sourcePlaceholders})
+       AND name_head_normalized IN (${namePlaceholders})`,
+    ...RIJAL_API_SOURCES,
+    ...normalizedSurfaceForms,
+  );
   const deathYears = [...new Set(rows.map((r) => r.death_year_ah).filter(Number.isInteger))].sort((a, b) => a - b);
   const birthYears = [...new Set(rows.map((r) => r.birth_year_ah).filter(Number.isInteger))].sort((a, b) => a - b);
   return { deathYears, birthYears };
@@ -255,7 +282,18 @@ async function meetingEvidence(db, aId, bId) {
   // befuellt (scripts/atlas-build-lib.mjs, ORDER BY h.rowid, chain_order,
   // position), aber ohne ORDER BY darf SQLite die Zeilen in Indexreihenfolge
   // liefern -- hier steht die Sortierung deshalb ausdruecklich im SQL.
-  return db.all("SELECT * FROM edge_projection WHERE source_node_id = ? AND target_node_id = ? ORDER BY id", aId, bId);
+  const [aNodeIds, bNodeIds] = await Promise.all([occurrenceNodeIds(db, aId), occurrenceNodeIds(db, bId)]);
+  if (aNodeIds.length === 0 || bNodeIds.length === 0) return [];
+  const aPlaceholders = aNodeIds.map(() => "?").join(",");
+  const bPlaceholders = bNodeIds.map(() => "?").join(",");
+  return db.all(
+    `SELECT * FROM edge_projection
+     WHERE source_node_id IN (${aPlaceholders})
+       AND target_node_id IN (${bPlaceholders})
+     ORDER BY id`,
+    ...aNodeIds,
+    ...bNodeIds,
+  );
 }
 
 /**

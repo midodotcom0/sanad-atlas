@@ -380,6 +380,11 @@ CREATE TABLE narrator (
   id uuid PRIMARY KEY DEFAULT gen_random_uuid(),
   -- Kanonische Personen-ID des Vertrags: SA-P-<base32(8)>. Die uuid bleibt
   -- interner Verbundschluessel; nach aussen gilt ausschliesslich stable_key.
+  -- Eine narrator-Zeile wird erst fuer eine Identitaetsentitaet angelegt,
+  -- niemals pauschal je normalisierter Namensform: ein UNC-Namenscluster kann
+  -- mehrere homonyme Personen enthalten. `unresolved` bedeutet, dass diese
+  -- Entitaet noch nicht verifiziert ist, nicht dass ein Import jeden gleichen
+  -- Namen vorab zu einer Person zusammenlegen darf.
   -- SQLITE-TRANSLATE: '~' -> GLOB 'SA-P-[A-Z2-7][A-Z2-7][A-Z2-7][A-Z2-7][A-Z2-7][A-Z2-7][A-Z2-7][A-Z2-7]'
   stable_key text NOT NULL UNIQUE CHECK (stable_key ~ '^SA-P-[A-Z2-7]{8}$'),
   -- Ganzzahlige Revision der kanonischen Person. Merge und Split erhoehen sie;
@@ -423,7 +428,12 @@ CREATE TABLE narrator (
   CONSTRAINT narrator_review_pair CHECK ((reviewed_by IS NULL) = (reviewed_at IS NULL)),
   CONSTRAINT narrator_decision_needs_reviewer CHECK (
     review_status IN ('machine_unreviewed', 'in_review') OR reviewed_by IS NOT NULL
-  )
+  ),
+  -- Ermoeglicht zusammengesetzte Fremdschluessel, die redundante stable_key-
+  -- Spalten in Alias und Redirect gegen die tatsaechliche narrator-Zeile
+  -- absichern. Ohne diese Kopplung koennte ein Alias auf narrator A zeigen,
+  -- aber den stable_key von narrator B aufloesen.
+  CONSTRAINT narrator_id_stable_key_unique UNIQUE (id, stable_key)
 );
 
 -- Reimport-Schutz: gleiche normalisierte Namensform nur einmal je Homonym-Index,
@@ -817,7 +827,10 @@ CREATE TABLE narrator_split_assignment (
 -- Redirect mehr existiert; maximal acht Schritte.
 CREATE TABLE narrator_id_redirect (
   id uuid PRIMARY KEY DEFAULT gen_random_uuid(),
-  absorbed_stable_key text NOT NULL UNIQUE,
+  -- Nicht global UNIQUE: nach einem rueckgaengig gemachten Merge muss dieselbe
+  -- stabile ID spaeter erneut absorbiert werden koennen. Eindeutig ist nur die
+  -- aktive Zuordnung (partieller Index in Abschnitt 14).
+  absorbed_stable_key text NOT NULL,
   absorbed_narrator_id uuid NOT NULL REFERENCES narrator(id),
   target_narrator_id uuid NOT NULL REFERENCES narrator(id),
   target_stable_key text NOT NULL,
@@ -826,7 +839,49 @@ CREATE TABLE narrator_id_redirect (
   is_active boolean NOT NULL DEFAULT true,
   created_at timestamptz NOT NULL DEFAULT now(),
   CONSTRAINT narrator_id_redirect_no_self CHECK (absorbed_narrator_id <> target_narrator_id),
-  CONSTRAINT narrator_id_redirect_has_cause CHECK (merge_id IS NOT NULL OR split_id IS NOT NULL)
+  CONSTRAINT narrator_id_redirect_one_cause CHECK ((merge_id IS NULL) <> (split_id IS NULL)),
+  CONSTRAINT narrator_id_redirect_absorbed_key_fk
+    FOREIGN KEY (absorbed_narrator_id, absorbed_stable_key)
+    REFERENCES narrator(id, stable_key),
+  CONSTRAINT narrator_id_redirect_target_key_fk
+    FOREIGN KEY (target_narrator_id, target_stable_key)
+    REFERENCES narrator(id, stable_key)
+);
+
+-- Oeffentlich verwendete Alt-IDs DERSELBEN Person (Migration 0007, P4.5).
+-- Abgrenzung zu narrator_id_redirect eine Zeile hoeher:
+--   narrator_id_redirect  -- welche ANDERE Person hat diese ID absorbiert?
+--                            (verlangt darum absorbed <> target und einen
+--                            Merge oder Split als Ursache)
+--   narrator_public_alias -- unter welchen IDs war DIESE Person jemals
+--                            oeffentlich adressierbar?
+-- Die zweite Frage entsteht, weil die Knoten-IDs des Vertrags bis P4.5
+-- Occurrence-Cluster-IDs (UNC-<sha1(12)>) waren. Eine ID, die einmal in einem
+-- Zitat stand, darf nicht ins Leere zeigen -- auch dann nicht, wenn die
+-- Namensform im naechsten Korpusstand nicht mehr vorkommt.
+-- Positionsgebundene Rueckverweisformen (UNC-REL-) bekommen KEINEN Alias:
+-- sie sind keine globale Person (siehe narrator_occurrence.is_relative_form).
+CREATE TABLE narrator_public_alias (
+  id uuid PRIMARY KEY DEFAULT gen_random_uuid(),
+  -- Historische Aliaszeilen bleiben nach Split/Undo erhalten. Nur eine aktive
+  -- Zuordnung je alias_key ist erlaubt (partieller Index in Abschnitt 14).
+  alias_key text NOT NULL,
+  narrator_id uuid NOT NULL REFERENCES narrator(id),
+  narrator_stable_key text NOT NULL,
+  alias_kind text NOT NULL DEFAULT 'occurrence_cluster' CHECK (
+    alias_kind IN ('occurrence_cluster', 'legacy_public_id', 'superseded_revision')
+  ),
+  first_seen_data_version text NOT NULL,
+  is_active boolean NOT NULL DEFAULT true,
+  created_at timestamptz NOT NULL DEFAULT now(),
+  CONSTRAINT narrator_public_alias_not_canonical CHECK (alias_key <> narrator_stable_key),
+  CONSTRAINT narrator_public_alias_occurrence_kind CHECK (
+    alias_kind <> 'occurrence_cluster'
+    OR (alias_key LIKE 'UNC-%' AND alias_key NOT LIKE 'UNC-REL-%')
+  ),
+  CONSTRAINT narrator_public_alias_narrator_key_fk
+    FOREIGN KEY (narrator_id, narrator_stable_key)
+    REFERENCES narrator(id, stable_key)
 );
 
 -- ---------------------------------------------------------------------------
@@ -1282,6 +1337,11 @@ CREATE INDEX evidence_link_entity_idx ON evidence_link (entity_type, entity_id);
 CREATE INDEX review_queue_idx ON parse_review_item (queue_kind, review_status, created_at);
 CREATE INDEX editorial_revision_entity_idx ON editorial_revision (entity_type, entity_id, created_at DESC);
 CREATE INDEX narrator_id_redirect_target_idx ON narrator_id_redirect (target_stable_key);
+CREATE UNIQUE INDEX narrator_id_redirect_active_key_idx
+  ON narrator_id_redirect (absorbed_stable_key) WHERE is_active;
+CREATE INDEX narrator_public_alias_narrator_idx ON narrator_public_alias (narrator_id, alias_kind);
+CREATE UNIQUE INDEX narrator_public_alias_active_key_idx
+  ON narrator_public_alias (alias_key) WHERE is_active;
 CREATE INDEX editor_role_lookup_idx ON editor_role (editor_id) WHERE revoked_at IS NULL;
 
 -- ---------------------------------------------------------------------------
@@ -1540,5 +1600,6 @@ INSERT INTO schema_migration (version, description) VALUES
   ('0003', 'rijal_entry, scholar, place'),
   ('0004', 'stable_key, revision, Redirect, Merge und Split'),
   ('0005', 'Evidenzhuelle, Occurrence-Bezug, Chronologiebasis, Quellenpflicht'),
-  ('0006', 'Append-only-Schutz und menschliche Pruefer')
+  ('0006', 'Append-only-Schutz und menschliche Pruefer'),
+  ('0007', 'narrator_public_alias: Alt-IDs bleiben aufloesbar')
 ON CONFLICT (version) DO NOTHING;

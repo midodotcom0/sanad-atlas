@@ -59,11 +59,11 @@ test("36 CREATE TYPE-Werte werden auf 9 ENUMs abgebildet und liefern die dokumen
   assert.deepEqual(enumTypes.get("chronology_result"), ["possible", "impossible", "insufficient"]);
 });
 
-test("37 Tabellen und 4 Sichten werden erkannt (Agent 2s Ausbau von 21 auf 37)", () => {
+test("38 Tabellen und 4 Sichten werden erkannt (21 -> 37 durch Agent 2, +narrator_public_alias in Migration 0007)", () => {
   const { tableNames, viewNames } = translateSchemaToSqlite(schemaText);
-  assert.equal(tableNames.length, 37, tableNames.join(", "));
+  assert.equal(tableNames.length, 38, tableNames.join(", "));
   assert.equal(viewNames.length, 4, viewNames.join(", "));
-  for (const expected of ["rijal_entry", "scholar", "place", "narrator", "editor", "role", "edge_projection" /* wird separat ergaenzt, nicht hier */]) {
+  for (const expected of ["rijal_entry", "scholar", "place", "narrator", "narrator_public_alias", "editor", "role", "edge_projection" /* wird separat ergaenzt, nicht hier */]) {
     if (expected === "edge_projection") continue;
     assert.ok(tableNames.includes(expected), `Tabelle ${expected} fehlt in der Uebersetzung`);
   }
@@ -89,7 +89,7 @@ test("die uebersetzte DDL laedt fehlerfrei in einer echten SQLite-Datenbank (nod
     const migrationCount = db.prepare("SELECT count(*) AS n FROM schema_migration").get().n;
     assert.equal(roleCount, 5);
     assert.equal(editorCount, 1);
-    assert.equal(migrationCount, 7);
+    assert.equal(migrationCount, 8);
 
     // CHECK-Constraint aus dem ENUM-Uebersetzer muss tatsaechlich durchgesetzt werden.
     assert.throws(() => {
