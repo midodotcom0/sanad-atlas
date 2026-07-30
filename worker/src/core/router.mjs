@@ -17,6 +17,7 @@ import * as hadithsQ from "./queries/hadiths.mjs";
 import * as rijalQ from "./queries/rijal.mjs";
 import * as narratorsQ from "./queries/narrators.mjs";
 import * as sourcesQ from "./queries/sources.mjs";
+import * as editorialQ from "./queries/editorial.mjs";
 import { getNarratorPaths } from "./graph-traversal.mjs";
 
 const JSON_HEADERS = { "content-type": "application/json; charset=utf-8" };
@@ -25,7 +26,11 @@ const JSON_HEADERS = { "content-type": "application/json; charset=utf-8" };
 const ALLOWED_ORIGINS = new Set(["http://localhost:3000", "https://midodotcom0.github.io"]);
 
 export function corsHeadersFor(request) {
-  const headers = { "access-control-allow-methods": "GET, OPTIONS", "access-control-allow-headers": "*", vary: "Origin" };
+  const headers = {
+    "access-control-allow-methods": "GET, POST, OPTIONS",
+    "access-control-allow-headers": "Authorization, Content-Type",
+    vary: "Origin",
+  };
   const origin = request.headers?.get?.("origin");
   if (origin && ALLOWED_ORIGINS.has(origin)) headers["access-control-allow-origin"] = origin;
   return headers;
@@ -54,6 +59,20 @@ function clampInt(raw, { def, min, max }) {
 
 function enumOrNull(value, allowed) {
   return value && allowed.includes(value) ? value : null;
+}
+
+async function requestJson(request) {
+  const contentLength = Number(request.headers.get("content-length") ?? 0);
+  if (Number.isFinite(contentLength) && contentLength > 32_768) {
+    throw new editorialQ.EditorialError(413, "JSON-Nutzlast ist groesser als 32 KiB");
+  }
+  const text = await request.text();
+  if (text.length > 32_768) throw new editorialQ.EditorialError(413, "JSON-Nutzlast ist groesser als 32 KiB");
+  try {
+    return JSON.parse(text);
+  } catch {
+    throw new editorialQ.EditorialError(400, "ungueltiger JSON-Body");
+  }
 }
 
 /**
@@ -101,10 +120,44 @@ export async function route(request, deps) {
         cors,
       );
     }
-    if (request.method !== "GET") return notFound("Not Found", cors);
     if (segs[0] !== "api" || segs[1] !== "v1") return notFound("Not Found", cors);
     const rest = segs.slice(2);
     const id = (i) => decodeURIComponent(rest[i]);
+
+    // P5.8: getrennte, authentifizierte Redaktionsschnittstelle. Editor-IDs
+    // kommen nie aus dem Request-Body; authenticateEditor() loest den
+    // gehashten Bearer-Token auf und liest die aktiven Rollen aus D1.
+    if (rest[0] === "editorial") {
+      const editorHeaders = { ...cors, "cache-control": "no-store" };
+      const editor = await editorialQ.authenticateEditor(db, request);
+      const limit = clampInt(q.get("limit"), { def: 40, min: 1, max: 100 });
+      if (request.method === "GET" && rest.length === 2 && rest[1] === "session") {
+        return json(editor, 200, editorHeaders);
+      }
+      if (request.method === "GET" && rest.length === 2 && rest[1] === "review-queue") {
+        return json(await editorialQ.listReviewQueue(db, editor, { limit }), 200, editorHeaders);
+      }
+      if (request.method === "GET" && rest.length === 2 && rest[1] === "proposals") {
+        return json(await editorialQ.listPendingProposals(db, editor, { limit }), 200, editorHeaders);
+      }
+      if (request.method === "GET" && rest.length === 2 && rest[1] === "revisions") {
+        return json(await editorialQ.listRevisions(db, editor, { limit }), 200, editorHeaders);
+      }
+      if (request.method === "POST" && rest.length === 2 && rest[1] === "proposals") {
+        const result = await editorialQ.createProposal(db, editor, dataVersion, await requestJson(request));
+        return json(result, 201, editorHeaders);
+      }
+      if (request.method === "POST" && rest.length === 4 && rest[1] === "proposals" && rest[3] === "finalize") {
+        return json(await editorialQ.finalizeProposal(db, editor, id(2)), 201, editorHeaders);
+      }
+      if (request.method === "POST" && rest.length === 4 && rest[1] === "revisions" && rest[3] === "revert") {
+        const result = await editorialQ.revertRevision(db, editor, dataVersion, id(2), await requestJson(request));
+        return json(result, 201, editorHeaders);
+      }
+      return notFound("Not Found", editorHeaders);
+    }
+
+    if (request.method !== "GET") return notFound("Not Found", cors);
 
     if (rest.length === 1 && rest[0] === "hadiths") {
       const collection = enumOrNull(q.get("collection"), ["bukhari", "muslim"]);
@@ -201,6 +254,7 @@ export async function route(request, deps) {
 
     return notFound("Not Found", cors);
   } catch (error) {
+    if (error instanceof editorialQ.EditorialError) return json({ detail: error.message }, error.status, { ...cors, "cache-control": "no-store" });
     return json({ detail: `internal error: ${error instanceof Error ? error.message : String(error)}` }, 500, cors);
   }
 }

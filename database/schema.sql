@@ -123,6 +123,22 @@ CREATE TABLE editor_role (
   CONSTRAINT editor_role_revoke_order CHECK (revoked_at IS NULL OR revoked_at >= granted_at)
 );
 
+-- Zugangsdaten fuer die getrennte Redaktionsschnittstelle (P5.8). Der
+-- Klartext-Token wird niemals gespeichert; der Worker vergleicht ausschliesslich
+-- den SHA-256-Hash eines mindestens 32 Byte zufaelligen Bearer-Tokens. Eine
+-- Sperre ist bewusst ein expliziter Zustand und kein Loeschen der Historie.
+CREATE TABLE editor_api_credential (
+  id uuid PRIMARY KEY,
+  editor_id uuid NOT NULL REFERENCES editor(id),
+  token_sha256 text NOT NULL UNIQUE CHECK (length(token_sha256) = 64),
+  label text NOT NULL,
+  expires_at timestamptz,
+  revoked_at timestamptz,
+  created_at timestamptz NOT NULL DEFAULT now(),
+  CONSTRAINT editor_api_credential_expiry_order CHECK (expires_at IS NULL OR expires_at > created_at),
+  CONSTRAINT editor_api_credential_revoke_order CHECK (revoked_at IS NULL OR revoked_at >= created_at)
+);
+
 -- ---------------------------------------------------------------------------
 -- 3. Quellen, Editionen, Importe, Passagen
 -- ---------------------------------------------------------------------------
@@ -1272,6 +1288,28 @@ CREATE TABLE parse_review_item (
 
 -- Append-only Audit. UPDATE und DELETE sind per Trigger gesperrt; eine Ruecknahme
 -- ist eine neue Zeile mit reverts_revision_id.
+CREATE TABLE editorial_proposal (
+  id uuid PRIMARY KEY,
+  entity_type text NOT NULL CHECK (entity_type IN (
+    'identity_candidate', 'narrator', 'rijal_entry', 'date_assertion',
+    'relationship_assertion', 'hadith_cluster', 'matn_variant', 'parse_review_item'
+  )),
+  entity_id uuid NOT NULL,
+  entity_stable_key text,
+  action text NOT NULL CHECK (action IN ('accept', 'reject', 'merge', 'verify')),
+  rationale text NOT NULL CHECK (length(trim(rationale)) >= 12),
+  source_passage_id uuid NOT NULL REFERENCES source_passage(id),
+  proposed_by uuid NOT NULL REFERENCES editor(id),
+  -- `before_value` wird vom Worker aus der aktuell wirksamen Revision oder
+  -- dem Fachobjekt gelesen, nie vom Browser uebernommen.
+  before_value jsonb NOT NULL,
+  after_value jsonb NOT NULL,
+  baseline_revision_id uuid,
+  data_version text NOT NULL,
+  created_at timestamptz NOT NULL DEFAULT now(),
+  CONSTRAINT editorial_proposal_changes_value CHECK (before_value <> after_value)
+);
+
 CREATE TABLE editorial_revision (
   id uuid PRIMARY KEY DEFAULT gen_random_uuid(),
   entity_type text NOT NULL,
@@ -1286,6 +1324,9 @@ CREATE TABLE editorial_revision (
   approved_at timestamptz,
   before_value jsonb NOT NULL,
   after_value jsonb NOT NULL,
+  -- Genau eine wirksame Revision kann eine Proposal-Zeile finalisieren. Fuer
+  -- historische Revisionen vor P5.8 bleibt die Spalte NULL.
+  proposal_id uuid UNIQUE REFERENCES editorial_proposal(id),
   supersedes_id uuid REFERENCES editorial_revision(id),
   -- Ruecknahme statt Loeschung.
   reverts_revision_id uuid UNIQUE REFERENCES editorial_revision(id),
@@ -1296,7 +1337,8 @@ CREATE TABLE editorial_revision (
     action NOT IN ('merge', 'split', 'verify') OR (approved_by IS NOT NULL AND approved_by <> editor_id)
   ),
   CONSTRAINT editorial_revision_approval_pair CHECK ((approved_by IS NULL) = (approved_at IS NULL)),
-  CONSTRAINT editorial_revision_no_self_revert CHECK (reverts_revision_id IS NULL OR reverts_revision_id <> id)
+  CONSTRAINT editorial_revision_no_self_revert CHECK (reverts_revision_id IS NULL OR reverts_revision_id <> id),
+  UNIQUE (entity_type, entity_id, revision_index)
 );
 
 -- ---------------------------------------------------------------------------
@@ -1336,6 +1378,8 @@ CREATE INDEX chronology_basis_date_idx ON chronology_basis (date_assertion_id);
 CREATE INDEX evidence_link_entity_idx ON evidence_link (entity_type, entity_id);
 CREATE INDEX review_queue_idx ON parse_review_item (queue_kind, review_status, created_at);
 CREATE INDEX editorial_revision_entity_idx ON editorial_revision (entity_type, entity_id, created_at DESC);
+CREATE INDEX editorial_proposal_entity_idx ON editorial_proposal (entity_type, entity_id, created_at DESC);
+CREATE INDEX editor_api_credential_editor_idx ON editor_api_credential (editor_id, revoked_at, expires_at);
 CREATE INDEX narrator_id_redirect_target_idx ON narrator_id_redirect (target_stable_key);
 CREATE UNIQUE INDEX narrator_id_redirect_active_key_idx
   ON narrator_id_redirect (absorbed_stable_key) WHERE is_active;
@@ -1462,6 +1506,10 @@ CREATE TRIGGER editorial_revision_append_only
   BEFORE UPDATE OR DELETE ON editorial_revision
   FOR EACH STATEMENT EXECUTE FUNCTION sanad_forbid_mutation();
 
+CREATE TRIGGER editorial_proposal_append_only
+  BEFORE UPDATE OR DELETE ON editorial_proposal
+  FOR EACH STATEMENT EXECUTE FUNCTION sanad_forbid_mutation();
+
 CREATE TRIGGER identity_decision_append_only
   BEFORE UPDATE OR DELETE ON identity_decision
   FOR EACH STATEMENT EXECUTE FUNCTION sanad_forbid_mutation();
@@ -1567,6 +1615,10 @@ CREATE TRIGGER editorial_revision_human_editor
   BEFORE INSERT ON editorial_revision
   FOR EACH ROW EXECUTE FUNCTION sanad_reviewer_must_be_human('editor_id', 'approved_by');
 
+CREATE TRIGGER editorial_proposal_human_editor
+  BEFORE INSERT ON editorial_proposal
+  FOR EACH ROW EXECUTE FUNCTION sanad_reviewer_must_be_human('proposed_by');
+
 CREATE TRIGGER rijal_entry_human_reviewer
   BEFORE INSERT OR UPDATE ON rijal_entry
   FOR EACH ROW EXECUTE FUNCTION sanad_reviewer_must_be_human('reviewed_by');
@@ -1601,5 +1653,6 @@ INSERT INTO schema_migration (version, description) VALUES
   ('0004', 'stable_key, revision, Redirect, Merge und Split'),
   ('0005', 'Evidenzhuelle, Occurrence-Bezug, Chronologiebasis, Quellenpflicht'),
   ('0006', 'Append-only-Schutz und menschliche Pruefer'),
-  ('0007', 'narrator_public_alias: Alt-IDs bleiben aufloesbar')
+  ('0007', 'narrator_public_alias: Alt-IDs bleiben aufloesbar'),
+  ('0008', 'persistente Redaktionsvorschlaege und gehashte API-Zugangsdaten')
 ON CONFLICT (version) DO NOTHING;
