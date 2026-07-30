@@ -8,3 +8,17 @@ out
 .cache
 public/data/corpus/*.json
 !public/data/corpus/manifest.json
+!public/data/corpus/completeness.json
+!public/data/corpus/review-queue.json
+!public/data/corpus/normalize-fixture.json
+__pycache__
+*.pyc
+.venv
+.snapshots
+tsconfig.tsbuildinfo
+
+# Aus dem Build erzeugte SQLite-Artefakte (445 MB) und Scratch-Dateien des Worker-Smoketests
+worker/*.db
+worker/*.db-journal
+worker/atlas.db.manifest.json
+worker/test.txt

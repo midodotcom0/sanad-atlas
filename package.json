@@ -8,6 +8,7 @@
     "start": "next start",
     "lint": "eslint .",
     "test": "vitest run",
+    "test:backend": "PYTHONPATH=backend python3 -m unittest discover -s backend/tests -v",
     "test:watch": "vitest",
     "import:test": "node scripts/validate-test-import.mjs",
     "import:turath": "node scripts/import-turath-corpus.mjs --fetch"
